@@ -43,6 +43,11 @@ local branch = {
   icon = nil,
 }
 
+local location = {
+  "location",
+  padding = 0,
+}
+
 lualine.setup {
   options = {
     icons_enabled = true,
