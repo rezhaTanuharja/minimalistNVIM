@@ -64,7 +64,7 @@ return packer.startup(function(use)
   use "nvim-treesitter/nvim-treesitter"       -- syntax highlighting
   use "RRethy/vim-illuminate"                 -- highlight words that are the same as the one under the cursor
   use "lukas-reineke/indent-blankline.nvim"   -- add lines to indentations
-  use "catppuccin/nvim"                       -- nice colorschemes
+  use "rebelot/kanagawa.nvim"                 -- a nice collection of colorschemes
 
   -- Language servers and autocompletion
   use "hrsh7th/nvim-cmp"                      -- cmp for completion

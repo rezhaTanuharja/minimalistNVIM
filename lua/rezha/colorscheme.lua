@@ -8,7 +8,7 @@
 -- @date 2024-08-13
 --
 
-local colorScheme = "catppuccin-mocha"
+local colorScheme = "kanagawa-dragon"
 
 local success, _ = pcall(vim.cmd, "colorscheme " .. colorScheme)
 if not success then
