@@ -21,6 +21,11 @@ keymap("", "<Space>", "<Nop>", commonOptions)
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 
+
+-- Faster quit and save
+keymap("n", "<leader>q", ":q<CR>", commonOptions)
+keymap("n", "<leader>w", ":w<CR>", commonOptions)
+
 -- Navigate through windows
 keymap("n", "<C-h>", "<C-w>h", commonOptions)
 keymap("n", "<C-j>", "<C-w>j", commonOptions)
