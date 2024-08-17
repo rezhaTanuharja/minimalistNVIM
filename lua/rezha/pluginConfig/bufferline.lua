@@ -14,8 +14,7 @@ if not success then
   return
 end
 
-bufferline.setup {
-  options = {
+bufferline.setup { options = {
     numbers = "none",
     close_command = "Bdelete! %d",
     right_mouse_command = "Bdelete! %d",
@@ -40,7 +39,7 @@ bufferline.setup {
     persist_buffer_sort = true,
     separator_style = "thin",
     enforce_regular_tabs = true,
-    always_show_bufferline = true,
+    always_show_bufferline = false,
   },
 --
 --   highlights = {

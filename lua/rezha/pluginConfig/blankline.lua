@@ -14,4 +14,6 @@ if not success then
   return
 end
 
-blankline.setup {}
+blankline.setup {
+  indent = {char = "│"}
+}
