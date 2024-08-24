@@ -4,9 +4,9 @@
     </h1>
     <p>
         <a href="#dependencies">Dependencies</a>
-        ●
+        ∙
         <a href="#instructions">How to Use</a>
-        ●
+        ∙
         <a href="#documentations">Documentations</a>
     </p>
     <p align="left">

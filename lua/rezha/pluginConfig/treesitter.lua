@@ -22,7 +22,7 @@ treesitter.setup {
   ignore_install = {},
   highlight = {
     enable = true,
-    disable = {},
+    disable = {"markdown"},
   },
   indent = {enable = true, disable = {"css", "latex"}},
 }

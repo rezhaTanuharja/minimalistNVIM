@@ -46,6 +46,7 @@ telescope.setup {
       "%.key",
       "%.make",
       "%.marks",
+      "%.md",
       "%.o",
       "%.out",
       "%.pdf",
@@ -57,6 +58,7 @@ telescope.setup {
       "%.wav",
       "%.xlsx",
       "%.yaml",
+      "%.yml",
     },
   },
   pickers = {
