@@ -14,6 +14,7 @@
         The project is heavily inspired by <a href="https://github.com/LunarVim">LunarVim</a> and follows instructions from the excellent step-by-step tutorial <a href="https://www.youtu.be/ctH-a-1eUME?si=mAsw4Qno6kmIIuQy">Neovim IDE from Scratch</a> by <a href="https://www.christatmachine.com"></a>.
         If you are interested in detailed explanations and guides, you should check him out.
     </p>
+    <img src="assets/images/preview.png" alt="My Image" width="600"/>
 </div>
 
 <div id="dependencies">
