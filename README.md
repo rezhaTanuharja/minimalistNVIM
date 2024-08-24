@@ -7,7 +7,7 @@
         ∙
         <a href="#instructions">How to Use</a>
         ∙
-        <a href="#documentations">Documentations</a>
+        <a href="#customization">Customization</a>
     </p>
     <p align="left">
         This project attempts to create an IDE-like experience for writing and editing code with NVIM.
@@ -50,24 +50,24 @@
         Some plugins like Mason and Treesitter will automatically install everything needed for their functionalities.
         You may need to close and reopen nvim several times during these installations.
     </p>
+</div>
+<div id="customization">
+    <h2>
+        How to Customize
+    </h2>
     <p>
-        To do minor customizations and adjustments, I recommend to copy the directory 'lua/rezha/', e.g.,
+        The project is structured to enable multiple configurations.
+        The default configuration is everything inside 'lua/rezha'.
+        To create a new configuration, I recommend to copy this directory like in the following:
     </p>
     <pre><code class="language-bash"><!--
     -->cp -r ~/.config/nvim/lua/rezha ~/.config/nvim/lua/newUser<!--
     --></code></pre>
     <p>
         Then change the 'user' specified in '~/.config/nvim/init.lua' from 'rezha' to 'newUser' in this example.
-        You can experiment with the files inside this new directory.
+        You can experiment: add, delete, or customize the files inside this new directory.
         Whenever you want to revert the configuration, simply change the 'user' back to 'rezha'.
-    </p>
-</div>
-
-<div id="documentations">
-    <h2>
-        Documentations
-    </h2>
-    <p>
-        Coming soon!!
+        That's it!
+        You can now create as many configurations as you wish and switch between them by changing the 'user' variable inside 'init.lua'.
     </p>
 </div>
