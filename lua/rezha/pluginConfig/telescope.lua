@@ -34,7 +34,21 @@ telescope.setup {
         ["k"] = actions.move_selection_previous,
       },
     },
+
+    vimgrep_arguments = {
+      'rg',
+      '--color=never',
+      '--no-heading',
+      '--with-filename',
+      '--line-number',
+      '--column',
+      '--smart-case',
+      '--hidden',
+    },
+
     file_ignore_patterns = {
+      ".git/",
+
       "%.bin",
       "%.cmake",
       "%.check_cache",
@@ -61,11 +75,26 @@ telescope.setup {
       "%.yml",
     },
   },
+
   pickers = {
-    planets = {
-      show_pluto = true,
+
+    find_files = {
+      hidden = true,
+      find_command = {
+        'rg', '--files', '--hidden'
+      },
     },
+
+    live_grep = {
+      only_sort_text = true,
+    },
+
+    grep_string = {
+      only_sort_text = true,
+    },
+
   },
+
   extensions = {
   },
 }
