@@ -74,7 +74,7 @@ return packer.startup(function(use)
   use "hrsh7th/cmp-nvim-lsp"                  -- completion with LSP
 
   use "L3MON4D3/LuaSnip"
-  use "rafamadriz/friendly-snippets"
+  -- use "rafamadriz/friendly-snippets"
 
   use "saadparwaiz1/cmp_luasnip"
 

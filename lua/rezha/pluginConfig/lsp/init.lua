@@ -8,12 +8,6 @@
 -- @date 2024-08-13
 --
 
-local success, _ = pcall(require, "lspconfig")
-if not success then
-  vim.notify("Error loading plugin: lspconfig")
-  return
-end
-
 local location = "rezha.pluginConfig.lsp"
 
 require(location .. ".mason")
