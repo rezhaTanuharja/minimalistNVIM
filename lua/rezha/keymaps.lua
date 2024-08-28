@@ -40,7 +40,8 @@ keymap("n", "<S-h>", ":bprevious<CR>", commonOptions)
 keymap("n", "<C-m>", ":vertical resize -2<CR>", commonOptions)
 keymap("n", "<C-n>", ":vertical resize +2<CR>", commonOptions)
 
--- Remove highlights from search
+-- Faster search and remove highlights from search
+keymap("n", "<leader>a", ":/", commonOptions)
 keymap("n", "<S-m>", ":nohlsearch<CR>", commonOptions)
 
 -- Remove a buffer without closing window
