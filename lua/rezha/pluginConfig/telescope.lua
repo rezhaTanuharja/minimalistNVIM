@@ -66,6 +66,7 @@ telescope.setup {
       "%.pdf",
       "%.png",
       "%.pptx",
+      "%.pth",
       "%.pyc",
       "%.so",
       "%.vtu",
