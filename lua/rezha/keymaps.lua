@@ -64,4 +64,6 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", commonOptions)
 
 -- navigate telescope
 keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", commonOptions)
+keymap("n", "<leader>b", "<cmd>Telescope current_buffer_fuzzy_find<cr>", commonOptions)
+keymap("n", "<leader>d", "<cmd>Telescope diagnostics<cr>", commonOptions)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", commonOptions)
