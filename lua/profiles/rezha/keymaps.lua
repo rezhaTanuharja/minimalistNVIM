@@ -51,7 +51,11 @@ keymap('n', '<C-n>', ':vertical resize +2<CR>', opts)
 -- makes searching for text faster
 keymap('n', '<leader>a', ':/', opts)
 keymap('n', '<S-m>', ':nohlsearch<CR>', opts)
- 
+
+-- open terminal
+keymap('n', '<leader>t', ':terminal<CR>', opts)
+keymap('t', '<Esc>', '<C-\\><C-n>', opts)
+
 -- enable repeated indentation
 keymap('v', '<', '<gv', opts)
 keymap('v', '>', '>gv', opts)
