@@ -58,5 +58,6 @@ lazy.setup {
     { import = location .. 'bufferline' },
     { import = location .. 'blankline' },
     { import = location .. 'gitsigns' },
+    { import = location .. 'autopairs' },
   },
 }
