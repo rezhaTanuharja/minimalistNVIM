@@ -13,6 +13,8 @@ return {
 
   'akinsho/bufferline.nvim',
 
+  event = {'BufReadPost', 'BufNewFile'},
+
   dependencies = {
     'moll/vim-bbye',
   },

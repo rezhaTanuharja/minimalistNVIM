@@ -15,7 +15,11 @@ return {
   'kyazdani42/nvim-tree.lua',
 
   -- load when entering nvim
-  event = 'VimEnter',
+  keys = {
+    { '<leader>e', ':NvimTreeToggle<CR>'},
+    -- vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
+  },
+  -- event = 'VimEnter',
 
   config = function()
 

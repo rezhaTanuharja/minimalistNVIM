@@ -13,7 +13,7 @@ return {
 
   'lewis6991/gitsigns.nvim',
 
-  event = 'VimEnter',
+  event = {'BufReadPost', 'BufNewFile'},
 
   config = function()
     

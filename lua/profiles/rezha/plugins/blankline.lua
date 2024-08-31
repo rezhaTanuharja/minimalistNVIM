@@ -13,6 +13,8 @@ return {
 
   'lukas-reineke/indent-blankline.nvim',
 
+  event = 'InsertEnter',
+
   config = function()
 
     local success, blankline = pcall(require, 'ibl')

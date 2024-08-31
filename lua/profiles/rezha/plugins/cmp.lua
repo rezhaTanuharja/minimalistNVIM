@@ -15,7 +15,7 @@ return {
   'hrsh7th/nvim-cmp',
 
   -- load when first entering insert mode
-  event = 'InsertEnter',
+  event = 'UIEnter',
 
   dependencies = {
 

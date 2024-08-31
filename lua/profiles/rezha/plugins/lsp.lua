@@ -68,7 +68,7 @@ return {
   'neovim/nvim-lspconfig',
 
   -- load when entering the buffer
-  event = 'BufEnter',
+  event = 'UIEnter',
 
   dependencies = {
 

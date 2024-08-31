@@ -13,7 +13,7 @@ return {
 
   'nvim-lualine/lualine.nvim',
 
-  event = 'VimEnter',
+  event = 'InsertEnter',
 
   config = function()
 

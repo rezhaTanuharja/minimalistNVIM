@@ -47,6 +47,36 @@ local location = 'profiles.rezha.plugins.'
 
 -- specify manually the plugins to load
 lazy.setup {
+
+  change_detection = {
+    enabled = false,
+    notify = false,
+  },
+
+  performance = {
+
+    cache = {
+      enabled = true,
+    },
+
+    reset_packpath = true,
+
+    rtp = {
+      reset = true,
+      disabled_plugins = {
+        'gzip',
+        'matchit',
+        -- 'matchparen',
+        'netrwPlugin',
+        'tarPlugin',
+        'tohtml',
+        'tutor',
+        'zipPlugin',
+      },
+    },
+
+  },
+
   spec = {
     { import = location .. 'tokyonight' },
     { import = location .. 'telescope' },

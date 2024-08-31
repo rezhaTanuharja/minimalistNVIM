@@ -15,7 +15,7 @@ return {
   'nvim-telescope/telescope.nvim',
 
   -- load when entering nvim
-  event = 'VimEnter',
+  event = 'UIEnter',
 
   -- specify dependencies of telescope
   dependencies = {
@@ -98,7 +98,7 @@ return {
     pcall(require('telescope').load_extension, 'fzf')
 
     -- custom keymaps for telescope
-    local builtin = require 'telescope.builtin'
+    local builtin = require('telescope.builtin')
     vim.keymap.set('n', '<leader>f', builtin.find_files)
     vim.keymap.set('n', '<leader>d', builtin.diagnostics)
     vim.keymap.set('n', '<leader>b', builtin.current_buffer_fuzzy_find)
