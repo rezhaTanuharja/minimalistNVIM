@@ -8,17 +8,24 @@
 -- @date 2024-08-13
 --
 
-local user = "rezha"
 
+-- enable multiple profiles
+local profile = 'rezha'
+
+-- a function to load config files
 local function loadConfig(filename)
+
+  -- use protected call so if something fails it does not crash
   local success, _ = pcall(require, filename)
   if not success then
-    vim.notify("Error loading configuration file: " .. filename)
+    vim.notify('Failed to load a configuration file: ' .. filename)
   end
+
 end
 
-loadConfig(user .. ".colorscheme")
-loadConfig(user .. ".keymaps")
-loadConfig(user .. ".options")
-loadConfig(user .. ".plugins")
-loadConfig(user .. ".pluginConfig")
+
+-- load configuration files
+loadConfig('profiles.' .. profile .. '.options')
+loadConfig('profiles.' .. profile .. '.keymaps')
+loadConfig('profiles.' .. profile .. '.commands')
+loadConfig('profiles.' .. profile .. '.lazy')

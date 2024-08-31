@@ -1,0 +1,61 @@
+---
+-- @file lua/profiles/rezha/keymaps.lua
+--
+-- @brief
+-- The configuration file to define custom keymaps
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-08-31
+--
+
+
+-- shared optios across all keymaps
+local opts = {
+  noremap = true,
+  silent = true,
+}
+
+-- function alias to remap keys
+local keymap = vim.api.nvim_set_keymap
+
+-- remap space as a leader key
+keymap('', '<Space>', '<Nop>', opts)
+vim.g.mapleader = ' '
+vim.g.maplocalleader = ' '
+
+-- faster quit and save
+keymap('n', '<leader>q', ':q<CR>', opts)
+keymap('n', '<leader>w', ':w<CR>', opts)
+
+-- navigate through windows
+keymap('n', '<C-h>', '<C-w>h', opts)
+keymap('n', '<C-j>', '<C-w>j', opts)
+keymap('n', '<C-k>', '<C-w>k', opts)
+keymap('n', '<C-l>', '<C-w>l', opts)
+
+-- navigate through buffers
+keymap('n', '<S-l>', ':bnext<CR>', opts)
+keymap('n', '<S-h>', ':bprevious<CR>', opts)
+
+-- remove a buffer without closing window
+keymap('n', '<leader>c', ':Bdelete!<CR>', opts)
+
+-- navigate through diagnostics
+keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
+keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+
+-- resize windows
+keymap('n', '<C-m>', ':vertical resize -2<CR>', opts)
+keymap('n', '<C-n>', ':vertical resize +2<CR>', opts)
+
+-- makes searching for text faster
+keymap('n', '<leader>a', ':/', opts)
+keymap('n', '<S-m>', ':nohlsearch<CR>', opts)
+ 
+-- enable repeated indentation
+keymap('v', '<', '<gv', opts)
+keymap('v', '>', '>gv', opts)
+
+-- move highlighted texts up or down
+keymap('x', 'J', ":move '>+1<CR>gv-gv", opts)
+keymap('x', 'K', ":move '<-2<CR>gv-gv", opts)
