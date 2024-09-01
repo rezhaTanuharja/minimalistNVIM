@@ -49,20 +49,20 @@ return {
     -- just don't use icons
     local kind_icons = {
       Text = '',
-      Method = '',
-      Function = '',
+      Method = '<method>',
+      Function = '<function>',
       Constructor = '',
       Field = '',
-      Variable = '',
-      Class = '',
+      Variable = '<variable>',
+      Class = '<class>',
       Interface = '',
-      Module = '',
+      Module = '<module>',
       Property = '',
       Unit = '',
       Value = '',
       Enum = '',
       Keyword = '',
-      Snippet = '',
+      Snippet = '<snippet>',
       Color = '',
       File = '',
       Reference = '',
@@ -82,6 +82,23 @@ return {
         expand = function(args)
           luasnip.lsp_expand(args.body)
         end,
+      },
+
+      window = {
+
+        completion = cmp.config.window.bordered(
+          {
+            border = 'rounded',
+            scrollbar = false,
+          }
+        ),
+
+        documentation = cmp.config.window.bordered(
+          {
+            border = 'rounded'
+          }
+        ),
+
       },
 
       completion = { completeopt = 'menu,menuone,noinsert' },
@@ -131,10 +148,10 @@ return {
 
           vim_item.menu = (
             {
-              luasnip = '[Snippet]',
-              nvim_lsp = '[LSP]',
-              buffer = '[Buffer]',
-              path = '[Path]',
+              luasnip = 'luasnip',
+              nvim_lsp = 'lsp',
+              buffer = 'buff',
+              path = 'path',
             }
           )[entry.source.name]
 

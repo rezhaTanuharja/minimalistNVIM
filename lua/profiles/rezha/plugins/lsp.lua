@@ -47,8 +47,8 @@ local function get_handlers()
     end
 
     lsp_keymaps(bufnr)
-    local status_ok, illuminate = pcall(require, 'illuminate')
-    if not status_ok then
+    local success, illuminate = pcall(require, 'illuminate')
+    if not success then
       vim.notify('Failed to load plugin: illuminate')
       return
     end
@@ -98,7 +98,7 @@ return {
       signs = {
         active = signs,
       },
-      update_in_insert = true,
+      update_in_insert = false,
       underline = true,
       severity_sort = true,
       float = {
