@@ -55,7 +55,7 @@ keymap('n', '<S-m>', ':nohlsearch<CR>', opts)
 -- terminal functionalities
 keymap('n', '<leader>t', ':terminal<CR>', opts)
 keymap('n', '<leader>j', ':botright new | resize 10 | terminal<CR>', opts)
-keymap('t', '<leader>n', '<C-\\><C-n>', opts)
+keymap('t', 'qq', '<C-\\><C-n>', opts)
 
 -- enable repeated indentation
 keymap('v', '<', '<gv', opts)

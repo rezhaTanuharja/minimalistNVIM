@@ -45,8 +45,13 @@ return {
       -- available styles are 'day', 'night', 'storm', 'moon'
       style = "night",
 
+      transparent = true,
+
       -- for further customization
-      styles = {},
+      styles = {
+        sidebars = 'transparent',
+        floats = 'transparent',
+      },
 
       -- change the yellow color because it is ugly
       on_colors = function(colors)
