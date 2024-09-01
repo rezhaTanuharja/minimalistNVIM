@@ -45,13 +45,16 @@ keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 -- resize windows
 keymap('n', '<C-m>', ':vertical resize -2<CR>', opts)
 keymap('n', '<C-n>', ':vertical resize +2<CR>', opts)
+keymap('n', '<C-,>', ':horizontal resize +2<CR>', opts)
+keymap('n', '<C-.>', ':horizontal resize -2<CR>', opts)
 
 -- makes searching for text faster
 keymap('n', '<leader>a', ':/', opts)
 keymap('n', '<S-m>', ':nohlsearch<CR>', opts)
 
--- open terminal
+-- terminal functionalities
 keymap('n', '<leader>t', ':terminal<CR>', opts)
+keymap('n', '<leader>j', ':botright new | resize 10 | terminal<CR>', opts)
 keymap('t', '<Esc>', '<C-\\><C-n>', opts)
 
 -- enable repeated indentation

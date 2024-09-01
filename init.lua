@@ -27,7 +27,7 @@ end
 
 
 -- load configuration files
-loadConfig('profiles.' .. profile .. '.variables')
+loadConfig('profiles.' .. profile .. '.globals')
 loadConfig('profiles.' .. profile .. '.options')
 loadConfig('profiles.' .. profile .. '.keymaps')
 loadConfig('profiles.' .. profile .. '.commands')
