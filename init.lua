@@ -10,7 +10,7 @@
 
 
 -- enable multiple profiles
-local profile = 'rezha'
+local user = 'rezha'
 
 -- a function to load config files
 local function loadConfig(filename)
@@ -23,12 +23,16 @@ local function loadConfig(filename)
 
 end
 
--- vim.g.loaded_perl_provider = 0
+-- list all available config files
+local configs = {
+  'globals',
+  'options',
+  'keymaps',
+  'commands',
+  'lazy',
+}
 
-
--- load configuration files
-loadConfig('profiles.' .. profile .. '.globals')
-loadConfig('profiles.' .. profile .. '.options')
-loadConfig('profiles.' .. profile .. '.keymaps')
-loadConfig('profiles.' .. profile .. '.commands')
-loadConfig('profiles.' .. profile .. '.lazy')
+-- load all listed config files
+for _, config in pairs(configs) do
+  loadConfig('profiles.' .. user .. '.' .. config)
+end
