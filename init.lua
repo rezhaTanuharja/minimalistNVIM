@@ -23,8 +23,11 @@ local function loadConfig(filename)
 
 end
 
+-- vim.g.loaded_perl_provider = 0
+
 
 -- load configuration files
+loadConfig('profiles.' .. profile .. '.variables')
 loadConfig('profiles.' .. profile .. '.options')
 loadConfig('profiles.' .. profile .. '.keymaps')
 loadConfig('profiles.' .. profile .. '.commands')

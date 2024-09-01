@@ -13,7 +13,7 @@ return {
 
   'akinsho/bufferline.nvim',
 
-  event = {'BufReadPost', 'BufNewFile'},
+  event = 'UIEnter',
 
   dependencies = {
     'moll/vim-bbye',

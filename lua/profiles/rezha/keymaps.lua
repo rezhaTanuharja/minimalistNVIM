@@ -18,10 +18,8 @@ local opts = {
 -- function alias to remap keys
 local keymap = vim.api.nvim_set_keymap
 
--- remap space as a leader key
+-- we remap space to leader key so ensure it does nothing
 keymap('', '<Space>', '<Nop>', opts)
-vim.g.mapleader = ' '
-vim.g.maplocalleader = ' '
 
 -- faster quit and save
 keymap('n', '<leader>q', ':q<CR>', opts)
