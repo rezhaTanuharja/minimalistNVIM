@@ -15,7 +15,7 @@ local opts = {
   silent = true,
 }
 
--- function alias to remap keys
+-- alias function for conciseness
 local keymap = vim.api.nvim_set_keymap
 
 -- we remap space to leader key so ensure it does nothing
@@ -60,8 +60,6 @@ keymap('t', 'qq', '<C-\\><C-n>', opts)
 -- enable repeated indentation
 keymap('v', '<', '<gv', opts)
 keymap('v', '>', '>gv', opts)
-
--- keymap('v', '<leader>s', ':exact_replace', opts)
 
 -- move highlighted texts up or down
 keymap('x', 'J', ":move '>+1<CR>gv-gv", opts)
