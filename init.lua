@@ -10,7 +10,7 @@
 
 
 -- enable multiple profiles
-local user = 'rezha'
+local profile = 'rezha'
 
 -- a function to load config files
 local function loadConfig(filename)
@@ -34,5 +34,5 @@ local configs = {
 
 -- load all listed config files
 for _, config in pairs(configs) do
-  loadConfig('profiles.' .. user .. '.' .. config)
+  loadConfig('profiles.' .. profile .. '.' .. config)
 end
