@@ -56,12 +56,6 @@ return {
       icon = nil,
     }
 
-    -- display cursor location (row and column)
-    local location = {
-      'location',
-      padding = 0,
-    }
-
     lualine.setup {
 
       options = {
@@ -77,9 +71,9 @@ return {
         lualine_a = {branch},
         lualine_b = {diagnostics},
         lualine_c = {mode},
-        lualine_x = {'encoding', filetype},
-        lualine_y = {},
-        lualine_z = {location},
+        lualine_x = {},
+        lualine_y = {'encoding'},
+        lualine_z = {filetype},
       },
 
       inactive_sections = {
@@ -87,8 +81,8 @@ return {
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
-        lualine_y = {},
-        lualine_z = {},
+        lualine_y = {'encoding'},
+        lualine_z = {filetype},
       },
 
       tabline = {},

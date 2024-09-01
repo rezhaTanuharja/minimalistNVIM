@@ -40,7 +40,11 @@ return {
       renderer = {
 
         root_folder_modifier = ':t',
+
         icons = {
+
+          diagnostics_placement = 'signcolumn',
+          git_placement = 'after',
 
           -- use the simplest possible symbols
           glyphs = {
@@ -60,8 +64,8 @@ return {
             },
 
             git = {
-              unstaged = '',
-              staged = '',
+              unstaged = '*',
+              staged = '+',
               deleted = '',
               unmerged = '',
               renamed = '',
@@ -86,6 +90,14 @@ return {
           warning = '!',
           error = '!',
         },
+
+      },
+
+      git = {
+
+        enable = true,
+        show_on_dirs = true,
+        show_on_open_dirs = false,
 
       },
 

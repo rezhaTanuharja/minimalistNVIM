@@ -100,9 +100,9 @@ return {
       },
       update_in_insert = false,
       underline = true,
-      severity_sort = true,
+      severity_sort = false,
       float = {
-        focusable = true,
+        focusable = false,
         style = 'minimal',
         border = 'rounded',
         source = 'always',
@@ -142,6 +142,7 @@ return {
       }
 
       server = vim.split(server, '@')[1]
+
       lspconfig[server].setup(opts)
     end
 
