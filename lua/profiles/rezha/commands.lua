@@ -20,4 +20,20 @@ vim.api.nvim_create_autocmd(
       vim.highlight.on_yank()
     end,
   }
+
+)
+
+-- when in visual mode, type this command to replace words
+vim.api.nvim_create_user_command(
+  'ExactReplace',
+  function(opts)
+      local start_line = vim.fn.line("'<")
+      local end_line = vim.fn.line("'>")
+      local word = opts.args
+      vim.fn.cursor(start_line, 1)
+      vim.cmd('normal! V')
+      vim.fn.cursor(end_line, 1)
+      vim.api.nvim_feedkeys(":s/\\<" .. word .. "\\>/", 'c', false)
+  end,
+  { nargs = 1, range = true }
 )

@@ -103,6 +103,7 @@ return {
     vim.keymap.set('n', '<leader>d', builtin.diagnostics)
     vim.keymap.set('n', '<leader>b', builtin.current_buffer_fuzzy_find)
     vim.keymap.set('n', '<leader>g', builtin.live_grep)
+    vim.keymap.set('n', '<leader>i', builtin.lsp_incoming_calls)
   end,
 
 }

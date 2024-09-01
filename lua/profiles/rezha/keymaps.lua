@@ -61,6 +61,16 @@ keymap('t', 'qq', '<C-\\><C-n>', opts)
 keymap('v', '<', '<gv', opts)
 keymap('v', '>', '>gv', opts)
 
+-- keymap('v', '<leader>s', ':exact_replace', opts)
+
 -- move highlighted texts up or down
 keymap('x', 'J', ":move '>+1<CR>gv-gv", opts)
 keymap('x', 'K', ":move '<-2<CR>gv-gv", opts)
+
+-- enter exact replacement
+keymap('x', '<leader>s', ":lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<CR>", opts)
+keymap('x', '<leader>a', ":s/$/", opts)
+keymap('x', '<leader>i', ":s/^/", opts)
+
+-- to prevent highlighting search results
+keymap('c', '<S-CR>', '/g | nohlsearch<CR>', opts)
