@@ -89,5 +89,6 @@ lazy.setup {
     { import = location .. 'blankline' },
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },
+    { import = location .. 'todo-comments' },
   },
 }
