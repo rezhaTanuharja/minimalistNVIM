@@ -42,6 +42,10 @@ keymap('n', '<leader>c', ':Bdelete!<CR>', opts)
 keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
 keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
 
+-- faster split
+keymap('n', '<leader>h', ':sp<CR>', opts)
+keymap('n', '<leader>v', ':vs<CR>', opts)
+
 -- resize windows
 keymap('n', '<C-m>', ':vertical resize -2<CR>', opts)
 keymap('n', '<C-n>', ':vertical resize +2<CR>', opts)
