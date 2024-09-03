@@ -56,6 +56,11 @@ return {
       icon = nil,
     }
 
+    local location = {
+      'location',
+      padding = 0,
+    }
+
     lualine.setup {
 
       options = {
@@ -71,7 +76,7 @@ return {
         lualine_a = {branch},
         lualine_b = {diagnostics},
         lualine_c = {mode},
-        lualine_x = {},
+        lualine_x = {location},
         lualine_y = {'encoding'},
         lualine_z = {filetype},
       },
