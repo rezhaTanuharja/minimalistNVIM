@@ -17,7 +17,6 @@ return {
   -- load when entering nvim
   keys = {
     { '<leader>e', ':NvimTreeToggle<CR>'},
-    -- vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
   },
   -- event = 'VimEnter',
 
@@ -65,7 +64,7 @@ return {
 
             git = {
               unstaged = '*',
-              staged = '+',
+              staged = '',
               deleted = '',
               unmerged = '',
               renamed = '',

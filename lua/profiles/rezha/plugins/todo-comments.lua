@@ -32,7 +32,7 @@ return {
     },
 
     highlight = {
-      before = 'bg',
+      before = '',
       after = 'fg'
     },
 

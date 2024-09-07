@@ -66,7 +66,6 @@ lazy.setup {
       disabled_plugins = {
         'gzip',
         'matchit',
-        -- 'matchparen',
         'netrwPlugin',
         'tarPlugin',
         'tohtml',

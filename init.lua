@@ -7,14 +7,13 @@
 -- @author Rezha Adrian Tanuharja
 -- @date 2024-08-13
 --
---
 
 
 -- enable multiple profiles
 local profile = 'rezha'
 
 -- a function to load config files
-local function loadConfig(filename)
+local function load_config(filename)
 
   -- use protected call so if something fails it does not crash
   local success, _ = pcall(require, filename)
@@ -25,7 +24,7 @@ local function loadConfig(filename)
 end
 
 -- list all available config files
-local configs = {
+local config_files = {
   'globals',
   'options',
   'keymaps',
@@ -34,6 +33,6 @@ local configs = {
 }
 
 -- load all listed config files
-for _, config in pairs(configs) do
-  loadConfig('profiles.' .. profile .. '.' .. config)
+for _, config_file in pairs(config_files) do
+  load_config('profiles.' .. profile .. '.' .. config_file)
 end

@@ -87,8 +87,8 @@ return {
           '%.vtu',
           '%.wav',
           '%.xlsx',
-          '%.yaml',
-          '%.yml',
+          -- '%.yaml',
+          -- '%.yml',
         },
 
       },

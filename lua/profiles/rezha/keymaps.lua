@@ -9,70 +9,67 @@
 --
 
 
--- shared optios across all keymaps
-local opts = {
+-- shared options across all keymaps
+local options = {
   noremap = true,
   silent = true,
 }
 
--- alias function for conciseness
-local keymap = vim.api.nvim_set_keymap
-
 -- we remap space to leader key so ensure it does nothing
-keymap('', '<Space>', '<Nop>', opts)
+vim.api.nvim_set_keymap('', '<Space>', '<Nop>', options)
 
 -- faster quit and save
-keymap('n', '<leader>q', ':q<CR>', opts)
-keymap('n', '<leader>w', ':w<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>q', ':q<CR>', options)
+vim.api.nvim_set_keymap('n', '<leader>w', ':w<CR>', options)
 
 -- navigate through windows
-keymap('n', '<C-h>', '<C-w>h', opts)
-keymap('n', '<C-j>', '<C-w>j', opts)
-keymap('n', '<C-k>', '<C-w>k', opts)
-keymap('n', '<C-l>', '<C-w>l', opts)
+vim.api.nvim_set_keymap('n', '<C-h>', '<C-w>h', options)
+vim.api.nvim_set_keymap('n', '<C-j>', '<C-w>j', options)
+vim.api.nvim_set_keymap('n', '<C-k>', '<C-w>k', options)
+vim.api.nvim_set_keymap('n', '<C-l>', '<C-w>l', options)
 
 -- navigate through buffers
-keymap('n', '<S-l>', ':bnext<CR>', opts)
-keymap('n', '<S-h>', ':bprevious<CR>', opts)
+vim.api.nvim_set_keymap('n', '<S-l>', ':bnext<CR>', options)
+vim.api.nvim_set_keymap('n', '<S-h>', ':bprevious<CR>', options)
 
 -- remove a buffer without closing window
-keymap('n', '<leader>c', ':Bdelete!<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>c', ':Bdelete!<CR>', options)
 
 -- navigate through diagnostics
-keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
-keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', options)
+vim.api.nvim_set_keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', options)
 
 -- faster split
-keymap('n', '<leader>v', ':sp<CR>', opts)
-keymap('n', '<leader>h', ':vs<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>v', ':sp<CR>', options)
+vim.api.nvim_set_keymap('n', '<leader>h', ':vs<CR>', options)
 
 -- resize windows
-keymap('n', '<C-m>', ':vertical resize -2<CR>', opts)
-keymap('n', '<C-n>', ':vertical resize +2<CR>', opts)
-keymap('n', '<C-,>', ':horizontal resize +2<CR>', opts)
-keymap('n', '<C-.>', ':horizontal resize -2<CR>', opts)
+vim.api.nvim_set_keymap('n', '<C-m>', ':vertical resize -2<CR>', options)
+vim.api.nvim_set_keymap('n', '<C-n>', ':vertical resize +2<CR>', options)
+vim.api.nvim_set_keymap('n', '<C-,>', ':horizontal resize +2<CR>', options)
+vim.api.nvim_set_keymap('n', '<C-.>', ':horizontal resize -2<CR>', options)
 
 -- makes searching for text faster
-keymap('n', '<leader>a', ':/', opts)
-keymap('n', '<S-m>', ':nohlsearch<CR>', opts)
+vim.api.nvim_set_keymap('n', '<leader>a', ':/', options)
+vim.api.nvim_set_keymap('n', '<S-m>', ':nohlsearch<CR>', options)
 
 -- terminal functionalities
-keymap('n', '<leader>t', ':terminal<CR>', opts)
-keymap('n', '<leader>j', ':botright new | resize 10 | terminal<CR>', opts)
-keymap('t', 'qq', '<C-\\><C-n>', opts)
+vim.api.nvim_set_keymap('n', '<leader>t', ':terminal<CR>', options)
+vim.api.nvim_set_keymap('n', '<leader>j', ':botright new | resize 10 | terminal<CR>', options)
+vim.api.nvim_set_keymap('t', 'qq', '<C-\\><C-n>', options)
 
 -- enable repeated indentation
-keymap('v', '<', '<gv', opts)
-keymap('v', '>', '>gv', opts)
+vim.api.nvim_set_keymap('v', '<', '<gv', options)
+vim.api.nvim_set_keymap('v', '>', '>gv', options)
 
 -- move highlighted texts up or down
-keymap('x', 'J', ":move '>+1<CR>gv-gv", opts)
-keymap('x', 'K', ":move '<-2<CR>gv-gv", opts)
+vim.api.nvim_set_keymap('x', 'J', ":move '>+1<CR>gv-gv", options)
+vim.api.nvim_set_keymap('x', 'K', ":move '<-2<CR>gv-gv", options)
 
 -- enter exact replacement
-keymap('x', '<leader>s', ":lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<CR>", opts)
-keymap('x', '<leader>a', ":s/$/", opts)
-keymap('x', '<leader>i', ":s/^/", opts)
+vim.api.nvim_set_keymap('x', '<leader>s', ":lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<CR>", options)
+vim.api.nvim_set_keymap('x', '<leader>a', ":s/$/", options)
+vim.api.nvim_set_keymap('x', '<leader>i', ":s/^/", options)
 
 -- to prevent highlighting search results
-keymap('c', '<S-CR>', '/g | nohlsearch<CR>', opts)
+vim.api.nvim_set_keymap('c', '<S-CR>', '/g | nohlsearch<CR>', options)
