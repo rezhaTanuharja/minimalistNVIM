@@ -10,6 +10,7 @@
 
 
 local options = {
+  foldlevelstart = 99,                      -- start with everything unfolded
   backup = false,                           -- creates a backup file
   clipboard = 'unnamedplus',                -- allows neovim to access the system clipboard
   cmdheight = 1,                            -- more spaces in the command line for displaying messages
