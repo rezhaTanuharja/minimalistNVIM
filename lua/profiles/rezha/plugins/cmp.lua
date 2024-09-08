@@ -152,6 +152,7 @@ return {
               nvim_lsp = 'lsp',
               buffer = 'buff',
               path = 'path',
+              neorg = 'neorg',
             }
           )[entry.source.name]
 
@@ -166,6 +167,7 @@ return {
         { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
+        { name = 'neorg' },
       },
 
       confirm_opts = {

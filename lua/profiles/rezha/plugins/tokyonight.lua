@@ -34,16 +34,16 @@ return {
   config = function()
 
     -- use protected call to attempt to load plugin
-    local success, tokyonight = pcall(require, "tokyonight")
+    local success, tokyonight = pcall(require, 'tokyonight')
     if not success then
-      vim.notify("Failed to load plugin: tokyonight")
+      vim.notify('Failed to load plugin: tokyonight')
       return
     end
 
     tokyonight.setup {
 
       -- available styles are 'day', 'night', 'storm', 'moon'
-      style = "night",
+      style = 'night',
 
       transparent = true,
 

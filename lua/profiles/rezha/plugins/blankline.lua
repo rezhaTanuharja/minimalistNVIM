@@ -24,7 +24,10 @@ return {
     end
 
     blankline.setup {
-      indent = {char = '│'}
+      indent = {char = '│'},
+      exclude = {
+        filetypes = { 'norg' },
+      },
     }
 
   end,
