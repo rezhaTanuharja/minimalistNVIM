@@ -13,7 +13,8 @@ return{
 
   'nvim-neorg/neorg',
 
-  lazy = false,
+  -- lazy = false,
+  event = 'UIEnter',
   version = '*',
 
   dependencies = {

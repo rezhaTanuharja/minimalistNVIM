@@ -118,6 +118,7 @@ return {
 
     local servers = {
       'pyright',
+      'texlab',
     }
 
     require('mason-lspconfig').setup({

@@ -69,6 +69,7 @@ keymap('x', 'J', ":move '>+1<CR>gv-gv", options)
 keymap('x', 'K', ":move '<-2<CR>gv-gv", options)
 
 -- enter exact replacement
+keymap('n', '<leader>S', ":%s/", options)
 keymap('x', '<leader>s', ":lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<CR>", options)
 keymap('x', '<leader>a', ":s/$/", options)
 keymap('x', '<leader>i', ":s/^/", options)

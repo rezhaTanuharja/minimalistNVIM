@@ -111,9 +111,7 @@ return {
         -- press tab to select the next item
         ['<Tab>'] = cmp.mapping(
           function(fallback)
-            if cmp.visible() then
-              cmp.select_next_item()
-            elseif luasnip.expandable() then
+            if luasnip.expandable() then
               luasnip.expand()
             elseif luasnip.expand_or_jumpable() then
               luasnip.expand_or_jump()
@@ -127,9 +125,7 @@ return {
         ['<S-Tab>'] = cmp.mapping(
           function(fallback)
             if cmp.visible() then
-              cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
+              cmp.select_next_item()
             else
               fallback()
             end

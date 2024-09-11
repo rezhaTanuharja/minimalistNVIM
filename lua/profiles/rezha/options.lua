@@ -10,6 +10,8 @@
 
 
 local options = {
+  inccommand = 'split',
+  virtualedit = 'block',
   foldlevelstart = 99,                      -- start with everything unfolded
   backup = false,                           -- creates a backup file
   clipboard = 'unnamedplus',                -- allows neovim to access the system clipboard
