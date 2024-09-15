@@ -34,8 +34,12 @@ return {
         enable = true,
         disable = { 'markdown' },
       },
-      indent = { enable = true, disable = { 'css', 'latex'}},
+      indent = { enable = true, disable = { 'css', 'latex' }},
+      fold = { enable = true },
     }
+
+    vim.o.foldmethod = 'expr'
+    vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
 
   end,
 
