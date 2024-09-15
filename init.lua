@@ -9,9 +9,6 @@
 --
 
 
--- enable multiple profiles
-local profile = 'rezha'
-
 -- a function to load config files
 local function load_config(filename)
 
@@ -29,10 +26,10 @@ local config_files = {
   'options',
   'keymaps',
   'commands',
-  'lazy',
+  'plugins',
 }
 
 -- load all listed config files
 for _, config_file in pairs(config_files) do
-  load_config('profiles.' .. profile .. '.' .. config_file)
+  load_config(config_file)
 end

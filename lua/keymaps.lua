@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/keymaps.lua
+-- @file lua/keymaps.lua
 --
 -- @brief
 -- The configuration file to define custom keymaps
@@ -52,7 +52,6 @@ keymap('n', '<C-,>', ':horizontal resize +2<CR>', options)
 keymap('n', '<C-.>', ':horizontal resize -2<CR>', options)
 
 -- makes searching for text faster
-keymap('n', '<leader>a', ':/', options)
 keymap('n', '<S-m>', ':nohlsearch<CR>', options)
 
 -- terminal functionalities
@@ -76,3 +75,5 @@ keymap('x', '<leader>i', ":s/^/", options)
 
 -- to prevent highlighting search results
 keymap('c', '<S-CR>', '/g | nohlsearch<CR>', options)
+
+keymap('n', '<leader>l', ':silent !make all<CR>', options)

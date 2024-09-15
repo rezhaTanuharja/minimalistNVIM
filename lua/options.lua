@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/options.lua
+-- @file lua/options.lua
 --
 -- @brief
 -- The configuration file to set the general nvim behaviour

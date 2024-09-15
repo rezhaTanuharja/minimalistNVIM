@@ -35,7 +35,7 @@ return {
       end,
     },
 
-    require('profiles.rezha.plugins.zotero'),
+    require('pluginsetup.zotero'),
 
   },
 

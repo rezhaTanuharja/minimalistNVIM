@@ -25,7 +25,7 @@ return {
     'hrsh7th/cmp-path',
 
     -- completion from luasnip
-    require('profiles.rezha.plugins.luasnip'),
+    require('pluginsetup.luasnip'),
 
     'saadparwaiz1/cmp_luasnip',
 

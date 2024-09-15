@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/globals.lua
+-- @file lua/globals.lua
 --
 -- @brief
 -- The configuration file to define global variables

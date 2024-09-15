@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/commands.lua
+-- @file lua/commands.lua
 --
 -- @brief
 -- The configuration file to set custom nvim command

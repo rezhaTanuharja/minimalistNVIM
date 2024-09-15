@@ -1,7 +1,5 @@
 ---
 -- @file lua/profiles/rezha/lazy.lua
---
--- @brief
 -- The configuration file for lazy package manager
 --
 -- @author Rezha Adrian Tanuharja
@@ -10,8 +8,8 @@
 
 
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
-
--- install lazy from github repository if it is not installed
+--
+-- -- install lazy from github repository if it is not installed
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 
   -- github repository for lazy
@@ -30,12 +28,13 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
     }, true, {})
     vim.fn.getchar()
     os.exit(1)
-  end
+end
 
 end
 
 vim.opt.rtp:prepend(lazypath)
 
+-- require('lazy')
 -- use protected call to load lazy
 local success, lazy = pcall(require, 'lazy')
 if not success then
@@ -43,7 +42,7 @@ if not success then
   return
 end
 
-local location = 'profiles.rezha.plugins.'
+local location = 'pluginsetup.'
 
 -- specify manually the plugins to load
 lazy.setup {
@@ -90,6 +89,5 @@ lazy.setup {
     { import = location .. 'autopairs' },
     { import = location .. 'todo-comments' },
     { import = location .. 'neorg' },
-    { import = location .. 'vimtex' },
   },
 }
