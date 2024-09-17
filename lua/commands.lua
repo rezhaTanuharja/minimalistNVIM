@@ -20,7 +20,6 @@ vim.api.nvim_create_autocmd(
       vim.highlight.on_yank()
     end,
   }
-
 )
 
 -- when in visual mode, type this command to replace words

@@ -18,7 +18,6 @@ return {
   keys = {
     { '<leader>e', ':NvimTreeToggle<CR>'},
   },
-  -- event = 'VimEnter',
 
   config = function()
 

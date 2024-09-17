@@ -76,7 +76,6 @@ keymap('x', '<leader>i', ":s/^/", options)
 -- to prevent highlighting search results
 keymap('c', '<S-CR>', '/g | nohlsearch<CR>', options)
 
-keymap('n', '<leader>l', ':silent !make all<CR>', options)
-
+-- toggle fold
 keymap('n', '<leader>a', 'za', options)
 

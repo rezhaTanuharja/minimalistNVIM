@@ -10,8 +10,8 @@
 
 
 local options = {
-  inccommand = 'split',
-  virtualedit = 'block',
+  inccommand = 'split',                     -- shows the effect of substitute-like operations in a split window
+  virtualedit = 'block',                    -- enable highlighting empty spaces
   foldlevelstart = 99,                      -- start with everything unfolded
   backup = false,                           -- creates a backup file
   clipboard = 'unnamedplus',                -- allows neovim to access the system clipboard
@@ -50,6 +50,7 @@ local options = {
   whichwrap = 'bs<>[]hl',                   -- which "horizontal" keys are allowed to travel to prev/next line
 }
 
+-- set all options to their respective value
 for parameter, value in pairs(options) do
   vim.opt[parameter] = value
 end

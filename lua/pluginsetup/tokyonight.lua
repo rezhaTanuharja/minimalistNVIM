@@ -45,6 +45,7 @@ return {
       -- available styles are 'day', 'night', 'storm', 'moon'
       style = 'night',
 
+      -- looks cooler
       transparent = true,
 
       -- for further customization
