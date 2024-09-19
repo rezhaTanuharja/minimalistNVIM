@@ -78,4 +78,4 @@ keymap('c', '<S-CR>', '/g | nohlsearch<CR>', options)
 
 -- toggle fold
 keymap('n', '<leader>a', 'za', options)
-
+keymap('n', '<leader>o', 'zR', options)
