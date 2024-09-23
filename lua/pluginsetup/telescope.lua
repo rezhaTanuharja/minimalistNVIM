@@ -35,7 +35,7 @@ return {
       end,
     },
 
-    require('pluginsetup.zotero'),
+    -- require('pluginsetup.zotero'),
 
   },
 
@@ -101,11 +101,11 @@ return {
       return
     end
 
-    success, _ = pcall(require('telescope').load_extension, 'zotero')
-    if not success then
-      vim.notify('Failed to load telescope extension zotero')
-      return
-    end
+    -- success, _ = pcall(require('telescope').load_extension, 'zotero')
+    -- if not success then
+    --   vim.notify('Failed to load telescope extension zotero')
+    --   return
+    -- end
 
     -- custom keymaps for telescope
     local builtin = require('telescope.builtin')
@@ -114,7 +114,7 @@ return {
     vim.keymap.set('n', '<leader>b', builtin.current_buffer_fuzzy_find)
     vim.keymap.set('n', '<leader>g', builtin.live_grep)
     vim.keymap.set('n', '<leader>s', builtin.grep_string)
-    vim.keymap.set('n', '<leader>r', ':Telescope zotero<CR>')
+    -- vim.keymap.set('n', '<leader>r', ':Telescope zotero<CR>')
   end,
 
 }

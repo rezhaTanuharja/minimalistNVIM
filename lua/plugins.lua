@@ -76,7 +76,7 @@ lazy.setup {
   },
 
   spec = {
-    { import = location .. 'tokyonight' },
+    -- { import = location .. 'tokyonight' },
     { import = location .. 'telescope' },
     { import = location .. 'nvim-tree' },
     { import = location .. 'cmp' },
@@ -88,7 +88,7 @@ lazy.setup {
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },
     { import = location .. 'todo-comments' },
-    { import = location .. 'neorg' },
-    { import = location .. 'vimtex' },
+    -- { import = location .. 'neorg' },
+    -- { import = location .. 'vimtex' },
   },
 }

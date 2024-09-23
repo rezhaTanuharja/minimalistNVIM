@@ -68,7 +68,8 @@ return {
   'neovim/nvim-lspconfig',
 
   -- load when entering the buffer
-  event = 'UIEnter',
+  ft = { 'python', 'tex' },
+  -- event = 'UIEnter',
 
   dependencies = {
 

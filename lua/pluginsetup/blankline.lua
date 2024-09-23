@@ -13,7 +13,7 @@ return {
 
   'lukas-reineke/indent-blankline.nvim',
 
-  event = 'InsertEnter',
+  ft = { 'python', 'lua' },
 
   config = function()
 
@@ -26,7 +26,7 @@ return {
     blankline.setup {
       indent = {char = '│'},
       exclude = {
-        filetypes = { 'norg' },
+        filetypes = { 'norg', 'tex' },
       },
     }
 

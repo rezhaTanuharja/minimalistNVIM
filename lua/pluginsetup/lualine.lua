@@ -75,9 +75,9 @@ return {
       sections = {
         lualine_a = {branch},
         lualine_b = {diagnostics},
-        lualine_c = {mode},
-        lualine_x = {location},
-        lualine_y = {'encoding'},
+        lualine_c = {},
+        lualine_x = {},
+        lualine_y = {mode},
         lualine_z = {filetype},
       },
 
@@ -86,7 +86,7 @@ return {
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},
-        lualine_y = {'encoding'},
+        lualine_y = {},
         lualine_z = {filetype},
       },
 

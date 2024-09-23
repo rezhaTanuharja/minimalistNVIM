@@ -13,6 +13,8 @@ return {
 
   'williamboman/mason.nvim',
 
+  cmd = 'Mason',
+
   config = function ()
 
     local success, mason = pcall(require, 'mason')

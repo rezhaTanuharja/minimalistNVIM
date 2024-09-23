@@ -14,7 +14,7 @@ return{
   'nvim-neorg/neorg',
 
   -- lazy = false,
-  event = 'UIEnter',
+  ft = 'norg',
   version = '*',
 
   dependencies = {

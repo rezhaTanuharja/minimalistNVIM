@@ -13,7 +13,7 @@ return {
 
   'nvim-treesitter/nvim-treesitter',
 
-  event = 'UIEnter',
+  event = {'BufReadPost', 'BufNewFile'},
 
   build = ':TSUpdate',
   main = 'nvim-treesitter.configs',

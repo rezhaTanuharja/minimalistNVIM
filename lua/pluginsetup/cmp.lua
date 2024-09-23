@@ -15,13 +15,14 @@ return {
   'hrsh7th/nvim-cmp',
 
   -- load when first entering insert mode
-  event = 'UIEnter',
+  -- event = 'UIEnter',
+  ft = { 'python', 'tex' },
 
   dependencies = {
 
     -- completion from LSP, buffer, and path
     'hrsh7th/cmp-nvim-lsp',
-    'hrsh7th/cmp-buffer',
+    -- 'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
 
     -- completion from luasnip
@@ -146,7 +147,7 @@ return {
             {
               luasnip = 'luasnip',
               nvim_lsp = 'lsp',
-              buffer = 'buff',
+              -- buffer = 'buff',
               path = 'path',
               neorg = 'neorg',
             }
@@ -161,7 +162,7 @@ return {
       sources = {
         { name = 'luasnip' },
         { name = 'nvim_lsp' },
-        { name = 'buffer' },
+        -- { name = 'buffer' },
         { name = 'path' },
         { name = 'neorg' },
       },
