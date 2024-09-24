@@ -23,3 +23,19 @@ set_color(0, 'Question', { fg = '#666666', italic = false })
 set_color(0, 'Directory', { fg = '#777777', italic = false })
 set_color(0, 'Directory', { fg = '#777777', italic = false })
 set_color(0, 'NvimTreeFolderIcon', { fg = '#777777', italic = false })
+
+set_color(0, 'lualine_a_normal', { fg = '#eeeeee', bg = '#555555' } )
+set_color(0, 'lualine_b_normal', { fg = '#eeeeee', bg = '#333333' } )
+set_color(0, 'lualine_c_normal', { fg = '#eeeeee', bg = '#222222' } )
+
+set_color(0, 'lualine_a_insert', { fg = '#eeeeee', bg = '#555555' } )
+set_color(0, 'lualine_b_insert', { fg = '#eeeeee', bg = '#333333' } )
+set_color(0, 'lualine_c_insert', { fg = '#eeeeee', bg = '#333333' } )
+
+set_color(0, 'lualine_a_visual', { fg = '#eeeeee', bg = '#555555' } )
+set_color(0, 'lualine_b_visual', { fg = '#eeeeee', bg = '#333333' } )
+set_color(0, 'lualine_c_visual', { fg = '#eeeeee', bg = '#555555' } )
+
+set_color(0, 'lualine_a_command', { fg = '#eeeeee', bg = '#555555' } )
+set_color(0, 'lualine_b_command', { fg = '#eeeeee', bg = '#333333' } )
+set_color(0, 'lualine_c_command', { fg = '#eeeeee', bg = '#888888' } )
