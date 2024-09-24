@@ -76,7 +76,6 @@ lazy.setup {
   },
 
   spec = {
-    -- { import = location .. 'tokyonight' },
     { import = location .. 'telescope' },
     { import = location .. 'nvim-tree' },
     { import = location .. 'cmp' },
