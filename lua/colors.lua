@@ -23,7 +23,11 @@ set_color(0, 'Question', { fg = '#666666', italic = false })
 set_color(0, 'Directory', { fg = '#777777', italic = false })
 set_color(0, 'Directory', { fg = '#777777', italic = false })
 set_color(0, 'NvimTreeFolderIcon', { fg = '#777777', italic = false })
-<<<<<<< HEAD
+
+set_color(0, 'DiffAdd', { fg = '#dddddd', italic = false })
+set_color(0, 'DiffDelete', { fg = '#888888', italic = false })
+set_color(0, 'DiffText', { fg = '#000000', bg = '#bbbbbb', italic = false })
+set_color(0, 'Changed', { fg = '#eeeeee', italic = false })
 
 set_color(0, 'lualine_a_normal', { fg = '#eeeeee', bg = '#555555' } )
 set_color(0, 'lualine_b_normal', { fg = '#eeeeee', bg = '#333333' } )
@@ -40,9 +44,3 @@ set_color(0, 'lualine_c_visual', { fg = '#eeeeee', bg = '#555555' } )
 set_color(0, 'lualine_a_command', { fg = '#eeeeee', bg = '#555555' } )
 set_color(0, 'lualine_b_command', { fg = '#eeeeee', bg = '#333333' } )
 set_color(0, 'lualine_c_command', { fg = '#eeeeee', bg = '#888888' } )
-=======
-set_color(0, 'DiffAdd', { fg = '#dddddd', italic = false })
-set_color(0, 'DiffDelete', { fg = '#888888', italic = false })
-set_color(0, 'DiffText', { fg = '#000000', bg = '#bbbbbb', italic = false })
-set_color(0, 'Changed', { fg = '#eeeeee', italic = false })
->>>>>>> b60aaa22aa8563a23486a71cf18d614c27e1382f
