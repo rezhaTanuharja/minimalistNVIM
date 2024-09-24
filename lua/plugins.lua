@@ -87,7 +87,6 @@ lazy.setup {
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },
     { import = location .. 'todo-comments' },
-    -- { import = location .. 'neorg' },
     -- { import = location .. 'vimtex' },
   },
 }
