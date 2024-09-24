@@ -22,12 +22,12 @@ end
 
 -- list all available config files
 local config_files = {
-  'colors',
   'globals',
   'options',
   'keymaps',
   'commands',
   'plugins',
+  'colors',
 }
 
 -- load all listed config files

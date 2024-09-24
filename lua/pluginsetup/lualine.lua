@@ -13,8 +13,6 @@ return {
 
   'nvim-lualine/lualine.nvim',
 
-  event = 'InsertEnter',
-
   config = function()
 
     local success, lualine = pcall(require, 'lualine')
@@ -65,7 +63,28 @@ return {
 
       options = {
         icons_enabled = true,
-        theme = 'auto',
+        theme = {
+          normal = {
+            a = { fg = '#eeeeee', bg = '#555555' },
+            b = { fg = '#eeeeee', bg = '#333333' },
+            c = { fg = '#eeeeee', bg = '#222222' },
+          },
+          insert = {
+            a = { fg = '#eeeeee', bg = '#555555' },
+            b = { fg = '#eeeeee', bg = '#333333' },
+            c = { fg = '#eeeeee', bg = '#333333' },
+          },
+          visual = {
+            a = { fg = '#eeeeee', bg = '#555555' },
+            b = { fg = '#eeeeee', bg = '#333333' },
+            c = { fg = '#eeeeee', bg = '#555555' },
+          },
+          command = {
+            a = { fg = '#eeeeee', bg = '#555555' },
+            b = { fg = '#eeeeee', bg = '#333333' },
+            c = { fg = '#eeeeee', bg = '#888888' },
+          },
+        },
         component_separators = {left = '', right = ''},
         section_separators = {left = '', right = ''},
         disabled_filetypes = {'alpha', 'dashboard', 'NvimTree', 'Outline'},
