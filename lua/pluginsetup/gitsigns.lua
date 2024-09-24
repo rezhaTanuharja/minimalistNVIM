@@ -26,10 +26,10 @@ return {
     gitsigns.setup {
       signs = {
         add = {text = '+'},
-        change = {text = 'M'},
+        change = {text = '*'},
         delete = {text = '-'},
         topdelete = {text = '-'},
-        changedelete = {text = 'M'},
+        changedelete = {text = '*'},
       },
       signcolumn = true,
       numhl = false,
