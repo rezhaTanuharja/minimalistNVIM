@@ -31,7 +31,7 @@ return {
         topdelete = {text = '-'},
         changedelete = {text = '*'},
       },
-      signcolumn = false,
+      signcolumn = true,
       numhl = false,
       linehl = false,
       word_diff = false,
