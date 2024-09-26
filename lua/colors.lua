@@ -30,3 +30,7 @@ set_color(0, 'DiffAdd', { fg = '#dddddd', italic = false })
 set_color(0, 'DiffDelete', { fg = '#888888', italic = false })
 set_color(0, 'DiffText', { fg = '#000000', bg = '#bbbbbb', italic = false })
 set_color(0, 'Changed', { fg = '#eeeeee', italic = false })
+
+set_color(0, 'GitSignsAddInline', { fg = '#eeeeee', bg = '#444444', italic = false })
+set_color(0, 'GitSignsDeleteInline', { fg = '#aaaaaa', bg = '#333333', italic = false })
+set_color(0, 'Changed', { fg = '#eeeeee', italic = false })
