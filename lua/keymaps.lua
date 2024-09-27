@@ -9,12 +9,6 @@
 --
 
 
--- shared options across all keymaps
-local options = {
-  noremap = true,
-  silent = true,
-}
-
 -- alias function to remap keys
 local keymap = vim.keymap.set
 
