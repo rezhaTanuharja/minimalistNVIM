@@ -14,6 +14,8 @@ local function load_config(filename)
 
   -- use protected call so if something fails it does not crash
   local success, _ = pcall(require, filename)
+
+  -- in case of error, tell us which file is problematic
   if not success then
     vim.notify('Failed to load a configuration file: ' .. filename)
   end

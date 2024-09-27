@@ -15,67 +15,130 @@ local options = {
   silent = true,
 }
 
-local keymap = vim.api.nvim_set_keymap
+-- alias function to remap keys
+local keymap = vim.keymap.set
 
 -- we remap space to leader key so ensure it does nothing
 keymap('', '<Space>', '<Nop>', options)
 
--- faster quit and save
-keymap('n', '<leader>q', ':q<CR>', options)
-keymap('n', '<leader>w', ':w<CR>', options)
+-- custom keymaps in normal mode
+local normal_mode_keymaps = {
 
--- navigate through windows
-keymap('n', '<C-h>', '<C-w>h', options)
-keymap('n', '<C-j>', '<C-w>j', options)
-keymap('n', '<C-k>', '<C-w>k', options)
-keymap('n', '<C-l>', '<C-w>l', options)
+  ['x'] = { action = '"_x', desc = 'Delete character without copying' },
 
--- navigate through buffers
-keymap('n', '<S-l>', ':bnext<CR>', options)
-keymap('n', '<S-h>', ':bprevious<CR>', options)
+  ['<leader>q'] = { action = ':q<CR>', desc = 'Easier quit' },
+  ['<leader>w'] = { action = ':w<CR>', desc = 'Easier save' },
 
--- remove a buffer without closing window
-keymap('n', '<leader>c', ':Bdelete!<CR>', options)
+  ['<C-h>'] = {
+    action = '<C-w>h',
+    desc = 'Move focus to the pane on the left'
+  },
+  ['<C-j>'] = {
+    action = '<C-w>j',
+    desc = 'Move focus to the pane below'
+  },
+  ['<C-k>'] = {
+    action = '<C-w>k',
+    desc = 'Move focus to the pane above'
+  },
+  ['<C-l>'] = {
+    action = '<C-w>l',
+    desc = 'Move focus to the pane on the right'
+  },
 
--- navigate through diagnostics
-keymap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<CR>', options)
-keymap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<CR>', options)
+  ['<S-l>'] = {action = ':bnext<CR>', desc = 'Switch to the next buffer' },
+  ['<S-h>'] = { action = ':bprevious<CR>', desc = 'Switch to the previous buffer' },
 
--- faster split
-keymap('n', '<leader>v', ':sp<CR>', options)
-keymap('n', '<leader>h', ':vs<CR>', options)
+  ['<leader>c'] = { action = ':Bdelete!<CR>', desc = 'Delete current buffer' },
 
--- resize windows
-keymap('n', '<C-m>', ':vertical resize -2<CR>', options)
-keymap('n', '<C-n>', ':vertical resize +2<CR>', options)
-keymap('n', '<C-,>', ':horizontal resize +2<CR>', options)
-keymap('n', '<C-.>', ':horizontal resize -2<CR>', options)
+  ['[d'] = {
+    action = '<cmd>lua vim.diagnostic.goto_prev()<CR>',
+    desc = 'Go to the previous diagnostic'
+  },
+  [']d'] = {
+    action = '<cmd>lua vim.diagnostic.goto_next()<CR>',
+    desc = 'Go to the next diagnostic'
+  },
 
--- makes searching for text faster
-keymap('n', '<S-m>', ':nohlsearch<CR>', options)
+  ['<leader>v'] = { action = ':sp<CR>', desc = 'Horizontal split' },
+  ['<leader>h'] = { action = ':vs<CR>', desc = 'Vertical split' },
+
+  ['<C-m>'] = {
+    action = ':vertical resize -2<CR>',
+    desc = 'Reduce current window vertical size'
+  },
+  ['<C-n>'] = {
+    action = ':vertical resize +2<CR>',
+    desc = 'Increase current window vertical size'
+  },
+  ['<C-,>'] = {
+    action = ':horizontal resize -2<CR>',
+    desc = 'Reduce current window horizontal size'
+  },
+  ['<C-.>'] = {
+    action = ':horizontal resize +2<CR>',
+    desc = 'Increase current window horizontal size'
+  },
+
+  ['<S-m>'] = { action = ':nohlsearch<CR>', desc = 'Stop highlighting search results' },
+
+  ['<leader>t'] = {
+    action = ':terminal<CR>',
+    desc = 'Open a terminal in the current buffer'
+  },
+  ['<leader>j'] = {
+    action = ':botright new | resize 10 | terminal<CR>',
+    desc = 'Open a terminal in VS Code style'
+  },
+
+  ['<leader>a'] = { action = 'za', desc = 'Fold the scope under cursor' },
+  ['<leader>o'] = { action = 'zR', desc = 'Expand all folds in the current buffer' },
+
+}
+
+for keys, map in pairs(normal_mode_keymaps) do
+  keymap('n', keys, map.action, { noremap = true, silent = true, desc = map.desc })
+end
+
+
+-- custom keymaps in visual mode
+local visual_mode_keymaps = {
+  ['<'] = { action = '<gv', desc = 'Reduce indentation but stay in visual mode' },
+  ['>'] = { action = '>gv', desc = 'Increase indentation but stay in visual mode' },
+}
+
+for keys, map in pairs(visual_mode_keymaps) do
+  keymap('v', keys, map.action, { noremap = true, silent = true, desc = map.desc })
+end
+
+
+-- custom keymaps in visual block mode
+local visual_block_mode_keymaps = {
+
+  ['J'] = { action = ":move '>+1<CR>gv-gv", desc = 'Move highlighted text down' },
+  ['K'] = { action = ":move '<-2<CR>gv-gv", desc = 'Move highlighted text up' },
+
+  ['<leader>s'] = {
+    action = ":lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<CR>",
+    desc = 'Search and replace exact words in highlighted text'
+  },
+
+  ['<leader>a'] = {
+    action = ":s/$/",
+    desc = 'Create multiple cursors and add text to the end of multiple lines'
+  },
+  ['<leader>i'] = {
+    action = ":s/^/",
+    desc = 'Create multiple cursors and add text to the beginning of multiple lines'
+  },
+
+}
+
+for keys, map in pairs(visual_block_mode_keymaps) do
+  keymap('x', keys, map.action, { noremap = true, silent = true, desc = map.desc })
+end
 
 -- terminal functionalities
-keymap('n', '<leader>t', ':terminal<CR>', options)
-keymap('n', '<leader>j', ':botright new | resize 10 | terminal<CR>', options)
-keymap('t', 'qq', '<C-\\><C-n>', options)
-
--- enable repeated indentation
-keymap('v', '<', '<gv', options)
-keymap('v', '>', '>gv', options)
-
--- move highlighted texts up or down
-keymap('x', 'J', ":move '>+1<CR>gv-gv", options)
-keymap('x', 'K', ":move '<-2<CR>gv-gv", options)
-
--- enter exact replacement
-keymap('n', '<leader>S', ":%s/", options)
-keymap('x', '<leader>s', ":lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<CR>", options)
-keymap('x', '<leader>a', ":s/$/", options)
-keymap('x', '<leader>i', ":s/^/", options)
-
+keymap('t', 'qq', '<C-\\><C-n>', { noremap = true, silent = true, desc = 'Exit insert mode in terminal' })
 -- to prevent highlighting search results
-keymap('c', '<S-CR>', '/g | nohlsearch<CR>', options)
-
--- toggle fold
-keymap('n', '<leader>a', 'za', options)
-keymap('n', '<leader>o', 'zR', options)
+keymap('c', '<S-CR>', '/g | nohlsearch<CR>', { noremap = true, silent = true, desc = 'Enter and remove highlight from search results' } )
