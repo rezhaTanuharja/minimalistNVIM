@@ -24,6 +24,9 @@ local group_styles = {
   ['Search']      = { fg = '#000000', bg = '#777777' },
   ['CurSearch']   = { fg = '#000000', bg = '#aaaaaa' },
 
+  ['DiagnosticInfo']   = { fg = '#999999' },
+  ['DiagnosticHint']   = { fg = '#999999' },
+
   ['Directory']   = { fg = '#777777', italic = false },
 
   ['NvimTreeFolderIcon'] = { fg = '#777777', italic = false },
