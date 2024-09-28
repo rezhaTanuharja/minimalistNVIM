@@ -10,6 +10,7 @@
 
 
 local options = {
+  fillchars = 'eob: ',
   inccommand = 'split',                     -- shows the effect of substitute-like operations in a split window
   virtualedit = 'block',                    -- enable highlighting empty spaces
   foldlevelstart = 99,                      -- start with everything unfolded
