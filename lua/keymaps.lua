@@ -25,67 +25,31 @@ local normal_mode_keymaps = {
   ['<leader>q'] = { action = ':q<CR>', desc = 'Easier quit' },
   ['<leader>w'] = { action = ':w<CR>', desc = 'Easier save' },
 
-  ['<C-h>'] = {
-    action = '<C-w>h',
-    desc = 'Move focus to the pane on the left'
-  },
-  ['<C-j>'] = {
-    action = '<C-w>j',
-    desc = 'Move focus to the pane below'
-  },
-  ['<C-k>'] = {
-    action = '<C-w>k',
-    desc = 'Move focus to the pane above'
-  },
-  ['<C-l>'] = {
-    action = '<C-w>l',
-    desc = 'Move focus to the pane on the right'
-  },
+  ['<C-h>'] = { action = '<C-w>h', desc = 'Move focus to the pane on the left' },
+  ['<C-j>'] = { action = '<C-w>j', desc = 'Move focus to the pane below' },
+  ['<C-k>'] = { action = '<C-w>k', desc = 'Move focus to the pane above' },
+  ['<C-l>'] = { action = '<C-w>l', desc = 'Move focus to the pane on the right' },
 
-  ['<S-l>'] = {action = ':bnext<CR>', desc = 'Switch to the next buffer' },
+  ['<S-l>'] = { action = ':bnext<CR>', desc = 'Switch to the next buffer' },
   ['<S-h>'] = { action = ':bprevious<CR>', desc = 'Switch to the previous buffer' },
 
   ['<leader>c'] = { action = ':Bdelete!<CR>', desc = 'Delete current buffer' },
 
-  ['[d'] = {
-    action = '<cmd>lua vim.diagnostic.goto_prev()<CR>',
-    desc = 'Go to the previous diagnostic'
-  },
-  [']d'] = {
-    action = '<cmd>lua vim.diagnostic.goto_next()<CR>',
-    desc = 'Go to the next diagnostic'
-  },
+  ['[d'] = { action = '<cmd>lua vim.diagnostic.goto_prev()<CR>', desc = 'Go to the previous diagnostic' },
+  [']d'] = { action = '<cmd>lua vim.diagnostic.goto_next()<CR>', desc = 'Go to the next diagnostic' },
 
   ['<leader>v'] = { action = ':sp<CR>', desc = 'Horizontal split' },
   ['<leader>h'] = { action = ':vs<CR>', desc = 'Vertical split' },
 
-  ['<C-m>'] = {
-    action = ':vertical resize -2<CR>',
-    desc = 'Reduce current window vertical size'
-  },
-  ['<C-n>'] = {
-    action = ':vertical resize +2<CR>',
-    desc = 'Increase current window vertical size'
-  },
-  ['<C-,>'] = {
-    action = ':horizontal resize -2<CR>',
-    desc = 'Reduce current window horizontal size'
-  },
-  ['<C-.>'] = {
-    action = ':horizontal resize +2<CR>',
-    desc = 'Increase current window horizontal size'
-  },
+  ['<C-m>'] = { action = ':vertical resize -2<CR>', desc = 'Reduce current window vertical size' },
+  ['<C-n>'] = { action = ':vertical resize +2<CR>', desc = 'Increase current window vertical size' },
+  ['<C-,>'] = { action = ':horizontal resize -2<CR>', desc = 'Reduce current window horizontal size' },
+  ['<C-.>'] = { action = ':horizontal resize +2<CR>', desc = 'Increase current window horizontal size' },
 
   ['<S-m>'] = { action = ':nohlsearch<CR>', desc = 'Stop highlighting search results' },
 
-  ['<leader>t'] = {
-    action = ':terminal<CR>',
-    desc = 'Open a terminal in the current buffer'
-  },
-  ['<leader>j'] = {
-    action = ':botright new | resize 10 | terminal<CR>',
-    desc = 'Open a terminal in VS Code style'
-  },
+  ['<leader>t'] = { action = ':terminal<CR>', desc = 'Open a terminal in the current buffer' },
+  ['<leader>j'] = { action = ':botright new | resize 10 | terminal<CR>', desc = 'Open a terminal in VS Code style' },
 
   ['<leader>a'] = { action = 'za', desc = 'Fold the scope under cursor' },
   ['<leader>o'] = { action = 'zR', desc = 'Expand all folds in the current buffer' },
