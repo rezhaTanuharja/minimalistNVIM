@@ -62,7 +62,7 @@ return {
 
     vim.keymap.set('n', '<leader>k', ':Gitsigns preview_hunk<CR>', {noremap = true, silent = true})
     vim.keymap.set('n', '<leader>u', ':Gitsigns reset_hunk<CR>', {noremap = true, silent = true})
-    vim.keymap.set('n', '<leader>x', ':Gitsigns diffthis<CR>', {noremap = true, silent = true})
+    vim.keymap.set('n', '<leader>x', ':vert Gitsigns diffthis<CR>', {noremap = true, silent = true})
 
   end
 

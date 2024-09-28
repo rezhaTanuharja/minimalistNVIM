@@ -18,6 +18,8 @@ keymap('', '<Space>', '<Nop>', options)
 -- custom keymaps in normal mode
 local normal_mode_keymaps = {
 
+  ['q'] = { action = '<Nop>', desc = 'Disable macro recording because I do not use it' },
+
   ['x'] = { action = '"_x', desc = 'Delete character without copying' },
 
   ['<leader>q'] = { action = ':q<CR>', desc = 'Easier quit' },
@@ -87,6 +89,8 @@ local normal_mode_keymaps = {
 
   ['<leader>a'] = { action = 'za', desc = 'Fold the scope under cursor' },
   ['<leader>o'] = { action = 'zR', desc = 'Expand all folds in the current buffer' },
+
+  ['<leader>l'] = { action = ':LspRestart<CR>', desc = 'Restart language server' },
 
 }
 
