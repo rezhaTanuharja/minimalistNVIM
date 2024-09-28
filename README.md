@@ -26,7 +26,7 @@
         <li>Maintaining a large configuration structure requires significant time commitment and efforts. The less config / plugins I have, the easier it is for me to maintain it.</li>
     </ul>
     <p align="left">
-    That being said, if you are a Neovim user, I hope you see something interesting to adopt to your own config. If you are stillconsidering Neovim, I hope you become a part of our community soon!
+    That being said, if you are a Neovim user, I hope you see something interesting to adopt to your own config. If you are still considering Neovim, I hope you become a part of our community soon!
     </p>
 </div>
 
