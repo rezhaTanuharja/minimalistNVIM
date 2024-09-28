@@ -92,6 +92,8 @@ local normal_mode_keymaps = {
 
   ['<leader>l'] = { action = ':LspRestart<CR>', desc = 'Restart language server' },
 
+  ['<leader>o'] = { action = ':Oil<CR>', desc = 'Open Oil' },
+
 }
 
 for keys, map in pairs(normal_mode_keymaps) do
