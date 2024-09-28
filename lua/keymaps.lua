@@ -91,9 +91,15 @@ local visual_block_mode_keymaps = {
     action = ":s/$/",
     desc = 'Create multiple cursors and add text to the end of multiple lines'
   },
+
   ['<leader>i'] = {
     action = ":s/^/",
     desc = 'Create multiple cursors and add text to the beginning of multiple lines'
+  },
+
+  ['<leader>p'] = {
+    action = ":lua vim.api.nvim_feedkeys(':AppendTo ', 'c', false)<CR>",
+    desc = 'Search and add text following the search results'
   },
 
 }
