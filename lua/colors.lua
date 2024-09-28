@@ -11,26 +11,33 @@
 
 local set_color = vim.api.nvim_set_hl
 
-set_color(0, 'Normal', { fg = '#cccccc' })
-set_color(0, 'Comment', { fg = '#555555', italic = false })
-set_color(0, 'String', { fg = '#bbbbbb', italic = false })
-set_color(0, 'Function', { fg = '#aaaaaa', italic = false })
+local group_styles = {
 
-set_color(0, 'Search', { fg = '#000000', bg = '#777777' })
-set_color(0, 'CurSearch', { fg = '#000000', bg = '#aaaaaa' })
+  ['Normal']      = { fg = '#cccccc' },
+  ['Comment']     = { fg = '#555555', italic = false },
+  ['String']      = { fg = '#bbbbbb', italic = false },
+  ['Function']    = { fg = '#aaaaaa', italic = false },
+  ['Identifier']  = { fg = '#999999', italic = false },
+  ['Special']     = { fg = '#777777', italic = false },
+  ['Queston']     = { fg = '#666666', italic = false },
 
-set_color(0, 'Identifier', { fg = '#999999', italic = false })
-set_color(0, 'Special', { fg = '#777777', italic = false })
-set_color(0, 'Question', { fg = '#666666', italic = false })
+  ['Search']      = { fg = '#000000', bg = '#777777' },
+  ['CurSearch']   = { fg = '#000000', bg = '#aaaaaa' },
 
-set_color(0, 'Directory', { fg = '#777777', italic = false })
-set_color(0, 'NvimTreeFolderIcon', { fg = '#777777', italic = false })
+  ['Directory']   = { fg = '#777777', italic = false },
 
-set_color(0, 'DiffAdd', { fg = '#dddddd', italic = false })
-set_color(0, 'DiffDelete', { fg = '#888888', italic = false })
-set_color(0, 'DiffText', { fg = '#000000', bg = '#bbbbbb', italic = false })
-set_color(0, 'Changed', { fg = '#eeeeee', italic = false })
+  ['NvimTreeFolderIcon'] = { fg = '#777777', italic = false },
 
-set_color(0, 'GitSignsAddInline', { fg = '#eeeeee', bg = '#444444', italic = false })
-set_color(0, 'GitSignsDeleteInline', { fg = '#aaaaaa', bg = '#333333', italic = false })
-set_color(0, 'Changed', { fg = '#eeeeee', italic = false })
+  ['DiffAdd']     = { fg = '#dddddd', italic = false },
+  ['DiffDelete']  = { fg = '#888888', italic = false },
+  ['DiffText']    = { fg = '#000000', bg = '#bbbbbb', italic = false },
+  ['Changed']     = { fg = '#eeeeee', italic = false },
+
+  ['GitSignsAddInline']     = { fg = '#eeeeee', bg = '#444444', italic = false },
+  ['GitSignsDeleteInline']  = { fg = '#aaaaaa', bg = '#333333', italic = false },
+
+}
+
+for group, style in pairs(group_styles) do
+  set_color(0, group, style)
+end
