@@ -92,8 +92,8 @@ return {
       },
 
       sections = {
-        lualine_a = {'filename'},
-        lualine_b = {branch},
+        lualine_a = {branch},
+        lualine_b = {'filename'},
         lualine_c = {diagnostics},
         lualine_x = {},
         lualine_y = {mode},
