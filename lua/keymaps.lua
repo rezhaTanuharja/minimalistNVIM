@@ -33,8 +33,6 @@ local normal_mode_keymaps = {
   ['<S-l>'] = { action = ':bnext<CR>', desc = 'Switch to the next buffer' },
   ['<S-h>'] = { action = ':bprevious<CR>', desc = 'Switch to the previous buffer' },
 
-  ['<leader>c'] = { action = ':Bdelete!<CR>', desc = 'Delete current buffer' },
-
   ['[d'] = { action = '<cmd>lua vim.diagnostic.goto_prev()<CR>', desc = 'Go to the previous diagnostic' },
   [']d'] = { action = '<cmd>lua vim.diagnostic.goto_next()<CR>', desc = 'Go to the next diagnostic' },
 

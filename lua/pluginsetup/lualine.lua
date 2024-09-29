@@ -82,7 +82,7 @@ return {
           command = {
             a = { fg = '#eeeeee', bg = '#555555' },
             b = { fg = '#eeeeee', bg = '#333333' },
-            c = { fg = '#eeeeee', bg = '#888888' },
+            c = { fg = '#888888', bg = '#888888' },
           },
         },
         component_separators = {left = '', right = ''},
@@ -92,16 +92,16 @@ return {
       },
 
       sections = {
-        lualine_a = {branch},
-        lualine_b = {diagnostics},
-        lualine_c = {},
+        lualine_a = {'filename'},
+        lualine_b = {branch},
+        lualine_c = {diagnostics},
         lualine_x = {},
         lualine_y = {mode},
         lualine_z = {filetype},
       },
 
       inactive_sections = {
-        lualine_a = {},
+        lualine_a = {'filename'},
         lualine_b = {},
         lualine_c = {},
         lualine_x = {},

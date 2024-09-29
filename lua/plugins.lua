@@ -82,12 +82,11 @@ lazy.setup {
     { import = location .. 'lsp' },
     { import = location .. 'treesitter' },
     { import = location .. 'lualine' },
-    { import = location .. 'bufferline' },
+    { import = location .. 'bbye' },
     { import = location .. 'blankline' },
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },
     { import = location .. 'todo-comments' },
     { import = location .. 'oil' },
-    -- { import = location .. 'vimtex' },
   },
 }
