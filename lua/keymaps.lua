@@ -52,8 +52,6 @@ local normal_mode_keymaps = {
   ['<leader>a'] = { action = 'za', desc = 'Fold the scope under cursor' },
   ['<leader>r'] = { action = 'zR', desc = 'Expand all folds in the current buffer' },
 
-  ['<leader>l'] = { action = ':LspRestart<CR>', desc = 'Restart language server' },
-
 }
 
 for keys, map in pairs(normal_mode_keymaps) do

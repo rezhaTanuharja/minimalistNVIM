@@ -148,6 +148,8 @@ return {
       lspconfig[server].setup(opts)
     end
 
+    vim.keymap.set('n', '<leader>l', ':LspRestart<CR>', { noremap = true, silent = true, desc = 'Restart LSP' } )
+
   end
 
 }
