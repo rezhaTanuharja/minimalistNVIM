@@ -25,7 +25,7 @@ return {
 
     keywords = {
 
-      WARN = { icon = '', color = 'error' },
+      BUGS = { icon = '', color = 'error' },
       TODO = { icon = '', color = 'warning' },
       NOTE = { icon = '', color = 'hint' },
 
