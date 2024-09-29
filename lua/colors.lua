@@ -39,6 +39,10 @@ local group_styles = {
   ['GitSignsAddInline']     = { fg = '#eeeeee', bg = '#444444', italic = false },
   ['GitSignsDeleteInline']  = { fg = '#aaaaaa', bg = '#333333', italic = false },
 
+  ['MoreMsg']       = { fg = '#eeeeee', bg = '#444444', italic = false },
+  ['Question']      = { fg = '#eeeeee', bg = '#444444', italic = false },
+  ['QuickFixLine']  = { fg = '#eeeeee', bg = '#444444', italic = false },
+
 }
 
 for group, style in pairs(group_styles) do
