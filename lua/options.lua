@@ -14,6 +14,7 @@ local options = {
   inccommand = 'split',                     -- shows the effect of substitute-like operations in a split window
   virtualedit = 'block',                    -- enable highlighting empty spaces
   foldlevelstart = 99,                      -- start with everything unfolded
+  foldtext = '',                            -- keep colors of folded lines
   backup = false,                           -- creates a backup file
   clipboard = 'unnamedplus',                -- allows neovim to access the system clipboard
   cmdheight = 1,                            -- more spaces in the command line for displaying messages

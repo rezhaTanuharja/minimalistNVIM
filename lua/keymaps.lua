@@ -52,7 +52,7 @@ local normal_mode_keymaps = {
   ['<leader>j'] = { action = ':botright new | resize 10 | terminal<CR>', desc = 'Open a terminal in VS Code style' },
 
   ['<leader>a'] = { action = 'za', desc = 'Fold the scope under cursor' },
-  ['<leader>o'] = { action = 'zR', desc = 'Expand all folds in the current buffer' },
+  ['<leader>r'] = { action = 'zR', desc = 'Expand all folds in the current buffer' },
 
   ['<leader>l'] = { action = ':LspRestart<CR>', desc = 'Restart language server' },
 
