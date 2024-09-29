@@ -44,8 +44,6 @@ return {
 
       keymaps = {
         ['<CR>'] = 'actions.select',
-        ['<C-p>'] = 'actions.preview',
-        ['<C-c>'] = 'actions.close',
         ['-'] = 'actions.parent',
         ['_'] = 'actions.open_cwd',
       },
@@ -62,6 +60,8 @@ return {
       },
 
     }
+
+    vim.keymap.set('n', '<leader>o', ':Oil<CR>', { noremap = true, silent = true } )
 
   end
 }
