@@ -16,7 +16,7 @@ return {
 
   -- load when first entering insert mode
   -- event = 'UIEnter',
-  ft = { 'python', 'tex' },
+  ft = { 'python' },
 
   dependencies = {
 
@@ -123,10 +123,20 @@ return {
         ),
 
         -- press shift-tab to select prev item
-        ['<S-Tab>'] = cmp.mapping(
+        ['<C-S-j>'] = cmp.mapping(
           function(fallback)
             if cmp.visible() then
               cmp.select_next_item()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }
+        ),
+
+        ['<C-S-k>'] = cmp.mapping(
+          function(fallback)
+            if cmp.visible() then
+              cmp.select_prev_item()
             else
               fallback()
             end
@@ -149,7 +159,6 @@ return {
               nvim_lsp = 'lsp',
               buffer = 'buff',
               path = 'path',
-              neorg = 'neorg',
             }
           )[entry.source.name]
 
@@ -164,7 +173,6 @@ return {
         { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
-        { name = 'neorg' },
       },
 
       confirm_opts = {

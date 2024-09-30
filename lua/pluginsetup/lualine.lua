@@ -106,7 +106,7 @@ return {
         lualine_c = {},
         lualine_x = {},
         lualine_y = {},
-        lualine_z = {filetype},
+        lualine_z = {},
       },
 
       tabline = {},
