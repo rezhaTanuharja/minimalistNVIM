@@ -34,7 +34,7 @@ local function file_name()
   end
 
   if string.match(filename, 'NvimTree') then
-    filename = ''
+    filename = 'NvimTree'
   end
 
   -- change highlight group based on if the file has been modified
