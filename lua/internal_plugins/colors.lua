@@ -14,9 +14,9 @@ local group_styles = {
   ['Normal']      = { fg = '#cccccc' },
   ['Comment']     = { fg = '#777777', italic = false },
   ['String']      = { fg = '#bbbbbb', italic = false },
-  ['Function']    = { fg = '#aaaaaa', italic = false },
+  ['Function']    = { fg = '#bbbbbb', italic = false },
   ['Identifier']  = { fg = '#999999', italic = false },
-  ['Special']     = { fg = '#777777', italic = false },
+  ['Special']     = { fg = '#bbbbbb', italic = false },
   ['Queston']     = { fg = '#666666', italic = false },
 
   ['Search']      = { fg = '#000000', bg = '#777777' },
@@ -30,7 +30,7 @@ local group_styles = {
   ['NvimTreeFolderIcon'] = { fg = '#777777', italic = false },
 
   ['DiffAdd']     = { fg = '#dddddd', italic = false },
-  ['DiffDelete']  = { fg = '#888888', italic = false },
+  ['DiffDelete']  = { fg = '#999999', italic = false },
   ['DiffText']    = { fg = '#000000', bg = '#bbbbbb', italic = false },
   ['Changed']     = { fg = '#eeeeee', italic = false },
 
