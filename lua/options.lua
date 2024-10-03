@@ -46,7 +46,6 @@ local options = {
   expandtab = true,             -- convert tabs to spaces
   shiftwidth = 2,               -- the number of spaces for each indentation
   tabstop = 2,                  -- the number of spaces for each tab
-  cursorline = true,            -- highlight the current line
   number = true,                -- display line number
   relativenumber = true,        -- display relative line number
   numberwidth = 4,              -- set the width of number column

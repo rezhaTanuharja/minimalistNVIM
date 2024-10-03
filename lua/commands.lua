@@ -9,18 +9,41 @@
 --
 
 
+-- autocommand group intended for visual aids
+vim.api.nvim_create_augroup('visual_aid', { clear = true })
+
+
 -- highlight yanked text
 vim.api.nvim_create_autocmd(
-  'TextYankPost',
-  {
-    group = vim.api.nvim_create_augroup(
-      'kickstart-highlight-yank', { clear = true }
-    ),
+  'TextYankPost', {
+    group = visual_aid,
     callback = function()
       vim.highlight.on_yank()
     end,
   }
 )
+
+
+-- activate cursorline when entering a window
+vim.api.nvim_create_autocmd(
+  {'BufEnter', 'WinEnter'}, {
+    group = visual_aid,
+    callback = function()
+      vim.cmd('setlocal cursorline')
+    end,
+  }
+)
+
+-- deactivate cursorline when leaving a window
+vim.api.nvim_create_autocmd(
+  {'BufLeave', 'WinLeave'}, {
+    group = visual_aid,
+    callback = function()
+      vim.cmd('setlocal nocursorline')
+    end,
+  }
+)
+
 
 -- when in visual mode, type this command to replace words
 vim.api.nvim_create_user_command(

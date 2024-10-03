@@ -22,32 +22,32 @@ local normal_mode_keymaps = {
 
   ['x'] = { action = '"_x', desc = 'Delete character without copying' },
 
-  ['<leader>q'] = { action = ':q<CR>', desc = 'Easier quit' },
-  ['<leader>w'] = { action = ':w<CR>', desc = 'Easier save' },
+  ['<leader>q'] = { action = '<Cmd>q<CR>', desc = 'Easier quit' },
+  ['<leader>w'] = { action = '<Cmd>w<CR>', desc = 'Easier save' },
 
   ['<C-h>'] = { action = '<C-w>h', desc = 'Move focus to the pane on the left' },
   ['<C-j>'] = { action = '<C-w>j', desc = 'Move focus to the pane below' },
   ['<C-k>'] = { action = '<C-w>k', desc = 'Move focus to the pane above' },
   ['<C-l>'] = { action = '<C-w>l', desc = 'Move focus to the pane on the right' },
 
-  ['<S-l>'] = { action = ':bnext<CR>', desc = 'Switch to the next buffer' },
-  ['<S-h>'] = { action = ':bprevious<CR>', desc = 'Switch to the previous buffer' },
+  ['<S-l>'] = { action = '<Cmd>bnext<CR>', desc = 'Switch to the next buffer' },
+  ['<S-h>'] = { action = '<Cmd>bprevious<CR>', desc = 'Switch to the previous buffer' },
 
-  ['[d'] = { action = '<cmd>lua vim.diagnostic.goto_prev()<CR>', desc = 'Go to the previous diagnostic' },
-  [']d'] = { action = '<cmd>lua vim.diagnostic.goto_next()<CR>', desc = 'Go to the next diagnostic' },
+  ['[d'] = { action = '<Cmd>lua vim.diagnostic.goto_prev()<CR>', desc = 'Go to the previous diagnostic' },
+  [']d'] = { action = '<Cmd>lua vim.diagnostic.goto_next()<CR>', desc = 'Go to the next diagnostic' },
 
-  ['<leader>v'] = { action = ':sp<CR>', desc = 'Horizontal split' },
-  ['<leader>h'] = { action = ':vs<CR>', desc = 'Vertical split' },
+  ['<leader>v'] = { action = '<Cmd>sp<CR>', desc = 'Horizontal split' },
+  ['<leader>h'] = { action = '<Cmd>vs<CR>', desc = 'Vertical split' },
 
-  ['<C-m>'] = { action = ':vertical resize -2<CR>', desc = 'Reduce current window vertical size' },
-  ['<C-n>'] = { action = ':vertical resize +2<CR>', desc = 'Increase current window vertical size' },
-  ['<C-,>'] = { action = ':horizontal resize -2<CR>', desc = 'Reduce current window horizontal size' },
-  ['<C-.>'] = { action = ':horizontal resize +2<CR>', desc = 'Increase current window horizontal size' },
+  ['<C-m>'] = { action = '<Cmd>vertical resize -2<CR>', desc = 'Reduce current window vertical size' },
+  ['<C-n>'] = { action = '<Cmd>vertical resize +2<CR>', desc = 'Increase current window vertical size' },
+  ['<C-,>'] = { action = '<Cmd>horizontal resize -2<CR>', desc = 'Reduce current window horizontal size' },
+  ['<C-.>'] = { action = '<Cmd>horizontal resize +2<CR>', desc = 'Increase current window horizontal size' },
 
-  ['<S-m>'] = { action = ':nohlsearch<CR>', desc = 'Stop highlighting search results' },
+  ['<S-m>'] = { action = '<Cmd>nohlsearch<CR>', desc = 'Stop highlighting search results' },
 
-  ['<leader>t'] = { action = ':terminal<CR>', desc = 'Open a terminal in the current buffer' },
-  ['<leader>j'] = { action = ':botright new | resize 10 | terminal<CR>', desc = 'Open a terminal in VS Code style' },
+  ['<leader>t'] = { action = '<Cmd>terminal<CR>', desc = 'Open a terminal in the current buffer' },
+  ['<leader>j'] = { action = '<Cmd>botright new | resize 10 | terminal<CR>', desc = 'Open a terminal in VS Code style' },
 
   ['<leader>a'] = { action = 'za', desc = 'Fold the scope under cursor' },
   ['<leader>r'] = { action = 'zR', desc = 'Expand all folds in the current buffer' },
@@ -77,7 +77,7 @@ local visual_block_mode_keymaps = {
   ['K'] = { action = ":move '<-2<CR>gv-gv", desc = 'Move highlighted text up' },
 
   ['<leader>s'] = {
-    action = ":lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<CR>",
+    action = "<Cmd>lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<CR>",
     desc = 'Search and replace exact words in highlighted text'
   },
 
@@ -92,7 +92,7 @@ local visual_block_mode_keymaps = {
   },
 
   ['<leader>p'] = {
-    action = ":lua vim.api.nvim_feedkeys(':AppendTo ', 'c', false)<CR>",
+    action = "<Cmd>lua vim.api.nvim_feedkeys(':AppendTo ', 'c', false)<CR>",
     desc = 'Search and add text following the search results'
   },
 
