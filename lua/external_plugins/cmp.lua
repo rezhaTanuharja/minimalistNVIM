@@ -16,7 +16,7 @@ return {
 
   -- load when first entering insert mode
   -- event = 'UIEnter',
-  ft = { 'python' },
+  ft = { 'python', 'rust' },
 
   dependencies = {
 

@@ -68,7 +68,7 @@ return {
   'neovim/nvim-lspconfig',
 
   -- load when entering the buffer
-  ft = { 'python', 'tex' },
+  ft = { 'python', 'rust' },
   -- event = 'UIEnter',
 
   dependencies = {
@@ -119,7 +119,7 @@ return {
 
     local servers = {
       'pyright',
-      'texlab',
+      'rust_analyzer',
     }
 
     require('mason-lspconfig').setup({
