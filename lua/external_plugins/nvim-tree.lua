@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/plugins/nvim-tree.lua
+-- @file lua/external_plugins/nvim-tree.lua
 --
 -- @brief
 -- The configuration file for the plugin nvim-tree

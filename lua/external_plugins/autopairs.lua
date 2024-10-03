@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/plugins/autopairs.lua
+-- @file lua/external_plugins/autopairs.lua
 --
 -- @brief
 -- The configuration file for the plugin autopairs

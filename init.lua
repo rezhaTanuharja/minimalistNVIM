@@ -28,8 +28,8 @@ local config_files = {
   'options',
   'keymaps',
   'commands',
-  'plugins',
-  'colors',
+  'external_plugins',
+  'internal_plugins',
 }
 
 -- load all listed config files

@@ -1,8 +1,8 @@
 ---
--- @file lua/profiles/rezha/plugins/bufferline.lua
+-- @file lua/external_plugins/bbye.lua
 --
 -- @brief
--- The configuration file for the plugin bufferline
+-- The configuration file for the plugin bbye
 --
 -- @author Rezha Adrian Tanuharja
 -- @date 2024-08-31

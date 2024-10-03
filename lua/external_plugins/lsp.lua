@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/plugins/lsp.lua
+-- @file lua/external_plugins/lsp.lua
 --
 -- @brief
 -- The configuration file for the plugin lsp
@@ -73,7 +73,7 @@ return {
 
   dependencies = {
 
-    require('pluginsetup.mason'),
+    require('external_plugins.mason'),
 
     'williamboman/mason-lspconfig.nvim',
     'hrsh7th/cmp-nvim-lsp',

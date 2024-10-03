@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/plugins/oil.lua
+-- @file lua/external_plugins/oil.lua
 --
 -- @brief
 -- The configuration file for the plugin oil

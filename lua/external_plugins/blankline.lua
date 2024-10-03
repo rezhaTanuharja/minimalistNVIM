@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/plugins/blankline.lua
+-- @file lua/external_plugins/blankline.lua
 --
 -- @brief
 -- The configuration file for the plugin blankline

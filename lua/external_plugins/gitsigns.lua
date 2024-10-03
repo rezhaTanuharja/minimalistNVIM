@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/plugins/gitsigns.lua
+-- @file lua/external_plugins/gitsigns.lua
 --
 -- @brief
 -- The configuration file for the plugin gitsigns
@@ -12,8 +12,6 @@
 return {
 
   'lewis6991/gitsigns.nvim',
-
-  event = {'BufReadPost', 'BufNewFile'},
 
   config = function()
     

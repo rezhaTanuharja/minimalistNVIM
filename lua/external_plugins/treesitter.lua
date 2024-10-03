@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/plugins/treesitter.lua
+-- @file lua/external_plugins/treesitter.lua
 --
 -- @brief
 -- The configuration file for the plugin treesitter

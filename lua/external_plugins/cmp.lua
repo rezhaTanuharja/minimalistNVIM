@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/plugins/cmp.lua
+-- @file lua/external_plugins/cmp.lua
 --
 -- @brief
 -- The configuration file for the plugin cmp
@@ -26,7 +26,7 @@ return {
     'hrsh7th/cmp-path',
 
     -- completion from luasnip
-    require('pluginsetup.luasnip'),
+    require('external_plugins.luasnip'),
 
     'saadparwaiz1/cmp_luasnip',
 

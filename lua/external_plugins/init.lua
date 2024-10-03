@@ -1,6 +1,6 @@
 ---
--- @file lua/profiles/rezha/lazy.lua
--- The configuration file for lazy package manager
+-- @file lua/external_plugins/init.lua
+-- The initialization file to load external plugins
 --
 -- @author Rezha Adrian Tanuharja
 -- @date 2024-08-31
@@ -42,7 +42,7 @@ if not success then
 end
 
 -- all plugin settings are in this directory
-local location = 'pluginsetup.'
+local location = 'external_plugins.'
 
 -- specify manually the plugins to load
 lazy.setup {
@@ -81,7 +81,6 @@ lazy.setup {
     { import = location .. 'cmp' },
     { import = location .. 'lsp' },
     { import = location .. 'treesitter' },
-    { import = location .. 'lualine' },
     { import = location .. 'bbye' },
     { import = location .. 'blankline' },
     { import = location .. 'gitsigns' },

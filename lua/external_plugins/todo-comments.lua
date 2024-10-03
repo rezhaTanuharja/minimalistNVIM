@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/plugins/todo-comments.lua
+-- @file lua/external_plugins/todo-comments.lua
 --
 -- @brief
 -- The configuration file for the plugin todo-comments

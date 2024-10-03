@@ -1,5 +1,5 @@
 ---
--- @file lua/profiles/rezha/plugins/telescope.lua
+-- @file lua/external_plugins/telescope.lua
 --
 -- @brief
 -- The configuration file for the plugin telescope

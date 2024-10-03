@@ -1,5 +1,5 @@
 ---
--- @file lua/init.lua
+-- @file lua/internal_plugins/colors.lua
 --
 -- @brief
 -- The configuration file to set some colors
@@ -9,12 +9,10 @@
 --
 
 
-local set_color = vim.api.nvim_set_hl
-
 local group_styles = {
 
   ['Normal']      = { fg = '#cccccc' },
-  ['Comment']     = { fg = '#555555', italic = false },
+  ['Comment']     = { fg = '#777777', italic = false },
   ['String']      = { fg = '#bbbbbb', italic = false },
   ['Function']    = { fg = '#aaaaaa', italic = false },
   ['Identifier']  = { fg = '#999999', italic = false },
@@ -46,5 +44,5 @@ local group_styles = {
 }
 
 for group, style in pairs(group_styles) do
-  set_color(0, group, style)
+  vim.api.nvim_set_hl(0, group, style)
 end
