@@ -49,13 +49,13 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_user_command(
   'ExactReplace',
   function(opts)
-      local start_line = vim.fn.line("'<")
-      local end_line = vim.fn.line("'>")
-      local word = opts.args
-      vim.fn.cursor(start_line, 1)
-      vim.cmd('normal! V')
-      vim.fn.cursor(end_line, 1)
-      vim.api.nvim_feedkeys(":s/\\<" .. word .. "\\>/", 'c', false)
+    local start_line = vim.fn.line("'<")
+    local end_line = vim.fn.line("'>")
+    local word = opts.args
+    vim.fn.cursor(start_line, 1)
+    vim.cmd('normal! V')
+    vim.fn.cursor(end_line, 1)
+    vim.api.nvim_feedkeys(":s/\\<" .. word .. "\\>/", 'c', false)
   end,
   { nargs = 1, range = true }
 )
@@ -64,13 +64,13 @@ vim.api.nvim_create_user_command(
 vim.api.nvim_create_user_command(
   'AppendTo',
   function(opts)
-      local start_line = vim.fn.line("'<")
-      local end_line = vim.fn.line("'>")
-      local word = opts.args
-      vim.fn.cursor(start_line, 1)
-      vim.cmd('normal! V')
-      vim.fn.cursor(end_line, 1)
-      vim.api.nvim_feedkeys(":s/\\(" .. word .. "\\)/\\1", 'c', false)
+    local start_line = vim.fn.line("'<")
+    local end_line = vim.fn.line("'>")
+    local word = opts.args
+    vim.fn.cursor(start_line, 1)
+    vim.cmd('normal! V')
+    vim.fn.cursor(end_line, 1)
+    vim.api.nvim_feedkeys(":s/\\(" .. word .. "\\)/\\1", 'c', false)
   end,
   { nargs = 1, range = true }
 )
