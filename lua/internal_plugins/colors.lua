@@ -19,6 +19,8 @@ local group_styles = {
   ['Special']     = { fg = '#bbbbbb', italic = false },
   ['Queston']     = { fg = '#666666', italic = false },
 
+  ['Folded']      = { fg = '#333333' },
+
   ['Search']      = { fg = '#000000', bg = '#777777' },
   ['CurSearch']   = { fg = '#000000', bg = '#aaaaaa' },
 

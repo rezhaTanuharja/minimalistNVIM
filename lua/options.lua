@@ -10,12 +10,22 @@
 
 
 local options = {
-  fillchars = 'eob: ',          -- remove tildes in a short file
-  inccommand = 'split',         -- shows the effect of substitute-like operations in a split window
-  virtualedit = 'block',        -- enable highlighting empty spaces
+
+  fillchars = {
+    eob = ' ',                  -- removes tilde from number column in a short file
+    fold = '-',                 -- replace dots from trailing fold characters
+  },
+
   foldlevelstart = 99,          -- start with everything unfolded
   foldtext = '',                -- keep colors of folded lines
-  backup = false,               -- creates a backup file
+
+  backup = false,               -- do not creates a backup file
+  writebackup = false,          -- if a file is being edited in another program
+  swapfile = false,             -- do not creates a swapfile
+  undofile = true,              -- enable persistent undo
+
+  inccommand = 'split',         -- shows the effect of substitute-like operations in a split window
+  virtualedit = 'block',        -- enable highlighting empty spaces
   clipboard = 'unnamedplus',    -- allows neovim to access the system clipboard
   cmdheight = 1,                -- more spaces in the command line for displaying messages
   conceallevel = 2,             -- so that `` is visible in markdown files
@@ -24,18 +34,15 @@ local options = {
   ignorecase = true,            -- ignore case in search pattern
   mouse = '',                   -- disable the mouse in neovim
   pumheight = 10,               -- pop up menu height
-  showmode = false,             -- mode will be shown by lualine
+  showmode = false,             -- mode will be shown by statusline
   showtabline = 0,              -- hide tabline
   smartcase = true,             -- smart case
   smartindent = true,           -- make indenting smart again
   splitbelow = true,            -- force all horizontal splits to go below current window
   splitright = true,            -- force all vertical splits to go to the right of current window
-  swapfile = false,             -- do not creates a swapfile
   termguicolors = true,         -- set term gui colors (most terminals support this)
   timeoutlen = 300,             -- time to wait a mapped sequence to complete
-  undofile = true,              -- enable persistent undo
   updatetime = 200,             -- faster completion
-  writebackup = false,          -- if a file is being edited in another program
   expandtab = true,             -- convert tabs to spaces
   shiftwidth = 2,               -- the number of spaces for each indentation
   tabstop = 2,                  -- the number of spaces for each tab

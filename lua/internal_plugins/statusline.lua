@@ -16,7 +16,7 @@ local function git_branch()
   local branch = vim.b.gitsigns_head
 
   if branch == nil then
-    return '-'
+    return ' -- '
   end
 
   return '%#statusline_branch# ' .. branch .. ' '
