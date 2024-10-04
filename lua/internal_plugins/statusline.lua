@@ -78,6 +78,7 @@ local function diagnostics()
   local num_hint    = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT  })
 
   return '%#statusline_diagnostics# ' .. 'E' .. num_error .. ' W' .. num_warning .. ' H' .. num_hint .. ' '
+
 end
 
 
