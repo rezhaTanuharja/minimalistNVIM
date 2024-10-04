@@ -22,7 +22,7 @@ local normal_mode_keymaps = {
 
   ['x'] = { action = '"_x', desc = 'Delete character without copying' },
 
-  ['<leader>q'] = { action = '<Cmd>q<CR>', desc = 'Easier quit' },
+  ['<leader>q'] = { action = '<Cmd>quit<CR>', desc = 'Easier quit' },
   ['<leader>w'] = { action = '<Cmd>w<CR>', desc = 'Easier save' },
 
   ['<C-h>'] = { action = '<C-w>h', desc = 'Move focus to the pane on the left' },
@@ -52,8 +52,9 @@ local normal_mode_keymaps = {
   ['<leader>a'] = { action = 'za', desc = 'Fold the scope under cursor' },
   ['<leader>r'] = { action = 'zR', desc = 'Expand all folds in the current buffer' },
 
-  ['<C-g>'] = { action = '<Cmd>Gitsigns stage_hunk<CR>', desc = 'Stage current hunk' }
-  ['<C-b>'] = { action = '<Cmd>Gitsigns stage_buffer<CR>', desc = 'Stage current buffer' }
+  ['<C-g>'] = { action = '<Cmd>Gitsigns stage_hunk<CR>', desc = 'Stage current hunk' },
+  ['<C-b>'] = { action = '<Cmd>Gitsigns stage_buffer<CR>', desc = 'Stage current buffer' },
+  ['<C-i>'] = { action = '<Cmd>Gitsigns blame_line<CR>', desc = 'Stage current buffer' },
 
 }
 
