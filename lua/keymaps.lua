@@ -52,6 +52,9 @@ local normal_mode_keymaps = {
   ['<leader>a'] = { action = 'za', desc = 'Fold the scope under cursor' },
   ['<leader>r'] = { action = 'zR', desc = 'Expand all folds in the current buffer' },
 
+  ['<C-g>'] = { action = '<Cmd>Gitsigns stage_hunk<CR>', desc = 'Stage current hunk' }
+  ['<C-b>'] = { action = '<Cmd>Gitsigns stage_buffer<CR>', desc = 'Stage current buffer' }
+
 }
 
 for keys, map in pairs(normal_mode_keymaps) do
