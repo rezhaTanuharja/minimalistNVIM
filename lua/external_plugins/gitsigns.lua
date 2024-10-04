@@ -63,6 +63,10 @@ return {
     vim.keymap.set('n', '<leader>x', ':vert Gitsigns diffthis<CR>', {noremap = true, silent = true})
     vim.keymap.set('n', '<leader>z', ':wincmd p | q<CR>', {noremap = true, silent = true})
 
+    vim.keymap.set('n', '<C-g>', '<Cmd>Gitsigns stage_hunk<CR>', {noremap = true, silent = true})
+    vim.keymap.set('n', '<C-b>', '<Cmd>Gitsigns stage_buffer<CR>', {noremap = true, silent = true})
+    vim.keymap.set('n', '<C-i>', '<Cmd>Gitsigns blame_line<CR>', {noremap = true, silent = true})
+
   end
 
 }
