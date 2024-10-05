@@ -19,6 +19,8 @@ local group_styles = {
   ['Special']     = { fg = '#bbbbbb', italic = false },
   ['Queston']     = { fg = '#666666', italic = false },
 
+  ['MatchParen']     = { fg = '#ffffff', bold = true },
+
   ['WinSeparator'] = { fg = '#444444' },
 
   ['Folded']      = { fg = '#444444' },
@@ -40,6 +42,7 @@ local group_styles = {
 
   ['GitSignsAddInline']     = { fg = '#eeeeee', bg = '#444444', italic = false },
   ['GitSignsDeleteInline']  = { fg = '#aaaaaa', bg = '#333333', italic = false },
+  ['GitSignsStagedAdd']     = { fg = '#aaaaaa', italic = false },
 
   ['MoreMsg']       = { fg = '#eeeeee', bg = '#444444', italic = false },
   ['Question']      = { fg = '#eeeeee', bg = '#444444', italic = false },
