@@ -27,7 +27,7 @@ return {
     end
 
     treesitter.setup {
-      ensure_installed = { 'python', 'latex' },
+      ensure_installed = { 'python' },
       sync_install = true,
       ignore_install = {},
       highlight = {
