@@ -11,6 +11,13 @@
 
 return {
 
+  -- a main function body
+  {
+    trigger = 'main',
+    body = 'def main():\n\t$0\n\nif __name__ == "__main__":\n\tmain()',
+    preview = '**def** main():\n\tactions\n\nif `__name__` == `"__main__"`:\n\tmain()',
+  },
+
   -- a function definition
   {
     trigger = 'def',
