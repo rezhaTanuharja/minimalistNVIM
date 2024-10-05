@@ -19,6 +19,7 @@ return {
 
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',
+    'hrsh7th/cmp-nvim-lsp-signature-help',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
   },
@@ -70,6 +71,10 @@ return {
     }
 
     cmp.setup {
+
+      view = {
+        docs = { auto_open = false },
+      },
 
       snippet = {
         expand = function(args)
@@ -145,6 +150,19 @@ return {
           end, { 'i', 's' }
         ),
 
+        -- toggle documentation
+        ['<C-d>'] = cmp.mapping(
+          function(fallback)
+            if cmp.visible_docs() then
+              cmp.close_docs()
+            elseif cmp.visible() then
+              cmp.open_docs()
+            else
+              fallback()
+            end
+          end, { 'i', 's' }
+        ),
+
       },
 
       formatting = {
@@ -173,6 +191,7 @@ return {
       sources = {
         { name = 'snippets' },
         { name = 'nvim_lsp' },
+        { name = 'nvim_lsp_signature_help' },
         { name = 'buffer' },
         { name = 'path' },
       },
