@@ -14,22 +14,13 @@ return {
   -- github repository for nvim-cmp
   'hrsh7th/nvim-cmp',
 
-  -- load when first entering insert mode
-  -- event = 'UIEnter',
-  ft = { 'python', 'rust' },
+  -- load for these files
+  ft = { 'python', 'rust', 'lua' },
 
   dependencies = {
-
-    -- completion from LSP, buffer, and path
     'hrsh7th/cmp-nvim-lsp',
     'hrsh7th/cmp-buffer',
     'hrsh7th/cmp-path',
-
-    -- completion from luasnip
-    require('external_plugins.luasnip'),
-
-    'saadparwaiz1/cmp_luasnip',
-
   },
 
   config = function()
@@ -40,12 +31,13 @@ return {
       return
     end
 
-    local luasnip
-    success, luasnip = pcall(require, 'luasnip')
+    local snippets
+    success, snippets = pcall(require, 'internal_plugins/snippets')
     if not success then
-      vim.notify('Failed to load plugin: luasnip')
+      vim.notify('Failed to load plugin: snippets')
       return
     end
+    snippets.register_cmp_source()
 
     -- just don't use icons
     local kind_icons = {
@@ -81,7 +73,7 @@ return {
 
       snippet = {
         expand = function(args)
-          luasnip.lsp_expand(args.body)
+          vim.snippet.expand(args.body)
         end,
       },
 
@@ -109,20 +101,29 @@ return {
         -- press return to confirm completion
         ['<CR>'] = cmp.mapping.confirm{ select = true },
 
-        -- press tab to select the next item
+        -- press tab to jump to the next snippet variable
         ['<Tab>'] = cmp.mapping(
           function(fallback)
-            if luasnip.expandable() then
-              luasnip.expand()
-            elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
+            if vim.snippet.active({ direction = 1 }) then
+              vim.snippet.jump(1)
             else
               fallback()
             end
           end, { 'i', 's' }
         ),
 
-        -- press shift-tab to select prev item
+        -- press shift + tab to jump to the previous snippet variable
+        ['<S-Tab>'] = cmp.mapping(
+          function(fallback)
+            if vim.snippet.active({ direction = -1 }) then
+              vim.snippet.jump(-1)
+            else
+              fallback()
+            end
+          end, { 'i', 's' }
+        ),
+
+        -- vim-motion-esque navigation in cmp items
         ['<C-S-j>'] = cmp.mapping(
           function(fallback)
             if cmp.visible() then
@@ -133,6 +134,7 @@ return {
           end, { 'i', 's' }
         ),
 
+        -- vim-motion-esque navigation in cmp items
         ['<C-S-k>'] = cmp.mapping(
           function(fallback)
             if cmp.visible() then
@@ -155,7 +157,7 @@ return {
 
           vim_item.menu = (
             {
-              luasnip = 'luasnip',
+              snippets = 'snippets',
               nvim_lsp = 'lsp',
               buffer = 'buff',
               path = 'path',
@@ -169,7 +171,7 @@ return {
       },
 
       sources = {
-        { name = 'luasnip' },
+        { name = 'snippets' },
         { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },
