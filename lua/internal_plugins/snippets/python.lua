@@ -18,6 +18,13 @@ return {
     preview = '**def** main():\n\tactions\n\nif `__name__` == `"__main__"`:\n\tmain()',
   },
 
+  -- import an object from a module
+  {
+    trigger = 'from',
+    body = 'from ${1:module} import ${2:object}\n$0',
+    preview = '**from** module **import** object',
+  },
+
   -- a function definition
   {
     trigger = 'def',
