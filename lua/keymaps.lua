@@ -9,8 +9,7 @@
 --
 
 
--- we remap space to leader key so ensure it does nothing
-vim.keymap.set('', '<Space>', '<Nop>', options)
+vim.keymap.set('', '<space>', '<nop>', { noremap = true, silent = true, desc = 'space does not do anything except being a leader key' } )
 
 
 local mode_keymaps = {
