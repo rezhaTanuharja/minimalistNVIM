@@ -106,5 +106,4 @@ for mode, keymaps in pairs(mode_keymaps) do
     vim.keymap.set( mode_initial, key, maps.action, { noremap = true, silent = true, desc = maps.desc } )
   end
   
-
 end
