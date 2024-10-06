@@ -9,100 +9,102 @@
 --
 
 
--- alias function to remap keys
-local keymap = vim.keymap.set
-
 -- we remap space to leader key so ensure it does nothing
-keymap('', '<Space>', '<Nop>', options)
+vim.keymap.set('', '<Space>', '<Nop>', options)
 
--- custom keymaps in normal mode
-local normal_mode_keymaps = {
 
-  ['q'] = { action = '<Nop>', desc = 'Disable macro recording because I do not use it' },
+local mode_keymaps = {
 
-  ['x'] = { action = '"_x', desc = 'Delete character without copying' },
 
-  ['<leader>q'] = { action = '<Cmd>quit<CR>', desc = 'Easier quit' },
-  ['<leader>w'] = { action = '<Cmd>w<CR>', desc = 'Easier save' },
+  normal = {
 
-  ['<C-h>'] = { action = '<C-w>h', desc = 'Move focus to the pane on the left' },
-  ['<C-j>'] = { action = '<C-w>j', desc = 'Move focus to the pane below' },
-  ['<C-k>'] = { action = '<C-w>k', desc = 'Move focus to the pane above' },
-  ['<C-l>'] = { action = '<C-w>l', desc = 'Move focus to the pane on the right' },
+    ['q'] = { action = '<nop>', desc = 'do not record macro, ever' },
 
-  ['<S-l>'] = { action = '<Cmd>bnext<CR>', desc = 'Switch to the next buffer' },
-  ['<S-h>'] = { action = '<Cmd>bprevious<CR>', desc = 'Switch to the previous buffer' },
+    ['x'] = { action = '"_x', desc = 'deleted character does not go into clipboard' },
 
-  ['[d'] = { action = '<Cmd>lua vim.diagnostic.goto_prev()<CR>', desc = 'Go to the previous diagnostic' },
-  [']d'] = { action = '<Cmd>lua vim.diagnostic.goto_next()<CR>', desc = 'Go to the next diagnostic' },
+    ['<leader>q'] = { action = '<cmd>quit<return>', desc = 'close the current window' },
+    ['<leader>w'] = { action = '<cmd>write<return>', desc = 'write changes in the current window' },
 
-  ['<leader>v'] = { action = '<Cmd>sp<CR>', desc = 'Horizontal split' },
-  ['<leader>h'] = { action = '<Cmd>vs<CR>', desc = 'Vertical split' },
+    ['<C-h>'] = { action = '<C-w>h', desc = 'move focus to the pane on the left' },
+    ['<C-j>'] = { action = '<C-w>j', desc = 'move focus to the pane below' },
+    ['<C-k>'] = { action = '<C-w>k', desc = 'move focus to the pane above' },
+    ['<C-l>'] = { action = '<C-w>l', desc = 'move focus to the pane on the right' },
 
-  ['<C-m>'] = { action = '<Cmd>vertical resize -2<CR>', desc = 'Reduce current window vertical size' },
-  ['<C-n>'] = { action = '<Cmd>vertical resize +2<CR>', desc = 'Increase current window vertical size' },
-  ['<C-,>'] = { action = '<Cmd>horizontal resize -2<CR>', desc = 'Reduce current window horizontal size' },
-  ['<C-.>'] = { action = '<Cmd>horizontal resize +2<CR>', desc = 'Increase current window horizontal size' },
+    ['<S-l>'] = { action = '<cmd>bnext<return>', desc = 'switch to the next buffer' },
+    ['<S-h>'] = { action = '<cmd>bprevious<return>', desc = 'switch to the previous buffer' },
 
-  ['<S-m>'] = { action = '<Cmd>nohlsearch<CR>', desc = 'Stop highlighting search results' },
+    ['<leader>v'] = { action = '<cmd>split<return>', desc = 'horizontal split' },
+    ['<leader>h'] = { action = '<cmd>vsplit<return>', desc = 'vertical split' },
 
-  ['<leader>t'] = { action = '<Cmd>terminal<CR>', desc = 'Open a terminal in the current buffer' },
-  ['<leader>j'] = { action = '<Cmd>botright new | resize 10 | terminal<CR>', desc = 'Open a terminal in VS Code style' },
+    ['<C-m>'] = { action = '<cmd>vertical resize -2<return>', desc = 'reduce current window number of rows' },
+    ['<C-n>'] = { action = '<cmd>vertical resize +2<return>', desc = 'increase current window number of columns' },
+    ['<C-,>'] = { action = '<cmd>horizontal resize -2<return>', desc = 'reduce current window number of columns' },
+    ['<C-.>'] = { action = '<cmd>horizontal resize +2<return>', desc = 'increase current window number of rows' },
 
-  ['<leader>a'] = { action = 'za', desc = 'Fold the scope under cursor' },
-  ['<leader>r'] = { action = 'zR', desc = 'Expand all folds in the current buffer' },
+    ['<S-m>'] = { action = '<cmd>nohlsearch<return>', desc = 'remove highlight from search results' },
+
+    ['<leader>t'] = { action = '<cmd>terminal<return>', desc = 'open a terminal in the current window' },
+    ['<leader>j'] = { action = '<cmd>botright new | resize 12 | terminal<return>', desc = 'open a terminal in VS Code style' },
+
+    ['<leader>a'] = { action = 'za', desc = 'fold the scope under cursor' },
+    ['<leader>r'] = { action = 'zR', desc = 'expand all folds in the current buffer' },
+
+  },
+
+  
+  visual = {
+    
+    ['H'] = { action = '<gv', desc = 'move highlighted text to the left' },
+    ['J'] = { action = ":move '>+1<return>gv", desc = 'move highlighted text down' },
+    ['K'] = { action = ":move '<-2<return>gv", desc = 'move highlighted text up' },
+    ['L'] = { action = '>gv', desc = 'move highlighted text to the right' },
+
+    ['<leader>s'] = {
+      action = "<cmd>lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<return>",
+      desc = 'search and replace exact words in highlighted text'
+    },
+
+    ['<leader>a'] = { action = ":s/$/",
+      desc = 'create multiple cursors and add text to the end of multiple lines'
+    },
+
+    ['<leader>i'] = {
+      action = ":s/^/",
+      desc = 'create multiple cursors and add text to the beginning of multiple lines'
+    },
+
+    ['<leader>p'] = {
+      action = "<cmd>lua vim.api.nvim_feedkeys(':AppendTo ', 'c', false)<return>",
+      desc = 'search and add text following the search results'
+    },
+
+  },
+
+  
+  command = {
+
+    ['<C-y>'] = { action = '/g | nohlsearch<return>', desc = 'confirm substitution-like operations without any highlight remaining' },
+    
+  },
+
+
+  terminal = {
+
+    ['qq'] = { action = '<C-\\><C-n>', desc = 'exit terminal mode without closing the terminal' },
+
+  },
+ 
 
 }
 
-for keys, map in pairs(normal_mode_keymaps) do
-  keymap('n', keys, map.action, { noremap = true, silent = true, desc = map.desc })
+
+for mode, keymaps in pairs(mode_keymaps) do
+
+  local mode_initial = mode:sub(1, 1)
+
+  for key, maps in pairs(keymaps) do
+    vim.keymap.set( mode_initial, key, maps.action, { noremap = true, silent = true, desc = maps.desc } )
+  end
+  
+
 end
-
-
--- custom keymaps in visual mode
-local visual_mode_keymaps = {
-  ['<'] = { action = '<gv', desc = 'Reduce indentation but stay in visual mode' },
-  ['>'] = { action = '>gv', desc = 'Increase indentation but stay in visual mode' },
-}
-
-for keys, map in pairs(visual_mode_keymaps) do
-  keymap('v', keys, map.action, { noremap = true, silent = true, desc = map.desc })
-end
-
-
--- custom keymaps in visual block mode
-local visual_block_mode_keymaps = {
-
-  ['J'] = { action = ":move '>+1<CR>gv-gv", desc = 'Move highlighted text down' },
-  ['K'] = { action = ":move '<-2<CR>gv-gv", desc = 'Move highlighted text up' },
-
-  ['<leader>s'] = {
-    action = "<Cmd>lua vim.api.nvim_feedkeys(':ExactReplace ', 'c', false)<CR>",
-    desc = 'Search and replace exact words in highlighted text'
-  },
-
-  ['<leader>a'] = {
-    action = ":s/$/",
-    desc = 'Create multiple cursors and add text to the end of multiple lines'
-  },
-
-  ['<leader>i'] = {
-    action = ":s/^/",
-    desc = 'Create multiple cursors and add text to the beginning of multiple lines'
-  },
-
-  ['<leader>p'] = {
-    action = "<Cmd>lua vim.api.nvim_feedkeys(':AppendTo ', 'c', false)<CR>",
-    desc = 'Search and add text following the search results'
-  },
-
-}
-
-for keys, map in pairs(visual_block_mode_keymaps) do
-  keymap('x', keys, map.action, { noremap = true, silent = true, desc = map.desc })
-end
-
--- terminal functionalities
-keymap('t', 'qq', '<C-\\><C-n>', { noremap = true, silent = true, desc = 'Exit insert mode in terminal' })
--- to prevent highlighting search results
-keymap('c', '<C-y>', '/g | nohlsearch<CR>', { noremap = true, silent = true, desc = 'Enter and remove highlight from search results' } )
