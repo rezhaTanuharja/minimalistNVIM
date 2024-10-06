@@ -21,6 +21,20 @@ return {
   -- a table definition
   { 
     trigger = 'table',
+    body = '{ ${1:items} }$0',
+    preview = '{ items }',
+  },
+
+  -- a big table definition
+  { 
+    trigger = 'big_table',
+    body = '{\n\t${1:items}\n}\n$0',
+    preview = '{\n\titems\n}',
+  },
+
+  -- a named table definition
+  { 
+    trigger = 'named_table',
     body = '${1:name} = {\n\t${2:items}\n}\n$0',
     preview = 'name = {\n\titems\n}',
   },
@@ -28,15 +42,15 @@ return {
   -- a table item
   { 
     trigger = 'item',
-    body = '[${1:key}] = { ${2:values} },$0',
-    preview = '[key] = { values },',
+    body = "['${1:key}'] = ${2:values},$0",
+    preview = "['key'] = values,",
   },
 
   -- a for loop
   { 
     trigger = 'loop',
-    body = 'for ${1:key}, ${2:values} in pairs(${3:table}) do\n\t${4:actions}\nend',
-    preview = '**for** key, values in **pairs**(table) **do**\n\tactions\n**end**',
+    body = 'for ${1:key}, ${2:value} in pairs(${3:table}) do\n\t${4:actions}\nend\n$0',
+    preview = '**for** key, value in **pairs**(table) **do**\n\tactions\n**end**',
   },
 
   -- a protected call

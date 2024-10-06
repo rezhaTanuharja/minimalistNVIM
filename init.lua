@@ -9,20 +9,6 @@
 --
 
 
--- a function to load config files
-local function load_config(filename)
-
-  -- use protected call so if something fails it does not crash
-  local success, _ = pcall(require, filename)
-
-  -- in case of error, tell us which file is problematic
-  if not success then
-    vim.notify('Failed to load a configuration file: ' .. filename)
-  end
-
-end
-
--- list all available config files
 local config_files = {
   'globals',
   'options',
@@ -32,7 +18,12 @@ local config_files = {
   'internal_plugins',
 }
 
--- load all listed config files
 for _, config_file in pairs(config_files) do
-  load_config(config_file)
+
+  local success, _ = pcall(require, config_file)
+  if not success then
+    vim.notify('Failed to load config file ' .. config_file)
+    break
+  end
+  
 end
