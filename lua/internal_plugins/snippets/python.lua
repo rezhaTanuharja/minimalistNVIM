@@ -28,8 +28,8 @@ return {
   -- a function definition
   {
     trigger = 'def',
-    body = 'def ${1:function_name}(${2:args})\n\n\t${3:pass}\n$0',
-    preview = '**def** `function_name`(args)\n\n\tpass',
+    body = 'def ${1:function_name}(${2:args}):\n\n\t${3:pass}\n$0',
+    preview = '**def** `function_name`(args):\n\n\tpass',
   },
 
   -- a parent class definition
@@ -49,7 +49,7 @@ return {
   -- an abstract method definition
   {
     trigger = 'abstract',
-    body = '@abstractmethod\ndef ${1:function_name}(self, ${2:*args, **kwargs})\n\t${3:pass}\n$0',
+    body = '@abstractmethod\ndef ${1:function_name}(self, ${2:*args, **kwargs}):\n\t${3:pass}\n$0',
     preview = '`@abstractmethod`\n**def** `function_name`(self, *args, **kwargs)\n\tpass',
   },
 
