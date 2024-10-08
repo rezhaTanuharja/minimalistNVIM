@@ -25,5 +25,5 @@ for _, config_file in pairs(config_files) do
     vim.notify('Failed to load config file ' .. config_file)
     break
   end
-  
+
 end

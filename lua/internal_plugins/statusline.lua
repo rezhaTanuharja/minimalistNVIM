@@ -140,17 +140,16 @@ vim.cmd([[
 
 local group_styles = {
 
-  ['statusline_file']         = { fg = '#eeeeee', bg = '#555555' },
-  ['statusline_modifiedfile'] = { fg = '#000000', bg = '#ffffff', bold = true },
-  ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#333333' },
+  ['statusline_file']         = { fg = '#eeeeee', bg = '#444444', bold = true },
+  ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
+  ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
 
-  ['statusline_separator']          = { bg = '#222222' },
-  ['statusline_separator_insert']   = { bg = '#333333' },
-  ['statusline_separator_visual']   = { bg = '#555555' },
-  ['statusline_separator_command']  = { bg = '#888888' },
+  ['statusline_separator']          = { bg = '#111111' },
+  ['statusline_separator_insert']   = { bg = '#222222' },
+  ['statusline_separator_visual']   = { bg = '#333333' },
 
-  ['statusline_branch'] = { fg = '#eeeeee', bg = '#333333' },
-  ['statusline_mode']   = { fg = '#eeeeee', bg = '#555555', bold = true },
+  ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
+  ['statusline_mode']   = { fg = '#eeeeee', bg = '#444444', bold = true },
 
 }
 

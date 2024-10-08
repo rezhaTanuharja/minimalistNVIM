@@ -11,7 +11,7 @@
 
 local group_styles = {
 
-  ['Normal']     = { fg = '#cccccc', bg = '#111111' },
+  ['Normal']     = { fg = '#cccccc', bg = '#000000' },
   ['Comment']    = { fg = '#777777', italic = false },
   ['String']     = { fg = '#bbbbbb', italic = false },
   ['Function']   = { fg = '#bbbbbb', italic = false },
@@ -26,8 +26,8 @@ local group_styles = {
   ['Search']    = { fg = '#000000', bg = '#777777' },
   ['CurSearch'] = { fg = '#000000', bg = '#aaaaaa' },
 
-  ['DiagnosticInfo'] = { fg = '#999999' },
-  ['DiagnosticHint'] = { fg = '#999999' },
+  -- ['DiagnosticInfo'] = { fg = '#999999' },
+  -- ['DiagnosticHint'] = { fg = '#999999' },
 
   ['Directory']          = { fg = '#777777', italic = false },
   ['NvimTreeFolderIcon'] = { fg = '#777777', italic = false },
