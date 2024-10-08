@@ -48,6 +48,8 @@ local mode_keymaps = {
     ['<leader>a'] = { action = 'za', desc = 'fold the scope under cursor' },
     ['<leader>r'] = { action = 'zR', desc = 'expand all folds in the current buffer' },
 
+    ['gb'] = { action = '<C-t>', desc = 'go back after jump, e.g., goto definition' },
+
   },
 
   

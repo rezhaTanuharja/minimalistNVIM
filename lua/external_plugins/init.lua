@@ -80,7 +80,7 @@ lazy.setup {
     { import = location .. 'nvim-tree' },
     { import = location .. 'cmp' },
     { import = location .. 'lsp' },
-    { import = location .. 'treesitter' },
+    -- { import = location .. 'treesitter' },
     { import = location .. 'bbye' },
     { import = location .. 'blankline' },
     { import = location .. 'gitsigns' },
