@@ -119,7 +119,6 @@ return {
 
     local servers = {
       'pyright',
-      'rust_analyzer',
     }
 
     require('mason-lspconfig').setup({
