@@ -36,7 +36,7 @@ return {
       fast_wrap = {
         map = '<C-k>',
         chars = {'{', '[', '(', '"', "'"},
-        pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
+        pattern = [=[[%'%"%>%]%)%}%,]]=],
         offset = 0,
         end_key = '$',
         keys = 'qwertyuiopzxcvbnmasdfghjkl',
