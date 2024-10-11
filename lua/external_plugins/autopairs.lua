@@ -34,10 +34,9 @@ return {
       disable_filetype = {'TelescopePrompt', 'spectre_panel'},
 
       fast_wrap = {
-        map = '<M-e>',
+        map = '<C-e>',
         chars = {'{', '[', '(', '"', "'"},
         pattern = string.gsub([[ [%'%"%)%>%]%)%}%,] ]], '%s+', ''),
-        -- pattern = [=[[%'%"%>%]%)%}%, ]]=],
         offset = 0,
         end_key = '$',
         keys = 'qwertyuiopzxcvbnmasdfghjkl',
