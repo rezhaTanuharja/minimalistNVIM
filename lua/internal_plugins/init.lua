@@ -9,20 +9,16 @@
 --
 
 
-local function load_internal_plugins(filename)
-
-  local success, _ = pcall(require, 'internal_plugins/' .. filename)
-  if not success then
-    vim.notify('Failed to load internal plugin ' .. filename)
-  end
-
-end
-
 local internal_plugins = {
   'colors',
   'statusline',
 }
 
 for _, plugin in pairs(internal_plugins) do
-  load_internal_plugins(plugin)
+
+  local success, _ = pcall(require, 'internal_plugins/' .. plugin)
+  if not success then
+    vim.notify('Failed to load the internal plugin ' .. plugin)
+  end
+  
 end
