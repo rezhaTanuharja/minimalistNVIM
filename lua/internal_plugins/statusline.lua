@@ -19,10 +19,9 @@ local function git_branch()
     return ' -- '
   end
 
-
-  local added = vim.b.gitsigns_status_dict.added
-  local changed = vim.b.gitsigns_status_dict.changed
-  local removed = vim.b.gitsigns_status_dict.removed
+  local added = vim.b.gitsigns_status_dict.added or 0
+  local changed = vim.b.gitsigns_status_dict.changed or 0
+  local removed = vim.b.gitsigns_status_dict.removed or 0
 
   return '%#statusline_branch# ' .. branch .. ' +' .. added .. ' -' .. removed .. ' ~' .. changed .. ' '
 
