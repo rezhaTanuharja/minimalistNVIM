@@ -27,14 +27,16 @@ return {
     end
 
     treesitter.setup {
-      ensure_installed = { 'python' },
+      ensure_installed = { 'lua', 'python' },
       sync_install = true,
       ignore_install = {},
       highlight = {
         enable = true,
-        disable = { 'markdown' },
+        disable = function(_, bufnr)
+          return vim.api.nvim_buf_line_count(bufnr) > 500
+        end,
       },
-      indent = { enable = true, disable = { 'css', 'latex' }},
+      indent = { enable = true },
       fold = { enable = true },
     }
 
