@@ -2,6 +2,8 @@ local config_files = {
   'options',
   'keymaps',
   'colors',
+  'languageservers',
+  'diagnostics',
 }
 
 for _, file in pairs(config_files) do

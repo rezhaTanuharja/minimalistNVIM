@@ -1,7 +1,7 @@
 local options = {
 
   -- user interface
-  
+
   mouse = '',                 -- disable mouse in neovim
   clipboard = 'unnamedplus',  -- neovim uses the system clipboard by default
   showtabline = 0,            -- hide tabline
@@ -11,7 +11,6 @@ local options = {
   virtualedit = 'block',      -- enable highlighting empty spaces
   splitbelow = true,          -- when splitting horizontally, new window goes below
   splitright = true,          -- when splitting vertically, new window goes to the right
-
   -- tabs and indentations
 
   expandtab = true,           -- convert tabs into spaces

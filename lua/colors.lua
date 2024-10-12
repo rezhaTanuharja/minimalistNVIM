@@ -7,9 +7,9 @@ local group_styles = {
   ['Identifier']    = { fg = '#999999' },
   ['Special']       = { fg = '#bbbbbb' },
   ['Question']      = { fg = '#666666' },
+  ['Directory']     = { fg = '#777777' },
 
   ['MoreMsg']       = { fg = '#eeeeee', bg = '#444444' },
-  ['Question']      = { fg = '#eeeeee', bg = '#444444' },
   ['QuickFixLine']  = { fg = '#eeeeee', bg = '#444444' },
 
   ['MatchParen']    = { fg = '#ffffff', bold = true },

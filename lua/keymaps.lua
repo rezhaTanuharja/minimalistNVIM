@@ -25,7 +25,7 @@ local mode_keymaps = {
     ['<leader>v'] = { action = '<cmd>split<return>', desc = 'horizontal split' },
     ['<leader>h'] = { action = '<cmd>vsplit<return>', desc = 'vertical split' },
 
-    ['<C-m>'] = { action = '<cmd>vertical resize -2<return>', desc = 'decrease rows in the current window' },
+    ['<C-b>'] = { action = '<cmd>vertical resize -2<return>', desc = 'decrease rows in the current window' },
     ['<C-n>'] = { action = '<cmd>vertical resize +2<return>', desc = 'increase rows in the current window' },
     ['<C-,>'] = { action = '<cmd>horizontal resize -2<return>', desc = 'decrease columns in the current window' },
     ['<C-.>'] = { action = '<cmd>horizontal resize +2<return>', desc = 'increase columns in the current window' },
@@ -55,7 +55,7 @@ local mode_keymaps = {
 }
 
 for mode, keymaps in pairs(mode_keymaps) do
-  
+
   local mode_initial = mode:sub(1, 1)
 
   for key, maps in pairs(keymaps) do
