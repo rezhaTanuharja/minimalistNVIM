@@ -15,6 +15,7 @@ local options = {
 
   mouse = '',                 -- disable mouse in neovim
   clipboard = 'unnamedplus',  -- neovim uses the system clipboard by default
+  cursorline = true,
   showtabline = 0,            -- hide tabline
   inccommand = 'split',       -- when performing substitution, show preview at the bottom
   timeoutlen = 300,           -- time for user to finish a key combination
@@ -22,6 +23,7 @@ local options = {
   virtualedit = 'block',      -- enable highlighting empty spaces
   splitbelow = true,          -- when splitting horizontally, new window goes below
   splitright = true,          -- when splitting vertically, new window goes to the right
+
   -- tabs and indentations
 
   expandtab = true,           -- convert tabs into spaces
@@ -35,6 +37,9 @@ local options = {
   numberwidth = 4,            -- the column width to display line numbers
 
   -- text display
+
+  foldlevelstart = 99,        -- start with everything unfolded
+  foldtext = '',              -- keep the appearance of the first folded line
 
   wrap = false,               -- do not wrap lines because it is ugly
   smartindent = true,         -- automatic indentations

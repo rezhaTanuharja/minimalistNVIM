@@ -82,5 +82,6 @@ lazy.setup {
     { import = location .. 'autopairs' },
     { import = location .. 'bbye' },
     { import = location .. 'blankline' },
+    { import = location .. 'treesitter' },
   },
 }
