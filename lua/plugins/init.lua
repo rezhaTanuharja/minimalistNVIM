@@ -81,5 +81,6 @@ lazy.setup {
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },
     { import = location .. 'bbye' },
+    { import = location .. 'blankline' },
   },
 }
