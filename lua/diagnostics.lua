@@ -12,6 +12,7 @@ vim.diagnostic.config {
 
   float = {
     title = 'Diagnostic',
+    header = '',
     border = 'single',
     scope = 'line',
   },
