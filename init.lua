@@ -17,6 +17,7 @@ local config_files = {
   'diagnostics',
   'statusline',
   'plugins',
+  'snippets',
 }
 
 for _, file in pairs(config_files) do

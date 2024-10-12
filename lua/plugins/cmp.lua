@@ -29,6 +29,14 @@ return {
       return
     end
 
+    local snippets
+    success, snippets = pcall(require, 'snippets')
+    if not success then
+      vim.notify('Failed to load the snippets')
+      return
+    end
+    snippets.register_cmp_source()
+
     local kind_icons = {
       Text = '',
       Method = '<method>',
@@ -64,6 +72,12 @@ return {
         docs = { auto_open = true },
       },
 
+      snippet = {
+        expand = function(args)
+          vim.snippet.expand(args.body)
+        end,
+      },
+
       window = {
 
         completion = cmp.config.window.bordered({
@@ -87,6 +101,28 @@ return {
 
         -- press return to confirm completion
         ['<CR>'] = cmp.mapping.confirm{ select = true },
+
+        -- jump to the next snippet field
+        ['<Tab>'] = cmp.mapping(
+          function(fallback)
+            if vim.snippet.active({ direction = 1 }) then
+              vim.snippet.jump(1)
+            else
+              fallback()
+            end
+          end, { 'i', 's' }
+        ),
+
+        -- jump to the prev snippet field
+        ['<S-Tab>'] = cmp.mapping(
+          function(fallback)
+            if vim.snippet.active({ direction = -1 }) then
+              vim.snippet.jump(-1)
+            else
+              fallback()
+            end
+          end, { 'i', 's' }
+        ),
 
         -- vim-motion-esque navigation in cmp items
         ['<C-S-j>'] = cmp.mapping(
@@ -133,6 +169,7 @@ return {
           vim_item.kind = string.format('%s', kind_icons[vim_item.kind])
 
           vim_item.menu = ({
+            snippets = 'snippets',
             nvim_lsp = 'lsp',
             buffer = 'buff',
             path = 'path',
@@ -145,6 +182,7 @@ return {
       },
 
       sources = {
+        { name = 'snippets' },
         { name = 'nvim_lsp' },
         { name = 'buffer' },
         { name = 'path' },

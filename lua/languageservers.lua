@@ -74,6 +74,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
   vim.lsp.handlers.signature_help, {
     title = 'Language Server',
     border = 'single',
+    focusable = false,
     wrap = true,
     width = 80,
     height = 12,
