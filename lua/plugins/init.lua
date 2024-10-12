@@ -79,5 +79,6 @@ lazy.setup {
     { import = location .. 'cmp' },
     { import = location .. 'telescope' },
     { import = location .. 'gitsigns' },
+    { import = location .. 'autopairs' },
   },
 }
