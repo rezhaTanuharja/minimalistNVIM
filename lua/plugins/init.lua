@@ -78,5 +78,6 @@ lazy.setup {
   spec = {
     { import = location .. 'cmp' },
     { import = location .. 'telescope' },
+    { import = location .. 'gitsigns' },
   },
 }
