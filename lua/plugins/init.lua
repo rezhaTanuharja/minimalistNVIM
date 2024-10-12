@@ -83,5 +83,6 @@ lazy.setup {
     { import = location .. 'bbye' },
     { import = location .. 'blankline' },
     { import = location .. 'treesitter' },
+    { import = location .. 'nvim-tree' },
   },
 }

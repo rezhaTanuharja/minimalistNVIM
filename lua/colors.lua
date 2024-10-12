@@ -23,6 +23,7 @@ local group_styles = {
   ['MoreMsg']       = { fg = '#eeeeee', bg = '#444444' },
   ['QuickFixLine']  = { fg = '#eeeeee', bg = '#444444' },
 
+  ['Folded']        = { fg = '#444444' },
   ['MatchParen']    = { fg = '#ffffff', bold = true },
   ['WinSeparator']  = { fg = '#444444' },
 
