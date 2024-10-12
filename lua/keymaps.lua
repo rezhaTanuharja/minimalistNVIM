@@ -1,3 +1,14 @@
+---
+-- @file lua/keymaps.lua
+--
+-- @brief
+-- The file to set general keymaps
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-10-12
+--
+
+
 vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 

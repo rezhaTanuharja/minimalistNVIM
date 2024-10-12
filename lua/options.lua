@@ -1,3 +1,14 @@
+---
+-- @file lua/options.lua
+--
+-- @brief
+-- The file to set general Neovim behaviours
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-10-12
+--
+
+
 local options = {
 
   -- user interface

@@ -1,5 +1,30 @@
+---
+-- @file lua/languageservers.lua
+--
+-- @brief
+-- The file to set Neovim's builtin LSP capabilities
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-10-12
+--
 
--- set keymaps for LSP actions if they are available
+
+-- show function signature after opening parentheses or comma
+
+local show_signature = function()
+  local char = vim.v.char
+  if char == '(' or char == ',' then
+    vim.defer_fn(
+      function()
+        vim.lsp.buf.signature_help()
+      end,
+      3
+    )
+  end
+end
+
+
+-- add functionalities based on language server's capabilities
 
 vim.api.nvim_create_autocmd(
   'LspAttach', {
@@ -19,12 +44,18 @@ vim.api.nvim_create_autocmd(
         vim.keymap.set('n', 'rn', '<cmd>lua vim.lsp.buf.rename()<return>')
       end
 
+      if client.supports_method('textDocument/signatureHelp') then
+        vim.api.nvim_create_autocmd(
+          'InsertCharPre', { callback = show_signature }
+        )
+      end
+
     end,
   }
 )
 
 
--- format floating window for documentation preview
+-- format floating window
 
 vim.opt['linebreak'] = true
 vim.opt['whichwrap'] = 'bs<>[]hl'
@@ -35,8 +66,20 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     border = 'single',
     wrap = true,
     width = 80,
+    height = 12,
   }
 )
+
+vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
+  vim.lsp.handlers.signature_help, {
+    title = 'Language Server',
+    border = 'single',
+    wrap = true,
+    width = 80,
+    height = 12,
+  }
+)
+
 
 -- attach language servers to the right buffer
 

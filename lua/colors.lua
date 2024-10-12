@@ -1,3 +1,14 @@
+---
+-- @file lua/colors.lua
+--
+-- @brief
+-- The file to set highlight group's colors
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-10-12
+--
+
+
 local group_styles = {
 
   ['Normal']        = { fg = '#cccccc', bg = '#000000' },

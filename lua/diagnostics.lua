@@ -1,3 +1,14 @@
+---
+-- @file lua/languageservers.lua
+--
+-- @brief
+-- The file to set Neovim's builtin diagnostic capabilities
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-10-12
+--
+
+
 vim.diagnostic.config {
 
   virtual_text = false,
