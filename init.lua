@@ -15,6 +15,7 @@ local config_files = {
   'colors',
   'languageservers',
   'diagnostics',
+  'statusline',
   'plugins',
 }
 

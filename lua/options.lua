@@ -23,6 +23,7 @@ local options = {
   virtualedit = 'block',      -- enable highlighting empty spaces
   splitbelow = true,          -- when splitting horizontally, new window goes below
   splitright = true,          -- when splitting vertically, new window goes to the right
+  showmode = false,           -- mode will be shown by statusline
 
   -- tabs and indentations
 
