@@ -80,5 +80,6 @@ lazy.setup {
     { import = location .. 'telescope' },
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },
+    { import = location .. 'bbye' },
   },
 }
