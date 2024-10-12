@@ -30,6 +30,8 @@ local group_styles = {
   ['Search']        = { fg = '#000000', bg = '#777777' },
   ['CurSearch']     = { fg = '#000000', bg = '#aaaaaa' },
 
+  ['DiagnosticUnnecessary'] = { fg = '#bbbbbb' },
+
 }
 
 for group, style in pairs(group_styles) do
