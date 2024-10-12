@@ -63,7 +63,7 @@ return {
     vim.keymap.set('n', '<leader>z', ':wincmd p | q<CR>')
 
     vim.keymap.set('n', '<C-g>', '<Cmd>Gitsigns stage_hunk<CR>')
-    vim.keymap.set('n', '<C-h>', '<Cmd>Gitsigns stage_buffer<CR>')
+    vim.keymap.set('n', '<C-f>', '<Cmd>Gitsigns stage_buffer<CR>')
     vim.keymap.set('n', '<C-i>', '<Cmd>Gitsigns blame_line<CR>')
 
     vim.api.nvim_set_hl(0, 'DiffAdd', { fg = '#dddddd' })

@@ -84,5 +84,6 @@ lazy.setup {
     { import = location .. 'blankline' },
     { import = location .. 'treesitter' },
     { import = location .. 'nvim-tree' },
+    { import = location .. 'todo-comments' },
   },
 }
