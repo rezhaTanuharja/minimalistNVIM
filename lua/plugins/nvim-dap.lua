@@ -50,7 +50,6 @@ return {
       'DapStopped', {
         text = '→',
         texthl = 'DiagnosticHint',
-        linehl = 'DiagnosticHint',
         numhl = 'DiagnosticHint'
       }
     )
