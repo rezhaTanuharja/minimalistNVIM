@@ -56,7 +56,7 @@ return {
 
     local widgets = require('dap.ui.widgets')
     local sidebar = widgets.sidebar(widgets.scopes, {}, 'vsplit')
-    local bottbar = widgets.sidebar(widgets.frames, {height = 20}, 'belowright split')
+    local bottbar = widgets.sidebar(widgets.frames, {height = 10}, 'belowright split')
 
     vim.keymap.set('n', '<C-S-m>', '<cmd>lua require("dap").continue()<return>')
     vim.keymap.set('n', '<C-S-o>', '<cmd>lua require("dap").step_over()<return>')
