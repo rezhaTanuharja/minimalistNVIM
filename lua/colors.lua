@@ -15,7 +15,7 @@ local group_styles = {
   ['Comment']       = { fg = '#777777' },
   ['String']        = { fg = '#bbbbbb' },
   ['Function']      = { fg = '#bbbbbb' },
-  ['Identifier']    = { fg = '#999999' },
+  ['Identifier']    = { fg = '#777777' },
   ['Special']       = { fg = '#bbbbbb' },
   ['Question']      = { fg = '#666666' },
   ['Directory']     = { fg = '#777777' },
