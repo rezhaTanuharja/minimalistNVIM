@@ -40,7 +40,7 @@ return {
 
     vim.fn.sign_define(
       'DapBreakpoint', {
-        text = '•',
+        text = '-',
         texthl = 'DiagnosticError',
         numhl = 'DiagnosticError'
       }
@@ -48,7 +48,7 @@ return {
 
     vim.fn.sign_define(
       'DapStopped', {
-        text = '→',
+        text = '>',
         texthl = 'DiagnosticHint',
         numhl = 'DiagnosticHint'
       }
