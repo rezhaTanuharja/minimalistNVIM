@@ -1,5 +1,5 @@
 ---
--- @file lua/languageservers.lua
+-- @file lua/diagnostics.lua
 --
 -- @brief
 -- The file to set Neovim's builtin diagnostic capabilities
@@ -35,3 +35,4 @@ vim.opt['signcolumn'] = 'yes'
 vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<return>')
 vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<return>')
 vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<return>')
+vim.keymap.set('n', 'gL', '<cmd>lua vim.diagnostic.open_float({scope = "buffer"})<return>')

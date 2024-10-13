@@ -66,7 +66,7 @@ local function current_mode()
     [''] = 'v',
   }
 
-  mode = mode_aliases[mode]:upper() or '?'
+  mode = mode and mode_aliases[mode] and mode_aliases[mode]:upper() or '?'
 
   return '%#statusline_mode# ' .. mode .. ' '
 

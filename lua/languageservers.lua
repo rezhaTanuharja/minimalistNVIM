@@ -115,7 +115,7 @@ vim.api.nvim_create_autocmd(
             analysis = {
               typeCheckingMode = 'basic',
               autoSeachPaths = true,
-           }
+            }
           },
         },
       })
