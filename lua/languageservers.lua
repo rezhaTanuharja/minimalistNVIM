@@ -65,8 +65,7 @@ vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
     title = 'Language Server',
     border = 'single',
     wrap = true,
-    width = 80,
-    height = 12,
+    wrap_at = 80,
   }
 )
 
@@ -76,8 +75,7 @@ vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     border = 'single',
     focusable = false,
     wrap = true,
-    width = 80,
-    height = 12,
+    wrap_at = 80,
   }
 )
 
