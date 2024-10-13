@@ -61,7 +61,7 @@ return {
     vim.keymap.set('n', '<C-S-m>', '<cmd>lua require("dap").continue()<return>')
     vim.keymap.set('n', '<C-S-o>', '<cmd>lua require("dap").step_over()<return>')
     vim.keymap.set('n', '<C-S-i>', '<cmd>lua require("dap").step_into()<return>')
-    vim.keymap.set('n', '<C-S-b>', '<cmd>lua require("dap").toggle_breakpoint()<return>')
+    vim.keymap.set('n', '<C-S-l>', '<cmd>lua require("dap").toggle_breakpoint()<return>')
     vim.keymap.set('n', '<C-S-n>', '<cmd>lua require("dap").clear_breakpoints()<return>')
     vim.keymap.set('n', '<C-S-t>', '<cmd>lua require("dap").terminate()<return>')
 
