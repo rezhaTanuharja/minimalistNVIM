@@ -33,20 +33,23 @@ vim.api.nvim_create_autocmd(
       local client = vim.lsp.get_client_by_id(args.data.client_id)
 
       if client.supports_method('textDocument/definition') then
-        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<return>')
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<return>', {buffer = 0})
       end
 
       if client.supports_method('textDocument/references') then
-        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<return>')
+        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<return>', {buffer = 0})
       end
 
       if client.supports_method('textDocument/rename') then
-        vim.keymap.set('n', 'rn', '<cmd>lua vim.lsp.buf.rename()<return>')
+        vim.keymap.set('n', 'rn', '<cmd>lua vim.lsp.buf.rename()<return>', {buffer = 0})
       end
 
       if client.supports_method('textDocument/signatureHelp') then
         vim.api.nvim_create_autocmd(
-          'InsertCharPre', { callback = show_signature }
+          'InsertCharPre', {
+            buffer = 0,
+            callback = show_signature,
+          }
         )
       end
 

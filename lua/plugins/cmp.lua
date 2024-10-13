@@ -182,10 +182,10 @@ return {
       },
 
       sources = {
-        { name = 'snippets' },
-        { name = 'nvim_lsp' },
-        { name = 'buffer' },
-        { name = 'path' },
+        { name = 'snippets', group_index = 1 },
+        { name = 'nvim_lsp', group_index = 2 },
+        { name = 'path', group_index = 2 },
+        { name = 'buffer', group_index = 3 },
       },
 
       confirm_opts = {
