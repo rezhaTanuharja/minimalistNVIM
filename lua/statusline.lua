@@ -127,38 +127,19 @@ function Status_line()
 end
 
 
--- only display one statusline
+-- only display one statusline and only display cursorline in the active window
 
-vim.o.laststatus = 3
+vim.opt['laststatus'] = 3
 
 vim.cmd([[
   augroup Statusline
     au!
     au WinEnter,BufEnter * setlocal statusline=%!v:lua.Status_line()
     au WinLeave,BufLeave * setlocal statusline=%!v:lua.Status_line()
-    au WinLeave,BufLeave,FileType NvimTree setlocal statusline=%!v:lua.Status_line()
+    au WinEnter,BufEnter * setlocal cursorline
+    au WinLeave,BufLeave * setlocal nocursorline
 ]])
 
-
--- only display cursorline in the focused window
-
-vim.api.nvim_create_autocmd(
-  {'BufEnter', 'WinEnter'}, {
-    group = 'Statusline',
-    callback = function()
-      vim.cmd('setlocal cursorline')
-    end,
-  }
-)
-
-vim.api.nvim_create_autocmd(
-  {'BufLeave', 'WinLeave'}, {
-    group = 'Statusline',
-    callback = function()
-      vim.cmd('setlocal nocursorline')
-    end,
-  }
-)
 
 -- set colors for each statusline components
 
