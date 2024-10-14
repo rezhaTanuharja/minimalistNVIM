@@ -19,21 +19,79 @@ return {
 
     local dap = require('dap')
 
-    dap.adapters.python = {
-      type = 'executable',
-      command = 'python',
-      args = { '-m', 'debugpy.adapter' },
+    dap.adapters.python = function(cb, config)
 
-    }
+      if config.request == 'launch' then
+
+        if config.name == 'Launch a distributed torchrun session' then
+
+          local debug_command = 'DEBUG_FLAG=1 torchrun'
+
+          debug_command = debug_command .. ' ' .. '--nproc_per_node=' .. config.session.num_process
+          debug_command = debug_command .. ' ' .. config.program
+          debug_command = debug_command .. ' ' .. '> /dev/null 2>&1 &'
+
+          os.execute(debug_command)
+
+        else
+
+          cb({
+            type = 'executable',
+            command = 'python',
+            args = { '-m', 'debugpy.adapter' },
+          })
+
+        end
+
+      elseif config.request == 'attach' then
+
+        local port = config.connect.port
+        local host = config.connect.host
+
+        cb({
+          type = 'server',
+          port = port,
+          host = host,
+          options = {
+            source_filetype = 'python'
+          }
+        })
+
+      end
+
+    end
 
     dap.configurations.python = {
       {
         type = 'python',
         request = 'launch',
-        name = 'Launch file',
+        name = 'Debug a normal Python script',
         program = "${file}",
         pythonPath = function()
           return 'python'
+        end,
+      },
+      {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch a distributed torchrun session',
+        program = "${file}",
+        session = function()
+          local num_process = vim.fn.input('Number of process per node [1]: ')
+          return {num_process = num_process}
+        end,
+        pythonPath = function()
+          return 'python'
+        end,
+      },
+      {
+        type = 'python',
+        request = 'attach',
+        name = 'Attach to a distributed torchrun session',
+        connect = function()
+          local host = vim.fn.input('Host [127.0.0.1]: ')
+          local port = tonumber(vim.fn.input('Port [5678]: '))
+          return {host = host, port = port}
         end,
       },
     }
