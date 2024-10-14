@@ -52,7 +52,7 @@ return {
       Value = '',
       Enum = '',
       Keyword = '',
-      Snippet = '<snippet>',
+      Snippet = '',
       Color = '',
       File = '',
       Reference = '',
