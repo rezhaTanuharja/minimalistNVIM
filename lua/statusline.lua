@@ -130,12 +130,11 @@ end
 -- only display one statusline and only display cursorline in the active window
 
 vim.opt['laststatus'] = 3
+vim.cmd('set statusline=%!v:lua.Status_line()')
 
 vim.cmd([[
   augroup Statusline
     au!
-    au WinEnter,BufEnter * setlocal statusline=%!v:lua.Status_line()
-    au WinLeave,BufLeave * setlocal statusline=%!v:lua.Status_line()
     au WinEnter,BufEnter * setlocal cursorline
     au WinLeave,BufLeave * setlocal nocursorline
 ]])
