@@ -23,6 +23,14 @@ return {
 
       if config.request == 'launch' then
 
+        cb({
+          type = 'executable',
+          command = 'python',
+          args = { '-m', 'debugpy.adapter' },
+        })
+
+      elseif config.request == 'attach' then
+
         if config.name == 'Launch a distributed torchrun session' then
 
           local debug_command = 'DEBUG_FLAG=1 torchrun'
@@ -33,29 +41,30 @@ return {
 
           os.execute(debug_command)
 
+          cb({
+            type = 'server',
+            port = 5678,
+            host = '127.0.0.1',
+            options = {
+              source_filetype = 'python'
+            }
+          })
+
         else
 
+          local port = config.connect.port
+          local host = config.connect.host
+
           cb({
-            type = 'executable',
-            command = 'python',
-            args = { '-m', 'debugpy.adapter' },
+            type = 'server',
+            port = port,
+            host = host,
+            options = {
+              source_filetype = 'python'
+            }
           })
 
         end
-
-      elseif config.request == 'attach' then
-
-        local port = config.connect.port
-        local host = config.connect.host
-
-        cb({
-          type = 'server',
-          port = port,
-          host = host,
-          options = {
-            source_filetype = 'python'
-          }
-        })
 
       end
 
@@ -73,7 +82,7 @@ return {
       },
       {
         type = 'python',
-        request = 'launch',
+        request = 'attach',
         name = 'Launch a distributed torchrun session',
         program = "${file}",
         session = function()
