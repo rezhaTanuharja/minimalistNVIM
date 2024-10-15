@@ -33,9 +33,9 @@ local options = {
 
   -- number columns
 
-  relativenumber = true,      -- display relative line numbers
+  relativenumber = false,     -- display relative line numbers
   number = true,              -- display the current line number
-  numberwidth = 4,            -- the column width to display line numbers
+  numberwidth = 3,            -- the column width to display line numbers
 
   -- text display
 
