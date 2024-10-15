@@ -11,7 +11,7 @@
 
 local group_styles = {
 
-  ['Normal']        = { fg = '#cccccc', bg = '#000000' },
+  ['Normal']        = { fg = '#cccccc', bg = '' },
   ['Comment']       = { fg = '#777777' },
   ['String']        = { fg = '#bbbbbb' },
   ['Function']      = { fg = '#bbbbbb' },
