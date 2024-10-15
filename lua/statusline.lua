@@ -148,9 +148,9 @@ local group_styles = {
   ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
   ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
 
-  ['statusline_separator']          = { bg = '#111111' },
-  ['statusline_separator_insert']   = { bg = '#222222' },
-  ['statusline_separator_visual']   = { bg = '#333333' },
+  ['statusline_separator']          = { fg = '#222222', bg = '#111111' },
+  ['statusline_separator_insert']   = { fg = '#333333', bg = '#222222' },
+  ['statusline_separator_visual']   = { fg = '#444444', bg = '#333333' },
 
   ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
   ['statusline_mode']   = { fg = '#eeeeee', bg = '#444444', bold = true },

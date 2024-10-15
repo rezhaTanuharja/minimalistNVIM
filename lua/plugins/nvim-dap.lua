@@ -65,7 +65,7 @@ return {
       {
         type = 'python',
         request = 'launch',
-        name = 'Debug a normal Python script',
+        name = 'Start a Python debugging session',
         program = "${file}",
         pythonPath = function()
           return 'python'
@@ -87,7 +87,7 @@ return {
       {
         type = 'python',
         request = 'attach',
-        name = 'Attach to a distributed torchrun session',
+        name = 'Attach a distributed torchrun session',
         connect = function()
           local host = vim.fn.input('Host [127.0.0.1]: ')
           local port = tonumber(vim.fn.input('Port [5678]: '))
@@ -115,6 +115,7 @@ return {
     local widgets = require('dap.ui.widgets')
     local sidebar = widgets.sidebar(widgets.scopes, {}, 'vsplit')
     local bottbar = widgets.sidebar(widgets.frames, {height = 10}, 'belowright split')
+    local repl = require('dap.repl')
 
     vim.keymap.set('n', '<C-S-m>', '<cmd>lua require("dap").continue()<return>')
     vim.keymap.set('n', '<C-S-o>', '<cmd>lua require("dap").step_over()<return>')
@@ -122,6 +123,13 @@ return {
     vim.keymap.set('n', '<C-S-l>', '<cmd>lua require("dap").toggle_breakpoint()<return>')
     vim.keymap.set('n', '<C-S-n>', '<cmd>lua require("dap").clear_breakpoints()<return>')
     vim.keymap.set('n', '<C-S-t>', '<cmd>lua require("dap").terminate()<return>')
+
+    vim.keymap.set(
+      'n', '<C-S-a>',
+      function()
+        return repl.toggle({}, 'belowright split')
+      end
+    )
 
     vim.keymap.set(
       'n', '<C-S-k>',

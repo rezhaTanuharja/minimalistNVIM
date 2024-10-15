@@ -9,13 +9,43 @@
 --
 
 
+local debug_command = ''
+local debug_command_preview = ''
+
+debug_command = debug_command ..
+  'import os\n' ..
+  'import debugpy\n' ..
+  '\n' ..
+  'debug = os.getenv("DEBUG_FLAG", "0")\n' ..
+  '\n' ..
+  'if debug == "1":\n' ..
+  '\trank = int(os.getenv("RANK", "-1"))\n' ..
+  '\tif rank == 0:\n' ..
+  '\t\tdebugpy.listen(("127.0.0.1", 5678))\n' ..
+  '\t\tdebugpy.wait_for_client()\n' ..
+  '\t\tdebugpy.breakpoint()\n\n'
+
+debug_command_preview = debug_command_preview ..
+  '**import** os\n' ..
+  '**import** debugpy\n' ..
+  '\n' ..
+  'debug = **os**.`getenv`("`DEBUG_FLAG`", "0")\n' ..
+  '\n' ..
+  '**if** debug == "1":\n' ..
+  '\trank = **int**(**os**.`getenv`("RANK", "-1"))\n' ..
+  '\t**if** rank == 0:\n' ..
+  '\t\t**debugpy**.`listen`(("127.0.0.1", 5678))\n' ..
+  '\t\t**debugpy**.`wait_for_client`()\n' ..
+  '\t\t**debugpy**.`breakpoint`()\n\n'
+
+
 return {
 
   -- a main function body
   {
     trigger = 'main',
     body = 'def main():\n\t$0\n\nif __name__ == "__main__":\n\tmain()',
-    preview = '**def** main():\n\tactions\n\nif `__name__` == `"__main__"`:\n\tmain()',
+    preview = '**def** `main`():\n\tactions\n\n**if** `__name__` == `"__main__"`:\n\t`main`()',
   },
 
   -- import an object from a module
@@ -51,6 +81,13 @@ return {
     trigger = 'abstract',
     body = '@abstractmethod\ndef ${1:function_name}(self, ${2:*args, **kwargs}):\n\t${3:pass}\n$0',
     preview = '`@abstractmethod`\n**def** `function_name`(self, *args, **kwargs)\n\tpass',
+  },
+
+  -- a boiler plate to enable the torch distributed debugging session
+  {
+    trigger = 'debugger_boiler_plate',
+    body = debug_command .. '\n$0',
+    preview = debug_command_preview,
   },
 
 }

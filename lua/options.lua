@@ -50,6 +50,7 @@ local options = {
   fillchars = {
     eob = ' ',                -- removes annoying tilde at the bottom of short files
     fold = '-',               -- replace dots with horizontal line to indicate folded sections
+    stl = '-',
   },
 
   -- text search
