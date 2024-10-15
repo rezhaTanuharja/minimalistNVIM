@@ -11,7 +11,7 @@
 
 local group_styles = {
 
-  ['Normal']        = { fg = '#cccccc', bg = '' },
+  ['Normal']        = { fg = '#cccccc', bg = 'None' },
   ['Comment']       = { fg = '#777777' },
   ['String']        = { fg = '#bbbbbb' },
   ['Function']      = { fg = '#bbbbbb' },
@@ -23,6 +23,7 @@ local group_styles = {
   ['MoreMsg']       = { fg = '#eeeeee', bg = '#444444' },
   ['QuickFixLine']  = { fg = '#eeeeee', bg = '#444444' },
   ['StatusLine']  = { fg = '#333333', bg = '#222222' },
+  ['NormalFloat'] = { bg = 'None' },
 
   ['Folded']        = { fg = '#444444' },
   ['MatchParen']    = { fg = '#ffffff', bold = true },
