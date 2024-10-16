@@ -21,7 +21,6 @@ local mode_keymaps = {
     ['q'] = { action = '<nop>', desc = 'do not record macro, ever' },
 
     ['x'] = { action = '"_x', desc = 'delete a character without storing it in the clipboard' },
-    ['p'] = { action = '"_dP', desc = 'enable pasting over multiple times' },
 
     ['<leader>q'] = { action = '<cmd>quit<return>', desc = 'close the current window' },
     ['<leader>w'] = { action = '<cmd>write<return>', desc = 'save changes in the current buffer' },
