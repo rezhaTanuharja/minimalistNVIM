@@ -13,7 +13,6 @@ local debug_command = ''
 local debug_command_preview = ''
 
 debug_command = debug_command ..
-  'import os\n' ..
   'import debugpy\n' ..
   '\n' ..
   'debug = os.getenv("DEBUG_FLAG", "0")\n' ..
@@ -27,7 +26,6 @@ debug_command = debug_command ..
   '\n$0'
 
 debug_command_preview = debug_command_preview ..
-  '**import** os\n' ..
   '**import** debugpy\n' ..
   '\n' ..
   'debug = **os**.`getenv`("`DEBUG_FLAG`", "0")\n' ..
@@ -45,8 +43,14 @@ return {
   -- a main function body
   {
     trigger = 'main',
-    body = 'def main():\n\t$0\n\nif __name__ == "__main__":\n\tmain()',
-    preview = '**def** `main`():\n\tactions\n\n**if** `__name__` == `"__main__"`:\n\t`main`()',
+    body = 'def main():\n\t${1:pass}$0\n\nif __name__ == "__main__":\n\tmain()',
+    preview = '**def** `main`():\n\tpass\n\n**if** `__name__` == `"__main__"`:\n\t`main`()',
+  },
+
+  {
+    trigger = 'main_torch',
+    body = 'def main(rank: int, world_size:int):\n\n\t${1:pass}\n$0\n\nif __name__ == "__main__":\n\n\tlocal_rank = int(os.getenv("RANK", "0"))\n\tworld_size = int(os.getenv("WORLD_SIZE", "1"))\n\n\tmain(rank = local_rank, world_size = world_size)',
+    preview = '**def** `main`():\n\tpass\n\n**if** `__name__` == `"__main__"`:\n\t`main`()',
   },
 
   -- import an object from a module
@@ -89,6 +93,12 @@ return {
     trigger = 'debugger_boiler_plate',
     body = debug_command,
     preview = debug_command_preview,
+  },
+
+  {
+    trigger = 'group_init',
+    body = 'torch.distributed.init_process_group(\n\tbackend = "${1:gloo}",\n\trank = ${2:rank},\n\tworld_size = ${3:world_size}\n)\n\n$0\n\ntorch.distributed.destroy_process_group()',
+    preview = '',
   },
 
 }

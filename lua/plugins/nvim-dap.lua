@@ -19,11 +19,11 @@ return {
 
     local dap = require('dap')
 
-    dap.adapters.python = function(cb, config)
+    dap.adapters.python = function(callback, config)
 
       if config.request == 'launch' then
 
-        cb({
+        callback({
           type = 'executable',
           command = 'python',
           args = { '-m', 'debugpy.adapter' },
@@ -34,7 +34,7 @@ return {
         local port = config.connect.port
         local host = config.connect.host
 
-        cb({
+        callback({
           type = 'server',
           port = port,
           host = host,
@@ -48,6 +48,7 @@ return {
     end
 
     dap.configurations.python = {
+
       {
         type = 'python',
         request = 'launch',
@@ -57,6 +58,7 @@ return {
           return 'python'
         end,
       },
+
       {
         type = 'python',
         request = 'attach',
@@ -67,6 +69,7 @@ return {
           return {host = host, port = port}
         end,
       },
+
     }
 
     vim.fn.sign_define(
@@ -79,7 +82,7 @@ return {
 
     vim.fn.sign_define(
       'DapStopped', {
-        text = ' ',
+        text = '>',
         texthl = 'TodoBgNOTE',
         numhl = 'TodoBgNOTE'
       }
