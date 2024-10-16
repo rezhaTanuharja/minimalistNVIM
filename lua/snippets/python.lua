@@ -23,7 +23,7 @@ debug_command = debug_command ..
   '\tif rank == 0:\n' ..
   '\t\tdebugpy.listen(("127.0.0.1", 5678))\n' ..
   '\t\tdebugpy.wait_for_client()\n' ..
-  '\t\tdebugpy.breakpoint()\n\n'
+  '\t\tdebugpy.breakpoint()\n'
 
 debug_command_preview = debug_command_preview ..
   '**import** os\n' ..

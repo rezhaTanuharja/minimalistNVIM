@@ -74,7 +74,7 @@ return {
       {
         type = 'python',
         request = 'launch',
-        name = 'Start a Python debugging session',
+        name = 'Launch a Python debugging session',
         program = "${file}",
         pythonPath = function()
           return 'python'
