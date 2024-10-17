@@ -24,6 +24,7 @@ local options = {
   splitbelow = true,          -- when splitting horizontally, new window goes below
   splitright = true,          -- when splitting vertically, new window goes to the right
   showmode = false,           -- mode will be shown by statusline
+  cmdheight = 0,              -- only need the commandline when typing command
 
   -- tabs and indentations
 
