@@ -16,7 +16,8 @@ return {
   event = {'BufReadPost', 'BufNewFile'},
 
   config = function()
-    vim.keymap.set('n', '<leader>c', ':Bdelete!<CR>')
+    vim.keymap.set('n', '<leader>c', '<cmd>Bdelete!<return>')
+    vim.keymap.set('n', '<leader>n', '<cmd>bufdo :Bdelete<return>')
   end
 
 }
