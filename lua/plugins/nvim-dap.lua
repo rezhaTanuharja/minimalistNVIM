@@ -76,7 +76,7 @@ return {
       'DapBreakpoint', {
         text = ' ',
         texthl = 'TodoBgFIX',
-        numhl = 'TodoBgFIX'
+        numhl = ''
       }
     )
 
@@ -84,7 +84,7 @@ return {
       'DapStopped', {
         text = '>',
         texthl = 'TodoBgNOTE',
-        numhl = 'TodoBgNOTE'
+        numhl = ''
       }
     )
 
