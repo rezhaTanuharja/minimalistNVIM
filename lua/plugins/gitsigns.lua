@@ -57,14 +57,14 @@ return {
       },
     }
 
-    vim.keymap.set('n', '<leader>k', ':Gitsigns preview_hunk<CR>')
-    vim.keymap.set('n', '<leader>u', ':Gitsigns reset_hunk<CR>')
-    vim.keymap.set('n', '<leader>x', ':vert Gitsigns diffthis<CR>')
-    vim.keymap.set('n', '<leader>z', ':wincmd p | q<CR>')
+    vim.keymap.set('n', '<leader>k', '<cmd>Gitsigns preview_hunk<return>')
+    vim.keymap.set('n', '<leader>u', '<cmd>Gitsigns reset_hunk<return>')
+    vim.keymap.set('n', '<leader>x', '<cmd>vert Gitsigns diffthis<return>')
+    vim.keymap.set('n', '<leader>z', '<cmd>wincmd p | q<return>')
 
-    vim.keymap.set('n', '<C-g>', '<Cmd>Gitsigns stage_hunk<CR>')
-    vim.keymap.set('n', '<C-f>', '<Cmd>Gitsigns stage_buffer<CR>')
-    vim.keymap.set('n', '<C-i>', '<Cmd>Gitsigns blame_line<CR>')
+    vim.keymap.set('n', '<C-g>', '<cmd>Gitsigns stage_hunk<return>')
+    vim.keymap.set('n', '<C-f>', '<cmd>Gitsigns stage_buffer<return>')
+    vim.keymap.set('n', '<C-i>', '<cmd>Gitsigns blame_line<return>')
 
     vim.api.nvim_set_hl(0, 'DiffAdd', { fg = '#dddddd' })
     vim.api.nvim_set_hl(0, 'DiffDelete', { fg = '#999999' })
