@@ -74,7 +74,7 @@ return {
 
     vim.fn.sign_define(
       'DapBreakpoint', {
-        text = '-',
+        text = ' ',
         texthl = 'TodoBgFIX',
         numhl = ''
       }
