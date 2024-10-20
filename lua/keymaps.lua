@@ -51,8 +51,8 @@ local mode_keymaps = {
   visual = {
 
     ['H'] = { action = '<gv', desc = 'move highlighted part to the left' },
-    ['J'] = { action = ":move '>+1<return>gv", desc = 'move highlighted part to the left' },
-    ['K'] = { action = ":move '<-2<return>gv", desc = 'move highlighted part to the left' },
+    ['J'] = { action = ":move '>+1<cr>gvgv", desc = 'move highlighted part down' },
+    ['K'] = { action = ":move '<-2<cr>gvgv", desc = 'move highlighted part up' },
     ['L'] = { action = '>gv', desc = 'move highlighted part to the right' },
 
     ['<leader>i'] = { action = ':s/^/', desc = 'spawn multiple cursors at the start of highlighted lines' },
