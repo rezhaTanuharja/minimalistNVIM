@@ -46,6 +46,40 @@ local mode_keymaps = {
     ['<leader>a'] = { action = 'za', desc = 'fold the scope under the cursor' },
     ['<leader>r'] = { action = 'zR', desc = 'expand all folds in the current window'},
 
+    ['<C-S-j>'] = {
+      action = function()
+        local success = pcall(vim.cmd, 'cnext')
+        if not success then
+          vim.cmd('cfirst')
+        end
+      end,
+      desc = 'navigate to the next quickfix item'
+    },
+
+    ['<C-S-k>'] = {
+      action = function()
+        local success = pcall(vim.cmd, 'cprev')
+        if not success then
+          vim.cmd('clast')
+        end
+      end,
+      desc = 'navigate to the prev quickfix item'
+    },
+
+    ['<C-S-l>'] = {
+      action = function()
+        local _ = pcall(vim.cmd, 'cnewer')
+      end,
+      desc = 'navigate to the next quickfix list'
+    },
+
+    ['<C-S-h>'] = {
+      action = function()
+        local _ = pcall(vim.cmd, 'colder')
+      end,
+      desc = 'navigate to the prev quickfix list'
+    },
+
   },
 
   visual = {
@@ -75,4 +109,5 @@ for mode, keymaps in pairs(mode_keymaps) do
   for key, maps in pairs(keymaps) do
     vim.keymap.set( mode_initial, key, maps.action, { noremap = true, silent = true, desc = maps.desc } )
   end
+
 end
