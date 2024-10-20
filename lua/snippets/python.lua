@@ -43,8 +43,21 @@ return {
   -- a main function body
   {
     trigger = 'main',
-    body = 'def main():\n\t${1:pass}$0\n\nif __name__ == "__main__":\n\tmain()',
-    preview = '**def** `main`():\n\tpass\n\n**if** `__name__` == `"__main__"`:\n\t`main`()',
+
+    body = '' ..
+      'def main():\n' ..
+      '\t${1:pass}\n' ..
+      '\t$0\n' ..
+      '\n' ..
+      'if __name__ == "__main__":\n'..
+      '\tmain()',
+
+    preview = '' ..
+      '**def** `main`():\n' ..
+      '\tpass\n' ..
+      '\n' ..
+      '**if** `__name__` == `"__main__"`:\n' ..
+      '\t`main`()',
   },
 
   {
@@ -70,20 +83,20 @@ return {
   -- a parent class definition
   {
     trigger = 'class',
-    body = 'class ${1:class_name}:\n\n\tdef __init__(self, ${2:*args, **kwargs}):\n\t\t${3:pass}\n$0',
-    preview = '**class** `class_name`:\n\n\tdef `__init__`(self, *args, **kwargs):\n\t\tpass',
+    body = 'class ${1:class_name}:\n\n\tdef __init__(${2:self}):\n\t\t${3:pass}\n$0',
+    preview = '**class** `class_name`:\n\n\tdef `__init__`(self):\n\t\tpass',
   },
 
   -- a child class definition
   {
     trigger = 'class',
-    body = 'class ${1:class_name}(${2:ABC}):\n\n\tdef __init__(self, ${3:*args, **kwargs}):\n\t\t${4:pass}\n$0',
+    body = 'class ${1:class_name}(${2:ABC}):\n\n\t@abstractmethod\n\tdef __init__(self, ${3:*args, **kwargs}):\n\t\t${4:pass}\n$0',
     preview = '**class** `class_name`(ABC):\n\n\tdef `__init__`(self, *args, **kwargs):\n\t\tpass',
   },
 
   -- an abstract method definition
   {
-    trigger = 'abstract',
+    trigger = 'method_abstract',
     body = '@abstractmethod\ndef ${1:function_name}(self, ${2:*args, **kwargs}):\n\t${3:pass}\n$0',
     preview = '`@abstractmethod`\n**def** `function_name`(self, *args, **kwargs)\n\tpass',
   },
@@ -96,7 +109,7 @@ return {
   },
 
   {
-    trigger = 'group_init',
+    trigger = 'group',
     body = 'torch.distributed.init_process_group(\n\tbackend = "${1:gloo}",\n\trank = ${2:rank},\n\tworld_size = ${3:world_size}\n)\n\n$0\n\ntorch.distributed.destroy_process_group()',
     preview = '',
   },

@@ -115,7 +115,25 @@ return {
     -- keymap to open the project tree
     vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
 
+    -- set custom color specific to nvim-tree
     vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = '#777777'})
+
+
+    -- these are necessary to ensure lsp works properly when project directory changes
+
+    local api = require('nvim-tree.api')
+    local Event = api.events.Event
+
+    local events = {
+      Event.NodeRenamed,
+      Event.FileCreated,
+      Event.FileRemoved,
+      Event.FolderRemoved,
+    }
+
+    for _, event in pairs(events) do
+      api.events.subscribe(event, function(_) vim.cmd('bufdo edit') end)
+    end
 
   end,
 }
