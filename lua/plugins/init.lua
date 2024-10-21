@@ -76,6 +76,7 @@ lazy.setup {
   },
 
   spec = {
+
     { import = location .. 'cmp' },
     { import = location .. 'telescope' },
     { import = location .. 'gitsigns' },
@@ -88,8 +89,5 @@ lazy.setup {
     { import = location .. 'nvim-dap' },
 
     {import = 'projects.init'},
-    -- { import = 'projects' },
-    -- { import = location .. 'statusline' },
-    -- { import = location .. 'colors' },
   },
 }
