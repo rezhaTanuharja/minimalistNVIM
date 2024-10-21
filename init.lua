@@ -22,7 +22,7 @@ local config_files = {
 
 for _, file in pairs(config_files) do
 
-  local success, _ = pcall(require, file)
+  local success = pcall(require, file)
   if not success then
     vim.notify('Failed to load a config file ' .. file)
     break
