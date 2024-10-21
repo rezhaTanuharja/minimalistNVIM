@@ -88,6 +88,8 @@ lazy.setup {
     { import = location .. 'todo-comments' },
     { import = location .. 'nvim-dap' },
 
-    {import = 'projects.init'},
+    {import = location .. 'colors'},
+    {import = location .. 'statusline'},
+    {import = location .. 'inteligence'},
   },
 }
