@@ -1,5 +1,5 @@
 ---
--- @file lua/external_plugins/cmp.lua
+-- @file lua/plugins/cmp.lua
 --
 -- @brief
 -- The configuration file for the plugin cmp
@@ -30,7 +30,7 @@ return {
     end
 
     local snippets
-    success, snippets = pcall(require, 'snippets')
+    success, snippets = pcall(require, 'projects.snippets')
     if not success then
       vim.notify('Failed to load the snippets')
       return

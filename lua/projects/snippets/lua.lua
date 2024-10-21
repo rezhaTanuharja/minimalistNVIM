@@ -1,5 +1,5 @@
 ---
--- @file lua/snippets/lua.lua
+-- @file lua/projects/snippets/lua.lua
 --
 -- @brief
 -- The collection of snippets for lua files

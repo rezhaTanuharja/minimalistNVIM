@@ -1,5 +1,5 @@
 ---
--- @file lua/statusline.lua
+-- @file lua/projects/statusline.lua
 --
 -- @brief
 -- The configuration file to set a custom statusline
@@ -9,9 +9,11 @@
 --
 
 
+local M = {}
+
 -- a function to obtain and format the current git branch
 
-local function git_branch()
+M.git_branch = function()
 
   local branch = vim.b.gitsigns_head
 
@@ -30,7 +32,7 @@ end
 
 -- a function to obtain and format the file name
 
-local function file_name()
+M.file_name = function()
 
   local filename = vim.fn.expand('%:t')
   if filename == '' then
@@ -51,7 +53,7 @@ end
 
 -- a function to obtain and format the current mode
 
-local function current_mode()
+M.current_mode = function()
 
   local mode = vim.fn.mode()
 
@@ -75,7 +77,7 @@ end
 
 -- a function to obtain and format the diagnostics
 
-local function diagnostics()
+M.diagnostics = function()
 
   local num_warning = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN  })
   local num_error   = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
@@ -88,7 +90,7 @@ end
 
 -- a function to assign highlight group to the separator
 
-local function separator()
+M.separator = function()
 
   -- the highlight group changes based on current mode
 
@@ -108,55 +110,67 @@ local function separator()
 end
 
 
--- a function to call and place the statusline components
+M.setup = function(opts)
 
-function Status_line()
+  -- a function to call and place the statusline components
 
-  return table.concat({
+  Status_line = function()
 
-    file_name(),
-    diagnostics(),
+    return table.concat({
 
-    separator(),
+      M.file_name(),
+      M.diagnostics(),
 
-    git_branch(),
-    current_mode(),
+      M.separator(),
 
-  })
+      M.git_branch(),
+      M.current_mode(),
+
+    })
+
+  end
+
+
+  vim.opt['laststatus'] = 3
+  vim.cmd('set statusline=%!v:lua.Status_line()')
+
+  if opts.single_cursorline then
+    vim.cmd([[
+      augroup Statusline
+        au!
+        au WinEnter,BufEnter * setlocal cursorline
+        au WinLeave,BufLeave * setlocal nocursorline
+    ]])
+  end
+
+
+  -- set colors for each statusline components
+
+  local group_styles = {}
+
+  if opts.flavour == 'grayscale'then
+
+    group_styles = {
+
+      ['statusline_file']         = { fg = '#eeeeee', bg = '#444444', bold = true },
+      ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
+      ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
+
+      ['statusline_separator']          = { fg = '#333333', bg = 'None' },
+      ['statusline_separator_insert']   = { fg = '#444444', bg = 'None' },
+      ['statusline_separator_visual']   = { fg = '#555555', bg = 'None' },
+
+      ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
+      ['statusline_mode']   = { fg = '#eeeeee', bg = '#444444', bold = true },
+
+    }
+
+  end
+
+  for group, style in pairs(group_styles) do
+    vim.api.nvim_set_hl(0, group, style)
+  end
 
 end
 
-
--- only display one statusline and only display cursorline in the active window
-
-vim.opt['laststatus'] = 3
-vim.cmd('set statusline=%!v:lua.Status_line()')
-
-vim.cmd([[
-  augroup Statusline
-    au!
-    au WinEnter,BufEnter * setlocal cursorline
-    au WinLeave,BufLeave * setlocal nocursorline
-]])
-
-
--- set colors for each statusline components
-
-local group_styles = {
-
-  ['statusline_file']         = { fg = '#eeeeee', bg = '#444444', bold = true },
-  ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
-  ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
-
-  ['statusline_separator']          = { fg = '#333333', bg = 'None' },
-  ['statusline_separator_insert']   = { fg = '#444444', bg = 'None' },
-  ['statusline_separator_visual']   = { fg = '#555555', bg = 'None' },
-
-  ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
-  ['statusline_mode']   = { fg = '#eeeeee', bg = '#444444', bold = true },
-
-}
-
-for group, style in pairs(group_styles) do
-  vim.api.nvim_set_hl(0, group, style)
-end
+return M

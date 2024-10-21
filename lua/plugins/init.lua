@@ -86,5 +86,8 @@ lazy.setup {
     { import = location .. 'nvim-tree' },
     { import = location .. 'todo-comments' },
     { import = location .. 'nvim-dap' },
+    { import = location .. 'languageservers' },
+    { import = location .. 'statusline' },
+    { import = location .. 'colors' },
   },
 }
