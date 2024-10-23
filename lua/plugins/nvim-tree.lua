@@ -114,7 +114,7 @@ return {
     }
 
     -- keymap to open the project tree
-    vim.keymap.set('n', '<leader>e', ':NvimTreeToggle<CR>')
+    vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<return>')
 
     -- set custom color specific to nvim-tree
     vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = '#777777'})
@@ -133,7 +133,19 @@ return {
     }
 
     for _, event in pairs(events) do
-      api.events.subscribe(event, function(_) vim.cmd('bufdo edit') end)
+      api.events.subscribe(
+        event,
+        function(_)
+          vim.keymap.set(
+            'n', '<leader>e',
+            function()
+              vim.cmd('NvimTreeToggle')
+              vim.cmd('bufdo edit')
+              vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<return>')
+            end
+          )
+        end
+      )
     end
 
   end,
