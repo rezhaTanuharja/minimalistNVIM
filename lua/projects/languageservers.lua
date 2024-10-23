@@ -98,7 +98,7 @@ M.setup = function(opts)
           vim.lsp.start({
             name = 'lua-language-server',
             cmd = {'lua-language-server'},
-            root_dir = vim.fs.root(args.buf, {'init.lua'}),
+            root_dir = vim.fs.root(args.buf, {'.git'}),
             settings = {
               Lua = {
                 diagnostics = { globals = {'vim'} }

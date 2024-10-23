@@ -43,9 +43,6 @@ local mode_keymaps = {
 
     ['<S-m>'] = { action = '<cmd>nohlsearch<return>', desc = 'remove highlight from search results' },
 
-    ['<leader>a'] = { action = 'za', desc = 'fold the scope under the cursor' },
-    ['<leader>r'] = { action = 'zR', desc = 'expand all folds in the current window'},
-
     ['<C-S-j>'] = {
       action = function()
         local success = pcall(vim.cmd, 'cnext')

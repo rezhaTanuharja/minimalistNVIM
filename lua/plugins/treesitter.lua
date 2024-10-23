@@ -43,6 +43,9 @@ return {
     vim.opt['foldmethod'] = 'expr'
     vim.opt['foldexpr'] = 'nvim_treesitter#foldexpr()'
 
+    vim.keymap.set('n', '<leader>a', 'za', { desc = 'fold the scope under cursor' })
+    vim.keymap.set('n', '<leader>r', 'zR', { desc = 'unfold all' })
+
   end,
 
 }
