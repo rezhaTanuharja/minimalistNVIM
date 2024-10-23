@@ -11,6 +11,21 @@
 
 local M = {}
 
+-- refresh all buffer while preserving the current layout
+M.refresh = function()
+  local window_buffer_map = {}
+  for _, window_id in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+    local buffer_id = vim.api.nvim_win_get_buf(window_id)
+    table.insert(window_buffer_map, { window_id = window_id, buffer_id = buffer_id})
+  end
+
+  vim.cmd('bufdo write | edit')
+
+  for _, entry in pairs(window_buffer_map) do
+    vim.api.nvim_win_set_buf(entry.window_id, entry.buffer_id)
+  end
+end
+
 -- show function signature after opening parentheses or comma
 M.show_signature = function()
   local char = vim.v.char
@@ -36,9 +51,8 @@ M.setup = function(opts)
 
         local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-        if client.supports_method('textDocument/definition') then
-          vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<return>', {buffer = 0})
-        end
+        -- assume that all LSs support definition
+        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<return>', {buffer = 0})
 
         if client.supports_method('textDocument/references') then
           vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<return>', {buffer = 0})
