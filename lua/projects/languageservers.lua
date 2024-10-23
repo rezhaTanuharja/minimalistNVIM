@@ -87,6 +87,7 @@ M.setup = function(opts)
       border = 'single',
       wrap = true,
       wrap_at = 80,
+      focus = false,
     }
   )
 

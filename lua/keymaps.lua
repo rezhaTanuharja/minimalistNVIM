@@ -47,7 +47,7 @@ local mode_keymaps = {
       action = function()
         local success = pcall(vim.cmd, 'cnext')
         if not success then
-          vim.cmd('cfirst')
+          local ok = pcall(vim.cmd, 'cfirst')
         end
       end,
       desc = 'navigate to the next quickfix item'
@@ -57,7 +57,7 @@ local mode_keymaps = {
       action = function()
         local success = pcall(vim.cmd, 'cprev')
         if not success then
-          vim.cmd('clast')
+          local ok = pcall(vim.cmd, 'clast')
         end
       end,
       desc = 'navigate to the prev quickfix item'
