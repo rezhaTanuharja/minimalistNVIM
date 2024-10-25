@@ -8,26 +8,6 @@
 -- @date 2024-08-31
 --
 
-local toggle_refresh = function()
-
-  vim.cmd('NvimTreeToggle')
-
-  local window_buffer_map = {}
-  for _, window_id in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-    local buffer_id = vim.api.nvim_win_get_buf(window_id)
-    table.insert(window_buffer_map, { window_id = window_id, buffer_id = buffer_id})
-  end
-
-  vim.cmd('bufdo edit')
-
-  for _, entry in pairs(window_buffer_map) do
-    vim.api.nvim_win_set_buf(entry.window_id, entry.buffer_id)
-  end
-
-  vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<return>')
-
-end
-
 
 return {
 
