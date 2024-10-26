@@ -20,16 +20,16 @@ local snippets_by_filetype = {
 
 }
 
-M.get_buf_snips = function()
+M.current_buffer_snippets = function()
 
   local filetype = vim.bo.filetype
-  local snips = vim.list_slice(global_snippets)
+  local buffer_snippets = vim.list_slice(global_snippets)
 
   if filetype and snippets_by_filetype[filetype] then
-    vim.list_extend(snips, snippets_by_filetype[filetype])
+    vim.list_extend(buffer_snippets, snippets_by_filetype[filetype])
   end
 
-  return snips
+  return buffer_snippets
 
 end
 
@@ -38,28 +38,28 @@ M.register_cmp_source = function()
   local cmp_source = {}
   local cache = {}
 
-  function cmp_source.complete(_, _, callback)
+  cmp_source.complete = function(_, _, callback)
 
     local bufnr = vim.api.nvim_get_current_buf()
     if not cache[bufnr] then
 
       local completion_items = vim.tbl_map(
 
-        function(s)
+        function(snippet)
           return {
-            word = s.trigger,
-            label = s.trigger,
+            word = snippet.trigger,
+            label = snippet.trigger,
             kind = vim.lsp.protocol.CompletionItemKind.Snippet,
-            insertText = s.body,
+            insertText = snippet.body,
             insertTextFormat = vim.lsp.protocol.InsertTextFormat.Snippet,
             documentation = {
               kind = vim.lsp.protocol.MarkupKind.Markdown,
-              value = s.preview,
+              value = snippet.preview,
             },
           }
         end,
 
-        M.get_buf_snips()
+        M.current_buffer_snippets()
 
       )
 
