@@ -81,6 +81,7 @@ lazy.setup {
     { import = location .. 'telescope' },
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },
+    { import = location .. 'treesitter' },
     { import = location .. 'bbye' },
     { import = location .. 'blankline' },
     { import = location .. 'nvim-tree' },
