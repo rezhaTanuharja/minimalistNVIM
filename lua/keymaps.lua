@@ -41,13 +41,16 @@ local mode_keymaps = {
     ['<C-,>'] = { action = '<cmd>horizontal resize -2<return>', desc = 'decrease columns in the current window' },
     ['<C-.>'] = { action = '<cmd>horizontal resize +2<return>', desc = 'increase columns in the current window' },
 
+    ['<leader>a'] = { action = 'za', desc = 'fold the scope under cursor' },
+    ['<leader>r'] = { action = 'zR', desc = 'unfold everything' },
+
     ['<S-m>'] = { action = '<cmd>nohlsearch<return>', desc = 'remove highlight from search results' },
 
     ['<C-S-j>'] = {
       action = function()
         local success = pcall(vim.cmd, 'cnext')
         if not success then
-          local ok = pcall(vim.cmd, 'cfirst')
+          local _ = pcall(vim.cmd, 'cfirst')
         end
       end,
       desc = 'navigate to the next quickfix item'
@@ -57,7 +60,7 @@ local mode_keymaps = {
       action = function()
         local success = pcall(vim.cmd, 'cprev')
         if not success then
-          local ok = pcall(vim.cmd, 'clast')
+          local _ = pcall(vim.cmd, 'clast')
         end
       end,
       desc = 'navigate to the prev quickfix item'

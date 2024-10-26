@@ -83,7 +83,6 @@ lazy.setup {
     { import = location .. 'autopairs' },
     { import = location .. 'bbye' },
     { import = location .. 'blankline' },
-    { import = location .. 'treesitter' },
     { import = location .. 'nvim-tree' },
     { import = location .. 'todo-comments' },
     { import = location .. 'nvim-dap' },

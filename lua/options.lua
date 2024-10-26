@@ -42,6 +42,8 @@ local options = {
 
   foldlevelstart = 99,        -- start with everything unfolded
   foldtext = '',              -- keep the appearance of the first folded line
+  foldmethod = 'expr',
+  foldexpr = 'v:lua.vim.treesitter.foldexpr()',
 
   wrap = false,               -- do not wrap lines because it is ugly
   smartindent = true,         -- automatic indentations
