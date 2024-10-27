@@ -63,6 +63,7 @@ local options = {
 
   backup = false,             -- do not create a backup file
   swapfile = false,           -- do not create a swap file
+  undofile = false,           -- undo is limited to the current session
   fileencoding = 'utf-8',     -- the encoding written to a file
 
 }

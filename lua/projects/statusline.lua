@@ -88,6 +88,45 @@ M.diagnostics = function()
 end
 
 
+M.contexts = function()
+
+  if vim.bo.filetype ~= 'python' then
+    return ''
+  end
+
+  local success, treesitter = pcall(require, 'nvim-treesitter')
+  if not success then
+    return ''
+  end
+
+  local context = treesitter.statusline {
+
+    type_patterns = { 'class', 'function', 'method' },
+
+    transform_fn = function(line)
+
+      line = line:gsub('class%s*', '')
+      line = line:gsub('def%s*', '')
+
+      return line:gsub('%s*[%(%{%[].*[%]%}%)]*%s*$', '')
+
+    end,
+
+    separator = ' -> ',
+
+    allow_duplicates = false,
+
+  }
+
+  if context == nil then
+    return ''
+  end
+
+  return '%#statusline_contexts# ' .. context .. ' '
+
+end
+
+
 -- a function to assign highlight group to the separator
 
 M.separator = function()
@@ -95,15 +134,15 @@ M.separator = function()
   -- the highlight group changes based on current mode
 
   local highlight_group = 'statusline_separator'
-  local mode = vim.fn.mode()
-
-  if mode == 'i' then
-    return '%#' .. highlight_group .. '_insert#%='
-  end
-
-  if mode == 'v' or mode == 'V' or mode == '' then
-    return '%#' .. highlight_group .. '_visual#%='
-  end
+  -- local mode = vim.fn.mode()
+  --
+  -- if mode == 'i' then
+  --   return '%#' .. highlight_group .. '_insert#%='
+  -- end
+  --
+  -- if mode == 'v' or mode == 'V' or mode == '' then
+  --   return '%#' .. highlight_group .. '_visual#%='
+  -- end
 
   return '%#' .. highlight_group .. '#%='
 
@@ -120,6 +159,7 @@ M.setup = function(opts)
 
       M.file_name(),
       M.diagnostics(),
+      M.contexts(),
 
       M.separator(),
 
@@ -155,6 +195,7 @@ M.setup = function(opts)
       ['statusline_file']         = { fg = '#eeeeee', bg = '#444444', bold = true },
       ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
       ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
+      ['statusline_contexts']  = { fg = '#cccccc', bg = 'None' },
 
       ['statusline_separator']          = { fg = '#333333', bg = 'None' },
       ['statusline_separator_insert']   = { fg = '#444444', bg = 'None' },
