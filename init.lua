@@ -15,6 +15,10 @@ local config_files = {
   'plugins',
 }
 
+-- TODO sdfdsf
+-- BUGS
+
+
 for _, file in pairs(config_files) do
 
   local success = pcall(require, file)

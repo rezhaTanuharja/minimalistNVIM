@@ -85,7 +85,6 @@ lazy.setup {
     { import = location .. 'bbye' },
     { import = location .. 'blankline' },
     { import = location .. 'nvim-tree' },
-    { import = location .. 'todo-comments' },
     { import = location .. 'nvim-dap' },
 
     {import = location .. 'colors'},
