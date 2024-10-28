@@ -13,6 +13,7 @@ local options = {
 
   -- user interface
 
+  termguicolors = true,
   mouse = '',                 -- disable mouse in neovim
   clipboard = 'unnamedplus',  -- neovim uses the system clipboard by default
   cursorline = true,
