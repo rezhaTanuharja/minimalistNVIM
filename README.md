@@ -10,20 +10,22 @@
         <a href="#looks">How It Looks</a>
     </p>
     <p align="left">
-        This project attempts to create an IDE-like experience for writing and editing code with Neovim.
-        The configuration is heavily inspired by <a href="https://github.com/LunarVim">LunarVim</a> and followed instructions from the excellent step-by-step tutorial <a href="https://www.youtu.be/ctH-a-1eUME?si=mAsw4Qno6kmIIuQy">Neovim IDE from Scratch</a> by <a href="https://www.chrisatmachine.com">chris@machine</a>.
+        This project attempts to create an IDE-like experience for writing, editing, and debugging code with Neovim.
+        The configuration structure is heavily inspired by <a href="https://github.com/LunarVim">LunarVim</a> and the excellent step-by-step tutorial <a href="https://www.youtu.be/ctH-a-1eUME?si=mAsw4Qno6kmIIuQy">Neovim IDE from Scratch</a> by <a href="https://www.chrisatmachine.com">chris@machine</a>.
         If you are interested in detailed explanations and guides, you should check him out.
     </p>
     <img src="assets/images/preview.png" alt="Preview" width="600"/>
     <br>
     <br>
     <p align="left">
-    As the title of the project suggests, the configuration is pretty minimalistic: it does not use any colorscheme, at least not in a traditional sense, and it keeps the number of plugins as low as possible.
-    The main reasons for this philosopy are:
+    As the title of the project suggests, a minimalist configuration with as few plugins as possible is the main goal.
+    This improves robustness against breaking changes from external plugins and makes the config easier to update and maintain.
+    Although the config uses less than 20 plugins, it has all essential IDE features:
     </p>
     <ul align="left">
-        <li>I like to read novels with the dark mode and when I do, I can read continuously for hours without straining my eyes. Thus, I chose the colors to emulate the same feeling.</li>
-        <li>Maintaining a large configuration structure requires significant time commitment and efforts. The less config / plugins I have, the easier it is for me to maintain it.</li>
+        <li>Language servers and code diagnostics</li>
+        <li>Code completion and custom snippets</li>
+        <li>Debugging capability</li>
     </ul>
     <p align="left">
     That being said, if you are a Neovim user, I hope you see something interesting to adopt to your own config. If you are still considering Neovim, I hope you become a part of our community soon!
@@ -35,9 +37,9 @@
         Dependencies
     </h2>
     <p>
-        You need <a href="https://neovim.io">neovim</a> v.0.10.x or newer and <a href="https://www.lua.org">Lua</a> on your machine to use the project.
-        If you are using MacOS, the default terminal may not display the correct colors.
-        In this case, I highly recommend to use <a href="https://iterm2.com">iTerm2</a> instead.
+        The config requires <a href="https://neovim.io">neovim</a> v.0.10.x or newer.
+        In addition, users are expected to install the required language servers, e.g., <a href="https://microsoft.github.io/pyright/#/">Pyright</a>, and debug adapter protocol implementations, e.g., <a href="https://pypi.org/project/debugpy/">debugpy</a>, themselves.
+        Unlike many Neovim configs, this project <b>does not</b> require <a href="https://www.nerdfonts.com">Nerd Fonts</a> because it does not use any icons.
     </p>
 </div>
 
@@ -53,7 +55,8 @@
     -->git clone https://github.com/rezhaTanuharja/minimalistNVIM.git ~/.config/nvim<!--
     --></code></pre>
     <p>
-        Once you have all the files inside '~/.config/nvim/', simply start Neovim and <a href="https://github.com/folke/lazy.nvim.git">Lazy</a> will automatically install all of the plugins in this project.
+        Subsequently, simply start Neovim and <a href="https://github.com/folke/lazy.nvim.git">Lazy</a> will automatically install all of the plugins.
+        Keep in mind that if you have not installed the required language servers or debug adapter protocol implementations, you may encounter errors.
     </p>
 </div>
 <div id="looks">
@@ -62,11 +65,10 @@
     </h2>
     <p>
     The colors are mostly (not all!) grayscale.
-    A typical Python code looks like the following.
-    The colors are chosen such that I can parse Python codes easily and let me focus on the code instead of the comments.
+    A typical Lua code with lua-language-server's hover capability looks like the following image.
     </p>
-    <div>
-        <img src="assets/images/code.png" alt="Preview" width="600"/>
+    <div align="center">
+        <img src="assets/images/lsp.png" alt="Preview" width="600"/>
     </div>
     <br>
     <p>
