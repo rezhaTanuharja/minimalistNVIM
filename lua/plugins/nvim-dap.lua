@@ -74,16 +74,16 @@ return {
 
     vim.fn.sign_define(
       'DapBreakpoint', {
-        text = ' ',
-        texthl = 'TodoBgFIX',
+        text = '--',
+        texthl = 'DiagnosticError',
         numhl = ''
       }
     )
 
     vim.fn.sign_define(
       'DapStopped', {
-        text = '>',
-        texthl = 'TodoBgNOTE',
+        text = '->',
+        texthl = 'DiagnosticHint',
         numhl = ''
       }
     )
