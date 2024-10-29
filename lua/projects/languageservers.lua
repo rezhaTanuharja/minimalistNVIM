@@ -59,7 +59,7 @@ M.setup = function(opts)
         end
 
         if client.supports_method('textDocument/rename') then
-          vim.keymap.set('n', 'gn', '<cmd>lua vim.lsp.buf.rename()<return>', {buffer = 0})
+          vim.keymap.set('n', 'grn', '<cmd>lua vim.lsp.buf.rename()<return>', {buffer = 0})
         end
 
         if client.supports_method('textDocument/signatureHelp') then
