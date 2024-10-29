@@ -66,44 +66,54 @@
     <p>
     The colors are mostly (not all!) grayscale.
     A typical Lua code with lua-language-server's hover capability looks like the following image.
+    An autocmd sets cursorline only in the focused window so it is easier to keep track of where the cursor is in a multi-window layout.
     </p>
     <div align="center">
         <img src="assets/images/lsp.png" alt="Preview" width="600"/>
     </div>
     <br>
     <p>
-    I do not use any icon other than what is available on a standard keyboard.
-    This is because I do not really like to use icons and also because custom icons require more efforts to integrate into my colors selection.
-    The plugin <a href="https://github.com/nvim-tree/nvim-tree.lua.git">nvim-tree</a> looks like this:
+    The colors are deliberately chosen to look decent and non-distracting in both transparent and opague terminal windows.
+    The previous image shows Neovim in iTerm2 on MacOS.
+    The following image shows an identical layout in an opague Alacritty window on EndeavourOS:
     </p>
-    <div>
-        <img src="assets/images/nvimtree.png" alt="Preview" width="220"/>
+    <div align="center">
+        <img src="assets/images/lsp_linux.png" alt="Preview" width="600"/>
     </div>
+    <br>
     <p>
-    The files are indicated with the letter x, directories are indicated with the square brackets where the orientations of and characters inside the brackets indicate if the directories are open, closed, empty, and so on.
-    Modified files and directories are simply marked by asterisks.
+    The following image shows how Neovim looks like with the <a href="https://github.com/nvim-tree/nvim-tree.lua.git">nvim-tree</a> window toggled open.
+    It also shows how a diagnostic error is displayed inside the buffer and in the tree view.
+    The TODO item is highlighted and the contextual location of the cursor is shown in the statusline thanks to <a href="https://github.com/nvim-treesitter/nvim-treesitter.git">nvim-treesitter</a>.
     </p>
-    <p>
-    In some parts, I do some color play.
-    For example, my <a href="https://github.com/nvim-lualine/lualine.nvim.git">lualine</a> looks like the following in normal and command mode, respectively:
-    </p>
-    <div>
-        <img src="assets/images/lualine_normal.png" alt="Preview" width="700"/>
-        <img src="assets/images/lualine_command.png" alt="Preview" width="700"/>
+    <div align="center">
+        <img src="assets/images/features.png" alt="Preview" width="600"/>
     </div>
+    <br>
     <p>
-    When I code, I stare at a (mostly) black screen.
-    When I enter command mode, the midsection of the lualine change into a bright white color.
-    This has a "flash" effect and my attention instinctively snaps to the bottom of the screen, where it needs to, because I am in the command mode.
+    The following image shows another essential IDE feature: a debugging capability, thanks to <a href="https://github.com/mfussenegger/nvim-dap.git">nvim-dap</a>.
+    Slightly different from other configs, this project does not use nvim-dap-ui, nvim-dap-python, etc..
+    Instead, we rely completely on what nvim-dap offers.
     </p>
-    <p>
-    I still keep colors for important parts such as diagnostics, TODO, BUGS, etc..
-    As an example, here is how a FIXME and a TODO from <a href="https://github.com/folke/todo-comments.nvim.git">todo-comments</a> look like:
-    </p>
-    <div>
-        <img src="assets/images/fixme.png" alt="Preview" width="600"/>
+    <div align="center">
+        <img src="assets/images/debug.png" alt="Preview" width="600"/>
     </div>
+    <br>
     <p>
-    This is another benefit of using a (mostly) grayscale colors: important colors such as red (error) and yellor (warning) pops out and attract our attention immediately.
+    By default, only the normal buffer window is shown, with red dash(es) indicating breakpoint location(s) and a blue arrow indicating the current position in program execution.
+    All widgets such as the call stack (bottom left), the scopes (top right), and REPL (bottom right) only appear when the user toggles them.
+    This is deliberate, since not all widgets are used all the time and will simply be a distraction if they are always present.
     </p>
+</div>
+<div id="others">
+    <h2>
+        Others
+    </h2>
+    <p>
+    While we do not think startup time matters, some people apparently do care.
+    Last time we check, our startup time is ~9-11 ms, as shown below by <a href="https://github.com/folke/lazy.nvim.git">Lazy</a>'s profile.
+    </p>
+    <div align="center">
+        <img src="assets/images/startup.jpeg" alt="Preview" width="600"/>
+    </div>
 </div>
