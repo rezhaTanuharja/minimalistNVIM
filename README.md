@@ -23,9 +23,9 @@
     Although the config uses less than 20 plugins, it has all essential IDE features:
     </p>
     <ul align="left">
-        <li>Language servers and code diagnostics</li>
-        <li>Code completion and custom snippets</li>
-        <li>Debugging capability</li>
+        <li align="left">Language servers and code diagnostics</li>
+        <li align="left">Code completion and custom snippets</li>
+        <li align="left">Debugging capability</li>
     </ul>
     <p align="left">
     That being said, if you are a Neovim user, I hope you see something interesting to adopt to your own config. If you are still considering Neovim, I hope you become a part of our community soon!
