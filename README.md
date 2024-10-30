@@ -12,7 +12,7 @@
     <p align="left">
         This project attempts to create an IDE-like experience for writing, editing, and debugging code with Neovim.
         The configuration structure is heavily inspired by <a href="https://github.com/LunarVim">LunarVim</a> and the excellent step-by-step tutorial <a href="https://www.youtu.be/ctH-a-1eUME?si=mAsw4Qno6kmIIuQy">Neovim IDE from Scratch</a> by <a href="https://www.chrisatmachine.com">chris@machine</a>.
-        If you are interested in detailed explanations and guides, you should check him out.
+        If you are interested in detailed explanations and guides, check him out.
     </p>
     <img src="assets/images/preview.png" alt="Preview" width="600"/>
     <br>
@@ -39,7 +39,7 @@
     <p>
         The config requires <a href="https://neovim.io">neovim</a> v.0.10.x or newer.
         In addition, users are expected to install the required language servers, e.g., <a href="https://microsoft.github.io/pyright/#/">Pyright</a>, and debug adapter protocol implementations, e.g., <a href="https://pypi.org/project/debugpy/">debugpy</a>, themselves.
-        Unlike many Neovim configs, this project <b>does not</b> require <a href="https://www.nerdfonts.com">Nerd Fonts</a> because it does not use any icons.
+        Unlike many Neovim configs, this project <b>does not</b> require <a href="https://www.nerdfonts.com">Nerd Fonts</a> because it does not use any icon.
     </p>
 </div>
 
