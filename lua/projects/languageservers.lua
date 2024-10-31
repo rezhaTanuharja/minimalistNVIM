@@ -132,10 +132,16 @@ M.setup = function(opts)
       'FileType', {
         pattern = 'python',
         callback = function(args)
+
+          -- handle single file mode
+          if vim.lsp.buf_is_attached(args.buf) then
+            return
+          end
+
           vim.lsp.start({
             name = 'pyright',
             cmd = {'pyright-langserver', '--stdio'},
-            root_dir = vim.fs.root(args.buf, {'pyproject.toml'}),
+            root_dir = vim.fs.root(args.buf, {'pyproject.toml', 'pyrightconfig.json'}),
             settings = {
               python = {
                 analysis = {
@@ -145,6 +151,7 @@ M.setup = function(opts)
               },
             },
           })
+
         end,
       }
     )
