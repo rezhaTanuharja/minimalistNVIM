@@ -25,7 +25,7 @@ return {
 
         callback({
           type = 'executable',
-          command = 'python',
+          command = 'python3',
           args = { '-m', 'debugpy.adapter' },
         })
 
@@ -55,7 +55,7 @@ return {
         name = 'Launch a debugging session',
         program = "${file}",
         pythonPath = function()
-          return 'python'
+          return 'python3'
         end,
       },
 
