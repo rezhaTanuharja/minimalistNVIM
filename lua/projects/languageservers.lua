@@ -68,7 +68,9 @@ M.list_servers = function()
 
   vim.fn.setqflist(quickfix_list, "r")
   vim.cmd("copen")
+
 end
+
 
 M.setup = function(opts)
 

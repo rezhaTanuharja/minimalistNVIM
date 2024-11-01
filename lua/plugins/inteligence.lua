@@ -8,10 +8,16 @@ return {
     {
       dir = '~/.config/nvim/lua/projects/languageservers.lua',
       config = function()
-        require('projects.languageservers').setup {
+
+        local lsp = require('projects.languageservers')
+
+        lsp.setup {
           lua = true,
           Python = true,
         }
+
+        vim.keymap.set('n', '<leader>l', lsp.list_servers )
+
       end
     }
   },
