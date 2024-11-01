@@ -9,7 +9,7 @@ return {
       dir = '~/.config/nvim/lua/projects/languageservers.lua',
       config = function()
         require('projects.languageservers').setup {
-          lua = false,
+          lua = true,
           Python = true,
         }
       end

@@ -47,6 +47,35 @@ local location = 'plugins.'
 -- specify manually the plugins to load
 lazy.setup {
 
+  ui = {
+    border = 'single',
+    icons = {
+      cmd = '',
+      config = '',
+      event = '',
+      favorite = '',
+      ft = '',
+      init = '',
+      import = '',
+      keys = '',
+      lazy = '',
+      loaded = '●',
+      not_loaded = "○",
+      plugin = "",
+      runtime = "",
+      require = "",
+      source = "",
+      start = "",
+      task = "✔ ",
+      list = {
+        "●",
+        "➜",
+        "★",
+        "‒",
+      },
+    },
+  },
+
   change_detection = {
     enabled = false,
     notify = false,

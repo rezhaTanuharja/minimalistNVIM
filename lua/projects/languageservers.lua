@@ -40,13 +40,45 @@ M.show_signature = function()
 end
 
 
+M.list_servers = function()
+
+  local autocmd_list = vim.api.nvim_exec('autocmd LSP FileType', true)
+  local quickfix_list = {}
+
+  local pattern = "%s*(.+)%s*<([^:]+):%s*(.+):(%d+)>"
+
+  for line in autocmd_list:gmatch("[^\r\n]+") do
+
+    local file_type, event, file_path, line_number = line:match(pattern)
+    if file_type and event and file_path and line_number then
+
+      -- expand ~ to home directory
+      file_path = file_path:gsub("^~", vim.fn.expand("$HOME"))
+
+      table.insert(
+        quickfix_list, {
+          filename = file_path,
+          lnum = tonumber(line_number),
+          text = "Language server for " .. file_type,
+        }
+      )
+
+    end
+  end
+
+  vim.fn.setqflist(quickfix_list, "r")
+  vim.cmd("copen")
+end
+
 M.setup = function(opts)
 
+  vim.api.nvim_create_augroup("LSP", { clear = true })
 
   -- add functionalities based on language server's capabilities
 
   vim.api.nvim_create_autocmd(
     'LspAttach', {
+      group = 'LSP',
       callback = function(args)
 
         local client = vim.lsp.get_client_by_id(args.data.client_id)
@@ -109,6 +141,7 @@ M.setup = function(opts)
     vim.api.nvim_create_autocmd(
       'FileType', {
         pattern = 'lua',
+        group = 'LSP',
         callback = function(args)
           vim.lsp.start({
             name = 'lua-language-server',
@@ -131,6 +164,7 @@ M.setup = function(opts)
     vim.api.nvim_create_autocmd(
       'FileType', {
         pattern = 'python',
+        group = 'LSP',
         callback = function(args)
 
           -- handle single file mode
