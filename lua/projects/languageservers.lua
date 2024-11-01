@@ -44,13 +44,15 @@ end
 M.list_servers = function()
 
   local autocmd_list = vim.api.nvim_exec('autocmd LSP FileType', true)
-  local quickfix_list = {}
 
-  local pattern = "%s*(.+)%s*<([^:]+):%s*(.+):(%d+)>"
+  local pattern = "%s*([A-Za-z]+)%s*<([^:]+):%s*(.+):(%d+)>"
+
+  local quickfix_list = {}
 
   for line in autocmd_list:gmatch("[^\r\n]+") do
 
     local file_type, event, file_path, line_number = line:match(pattern)
+
     if file_type and event and file_path and line_number then
 
       -- expand ~ to home directory
@@ -65,6 +67,7 @@ M.list_servers = function()
       )
 
     end
+
   end
 
   vim.fn.setqflist(quickfix_list, "r")
