@@ -40,6 +40,7 @@ M.show_signature = function()
 end
 
 
+-- show a list of all configured servers in a quickfix list
 M.list_servers = function()
 
   local autocmd_list = vim.api.nvim_exec('autocmd LSP FileType', true)
