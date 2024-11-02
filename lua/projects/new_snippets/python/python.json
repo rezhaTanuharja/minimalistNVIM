@@ -1,0 +1,7 @@
+{
+  "from ... import ...": {
+    "prefix": "from",
+    "body": "from ${1:module} import ${2:item}",
+    "description": "This is from blink"
+  }
+}

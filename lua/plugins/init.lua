@@ -106,7 +106,8 @@ lazy.setup {
 
   spec = {
 
-    { import = location .. 'cmp' },
+    -- { import = location .. 'cmp' },
+    { import = location .. 'blink' },
     { import = location .. 'telescope' },
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },

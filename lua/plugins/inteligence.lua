@@ -2,7 +2,7 @@ return {
 
   dir = '~/.config/nvim/lua/projects/diagnostics.lua',
 
-  event = 'UIEnter',
+  ft = { 'lua', 'python' },
 
   dependencies = {
     {

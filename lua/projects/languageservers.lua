@@ -100,14 +100,14 @@ M.setup = function(opts)
           vim.keymap.set('n', 'grn', '<cmd>lua vim.lsp.buf.rename()<return>', {buffer = 0})
         end
 
-        if client.supports_method('textDocument/signatureHelp') then
-          vim.api.nvim_create_autocmd(
-            'InsertCharPre', {
-              buffer = 0,
-              callback = M.show_signature,
-            }
-          )
-        end
+        -- if client.supports_method('textDocument/signatureHelp') then
+        --   vim.api.nvim_create_autocmd(
+        --     'InsertCharPre', {
+        --       buffer = 0,
+        --       callback = M.show_signature,
+        --     }
+        --   )
+        -- end
 
       end,
     }
