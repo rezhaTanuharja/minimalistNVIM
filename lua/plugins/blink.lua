@@ -49,7 +49,7 @@ return {
         scrolloff = 2,
         direction_priority = { 's', 'n' },
         auto_show = true,
-        selection = 'manual',
+        selection = 'preselect',
         draw = 'minimal',
         cycle = {
           from_bottom = true,
