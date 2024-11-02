@@ -1,9 +1,19 @@
+---
+-- @file lua/plugins/blink.lua
+--
+-- @brief
+-- The configuration file for the plugin blink
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-11-02
+--
+
+
 return {
 
   'saghen/blink.cmp',
 
-  version = 'v0.*',
-  build = 'cargo build --release',
+  version = 'v0.5.0',
 
   ft = { 'lua', 'python' },
 
@@ -11,10 +21,12 @@ return {
 
     keymap = {
 
-      preset = 'enter',
-
       ['<return>'] = { 'accept', 'fallback' },
       ['<C-d>'] = { 'show', 'show_documentation', 'hide_documentation' },
+
+      ['<C-p>'] = { 'select_prev', 'fallback' },
+      ['<C-n>'] = { 'select_next', 'fallback' },
+
       ['<Tab>'] = { 'snippet_forward', 'fallback' },
       ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
 
@@ -37,7 +49,7 @@ return {
         scrolloff = 2,
         direction_priority = { 's', 'n' },
         auto_show = true,
-        selection = 'preselect',
+        selection = 'manual',
         draw = 'minimal',
         cycle = {
           from_bottom = true,
@@ -84,7 +96,7 @@ return {
       sorts = { 'label', 'kind', 'score' },
 
       prebuilt_binaries = {
-        download = false,
+        download = true,
         force_version = nil,
         force_system_triple = nil,
       },

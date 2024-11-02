@@ -94,12 +94,6 @@ local mode_keymaps = {
 
   },
 
-  command = {
-
-    ['<C-y>'] = { action = '/g | nohlsearch<return>', desc = 'confirm substitutions' },
-
-  },
-
 }
 
 for mode, keymaps in pairs(mode_keymaps) do
