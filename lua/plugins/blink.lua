@@ -150,7 +150,7 @@ return {
 
           opts = {
             friendly_snippets = true,
-            search_paths = { vim.fn.stdpath('config') .. '/lua/projects/new_snippets' },
+            search_paths = { vim.fn.stdpath('config') .. '/lua/projects/snippets' },
             global_snippets = { 'all' },
             extended_filetypes = {},
             ignored_filetypes = {},

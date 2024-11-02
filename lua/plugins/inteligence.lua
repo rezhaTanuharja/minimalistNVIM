@@ -17,6 +17,7 @@ return {
         }
 
         vim.keymap.set('n', '<leader>l', lsp.list_servers )
+        vim.keymap.set('n', 'gs', lsp.deep_search )
 
       end
     }

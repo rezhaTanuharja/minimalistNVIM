@@ -11,8 +11,9 @@
 
 local M = {}
 
+
 -- refresh all buffer while preserving the current layout
-M.refresh = function()
+function M.refresh()
   local window_buffer_map = {}
   for _, window_id in pairs(vim.api.nvim_tabpage_list_wins(0)) do
     local buffer_id = vim.api.nvim_win_get_buf(window_id)
@@ -26,22 +27,21 @@ M.refresh = function()
   end
 end
 
--- show function signature after opening parentheses or comma
-M.show_signature = function()
-  local char = vim.v.char
-  if char == '(' or char == ',' then
-    vim.defer_fn(
-      function()
-        vim.lsp.buf.signature_help()
-      end,
-      3
-    )
-  end
+
+-- similar to goto references but search any words in the root directory
+function M.deep_search()
+
+  local search_term = vim.fn.expand('<cword>')
+  local root_dir = vim.lsp.get_clients()[1].workspace_folders[1].name
+
+  vim.cmd('vimgrep /' .. search_term .. '/ ' .. root_dir .. '/**' )
+  vim.cmd('copen')
+
 end
 
 
--- show a list of all configured servers in a quickfix list
-M.list_servers = function()
+-- -- show a list of all configured servers in a quickfix list
+function M.list_servers()
 
   local autocmd_list = vim.api.nvim_exec('autocmd LSP FileType', true)
 
@@ -76,7 +76,7 @@ M.list_servers = function()
 end
 
 
-M.setup = function(opts)
+function M.setup(opts)
 
   vim.api.nvim_create_augroup("LSP", { clear = true })
 
@@ -99,15 +99,6 @@ M.setup = function(opts)
         if client.supports_method('textDocument/rename') then
           vim.keymap.set('n', 'grn', '<cmd>lua vim.lsp.buf.rename()<return>', {buffer = 0})
         end
-
-        -- if client.supports_method('textDocument/signatureHelp') then
-        --   vim.api.nvim_create_autocmd(
-        --     'InsertCharPre', {
-        --       buffer = 0,
-        --       callback = M.show_signature,
-        --     }
-        --   )
-        -- end
 
       end,
     }

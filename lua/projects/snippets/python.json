@@ -1,0 +1,33 @@
+{
+
+  "Aliased import": {
+    "prefix": "import",
+    "body": "import ${1:module} as ${2:alias}\n$0",
+    "description": "Import a module and assign an alias to it"
+  },
+
+  "Partial import": {
+    "prefix": "from",
+    "body": "from ${1:module} import ${2:item}\n$0",
+    "description": "Import specific item(s) from a module"
+  },
+
+  "Function definition": {
+    "prefix": "def",
+    "body": "def ${1:function_name}(${2:args}):\n\t\n\t${3:pass}\n$0",
+    "description": "Define a new function"
+  },
+
+  "Class definition": {
+    "prefix": "class",
+    "body": "class ${1:class_name}:\n\t\n\tdef __init__(${2:self}):\n\t\t${3:pass}\n$0",
+    "description": "Define a new class"
+  },
+
+  "Main function definition": {
+    "prefix": "main",
+    "body": "def main():\n\t${1:pass}\n\t$0\n\nif __name__ == '__main__':\n\tmain()",
+    "description": "Create a common Python script structure"
+  }
+
+}
