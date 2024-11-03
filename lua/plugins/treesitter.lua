@@ -37,13 +37,21 @@ return {
           return vim.api.nvim_buf_line_count(bufnr) > 1000
         end,
       },
+
       indent = { enable = true },
-      fold = { enable = true },
+
+      fold = {
+        enable = { 'python' },
+        disable = { 'lua' }
+      },
 
     }
 
     vim.opt['foldmethod'] = 'expr'
     vim.opt['foldexpr'] = 'nvim_treesitter#foldexpr()'
+    vim.opt['foldlevelstart'] = 2
+    vim.opt['foldtext'] = ''
+
 
   end
 

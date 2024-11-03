@@ -28,9 +28,10 @@ M.setup = function(opts)
       ['Question']      = { fg = '#666666' },
       ['Directory']     = { fg = '#777777' },
 
+      ['MsgSeparator']  = { fg = '#eeeeee', bg = '#444444' },
       ['MoreMsg']       = { fg = '#eeeeee', bg = '#444444' },
       ['QuickFixLine']  = { fg = '#eeeeee', bg = '#444444' },
-      ['StatusLine']  = { fg = '#333333', bg = '#222222' },
+      ['StatusLine']  = { fg = '#888888', bg = '#222222' },
       ['NormalFloat'] = { bg = 'None' },
 
       ['Folded']        = { fg = '#444444' },

@@ -41,9 +41,6 @@ local options = {
 
   -- text display
 
-  foldlevelstart = 99,        -- start with everything unfolded
-  foldtext = '',              -- keep the appearance of the first folded line
-
   wrap = false,               -- do not wrap lines because it is ugly
   smartindent = true,         -- automatic indentations
   scrolloff = 99,             -- keep cursorline in the middle
