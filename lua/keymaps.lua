@@ -80,15 +80,6 @@ local mode_keymaps = {
       desc = 'navigate to the prev quickfix list'
     },
 
-    ['p'] = {
-      action = function()
-        local row, col = unpack(vim.api.nvim_win_get_cursor(0))
-        vim.cmd('put')
-        vim.api.nvim_win_set_cursor(0, { row + 1, col })
-      end,
-      desc = 'Put yanked item below but keep cursor column position the same'
-    },
-
   },
 
   visual = {
