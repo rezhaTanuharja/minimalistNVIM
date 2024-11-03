@@ -47,12 +47,6 @@ return {
 
     }
 
-    vim.opt['foldmethod'] = 'expr'
-    vim.opt['foldexpr'] = 'nvim_treesitter#foldexpr()'
-    vim.opt['foldlevelstart'] = 2
-    vim.opt['foldtext'] = ''
-
-
   end
 
 }

@@ -41,6 +41,11 @@ local options = {
 
   -- text display
 
+  foldmethod = 'expr',
+  foldexpr = 'nvim_treesitter#foldexpr()',
+  foldlevelstart = 0,
+  foldtext = '',
+
   wrap = false,               -- do not wrap lines because it is ugly
   smartindent = true,         -- automatic indentations
   scrolloff = 99,             -- keep cursorline in the middle
