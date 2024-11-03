@@ -152,7 +152,8 @@ function M.setup(opts)
             root_dir = vim.fs.root(args.buf, {'.git'}),
             settings = {
               Lua = {
-                diagnostics = { globals = {'vim'} }
+                rutnime = { version = 'LuaJIT' },
+                diagnostics = { globals = {'vim'} },
               },
             },
           })
