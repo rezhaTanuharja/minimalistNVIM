@@ -2,7 +2,7 @@ return {
 
   dir = '~/.config/nvim/lua/projects/diagnostics.lua',
 
-  ft = { 'lua', 'python' },
+  ft = { 'lua', 'python', 'cpp' },
 
   dependencies = {
     {
@@ -14,6 +14,7 @@ return {
         lsp.setup {
           lua = true,
           Python = true,
+          cpp = true,
         }
 
         vim.keymap.set('n', '<leader>l', lsp.list_servers )

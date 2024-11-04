@@ -80,6 +80,24 @@ local mode_keymaps = {
       desc = 'navigate to the prev quickfix list'
     },
 
+    ['<leader>sd'] = { action = '<cmd>call setqflist([], " ")<return>', desc = 'create an empty quickfix list' },
+    ['<leader>sf'] = {
+      action = function()
+        local filename = vim.fn.expand('%')
+        local line_number = vim.fn.line('.')
+        local line_text = vim.fn.getline('.')
+
+        local entry = {
+          filename = filename,
+          lnum = line_number,
+          text = line_text,
+        }
+
+        vim.fn.setqflist( {entry}, 'a' )
+      end,
+      desc = 'add a line into the current quickfix list'
+    },
+
   },
 
   visual = {

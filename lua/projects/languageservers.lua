@@ -196,6 +196,25 @@ function M.setup(opts)
 
   end
 
+  if opts.cpp then
+
+    vim.api.nvim_create_autocmd(
+      'FileType', {
+        pattern = 'cpp',
+        group = 'LSP',
+        callback = function(args)
+          vim.lsp.start({
+            name = 'clangd',
+            cmd = {'clangd', '--background-index'},
+            root_dir = vim.fs.root(args.buf, {'compile_commands.json'}),
+            settings = {},
+          })
+        end,
+      }
+    )
+
+  end
+
 end
 
 return M
