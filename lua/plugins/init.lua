@@ -119,5 +119,6 @@ lazy.setup {
     {import = location .. 'colors'},
     {import = location .. 'statusline'},
     {import = location .. 'inteligence'},
+    {import = location .. 'prompt'},
   },
 }
