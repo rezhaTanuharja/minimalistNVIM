@@ -13,7 +13,7 @@ return {
 
   'moll/vim-bbye',
 
-  event = {'BufReadPost', 'BufNewFile'},
+  event = 'UIEnter',
 
   config = function()
     vim.keymap.set('n', '<leader>c', '<cmd>Bdelete!<return>')

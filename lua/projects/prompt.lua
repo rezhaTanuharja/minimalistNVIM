@@ -6,7 +6,7 @@ end
 
 function M.job_exit(job, status, _)
   print('Prompt buffer ' .. job .. ' exited with status ' .. status)
-  vim.cmd('quit!')
+  vim.cmd('Bdelete!')
 end
 
 function M.start_shell()
@@ -21,11 +21,12 @@ function M.start_shell()
     vim.fn.chansend(shell_job, { text, '' })
   end
 
-  vim.cmd('new')
-  vim.bo.buftype = 'prompt'
-  local buf = vim.fn.bufnr('')
-  vim.fn.prompt_setcallback(buf, text_entered)
-  vim.fn.prompt_setprompt(buf, 'Shell command: ')
+  local buffer = vim.api.nvim_create_buf(true, true)
+  vim.api.nvim_win_set_buf(0, buffer)
+  vim.bo[buffer].buftype = 'prompt'
+
+  vim.fn.prompt_setcallback(buffer, text_entered)
+  vim.fn.prompt_setprompt(buffer, 'Shell command: ')
 
   vim.cmd('startinsert')
 
