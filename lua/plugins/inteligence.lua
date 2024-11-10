@@ -1,12 +1,12 @@
 return {
 
-  dir = '~/.config/nvim/lua/projects/diagnostics.lua',
+  dir = vim.fn.stdpath('config') .. '/projects/diagnostics.lua',
 
   ft = { 'lua', 'python', 'cpp' },
 
   dependencies = {
     {
-      dir = '~/.config/nvim/lua/projects/languageservers.lua',
+      dir = vim.fn.stdpath('config') .. '/projects/languageservers.lua',
       config = function()
 
         local lsp = require('projects.languageservers')

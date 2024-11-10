@@ -1,6 +1,6 @@
 return {
 
-  dir = '~/.config/nvim/lua/projects/colors.lua',
+  dir = vim.fn.stdpath('config') .. '/projects/colors.lua',
 
   event = 'UIEnter',
 

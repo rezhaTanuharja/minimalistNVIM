@@ -8,6 +8,7 @@ end
 
 function M.job_exit(job, status, _)
   print('Prompt buffer ' .. job .. ' exited with status ' .. status)
+  vim.cmd('stopinsert')
   vim.cmd('Bdelete!')
 end
 

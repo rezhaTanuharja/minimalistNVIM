@@ -1,6 +1,6 @@
 return {
 
-  dir = '~/.config/nvim/lua/projects/prompt.lua',
+  dir = vim.fn.stdpath('config') .. '/projects/prompt.lua',
 
   config = function()
 
