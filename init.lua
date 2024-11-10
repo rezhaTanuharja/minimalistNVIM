@@ -9,6 +9,14 @@
 --
 
 
+-- add projects path so they can be "required"
+
+local projects_directory = vim.fn.stdpath('config') .. '/projects/'
+package.path = package.path .. ';' .. projects_directory .. '?.lua'
+
+
+-- list of all config files
+
 local config_files = {
   'options',
   'keymaps',

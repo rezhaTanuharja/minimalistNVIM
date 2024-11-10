@@ -9,7 +9,7 @@ return {
       dir = vim.fn.stdpath('config') .. '/projects/languageservers.lua',
       config = function()
 
-        local lsp = require('projects.languageservers')
+        local lsp = require('languageservers')
 
         lsp.setup {
           lua = true,
@@ -25,7 +25,7 @@ return {
   },
 
   config = function()
-    require('projects.diagnostics').setup {
+    require('diagnostics').setup {
       virtual_text = false,
       severity_sort = true,
       update_in_insert = false,

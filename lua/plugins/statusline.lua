@@ -5,7 +5,7 @@ return {
   event = 'UIEnter',
 
   config = function()
-    require('projects.statusline').setup {
+    require('statusline').setup {
       single_cursorline = true,
       flavour = 'grayscale',
     }

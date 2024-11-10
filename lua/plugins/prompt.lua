@@ -4,7 +4,7 @@ return {
 
   config = function()
 
-    local success, prompt = pcall(require, 'projects.prompt')
+    local success, prompt = pcall(require, 'prompt')
     if not success then
       vim.notify('Failed to load plugin: prompt')
       return

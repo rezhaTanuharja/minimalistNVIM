@@ -5,7 +5,7 @@ return {
   event = 'UIEnter',
 
   config = function()
-    require('projects.colors').setup {
+    require('colors').setup {
       flavour = 'grayscale',
     }
   end
