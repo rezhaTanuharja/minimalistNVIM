@@ -1,13 +1,25 @@
 local M = {}
 
+
 function M.get_output(_, message, _)
   vim.fn.append(vim.fn.line("$") - 1, message)
 end
+
 
 function M.job_exit(job, status, _)
   print('Prompt buffer ' .. job .. ' exited with status ' .. status)
   vim.cmd('Bdelete!')
 end
+
+
+function M.goto_file()
+  local path = vim.fn.getline('.')
+  if vim.fn.filereadable(path) == 1 then
+    vim.cmd('Bdelete!')
+    vim.cmd('edit ' .. vim.fn.fnameescape(path))
+  end
+end
+
 
 function M.start_shell()
 
@@ -25,11 +37,14 @@ function M.start_shell()
   vim.api.nvim_win_set_buf(0, buffer)
   vim.bo[buffer].buftype = 'prompt'
 
+  vim.keymap.set('n', 'gf', M.goto_file, {noremap = true, silent = true, buffer = buffer})
+
   vim.fn.prompt_setcallback(buffer, text_entered)
   vim.fn.prompt_setprompt(buffer, 'Shell command: ')
 
   vim.cmd('startinsert')
 
 end
+
 
 return M

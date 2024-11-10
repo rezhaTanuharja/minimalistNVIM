@@ -47,6 +47,8 @@ local location = 'plugins.'
 -- specify manually the plugins to load
 lazy.setup {
 
+  lockfile = nil,
+
   ui = {
     border = 'single',
     icons = {
