@@ -36,8 +36,8 @@ return {
       use_nvim_cmp_as_default = false,
     },
 
-    accept = { auto_brackets = { enabled = false }},
-    trigger = { signature_help = { enabled = true }},
+    accept = { auto_brackets = { enabled = false } },
+    trigger = { signature_help = { enabled = true } },
 
     windows = {
 
@@ -136,7 +136,7 @@ return {
           opts = {
             trailing_slash = false,
             label_trailing_slash = true,
-            get_cwd = function(context) return vim.fn.expand(('#%d:p:h'):format(context.bufnr)) end,
+            get_cwd = function(context) return vim.fn.expand( ('#%d:p:h'):format(context.bufnr) ) end,
             show_hidden_files_by_default = false,
           }
 
