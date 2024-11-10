@@ -101,12 +101,12 @@ return {
 
     -- custom keymaps for telescope
     local builtin = require('telescope.builtin')
-    vim.keymap.set('n', '<leader>ff', builtin.find_files)
-    vim.keymap.set('n', '<leader>fd', builtin.diagnostics)
-    vim.keymap.set('n', '<leader>fb', builtin.current_buffer_fuzzy_find)
-    vim.keymap.set('n', '<leader>fg', builtin.live_grep)
-    vim.keymap.set('n', '<leader>fs', builtin.grep_string)
-    vim.keymap.set('n', '<leader>fy', builtin.buffers)
+    vim.keymap.set('n', '<leader>f', builtin.find_files)
+    vim.keymap.set('n', '<leader>td', builtin.diagnostics)
+    vim.keymap.set('n', '<leader>tb', builtin.current_buffer_fuzzy_find)
+    vim.keymap.set('n', '<leader>tg', builtin.live_grep)
+    vim.keymap.set('n', '<leader>ts', builtin.grep_string)
+    vim.keymap.set('n', '<leader>ty', builtin.buffers)
   end,
 
 }
