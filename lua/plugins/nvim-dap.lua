@@ -96,7 +96,7 @@ return {
     vim.keymap.set('n', '<leader>dj', '<cmd>lua require("dap").continue()<return>')
     vim.keymap.set('n', '<leader>dm', '<cmd>lua require("dap").step_over()<return>')
     vim.keymap.set('n', '<leader>di', '<cmd>lua require("dap").step_into()<return>')
-    vim.keymap.set('n', '<leader>db', '<cmd>lua require("dap").toggle_breakpoint()<return>')
+    vim.keymap.set('n', '<leader>dk', '<cmd>lua require("dap").toggle_breakpoint()<return>')
     vim.keymap.set('n', '<leader>dn', '<cmd>lua require("dap").clear_breakpoints()<return>')
     vim.keymap.set('n', '<leader>dt', '<cmd>lua require("dap").terminate()<return>')
 
