@@ -12,6 +12,14 @@ return {
 
   "ibhagwan/fzf-lua",
 
+  cond = function()
+    local success, server = pcall(vim.fn.serverstart, "fzf-lua." .. os.time())
+    if success then
+      vim.g.fzf_lua_server = server
+    end
+    return success
+  end,
+
   event = 'UIEnter',
   dependencies = { "junegunn/fzf", build = "./install --bin" },
 
@@ -30,15 +38,24 @@ return {
 
       winopts ={
         fullscreen = false,
+        default = 'bat',
       },
 
       files = {
         previewer = false,
       },
 
+      previewers = {
+        bat = {
+          cmd = 'bat',
+          args = '--color=never --style=numbers,changes',
+        },
+      },
+
     }
 
     vim.keymap.set('n', '<leader>f', fzf.files, { noremap = true, silent = true })
+    vim.keymap.set('n', '<leader>g', fzf.live_grep, { noremap = true, silent = true })
 
   end
 }
