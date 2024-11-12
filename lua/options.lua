@@ -41,10 +41,11 @@ local options = {
 
   -- text display
 
-  foldmethod = 'expr',
+  foldlevelstart = 0,         -- open files with all folds closed
+  foldtext = '',              -- keep the first line of folded section
+  foldmethod = 'expr',        -- assign fold based on expressions
+
   foldexpr = 'nvim_treesitter#foldexpr()',
-  foldlevelstart = 0,
-  foldtext = '',
 
   wrap = false,               -- do not wrap lines because it is ugly
   smartindent = true,         -- automatic indentations

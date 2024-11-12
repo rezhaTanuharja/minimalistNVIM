@@ -12,6 +12,9 @@ return {
 
   "ibhagwan/fzf-lua",
 
+
+  -- if serverstart is not possible, use telescope instead
+
   cond = function()
     local success, server = pcall(vim.fn.serverstart, "fzf-lua." .. os.time())
     if success then
@@ -19,6 +22,7 @@ return {
     end
     return success
   end,
+
 
   event = 'UIEnter',
   dependencies = { "junegunn/fzf", build = "./install --bin" },

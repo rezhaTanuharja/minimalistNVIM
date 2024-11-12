@@ -42,7 +42,6 @@ return {
 
       fold = {
         enable = { 'python' },
-        disable = { 'lua' }
       },
 
     }

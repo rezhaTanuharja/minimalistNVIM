@@ -22,7 +22,7 @@ local mode_keymaps = {
 
     ['x'] = { action = '"_x', desc = 'delete a character without storing it in the clipboard' },
 
-    ['<leader>q'] = { action = '<cmd>quit<return>', desc = 'close the current window' },
+    ['<leader>qq'] = { action = '<cmd>quit<return>', desc = 'close the current window' },
     ['<leader>w'] = { action = '<cmd>write<return>', desc = 'save changes in the current buffer' },
 
     ['<C-h>'] = { action = '<C-w>h', desc = 'move focus to the pane on the left' },
@@ -46,7 +46,7 @@ local mode_keymaps = {
 
     ['<S-m>'] = { action = '<cmd>nohlsearch<return>', desc = 'remove highlight from search results' },
 
-    ['<C-S-j>'] = {
+    ['<leader>qj'] = {
       action = function()
         local success = pcall(vim.cmd, 'cnext')
         if not success then
@@ -56,7 +56,7 @@ local mode_keymaps = {
       desc = 'navigate to the next quickfix item'
     },
 
-    ['<C-S-k>'] = {
+    ['<leader>qk'] = {
       action = function()
         local success = pcall(vim.cmd, 'cprev')
         if not success then
@@ -66,14 +66,14 @@ local mode_keymaps = {
       desc = 'navigate to the prev quickfix item'
     },
 
-    ['<C-S-l>'] = {
+    ['<leader>ql'] = {
       action = function()
         local _ = pcall(vim.cmd, 'cnewer')
       end,
       desc = 'navigate to the next quickfix list'
     },
 
-    ['<C-S-h>'] = {
+    ['<leader>qh'] = {
       action = function()
         local _ = pcall(vim.cmd, 'colder')
       end,

@@ -11,17 +11,14 @@
 
 return {
 
-  -- github repository for nvim-tree
   'kyazdani42/nvim-tree.lua',
 
-  -- load when entering nvim
   keys = {
     { '<leader>e', '<cmd>NvimTreeToggle<return>'},
   },
 
   config = function()
 
-    -- use protected call to attempt to load plugin
     local success, nvim_tree = pcall(require, 'nvim-tree')
     if not success then
       vim.notify('Failed to load plugin: nvim-tree')
@@ -44,7 +41,6 @@ return {
           diagnostics_placement = 'signcolumn',
           git_placement = 'after',
 
-          -- use the simplest possible symbols
           glyphs = {
 
             default = 'x',
@@ -113,14 +109,12 @@ return {
 
     }
 
-    -- keymap to open the project tree
     vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<return>')
 
-    -- set custom color specific to nvim-tree
     vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = '#777777'})
 
 
-    -- these are necessary to ensure lsp works properly when project directory changes
+    -- when project structure / element changes, refresh all buffers
 
     local api = require('nvim-tree.api')
     local Event = api.events.Event
@@ -142,7 +136,7 @@ return {
 
             function()
               vim.cmd('NvimTreeToggle')
-              vim.cmd('lua require("projects.languageservers").refresh()')
+              vim.cmd('lua require("languageservers").refresh()')
               vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<return>')
             end
 
