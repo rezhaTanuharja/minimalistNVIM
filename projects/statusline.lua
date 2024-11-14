@@ -171,7 +171,7 @@ M.setup = function(opts)
   end
 
 
-  vim.opt['laststatus'] = 3
+  vim.opt['laststatus'] = 0
   vim.cmd('set statusline=%!v:lua.Status_line()')
 
   if opts.single_cursorline then

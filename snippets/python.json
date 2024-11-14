@@ -26,7 +26,7 @@
 
   "Main function definition": {
     "prefix": "main",
-    "body": "def main():\n\t${1:pass}\n\t$0\n\nif __name__ == '__main__':\n\tmain()",
+    "body": "def main():\n\t\n\t${1:pass}$0\n\n\nif __name__ == '__main__':\n\t\n\tmain()",
     "description": "Create a common Python script structure"
   }
 
