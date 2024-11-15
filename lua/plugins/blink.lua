@@ -120,7 +120,7 @@ return {
           transform_items = nil,
           should_show_items = true,
           max_items = nil,
-          min_keyword_length = 0,
+          min_keyword_length = 2,
           fallback_for = {},
           score_offset = 0,
           override = nil,
@@ -131,6 +131,7 @@ return {
 
           name = 'Path',
           module = 'blink.cmp.sources.path',
+          min_keyword_length = 2,
           score_offset = 0,
 
           opts = {
@@ -146,6 +147,7 @@ return {
 
           name = 'Snippets',
           module = 'blink.cmp.sources.snippets',
+          min_keyword_length = 2,
           score_offset = 3,
 
           opts = {
@@ -162,6 +164,7 @@ return {
 
           name = 'Buffer',
           module = 'blink.cmp.sources.buffer',
+          min_keyword_length = 5,
           fallback_for = { 'lsp' },
 
         },
