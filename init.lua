@@ -15,6 +15,20 @@ local projects_directory = vim.fn.stdpath('config') .. '/projects/'
 package.path = package.path .. ';' .. projects_directory .. '?.lua'
 
 
+-- list of all unnecessary providers
+
+local disabled_providers = {
+  'node',
+  'perl',
+  'python3',
+  'ruby',
+}
+
+for _, provider in pairs(disabled_providers) do
+  vim.g['loaded_' .. provider .. '_provider'] = 0
+end
+
+
 -- list of all config files
 
 local config_files = {

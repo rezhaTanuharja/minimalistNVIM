@@ -2,6 +2,8 @@ return {
 
   dir = vim.fn.stdpath('config') .. '/projects/prompt.lua',
 
+  event = 'UIEnter',
+
   config = function()
 
     local success, prompt = pcall(require, 'prompt')

@@ -49,6 +49,11 @@ lazy.setup {
 
   lockfile = nil,
 
+  rocks = {
+    enabled = false,
+    hererocks = false,
+  },
+
   ui = {
     border = 'single',
     icons = {
