@@ -40,19 +40,30 @@ return {
       'max-perf',
       fzf_colors = true,
 
-      winopts ={
-        fullscreen = false,
-        default = 'bat',
-      },
-
       files = {
         previewer = false,
       },
 
+      grep = {
+        previewer = 'builtin'
+      },
+
+      winopts = {
+        border = 'single',
+        backdrop = 100,
+
+        preview = {
+          title = false,
+          scrollbar = false,
+          delay = 50,
+        },
+      },
+
       previewers = {
-        bat = {
-          cmd = 'bat',
-          args = '--color=always --theme=Nord --style=numbers,changes',
+        builtin = {
+          syntax = true,
+          syntaxt_limit_l = 1000,
+          treesitter = { enable = true, disable = {} }
         },
       },
 
@@ -63,6 +74,8 @@ return {
 
     vim.api.nvim_set_hl(0, 'FzfLuaHeaderBind', { fg = '#dddddd', bold = true } )
     vim.api.nvim_set_hl(0, 'FzfLuaHeaderText', { fg = '#cccccc', bold = false } )
+    vim.api.nvim_set_hl(0, 'FzfLuaPathColNr', { fg = '#aaaaaa', bold = true } )
+    vim.api.nvim_set_hl(0, 'FzfLuaPathLineNr', { fg = '#aaaaaa', bold = true } )
 
   end
 }
