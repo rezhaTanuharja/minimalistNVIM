@@ -171,7 +171,24 @@ M.setup = function(opts)
   end
 
 
+  -- default without statusline but can be toggled with <leader>s
+
   vim.opt['laststatus'] = 0
+
+  vim.keymap.set( 'n', '<leader>s',
+
+    function()
+
+      if vim.o.laststatus == 0 then
+        vim.cmd('set laststatus=3')
+      else
+        vim.cmd('set laststatus=0')
+      end
+
+    end
+
+  )
+
   vim.cmd('set statusline=%!v:lua.Status_line()')
 
   if opts.single_cursorline then
