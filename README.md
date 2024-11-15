@@ -111,7 +111,7 @@
     </h2>
     <p>
     While we do not think startup time matters, some people apparently do care.
-    Last time we check, our startup time is ~9-11 ms, as shown below by <a href="https://github.com/folke/lazy.nvim.git">Lazy</a>'s profile.
+    Last time we check, our startup time is ~7-15 ms, as shown below by <a href="https://github.com/folke/lazy.nvim.git">Lazy</a>'s profile.
     </p>
     <div align="center">
         <img src="assets/images/startup.jpeg" alt="Preview" width="600"/>
