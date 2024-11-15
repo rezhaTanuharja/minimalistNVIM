@@ -99,9 +99,13 @@ lazy.setup {
     rtp = {
       reset = true,
       disabled_plugins = {
+        'editorconfig',
         'gzip',
+        'man',
         'matchit',
         'netrwPlugin',
+        'rplugin',
+        'spellfile',
         'tarPlugin',
         'tohtml',
         'tutor',
