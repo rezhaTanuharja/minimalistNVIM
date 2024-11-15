@@ -179,7 +179,7 @@ function M.setup(opts)
           vim.lsp.start({
             name = 'pyright',
             cmd = {'pyright-langserver', '--stdio'},
-            root_dir = vim.fs.root(args.buf, {'pyproject.toml', 'pyrightconfig.json'}),
+            root_dir = vim.fs.root(args.buf, {'pyproject.toml', 'pyrightconfig.json'}) or vim.fn.fnamemodify(args.buf, ':p:h'),
             settings = {
               python = {
                 analysis = {
