@@ -52,7 +52,7 @@ return {
       previewers = {
         bat = {
           cmd = 'bat',
-          args = '--color=never --style=numbers,changes',
+          args = '--color=always --theme=Nord --style=numbers,changes',
         },
       },
 

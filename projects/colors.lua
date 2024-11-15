@@ -24,7 +24,8 @@ M.setup = function(opts)
       ['String']        = { fg = '#bbbbbb' },
       ['Function']      = { fg = '#bbbbbb' },
       ['Identifier']    = { fg = '#dddddd', bold = true },
-      ['Special']       = { fg = '#bbbbbb' },
+      ['Statement']     = { fg = '#eeeeee', bold = true },
+      ['Special']       = { fg = '#bbbbbb', bold = true },
       ['Question']      = { fg = '#666666' },
       ['Directory']     = { fg = '#777777' },
 
