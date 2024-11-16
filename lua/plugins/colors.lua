@@ -6,7 +6,7 @@ return {
 
   config = function()
     require('colors').setup {
-      flavour = 'pistachio',
+      flavour = 'grayscale',
     }
   end
 
