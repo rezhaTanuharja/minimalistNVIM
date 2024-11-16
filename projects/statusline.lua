@@ -209,7 +209,7 @@ M.setup = function(opts)
 
     group_styles = {
 
-      ['statusline_file']         = { fg = '#eeeeee', bg = '#444444', bold = true },
+      ['statusline_file']         = { fg = '#eeeeee', bg = '#333333', bold = true },
       ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
       ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
       ['statusline_contexts']  = { fg = '#cccccc', bg = 'None' },
@@ -219,7 +219,7 @@ M.setup = function(opts)
       ['statusline_separator_visual']   = { fg = '#555555', bg = 'None' },
 
       ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
-      ['statusline_mode']   = { fg = '#eeeeee', bg = '#444444', bold = true },
+      ['statusline_mode']   = { fg = '#eeeeee', bg = '#333333', bold = true },
 
     }
 
