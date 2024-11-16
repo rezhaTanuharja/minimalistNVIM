@@ -15,9 +15,13 @@ M.setup = function(opts)
 
   local group_styles = {
 
+    ['Normal']        = { fg = '#CCCCCC', bg = 'None' },
+    ['String']        = { fg = '#BBBBBB' },
     ['Comment']       = { fg = '#777777' },
     ['Identifier']    = { fg = '#DDDDDD', bold = true },
     ['Statement']     = { fg = '#EEEEEE', bold = true },
+    ['Function']      = { fg = '#BBBBBB' },
+    ['Special']       = { fg = '#BBBBBB', bold = true },
 
     ['Question']      = { fg = '#666666' },
     ['Directory']     = { fg = '#777777' },
@@ -39,10 +43,8 @@ M.setup = function(opts)
 
   }
 
-  if opts.flavour == 'color' then
+  if opts.accent == true then
 
-    group_styles['Normal']          = { fg = '#CCCCCC', bg = 'None' }
-    group_styles['String']          = { fg = '#BBBBBB' }
     group_styles['Type']            = { fg = '#7A7E82', bold = true }
     group_styles['Special']         = { fg = '#FCE8D7' }
     group_styles['Function']        = { fg = '#FCE8D7' }
@@ -52,13 +54,6 @@ M.setup = function(opts)
     group_styles['DiagnosticWarn']  = { fg = '#000000', bg = 'NvimLightYellow', bold = true }
     group_styles['DiagnosticError'] = { fg = '#000000', bg = 'NvimLightRed', bold = true }
     group_styles['DiagnosticInfo']  = { fg = '#000000', bg = '#D3EDE7', bold = true }
-
-  else
-
-    group_styles['Normal']          = { fg = '#CCCCCC', bg = 'None' }
-    group_styles['String']          = { fg = '#BBBBBB' }
-    group_styles['Function']        = { fg = '#BBBBBB' }
-    group_styles['Special']         = { fg = '#BBBBBB', bold = true }
 
   end
 

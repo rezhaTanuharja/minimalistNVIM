@@ -6,7 +6,7 @@ return {
 
   config = function()
     require('colors').setup {
-      flavour = 'color',
+      accent = true,
     }
   end
 
