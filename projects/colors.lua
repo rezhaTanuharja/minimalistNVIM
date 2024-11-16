@@ -39,26 +39,25 @@ M.setup = function(opts)
 
   }
 
-  if opts.flavour == 'pistachio' then
+  if opts.flavour == 'color' then
 
-    group_styles['Normal']        = { fg = '#CCCCCC', bg = '#000000' }
-    group_styles['String']        = { fg = '#909689' }
-    group_styles['Function']      = { fg = '#7A7E82' }
-    group_styles['Special']       = { fg = '#7A7E82' }
+    group_styles['Normal']          = { fg = '#CCCCCC', bg = 'None' }
+    group_styles['String']          = { fg = '#849994' }
+    group_styles['Special']         = { fg = '#7A7E82', bold = true }
+    group_styles['Function']        = { fg = '#FCE8D7' }
 
-    group_styles['Constant']      = { fg = '#7A7E82' }
-    group_styles['Type']          = { fg = '#7A7E82' }
-    group_styles['PreProc']       = { fg = '#E3D8C8' }
+    group_styles['@variable']       = { fg = '#B9B9B9' }
 
-    group_styles['@spell']        = { fg = '#777777' }
-    group_styles['@variable']     = { fg = '#A9A9A4' }
+    group_styles['DiagnosticWarn']  = { fg = '#000000', bg = 'NvimLightYellow', bold = true }
+    group_styles['DiagnosticError'] = { fg = '#000000', bg = 'NvimLightRed', bold = true }
+    group_styles['DiagnosticInfo']  = { fg = '#000000', bg = '#D3EDE7', bold = true }
 
   else
 
-    group_styles['Normal']        = { fg = '#CCCCCC', bg = 'None' }
-    group_styles['String']        = { fg = '#BBBBBB' }
-    group_styles['Function']      = { fg = '#BBBBBB' }
-    group_styles['Special']       = { fg = '#BBBBBB', bold = true }
+    group_styles['Normal']          = { fg = '#CCCCCC', bg = 'None' }
+    group_styles['String']          = { fg = '#BBBBBB' }
+    group_styles['Function']        = { fg = '#BBBBBB' }
+    group_styles['Special']         = { fg = '#BBBBBB', bold = true }
 
   end
 
