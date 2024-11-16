@@ -42,7 +42,7 @@ M.setup = function(opts)
   if opts.flavour == 'color' then
 
     group_styles['Normal']          = { fg = '#CCCCCC', bg = 'None' }
-    group_styles['String']          = { fg = '#B5C7C3' }
+    group_styles['String']          = { fg = '#BBBBBB' }
     group_styles['Type']            = { fg = '#7A7E82', bold = true }
     group_styles['Special']         = { fg = '#FCE8D7' }
     group_styles['Function']        = { fg = '#FCE8D7' }
