@@ -49,7 +49,7 @@ M.setup = function(opts)
 
   if opts.accent == true then
 
-    group_styles['Type']            = { fg = '#7A7E82', bold = true }
+    group_styles['Type']            = { fg = '#9A9EA2', bold = true }
     group_styles['Special']         = { fg = '#FCE8D7' }
     group_styles['Function']        = { fg = '#FCE8D7' }
     group_styles['String']          = { fg = '#E8F1EB' }
