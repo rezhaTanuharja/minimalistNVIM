@@ -48,6 +48,10 @@ return {
         previewer = 'builtin'
       },
 
+      buffers = {
+        previewer = 'builtin',
+      },
+
       winopts = {
         border = 'single',
         backdrop = 100,
@@ -71,6 +75,7 @@ return {
 
     vim.keymap.set('n', '<leader>f', fzf.files, { noremap = true, silent = true })
     vim.keymap.set('n', '<leader>g', fzf.live_grep, { noremap = true, silent = true })
+    vim.keymap.set('n', '<leader>y', fzf.buffers, { noremap = true, silent = true })
 
     vim.api.nvim_set_hl(0, 'FzfLuaHeaderBind', { fg = '#dddddd', bold = true } )
     vim.api.nvim_set_hl(0, 'FzfLuaHeaderText', { fg = '#cccccc', bold = false } )
