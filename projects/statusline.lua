@@ -107,6 +107,7 @@ M.contexts = function()
 
       line = line:gsub('class%s*', '')
       line = line:gsub('def%s*', '')
+      line = line:gsub(':', '')
 
       return line:gsub('%s*[%(%{%[].*[%]%}%)]*%s*$', '')
 
