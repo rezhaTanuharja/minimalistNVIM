@@ -37,7 +37,7 @@ return {
     },
 
     accept = { auto_brackets = { enabled = false } },
-    trigger = { signature_help = { enabled = false } },
+    trigger = { signature_help = { enabled = true } },
 
     windows = {
 
@@ -77,7 +77,6 @@ return {
         max_width = 100,
         max_height = 10,
         border = 'single',
-        winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,Search:None,Pmenu:Normal',
         direction_priority = { 's', 'n' },
       },
 

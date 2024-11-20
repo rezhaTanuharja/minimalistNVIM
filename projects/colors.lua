@@ -16,6 +16,7 @@ M.setup = function(opts)
   local group_styles = {
 
     ['Normal']        = { fg = '#CCCCCC', bg = 'None' },
+    ['NormalFloat']   = { fg = '#CCCCCC', bg = 'None' },
     ['String']        = { fg = '#BBBBBB' },
     ['Comment']       = { fg = '#777777' },
     ['Identifier']    = { fg = '#DDDDDD', bold = true },
@@ -30,7 +31,6 @@ M.setup = function(opts)
     ['MoreMsg']       = { fg = '#EEEEEE', bg = '#444444' },
     ['QuickFixLine']  = { fg = '#EEEEEE', bg = '#444444' },
     ['StatusLine']    = { fg = '#888888', bg = '#222222' },
-    ['NormalFloat']   = { bg = 'None' },
 
     ['Folded']        = { fg = '#444444' },
     ['MatchParen']    = { fg = '#FFFFFF', bold = true },
@@ -45,6 +45,7 @@ M.setup = function(opts)
     ['@comment.error']    = { fg = '#000000', bg = 'NvimLightRed', bold = true },
     ['@comment.note']     = { fg = '#000000', bg = '#D3EDE7', bold = true },
 
+    ['LspSignatureActiveParameter'] = { bg = 'None' },
   }
 
   if opts.accent == true then

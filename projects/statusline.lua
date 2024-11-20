@@ -173,7 +173,7 @@ M.setup = function(opts)
 
   -- default with statusline but can be toggled with <leader>s
 
-  vim.opt['laststatus'] = 0
+  vim.opt['laststatus'] = 3
 
   vim.keymap.set( 'n', '<leader>s',
 
