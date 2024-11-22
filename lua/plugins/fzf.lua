@@ -45,9 +45,7 @@ return {
         previewer = false,
 
         fd_opts = [[
-          --color=never --type f --exclude .git
-          --exclude .conda_env
-          --exec 'grep -Iq . {} \; -print'
+          --color=never --hidden --type f --exclude .git --exclude *env --exclude *cache* --exclude *cache
         ]]
 
       },

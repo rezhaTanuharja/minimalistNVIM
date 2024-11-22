@@ -105,6 +105,7 @@ return {
       -- do not show hidden files
       filters = {
         dotfiles = true,
+        custom = { '__pycache__' },
       },
 
     }
