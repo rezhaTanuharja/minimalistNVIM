@@ -45,7 +45,7 @@ return {
         previewer = false,
 
         fd_opts = [[
-          --color=never --hidden --type f --exclude .git --exclude *env --exclude *cache* --exclude *cache
+          --color=never --type f --exclude .git --exclude *env --exclude *cache*
         ]]
 
       },
