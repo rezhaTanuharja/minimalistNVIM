@@ -41,7 +41,15 @@ return {
       fzf_colors = true,
 
       files = {
+
         previewer = false,
+
+        fd_opts = [[
+          --color=never --type f --exclude .git
+          --exclude .conda_env
+          --exec 'grep -Iq . {} \; -print'
+        ]]
+
       },
 
       grep = {
