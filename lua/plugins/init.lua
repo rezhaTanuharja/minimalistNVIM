@@ -133,4 +133,6 @@ lazy.setup {
     { import = location .. 'inteligence' },
     { import = location .. 'prompt' },
   },
+
+  install = { colorscheme = { 'default' } },
 }
