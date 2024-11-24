@@ -28,10 +28,12 @@ function M.refresh()
 end
 
 
--- similar to goto references but search any words in the root directory
+-- similar to goto definitions but search any words in the root directory
 function M.deep_search()
 
-  local success, active_clients = pcall(vim.lsp.get_clients)
+  local buf_number = vim.api.nvim_get_current_buf()
+
+  local success, active_clients = pcall(vim.lsp.get_clients, { bufnr = buf_number })
   if not success then
     print('There is no active client')
     return
