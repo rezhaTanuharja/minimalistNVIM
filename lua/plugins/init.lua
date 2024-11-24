@@ -132,6 +132,7 @@ lazy.setup {
     { import = location .. 'statusline' },
     { import = location .. 'inteligence' },
     { import = location .. 'prompt' },
+    { import = location .. 'tests' },
   },
 
   install = { colorscheme = { 'default' } },
