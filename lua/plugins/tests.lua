@@ -13,8 +13,8 @@ return {
     end
 
     tests.setup {
-      python = true,
       trigger = '<leader>t',
+      python = true,
     }
 
   end
