@@ -38,6 +38,8 @@ end
 
 function M.run_pytest()
 
+  vim.cmd('cclose')
+
   local buf_number = vim.api.nvim_get_current_buf()
 
   local success, active_clients = pcall(vim.lsp.get_clients, { bufnr = buf_number })
