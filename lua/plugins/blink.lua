@@ -37,7 +37,7 @@ return {
     },
 
     accept = { auto_brackets = { enabled = false } },
-    trigger = { signature_help = { enabled = true } },
+    trigger = { signature_help = { enabled = false } },
 
     windows = {
 
