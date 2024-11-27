@@ -17,9 +17,7 @@ function M.setup(opts)
           vim.bo[args.buf].errorformat = '%f:%l: %m'
 
           vim.keymap.set(
-            'n', opts.trigger,
-            '<cmd>cclose<return><cmd>make | copen<return>',
-            { buffer = args.buf }
+            'n', opts.trigger, '<cmd>make<return>', { buffer = args.buf }
           )
 
         end,
