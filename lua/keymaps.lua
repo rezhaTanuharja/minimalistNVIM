@@ -46,6 +46,9 @@ local mode_keymaps = {
 
     ['<S-m>'] = { action = '<cmd>nohlsearch<return>', desc = 'remove highlight from search results' },
 
+    ['<leader>j'] = { action = '<cmd>copen<return>', desc = 'open the quickfix list' },
+    ['<leader>J'] = { action = '<cmd>cclose<return>', desc = 'close the quickfix list' },
+
     ['<leader>qj'] = {
       action = function()
         local success = pcall(vim.cmd, 'cnext')
