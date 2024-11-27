@@ -29,7 +29,7 @@ end
 
 
 -- similar to goto definitions but search any words in the root directory
-function M.deep_search(formatter)
+function M.deep_search(formatter, extension)
 
   local buf_number = vim.api.nvim_get_current_buf()
 
@@ -42,7 +42,7 @@ function M.deep_search(formatter)
   local root_dir = active_clients[1].workspace_folders[1].name
   local search_term = formatter(vim.fn.expand('<cword>'))
 
-  vim.cmd('vimgrep /' .. search_term .. '/ ' .. root_dir .. '/**' )
+  vim.cmd('vimgrep /' .. search_term .. '/ ' .. root_dir .. '/**/*.' .. extension )
   vim.cmd('copen')
 
 end
@@ -198,7 +198,8 @@ function M.setup(opts)
               M.deep_search(
                 function(text)
                   return '\\(def\\|class\\) ' .. text
-                end
+                end,
+                'py'
               )
             end,
             { buffer = args.buf }
