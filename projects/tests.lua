@@ -7,22 +7,23 @@ function M.setup(opts)
 
   if opts.python then
 
-    vim.api.nvim_create_autocmd(
-      'FileType', {
-        pattern = 'python',
-        group = 'tests',
-        callback = function(args)
+    vim.api.nvim_create_autocmd( 'FileType', {
 
-          vim.bo[args.buf].makeprg = 'pytest \\| grep "Error$"'
-          vim.bo[args.buf].errorformat = '%f:%l: %m'
+      pattern = 'python',
+      group = 'tests',
 
-          vim.keymap.set(
-            'n', opts.trigger, '<cmd>make<return>', { buffer = args.buf }
-          )
+      callback = function(args)
 
-        end,
-      }
-    )
+        vim.bo[args.buf].makeprg = opts.python.makeprg
+        vim.bo[args.buf].errorformat = opts.python.errorformat
+
+        vim.keymap.set(
+          'n', opts.trigger, '<cmd>make<return>', { buffer = args.buf }
+        )
+
+      end,
+
+    })
 
   end
 
