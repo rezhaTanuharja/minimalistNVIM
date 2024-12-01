@@ -132,19 +132,7 @@ end
 
 M.separator = function()
 
-  -- the highlight group changes based on current mode
-
   local highlight_group = 'statusline_separator'
-  -- local mode = vim.fn.mode()
-  --
-  -- if mode == 'i' then
-  --   return '%#' .. highlight_group .. '_insert#%='
-  -- end
-  --
-  -- if mode == 'v' or mode == 'V' or mode == '' then
-  --   return '%#' .. highlight_group .. '_visual#%='
-  -- end
-
   return '%#' .. highlight_group .. '#%='
 
 end
@@ -213,11 +201,9 @@ M.setup = function(opts)
       ['statusline_file']         = { fg = '#eeeeee', bg = '#333333', bold = true },
       ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
       ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
-      ['statusline_contexts']  = { fg = '#cccccc', bg = 'None' },
+      ['statusline_contexts']     = { fg = '#cccccc', bg = 'None' },
 
-      ['statusline_separator']          = { fg = '#333333', bg = 'None' },
-      ['statusline_separator_insert']   = { fg = '#444444', bg = 'None' },
-      ['statusline_separator_visual']   = { fg = '#555555', bg = 'None' },
+      ['statusline_separator']    = { fg = '#333333', bg = 'None' },
 
       ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
       ['statusline_mode']   = { fg = '#eeeeee', bg = '#333333', bold = true },
