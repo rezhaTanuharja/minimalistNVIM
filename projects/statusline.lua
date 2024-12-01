@@ -142,23 +142,7 @@ M.setup = function(opts)
 
   -- a function to call and place the statusline components
 
-  Status_line = function()
-
-    return table.concat({
-
-      M.file_name(),
-      M.diagnostics(),
-      M.contexts(),
-
-      M.separator(),
-
-      M.git_branch(),
-      M.current_mode(),
-
-    })
-
-  end
-
+  Status_line = opts.display
 
   -- default with statusline but can be toggled with <leader>s
 
@@ -192,25 +176,19 @@ M.setup = function(opts)
 
   -- set colors for each statusline components
 
-  local group_styles = {}
+  local group_styles = {
 
-  if opts.flavour == 'grayscale'then
+    ['statusline_file']         = { fg = '#eeeeee', bg = '#333333', bold = true },
+    ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
+    ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
+    ['statusline_contexts']     = { fg = '#cccccc', bg = 'None' },
 
-    group_styles = {
+    ['statusline_separator']    = { fg = '#333333', bg = 'None' },
 
-      ['statusline_file']         = { fg = '#eeeeee', bg = '#333333', bold = true },
-      ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
-      ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
-      ['statusline_contexts']     = { fg = '#cccccc', bg = 'None' },
+    ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
+    ['statusline_mode']   = { fg = '#eeeeee', bg = '#333333', bold = true },
 
-      ['statusline_separator']    = { fg = '#333333', bg = 'None' },
-
-      ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
-      ['statusline_mode']   = { fg = '#eeeeee', bg = '#333333', bold = true },
-
-    }
-
-  end
+  }
 
   for group, style in pairs(group_styles) do
     vim.api.nvim_set_hl(0, group, style)
