@@ -16,6 +16,7 @@ opts.language_config = {
 
   python = {
 
+    executable = 'pytest',
     makeprg = 'pytest \\| grep "Error$"',
     errorformat = '%f:%l: %m',
 

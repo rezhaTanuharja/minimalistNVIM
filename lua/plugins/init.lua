@@ -132,6 +132,7 @@ lazy.setup {
     { import = location .. 'prompt' },
     { import = location .. 'languageservers' },
     { import = location .. 'tests' },
+    { import = location .. 'formatters' },
   },
 
   install = { colorscheme = { 'default' } },

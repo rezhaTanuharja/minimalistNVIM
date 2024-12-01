@@ -118,39 +118,43 @@ function M.setup(opts)
 
   for language, config in pairs(opts.language_config) do
 
-    vim.api.nvim_create_autocmd('FileType', {
+    if vim.fn.executable(config.executable) then
 
-      pattern = language,
-      group = 'LSP',
+      vim.api.nvim_create_autocmd('FileType', {
 
-      callback = function(args)
+        pattern = language,
+        group = 'LSP',
 
-        if vim.lsp.buf_is_attached(args.buf) then
-          return
-        end
+        callback = function(args)
 
-        vim.lsp.start({
-          cmd = config.cmd,
-          root_dir = config.root_dir(args.buf) or M.dir_fallback(args.buf),
-          settings = config.settings,
-        })
+          if vim.lsp.buf_is_attached(args.buf) then
+            return
+          end
 
-        vim.keymap.set('n',
-          opts.keymaps.deep_search,
-          function()
-            M.deep_search(
-              config.deep_search.formatter,
-              config.deep_search.extension
-            )
-          end,
-          {
-            buffer = args.buf
-          }
-        )
+          vim.lsp.start({
+            cmd = config.cmd,
+            root_dir = config.root_dir(args.buf) or M.dir_fallback(args.buf),
+            settings = config.settings,
+          })
 
-      end,
+          vim.keymap.set('n',
+            opts.keymaps.deep_search,
+            function()
+              M.deep_search(
+                config.deep_search.formatter,
+                config.deep_search.extension
+              )
+            end,
+            {
+              buffer = args.buf
+            }
+          )
 
-    })
+        end,
+
+      })
+
+    end
 
   end
 

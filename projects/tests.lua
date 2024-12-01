@@ -18,21 +18,25 @@ function M.setup(opts)
 
   for language, config in pairs(opts.language_config) do
 
-    vim.api.nvim_create_autocmd('FileType', {
+    if vim.fn.executable(config.executable) then
 
-      pattern = language,
-      group = 'tests',
+      vim.api.nvim_create_autocmd('FileType', {
 
-      callback = function(args)
+        pattern = language,
+        group = 'tests',
 
-        vim.bo[args.buf].makeprg = config.makeprg
-        vim.bo[args.buf].errorformat = config.errorformat
+        callback = function(args)
 
-        vim.keymap.set('n', '<leader>t', '<cmd>make<return>', { buffer = args.buf })
+          vim.bo[args.buf].makeprg = config.makeprg
+          vim.bo[args.buf].errorformat = config.errorformat
 
-      end,
+          vim.keymap.set('n', '<leader>t', '<cmd>make<return>', { buffer = args.buf })
 
-    })
+        end,
+
+      })
+
+    end
 
   end
 
