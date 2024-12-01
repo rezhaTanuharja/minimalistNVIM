@@ -38,7 +38,7 @@ function M.start_shell()
   vim.api.nvim_win_set_buf(0, buffer)
   vim.bo[buffer].buftype = 'prompt'
 
-  vim.keymap.set('n', 'gf', M.goto_file, {noremap = true, silent = true, buffer = buffer})
+  vim.keymap.set('n', 'gf', M.goto_file, { buffer = buffer })
 
   vim.fn.prompt_setcallback(buffer, text_entered)
   vim.fn.prompt_setprompt(buffer, 'Shell command: ')
