@@ -1,3 +1,29 @@
+---
+-- @file lua/plugins/tests.lua
+--
+-- @brief
+-- The file to set option for tests
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-12-01
+--
+
+
+local opts = {}
+
+
+opts.language_config = {
+
+  python = {
+
+    makeprg = 'pytest \\| grep "Error$"',
+    errorformat = '%f:%l: %m',
+
+  },
+
+}
+
+
 return {
 
   dir = vim.fn.stdpath('config') .. '/projects/tests.lua',
@@ -12,18 +38,7 @@ return {
       return
     end
 
-    tests.setup {
-
-      trigger = '<leader>t',
-
-      python = {
-
-        makeprg = 'pytest \\| grep "Error$"',
-        errorformat = '%f:%l: %m',
-
-      },
-
-    }
+    tests.setup(opts)
 
   end
 

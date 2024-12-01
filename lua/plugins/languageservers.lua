@@ -1,3 +1,14 @@
+---
+-- @file lua/plugins/languageservers.lua
+--
+-- @brief
+-- The file to set options for Neovim's builtin LSP capabilities
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-12-01
+--
+
+
 local opts = {}
 
 

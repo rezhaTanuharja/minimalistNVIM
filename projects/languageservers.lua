@@ -1,5 +1,5 @@
 ---
--- @file lua/languageservers.lua
+-- @file projects/languageservers.lua
 --
 -- @brief
 -- The file to set Neovim's builtin LSP capabilities

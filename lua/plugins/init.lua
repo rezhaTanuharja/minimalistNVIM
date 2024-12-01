@@ -129,8 +129,8 @@ lazy.setup {
     { import = location .. 'nvim-dap' },
 
     { import = location .. 'statusline' },
-    { import = location .. 'languageservers' },
     { import = location .. 'prompt' },
+    { import = location .. 'languageservers' },
     { import = location .. 'tests' },
   },
 
