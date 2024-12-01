@@ -34,6 +34,8 @@ end
 local config_files = {
   'options',
   'keymaps',
+  'colors',
+  'diagnostics',
   'plugins',
 }
 
