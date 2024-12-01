@@ -52,6 +52,9 @@ local options = {
   scrolloff = 99,             -- keep cursorline in the middle
   sidescrolloff = 6,          -- minimul number of columns to the left and right of cursor
 
+  linebreak = true,
+  whichwrap = 'bs<>[]hl',
+
   fillchars = {
     eob = ' ',                -- removes annoying tilde at the bottom of short files
     fold = '-',               -- replace dots with horizontal line to indicate folded sections

@@ -12,8 +12,15 @@
 local M = {}
 
 
+-- used if buffer root directory cannot be found
+function M.dir_fallback(buffer)
+  return vim.fn.fnamemodify(buffer, ':p:h')
+end
+
+
 -- refresh all buffer while preserving the current layout
 function M.refresh()
+
   local window_buffer_map = {}
   for _, window_id in pairs(vim.api.nvim_tabpage_list_wins(0)) do
     local buffer_id = vim.api.nvim_win_get_buf(window_id)
@@ -25,6 +32,7 @@ function M.refresh()
   for _, entry in pairs(window_buffer_map) do
     vim.api.nvim_win_set_buf(entry.window_id, entry.buffer_id)
   end
+
 end
 
 
@@ -48,45 +56,9 @@ function M.deep_search(formatter, extension)
 end
 
 
--- -- show a list of all configured servers in a quickfix list
-function M.list_servers()
-
-  local autocmd_list = vim.api.nvim_exec('autocmd LSP FileType', true)
-
-  local pattern = "%s*([A-Za-z]+)%s*<([^:]+):%s*(.+):(%d+)>"
-
-  local quickfix_list = {}
-
-  for line in autocmd_list:gmatch("[^\r\n]+") do
-
-    local file_type, event, file_path, line_number = line:match(pattern)
-
-    if file_type and event and file_path and line_number then
-
-      -- expand ~ to home directory
-      file_path = file_path:gsub("^~", vim.fn.expand("$HOME"))
-
-      table.insert(
-        quickfix_list, {
-          filename = file_path,
-          lnum = tonumber(line_number),
-          text = "Language server for " .. file_type,
-        }
-      )
-
-    end
-
-  end
-
-  vim.fn.setqflist(quickfix_list, "r")
-  vim.cmd("copen")
-
-end
-
-
 function M.setup(opts)
 
-  vim.api.nvim_create_augroup("LSP", { clear = true })
+  vim.api.nvim_create_augroup('LSP', { clear = true })
 
   -- add functionalities based on language server's capabilities
 
@@ -98,14 +70,32 @@ function M.setup(opts)
         local client = vim.lsp.get_client_by_id(args.data.client_id)
 
         -- assume that all LSs support definition
-        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<return>', {buffer = 0})
+        vim.keymap.set('n',
+          opts.keymaps.definition,
+          vim.lsp.buf.definition,
+          {
+            buffer = args.buf
+          }
+        )
 
         if client.supports_method('textDocument/references') then
-          vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<return>', {buffer = 0})
+          vim.keymap.set('n',
+            opts.keymaps.references,
+            vim.lsp.buf.references,
+            {
+              buffer = args.buf
+            }
+          )
         end
 
         if client.supports_method('textDocument/rename') then
-          vim.keymap.set('n', 'grn', '<cmd>lua vim.lsp.buf.rename()<return>', {buffer = 0})
+          vim.keymap.set('n',
+            opts.keymaps.rename,
+            vim.lsp.buf.rename,
+            {
+              buffer = args.buf
+            }
+          )
         end
 
       end,
@@ -115,120 +105,56 @@ function M.setup(opts)
 
   -- format floating window
 
-  vim.opt['linebreak'] = true
-  vim.opt['whichwrap'] = 'bs<>[]hl'
-
   vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover, {
-      title = ' Language Server ',
-      border = 'single',
-      wrap = true,
-      wrap_at = 80,
-      focus = false,
-    }
+    vim.lsp.handlers.hover, opts.hover
   )
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-    vim.lsp.handlers.signature_help, {
-      title = ' Language Server ',
-      border = 'single',
-      focusable = false,
-      wrap = true,
-      wrap_at = 80,
-    }
+    vim.lsp.handlers.signature_help, opts.signatureHelp
   )
 
 
   -- attach language servers to the right buffer
 
-  if opts.lua then
+  for language, config in pairs(opts.language_config) do
 
-    vim.api.nvim_create_autocmd(
-      'FileType', {
-        pattern = 'lua',
-        group = 'LSP',
-        callback = function(args)
-          vim.lsp.start({
-            name = 'lua-language-server',
-            cmd = {'lua-language-server'},
-            root_dir = vim.fs.root(args.buf, {'.git'}),
-            settings = {
-              Lua = {
-                rutnime = { version = 'LuaJIT' },
-                diagnostics = { globals = {'vim'} },
-              },
-            },
-          })
-        end,
-      }
-    )
+    vim.api.nvim_create_autocmd('FileType', {
 
-  end
+      pattern = language,
+      group = 'LSP',
 
-  if opts.Python then
+      callback = function(args)
 
-    vim.api.nvim_create_autocmd(
-      'FileType', {
-        pattern = 'python',
-        group = 'LSP',
-        callback = function(args)
+        if vim.lsp.buf_is_attached(args.buf) then
+          return
+        end
 
-          -- handle single file mode
-          if vim.lsp.buf_is_attached(args.buf) then
-            return
-          end
+        vim.lsp.start({
+          cmd = config.cmd,
+          root_dir = config.root_dir(args.buf) or M.dir_fallback(args.buf),
+          settings = config.settings,
+        })
 
-          vim.lsp.start({
-            name = 'pyright',
-            cmd = {'pyright-langserver', '--stdio'},
-            root_dir = vim.fs.root(args.buf, {'pyproject.toml', 'pyrightconfig.json'}) or vim.fn.fnamemodify(args.buf, ':p:h'),
-            settings = {
-              python = {
-                analysis = {
-                  typeCheckingMode = 'basic',
-                  autoSeachPaths = true,
-                }
-              },
-            },
-          })
+        vim.keymap.set('n',
+          opts.keymaps.deep_search,
+          function()
+            M.deep_search(
+              config.deep_search.formatter,
+              config.deep_search.extension
+            )
+          end,
+          {
+            buffer = args.buf
+          }
+        )
 
-          vim.keymap.set(
-            'n', 'gs',
-            function()
-              M.deep_search(
-                function(text)
-                  return '\\(def\\|class\\) ' .. text
-                end,
-                'py'
-              )
-            end,
-            { buffer = args.buf }
-          )
+      end,
 
-        end,
-      }
-    )
+    })
 
   end
 
-  if opts.cpp then
-
-    vim.api.nvim_create_autocmd(
-      'FileType', {
-        pattern = 'cpp',
-        group = 'LSP',
-        callback = function(args)
-          vim.lsp.start({
-            name = 'clangd',
-            cmd = {'clangd', '--background-index'},
-            root_dir = vim.fs.root(args.buf, {'compile_commands.json'}),
-            settings = {},
-          })
-        end,
-      }
-    )
-
-  end
+  vim.keymap.set('n', opts.keymaps.refresh, M.refresh)
 
 end
 

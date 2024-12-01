@@ -128,9 +128,8 @@ lazy.setup {
     { import = location .. 'nvim-tree' },
     { import = location .. 'nvim-dap' },
 
-    -- { import = location .. 'colors' },
     { import = location .. 'statusline' },
-    { import = location .. 'inteligence' },
+    { import = location .. 'languageservers' },
     { import = location .. 'prompt' },
     { import = location .. 'tests' },
   },
