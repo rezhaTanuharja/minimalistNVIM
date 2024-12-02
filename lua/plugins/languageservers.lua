@@ -48,6 +48,7 @@ opts.language_config = {
   python = {
 
     executable = 'pyright',
+    name = 'python',
     cmd = {'pyright-langserver', '--stdio'},
 
     root_dir = function(buffer)
@@ -79,6 +80,7 @@ opts.language_config = {
   lua = {
 
     executable = 'lua-language-server',
+    name = 'lua',
     cmd = {'lua-language-server'},
 
     root_dir = function(buffer)
@@ -108,6 +110,7 @@ opts.language_config = {
   cpp = {
 
     executable = 'clangd',
+    name = 'cpp',
     cmd = {'clangd', '--background-index'},
 
     root_dir = function(buffer)

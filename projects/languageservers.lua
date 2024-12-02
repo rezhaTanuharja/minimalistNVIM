@@ -132,6 +132,7 @@ function M.setup(opts)
           end
 
           vim.lsp.start({
+            name = config.name,
             cmd = config.cmd,
             root_dir = config.root_dir(args.buf) or M.dir_fallback(args.buf),
             settings = config.settings,
