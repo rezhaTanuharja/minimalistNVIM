@@ -70,6 +70,24 @@ return {
         end,
       },
 
+      {
+        type = 'python',
+        request = 'launch',
+        name = 'Launch a debugging session with arguments',
+        program = "${file}",
+        args = function()
+          local args_string = vim.fn.input('Arguments: ')
+          local utils = require("dap.utils")
+          if utils.splitstr and vim.fn.has("nvim-0.10") == 1 then
+            return utils.splitstr(args_string)
+          end
+          return vim.split(args_string, " +")
+        end,
+        pythonPath = function()
+          return 'python3'
+        end,
+      },
+
     }
 
     vim.fn.sign_define(
