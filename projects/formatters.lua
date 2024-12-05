@@ -27,7 +27,9 @@ function M.setup(opts)
 
         callback = function()
 
-          vim.cmd(config.cmd)
+          for _, action in pairs(config.actions) do
+            vim.cmd(action)
+          end
 
         end,
 

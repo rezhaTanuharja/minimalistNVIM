@@ -15,9 +15,12 @@ local opts = {}
 opts.language_config = {
 
   python = {
-    executable = 'black',
+    executable = 'ruff',
     pattern = '*.py',
-    cmd = 'silent! !black %',
+    actions = {
+      'silent! !ruff check --fix %',
+      'silent! !ruff format %',
+    },
   },
 
 }
