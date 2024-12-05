@@ -28,7 +28,10 @@ function M.start_shell()
     on_stdout = M.get_output,
     on_stderr = M.get_output,
     on_exit = M.job_exit,
+
   })
+
+  vim.fn.chansend(shell_job, { 'shopt -s globstar 2>/dev/null', '' })
 
   local function text_entered(text)
     vim.fn.chansend(shell_job, { text, '' })
