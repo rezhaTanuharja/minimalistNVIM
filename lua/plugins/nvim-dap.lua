@@ -15,6 +15,8 @@ return {
 
   ft = 'python',
 
+  cond = vim.fn.executable('debugpy') == 1,
+
   config = function()
 
     local dap = require('dap')
