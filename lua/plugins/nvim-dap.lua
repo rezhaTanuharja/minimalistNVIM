@@ -111,12 +111,12 @@ return {
     local bottbar = widgets.sidebar(widgets.frames, {height = 10}, 'belowright split')
     local repl = require('dap.repl')
 
-    vim.keymap.set('n', '<leader>dj', '<cmd>lua require("dap").continue()<return>')
-    vim.keymap.set('n', '<leader>dm', '<cmd>lua require("dap").step_over()<return>')
-    vim.keymap.set('n', '<leader>di', '<cmd>lua require("dap").step_into()<return>')
-    vim.keymap.set('n', '<leader>dk', '<cmd>lua require("dap").toggle_breakpoint()<return>')
-    vim.keymap.set('n', '<leader>dn', '<cmd>lua require("dap").clear_breakpoints()<return>')
-    vim.keymap.set('n', '<leader>dt', '<cmd>lua require("dap").terminate()<return>')
+    vim.keymap.set('n', '<leader>dj', dap.continue)
+    vim.keymap.set('n', '<leader>dm', dap.step_over)
+    vim.keymap.set('n', '<leader>di', dap.step_into)
+    vim.keymap.set('n', '<leader>dk', dap.toggle_breakpoint)
+    vim.keymap.set('n', '<leader>dn', dap.clear_breakpoints)
+    vim.keymap.set('n', '<leader>dt', dap.terminate)
 
     vim.keymap.set(
       'n', '<leader>da',
@@ -125,26 +125,9 @@ return {
       end
     )
 
-    vim.keymap.set(
-      'n', '<leader>ds',
-      function()
-        return sidebar.toggle()
-      end
-    )
-
-    vim.keymap.set(
-      'n', '<leader>du',
-      function()
-        return bottbar.toggle()
-      end
-    )
-
-    vim.keymap.set(
-      'n', '<leader>dh',
-      function()
-        return widgets.hover()
-      end
-    )
+    vim.keymap.set('n', '<leader>ds', sidebar.toggle)
+    vim.keymap.set('n', '<leader>du', bottbar.toggle)
+    vim.keymap.set('n', '<leader>dh', widgets.hover)
 
   end
 

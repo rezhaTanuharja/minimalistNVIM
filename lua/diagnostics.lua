@@ -40,9 +40,9 @@ vim.diagnostic.config {
 
 vim.opt['signcolumn'] = 'yes'
 
-vim.keymap.set('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<return>')
-vim.keymap.set('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<return>')
-vim.keymap.set('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<return>')
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
 
 -- removes underline
 vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { sp = 'None'} )

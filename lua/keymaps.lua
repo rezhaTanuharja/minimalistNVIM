@@ -22,19 +22,19 @@ local mode_keymaps = {
 
     ['x'] = { action = '"_x', desc = 'delete a character without storing it in the clipboard' },
 
-    ['<leader>qq'] = { action = '<cmd>quit<return>', desc = 'close the current window' },
-    ['<leader>w'] = { action = '<cmd>write<return>', desc = 'save changes in the current buffer' },
+    ['<leader>qq'] = { action = vim.cmd.quit, desc = 'close the current window' },
+    ['<leader>w'] = { action = vim.cmd.write, desc = 'save changes in the current buffer' },
 
     ['<C-h>'] = { action = '<C-w>h', desc = 'move focus to the pane on the left' },
     ['<C-j>'] = { action = '<C-w>j', desc = 'move focus to the pane below' },
     ['<C-k>'] = { action = '<C-w>k', desc = 'move focus to the pane above' },
     ['<C-l>'] = { action = '<C-w>l', desc = 'move focus to the pane on the right' },
 
-    ['<S-h>'] = { action = '<cmd>bprev<return>', desc = 'switch to the prev buffer' },
-    ['<S-l>'] = { action = '<cmd>bnext<return>', desc = 'switch to the next buffer' },
+    ['<S-h>'] = { action = vim.cmd.bprev, desc = 'switch to the prev buffer' },
+    ['<S-l>'] = { action = vim.cmd.bnext, desc = 'switch to the next buffer' },
 
-    ['<leader>v'] = { action = '<cmd>split<return>', desc = 'horizontal split' },
-    ['<leader>h'] = { action = '<cmd>vsplit<return>', desc = 'vertical split' },
+    ['<leader>v'] = { action = vim.cmd.new, desc = 'horizontal split' },
+    ['<leader>h'] = { action = vim.cmd.vnew, desc = 'vertical split' },
 
     ['<C-b>'] = { action = '<cmd>vertical resize -2<return>', desc = 'decrease rows in the current window' },
     ['<C-n>'] = { action = '<cmd>vertical resize +2<return>', desc = 'increase rows in the current window' },
@@ -44,10 +44,10 @@ local mode_keymaps = {
     ['<leader>a'] = { action = 'za', desc = 'fold the scope under cursor' },
     ['<leader>r'] = { action = 'zR', desc = 'unfold everything' },
 
-    ['<S-m>'] = { action = '<cmd>nohlsearch<return>', desc = 'remove highlight from search results' },
+    ['<S-m>'] = { action = vim.cmd.nohlsearch, desc = 'remove highlight from search results' },
 
-    ['<leader>j'] = { action = '<cmd>copen<return>', desc = 'open the quickfix list' },
-    ['<leader>J'] = { action = '<cmd>cclose<return>', desc = 'close the quickfix list' },
+    ['<leader>j'] = { action = vim.cmd.copen, desc = 'open the quickfix list' },
+    ['<leader>J'] = { action = vim.cmd.cclose, desc = 'close the quickfix list' },
 
     ['<leader>qj'] = {
       action = function()
