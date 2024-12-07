@@ -14,10 +14,11 @@ end
 
 
 function M.goto_file()
-  local path = vim.fn.getline('.')
-  if vim.fn.filereadable(path) == 1 then
+  local file_name = vim.fn.expand('<cword>')
+  local found_file = vim.fn.findfile(file_name, vim.o.path)
+  if found_file ~= '' then
     vim.cmd('Bdelete!')
-    vim.cmd('edit ' .. vim.fn.fnameescape(path))
+    vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
   end
 end
 
@@ -40,6 +41,9 @@ function M.start_shell()
   local buffer = vim.api.nvim_create_buf(true, true)
   vim.api.nvim_win_set_buf(0, buffer)
   vim.bo[buffer].buftype = 'prompt'
+
+  local is_keyword = vim.bo[buffer].iskeyword
+  vim.bo[buffer].iskeyword = is_keyword .. ',.,/,-'
 
   vim.keymap.set('n', 'gf', M.goto_file, { buffer = buffer })
 
