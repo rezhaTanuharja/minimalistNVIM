@@ -6,8 +6,10 @@ local group_styles = {
   ['Comment']       = { fg = '#777777' },
   ['Identifier']    = { fg = '#DDDDDD', bold = true },
   ['Statement']     = { fg = '#EEEEEE', bold = true },
-  ['Function']      = { fg = '#BBBBBB' },
+  ['Function']      = { fg = '#FFFFFF' },
   ['Special']       = { fg = '#BBBBBB', bold = true },
+  ['Constant']      = { fg = '#CCCCCC' },
+  ['@variable']     = { fg = '#CCCCCC' },
 
   ['Question']      = { fg = '#666666' },
   ['Directory']     = { fg = '#777777' },
