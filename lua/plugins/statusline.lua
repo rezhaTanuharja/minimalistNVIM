@@ -1,16 +1,12 @@
 return {
 
-  dir = vim.fn.stdpath('config') .. '/projects/statusline.lua',
+  'statusline', dev = true,
 
   event = 'UIEnter',
 
   config = function()
 
-    local success, statusline = pcall(require, 'statusline')
-    if not success then
-      vim.notify('Failed to load plugin: statusline')
-      return
-    end
+    local statusline = require('statusline')
 
     statusline.setup {
 
@@ -31,9 +27,10 @@ return {
 
         })
 
-      end,
+      end
 
     }
-  end
+
+  end,
 
 }

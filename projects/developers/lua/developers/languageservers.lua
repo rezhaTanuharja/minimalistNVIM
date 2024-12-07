@@ -1,22 +1,9 @@
----
--- @file projects/languageservers.lua
---
--- @brief
--- The file to set Neovim's builtin LSP capabilities
---
--- @author Rezha Adrian Tanuharja
--- @date 2024-10-12
---
-
-
 local M = {}
-
 
 -- used if buffer root directory cannot be found
 function M.dir_fallback(buffer)
   return vim.fn.fnamemodify(buffer, ':p:h')
 end
-
 
 -- refresh all buffer while preserving the current layout
 function M.refresh()
@@ -34,7 +21,6 @@ function M.refresh()
   end
 
 end
-
 
 -- similar to goto definitions but search any words in the root directory
 function M.deep_search(formatter, extension)
@@ -55,12 +41,7 @@ function M.deep_search(formatter, extension)
 
 end
 
-
 function M.setup(opts)
-
-  vim.api.nvim_create_augroup('LSP', { clear = true })
-
-  -- add functionalities based on language server's capabilities
 
   vim.api.nvim_create_autocmd(
     'LspAttach', {
@@ -113,53 +94,48 @@ function M.setup(opts)
     vim.lsp.handlers.signature_help, opts.signatureHelp
   )
 
+end
 
-  -- attach language servers to the right buffer
+function M.create_autocmd(opts)
 
-  for language, config in pairs(opts.language_config) do
+  if vim.fn.executable(opts.executable) then
 
-    if vim.fn.executable(config.executable) then
+    vim.api.nvim_create_autocmd('FileType', {
 
-      vim.api.nvim_create_autocmd('FileType', {
+      pattern = opts.name,
+      group = 'LSP',
 
-        pattern = language,
-        group = 'LSP',
+      callback = function(args)
 
-        callback = function(args)
+        if vim.lsp.buf_is_attached(args.buf) then
+          return
+        end
 
-          if vim.lsp.buf_is_attached(args.buf) then
-            return
-          end
+        vim.lsp.start({
+          name = opts.name,
+          cmd = opts.cmd,
+          root_dir = opts.root_dir(args.buf) or M.dir_fallback(args.buf),
+          settings = opts.settings,
+        })
 
-          vim.lsp.start({
-            name = config.name,
-            cmd = config.cmd,
-            root_dir = config.root_dir(args.buf) or M.dir_fallback(args.buf),
-            settings = config.settings,
-          })
+        vim.keymap.set('n',
+          opts.deep_search.keymap,
+          function()
+            M.deep_search(
+              opts.deep_search.formatter,
+              opts.deep_search.extension
+            )
+          end,
+          {
+            buffer = args.buf
+          }
+        )
 
-          vim.keymap.set('n',
-            opts.keymaps.deep_search,
-            function()
-              M.deep_search(
-                config.deep_search.formatter,
-                config.deep_search.extension
-              )
-            end,
-            {
-              buffer = args.buf
-            }
-          )
+      end,
 
-        end,
-
-      })
-
-    end
+    })
 
   end
-
-  vim.keymap.set('n', opts.keymaps.refresh, M.refresh)
 
 end
 

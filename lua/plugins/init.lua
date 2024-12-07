@@ -47,6 +47,11 @@ local location = 'plugins.'
 -- specify manually the plugins to load
 lazy.setup {
 
+  dev = {
+    path = '~/.config/nvim/projects',
+    fallback = false,
+  },
+
   lockfile = nil,
 
   rocks = {
@@ -128,11 +133,10 @@ lazy.setup {
     { import = location .. 'nvim-tree' },
     { import = location .. 'nvim-dap' },
 
+    { import = location .. 'developers' },
     { import = location .. 'statusline' },
     { import = location .. 'prompt' },
-    { import = location .. 'languageservers' },
-    { import = location .. 'tests' },
-    { import = location .. 'codefixers' },
+
   },
 
   install = { colorscheme = { 'default' } },

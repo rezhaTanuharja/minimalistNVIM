@@ -1,19 +1,22 @@
 return {
 
-  dir = vim.fn.stdpath('config') .. '/projects/prompt.lua',
+  'prompt', dev = true,
 
   event = 'UIEnter',
 
-  config = function()
+  opts = {
 
-    local success, prompt = pcall(require, 'prompt')
-    if not success then
-      vim.notify('Failed to load plugin: prompt')
-      return
-    end
+    shopt = {
+      'globstar',
+    },
 
-    vim.keymap.set('n', '<leader>pp', prompt.start_shell)
+    keymaps = {
 
-  end
+      start_shell = '<leader>pp',
+      goto_file = 'gf',
+
+    },
+
+  },
 
 }

@@ -15,37 +15,28 @@ return {
 
   event = 'InsertEnter',
 
-  config = function()
+  opts = {
 
-    local success, autopairs = pcall(require, 'nvim-autopairs')
-    if not success then
-      vim.notify('Failed to load plugin: autopairs')
-      return
-    end
+    check_ts = true,
 
-    autopairs.setup {
+    ts_config = {
+      lua = {'string', 'source'},
+    },
 
-      check_ts = true,
-      ts_config = {
-        lua = {'string', 'source'},
-      },
+    disable_filetype = {'TelescopePrompt', 'spectre_panel'},
 
-      disable_filetype = {'TelescopePrompt', 'spectre_panel'},
+    fast_wrap = {
+      map = '<C-k>',
+      chars = {'{', '[', '(', '"', "'"},
+      pattern = [=[[%'%"%>%]%)%}%,]]=],
+      offset = 0,
+      end_key = 'k',
+      keys = 'qwertyuiopzxcvbnmasdfghjkl',
+      check_comma = true,
+      highlight = 'PmenuSel',
+      highlight_grey = 'LineNr',
+    },
 
-      fast_wrap = {
-        map = '<C-k>',
-        chars = {'{', '[', '(', '"', "'"},
-        pattern = [=[[%'%"%>%]%)%}%,]]=],
-        offset = 0,
-        end_key = '$',
-        keys = 'qwertyuiopzxcvbnmasdfghjkl',
-        check_comma = true,
-        highlight = 'PmenuSel',
-        highlight_grey = 'LineNr',
-      },
-
-    }
-
-  end,
+  },
 
 }
