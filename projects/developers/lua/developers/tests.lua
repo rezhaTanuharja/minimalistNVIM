@@ -2,7 +2,7 @@ local M = {}
 
 function M.create_autocmd(opts)
 
-  if vim.fn.executable(opts.executable) then
+  if vim.fn.executable(opts.executable) == 1 then
 
     vim.api.nvim_create_autocmd('FileType', {
 
