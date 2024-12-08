@@ -11,13 +11,15 @@ local group_styles = {
   ['Constant']      = { fg = '#CCCCCC' },
   ['@variable']     = { fg = '#CCCCCC' },
 
+  ['Pmenu'] = { fg = '#EEEEEE', bg = '#151515'  },
+
   ['Question']      = { fg = '#666666' },
   ['Directory']     = { fg = '#777777' },
 
   ['MsgSeparator']  = { fg = '#EEEEEE', bg = '#444444' },
   ['MoreMsg']       = { fg = '#EEEEEE', bg = '#444444' },
-  ['QuickFixLine']  = { fg = '#EEEEEE', bg = '#444444' },
-  ['StatusLine']    = { fg = '#888888', bg = '#222222' },
+
+  ['StatusLine']    = { fg = '#EEEEEE', bg = '#333333' },
 
   ['Folded']        = { fg = '#444444' },
   ['MatchParen']    = { fg = '#FFFFFF', bold = true },
@@ -33,6 +35,7 @@ local group_styles = {
   ['@comment.note']     = { fg = '#000000', bg = '#D3EDE7', bold = true },
 
   ['LspSignatureActiveParameter'] = { bg = 'None' },
+
 }
 
 for group, style in pairs(group_styles) do
