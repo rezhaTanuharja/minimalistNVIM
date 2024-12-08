@@ -59,6 +59,9 @@ local options = {
     stl = '-',
   },
 
+  pumheight = 8,              -- specify the max height of pop-up menu
+  pumwidth = 20,              -- specify the min width of pop-up menu
+
   -- text search
 
   ignorecase = true,          -- make search case-insensitive
