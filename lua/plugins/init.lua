@@ -122,7 +122,7 @@ lazy.setup {
 
   spec = {
 
-    -- { import = location .. 'blink' },
+    { import = location .. 'blink' },
     { import = location .. 'fzf' },
     { import = location .. 'telescope' },
     { import = location .. 'gitsigns' },

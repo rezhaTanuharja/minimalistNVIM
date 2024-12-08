@@ -15,7 +15,7 @@ return {
 
   version = 'v0.5.0',
 
-  ft = { 'lua', 'python' },
+  keys = '<leader>b',
 
   opts = {
 
