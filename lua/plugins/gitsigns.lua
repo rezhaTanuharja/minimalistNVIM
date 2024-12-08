@@ -1,5 +1,6 @@
 ---
 -- @file lua/plugins/gitsigns.lua
+--
 -- @brief
 -- The configuration file for the plugin gitsigns
 --

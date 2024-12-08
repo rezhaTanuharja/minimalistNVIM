@@ -15,8 +15,8 @@ local options = {
 
   termguicolors = true,
   mouse = '',                 -- disable mouse in neovim
-  clipboard = 'unnamedplus',  -- neovim uses the system clipboard by default
-  cursorline = true,
+  clipboard = 'unnamedplus',  -- makes neovim use the system clipboard
+  cursorline = true,          -- makes it easier to follow the cursor
   showtabline = 0,            -- hide tabline
   inccommand = 'split',       -- when performing substitution, show preview at the bottom
   timeoutlen = 300,           -- time for user to finish a key combination
@@ -26,7 +26,7 @@ local options = {
   splitright = true,          -- when splitting vertically, new window goes to the right
   showmode = false,           -- mode will be shown by statusline
   cmdheight = 0,              -- only need the commandline when typing command
-  path = { '.', '**' },
+  path = { '.', '**' },       -- functions like find will search cwd and subdirs
 
   -- tabs and indentations
 
@@ -52,9 +52,6 @@ local options = {
   smartindent = true,         -- automatic indentations
   scrolloff = 99,             -- keep cursorline in the middle
   sidescrolloff = 6,          -- minimul number of columns to the left and right of cursor
-
-  linebreak = true,
-  whichwrap = 'bs<>[]hl',
 
   fillchars = {
     eob = ' ',                -- removes annoying tilde at the bottom of short files

@@ -1,5 +1,7 @@
 ---
 -- @file lua/plugins/init.lua
+--
+-- @brief
 -- The initialization file to load external plugins
 --
 -- @author Rezha Adrian Tanuharja
@@ -140,4 +142,5 @@ lazy.setup {
   },
 
   install = { colorscheme = { 'default' } },
+
 }

@@ -1,3 +1,14 @@
+---
+-- @file lua/plugins/developers.lua
+--
+-- @brief
+-- The configuration file for the plugin developers
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-12-07
+--
+
+
 local opts = {
 
   keymaps = {},

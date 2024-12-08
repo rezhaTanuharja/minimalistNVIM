@@ -43,6 +43,7 @@ local mode_keymaps = {
 
     ['<leader>a'] = { action = 'za', desc = 'fold the scope under cursor' },
     ['<leader>r'] = { action = 'zR', desc = 'unfold everything' },
+    ['<leader>m'] = { action = 'zM', desc = 'fold everything' },
 
     ['<S-m>'] = { action = vim.cmd.nohlsearch, desc = 'remove highlight from search results' },
 

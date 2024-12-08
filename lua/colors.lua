@@ -11,7 +11,7 @@ local group_styles = {
   ['Constant']      = { fg = '#CCCCCC' },
   ['@variable']     = { fg = '#CCCCCC' },
 
-  ['Pmenu'] = { fg = '#EEEEEE', bg = '#151515'  },
+  ['Pmenu']         = { fg = '#EEEEEE', bg = '#151515'  },
 
   ['Question']      = { fg = '#666666' },
   ['Directory']     = { fg = '#777777' },
