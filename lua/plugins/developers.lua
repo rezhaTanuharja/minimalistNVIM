@@ -83,7 +83,7 @@ opts.language.python = {
 
     executable = 'pytest',
     pattern = 'python',
-    makeprg = 'pytest \\| grep "Error$"',
+    makeprg = 'pytest \\| tee log \\| grep "Error$"',
     errorformat = '%f:%l: %m',
 
   },
