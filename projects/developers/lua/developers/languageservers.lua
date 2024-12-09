@@ -14,7 +14,9 @@ function M.refresh()
     table.insert(window_buffer_map, { window_id = window_id, buffer_id = buffer_id})
   end
 
-  vim.cmd('bufdo write | edit')
+  if #window_buffer_map > 0 then
+    vim.cmd('bufdo write | edit')
+  end
 
   for _, entry in pairs(window_buffer_map) do
     vim.api.nvim_win_set_buf(entry.window_id, entry.buffer_id)
