@@ -98,20 +98,16 @@ function M.setup(opts)
 
 end
 
-function M.create_autocmd(opts)
+function M.set_client(opts)
 
   if vim.fn.executable(opts.executable) == 1 then
 
     vim.api.nvim_create_autocmd('FileType', {
 
-      pattern = opts.name,
+      pattern = opts.pattern,
       group = 'LSP',
 
       callback = function(args)
-
-        if vim.lsp.buf_is_attached(args.buf) then
-          return
-        end
 
         vim.lsp.start({
           name = opts.name,
@@ -119,6 +115,10 @@ function M.create_autocmd(opts)
           root_dir = opts.root_dir(args.buf) or M.dir_fallback(args.buf),
           settings = opts.settings,
         })
+
+        if not opts.deep_search then
+          return
+        end
 
         vim.keymap.set('n',
           opts.deep_search.keymap,

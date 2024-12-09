@@ -45,12 +45,12 @@ opts.signatureHelp = {
   wrap_at = 80,
 }
 
-opts.language.python = {
+opts.servers = {
 
-  languageserver = {
-
+  {
+    name = 'pyright',
     executable = 'pyright',
-    name = 'python',
+    pattern = 'python',
     cmd = {'pyright-langserver', '--stdio'},
 
     root_dir = function(buffer)
@@ -76,17 +76,35 @@ opts.language.python = {
       extension = 'py',
 
     },
-
   },
 
-  test = {
+}
 
+opts.tests = {
+
+  {
     executable = 'pytest',
     pattern = 'python',
     makeprg = 'pytest \\| tee log \\| grep "Error$"',
     errorformat = '%f:%l: %m',
-
   },
+
+}
+
+opts.codefixers = {
+
+  {
+    executable = 'ruff',
+    pattern = '*.py',
+    actions = {
+      'silent! !ruff check --fix %',
+      'silent! !ruff format %',
+    },
+  },
+
+}
+
+opts.language.python = {
 
   codefixer = {
 

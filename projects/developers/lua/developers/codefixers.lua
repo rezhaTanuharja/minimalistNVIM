@@ -1,6 +1,6 @@
 local M = {}
 
-function M.create_autocmd(opts)
+function M.set_fixer(opts)
 
   if vim.fn.executable(opts.executable) == 1 then
 

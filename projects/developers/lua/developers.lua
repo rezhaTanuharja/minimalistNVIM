@@ -13,20 +13,16 @@ function M.setup(opts)
 
   languageservers.setup(opts)
 
-  for language, settings in pairs(opts.language) do
+  for _, server in pairs(opts.servers) do
+    languageservers.set_client(server)
+  end
 
-    if settings.languageserver then
-      languageservers.create_autocmd( settings.languageserver )
-    end
+  for _, test in pairs(opts.tests) do
+      tests.set_test(test)
+  end
 
-    if settings.test then
-      tests.create_autocmd( settings.test )
-    end
-
-    if settings.codefixer then
-      codefixers.create_autocmd( settings.codefixer )
-    end
-
+  for _, fixer in pairs(opts.codefixers) do
+      codefixers.set_fixer(fixer)
   end
 
 end
