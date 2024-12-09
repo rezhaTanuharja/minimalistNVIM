@@ -54,7 +54,7 @@ opts.language.python = {
     cmd = {'pyright-langserver', '--stdio'},
 
     root_dir = function(buffer)
-      return vim.fs.root(buffer, {'pyproject.toml'})
+      return vim.fs.root(buffer, {'.git', pyproject.toml'})
     end,
 
     settings = {
