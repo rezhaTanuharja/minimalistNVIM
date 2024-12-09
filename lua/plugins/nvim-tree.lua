@@ -136,9 +136,9 @@ return {
           vim.keymap.set('n', '<leader>e',
 
             function()
-              vim.cmd('NvimTreeToggle')
-              vim.cmd('lua require("languageservers").refresh()')
-              vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<return>')
+              api.tree.toggle()
+              require('developers.languageservers').refresh()
+              vim.keymap.set('n', '<leader>e', api.tree.toggle)
             end
 
           )
