@@ -1,19 +1,7 @@
----
--- @file lua/projects/statusline.lua
---
--- @brief
--- The configuration file to set a custom statusline
---
--- @author Rezha Adrian Tanuharja
--- @date 2024-10-03
---
-
-
-local M = {}
 
 -- a function to obtain and format the current git branch
 
-M.git_branch = function()
+local function git_branch()
 
   local branch = vim.b.gitsigns_head
 
@@ -29,10 +17,9 @@ M.git_branch = function()
 
 end
 
-
 -- a function to obtain and format the file name
 
-M.file_name = function()
+local function file_name()
 
   local filename = vim.fn.expand('%:t')
   if filename == '' then
@@ -50,10 +37,9 @@ M.file_name = function()
 
 end
 
-
 -- a function to obtain and format the current mode
 
-M.current_mode = function()
+local function current_mode()
 
   local mode = vim.fn.mode()
 
@@ -74,10 +60,9 @@ M.current_mode = function()
 
 end
 
-
 -- a function to obtain and format the diagnostics
 
-M.diagnostics = function()
+local function diagnostics()
 
   local num_warning = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN  })
   local num_error   = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
@@ -87,8 +72,9 @@ M.diagnostics = function()
 
 end
 
+-- a function to display the current class or function in the statusline
 
-M.contexts = function()
+local function contexts()
 
   if vim.bo.filetype ~= 'python' then
     return ''
@@ -127,73 +113,78 @@ M.contexts = function()
 
 end
 
-
 -- a function to assign highlight group to the separator
 
-M.separator = function()
+local function separator()
 
   local highlight_group = 'statusline_separator'
   return '%#' .. highlight_group .. '#%='
 
 end
 
+-- a function to call and place the statusline components
 
-M.setup = function(opts)
+function Status_line()
 
-  -- a function to call and place the statusline components
+  return table.concat({
 
-  Status_line = opts.display
+    file_name(),
+    diagnostics(),
+    contexts(),
 
-  -- default with statusline but can be toggled with <leader>s
+    separator(),
 
-  vim.opt['laststatus'] = 3
+    git_branch(),
+    current_mode(),
 
-  vim.keymap.set( 'n', '<leader>s',
-
-    function()
-
-      if vim.o.laststatus == 0 then
-        vim.cmd('set laststatus=3')
-      else
-        vim.cmd('set laststatus=0')
-      end
-
-    end
-
-  )
-
-  vim.cmd('set statusline=%!v:lua.Status_line()')
-
-  if opts.single_cursorline then
-    vim.cmd([[
-      augroup Statusline
-        au!
-        au WinEnter,BufEnter * setlocal cursorline
-        au WinLeave,BufLeave * setlocal nocursorline
-    ]])
-  end
-
-
-  -- set colors for each statusline components
-
-  local group_styles = {
-
-    ['statusline_file']         = { fg = '#eeeeee', bg = '#333333', bold = true },
-    ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
-    ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
-    ['statusline_contexts']     = { fg = '#cccccc', bg = 'None' },
-
-    ['statusline_separator']    = { fg = '#333333', bg = 'None' },
-
-    ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
-    ['statusline_mode']   = { fg = '#eeeeee', bg = '#333333', bold = true },
-
-  }
-
-  for group, style in pairs(group_styles) do
-    vim.api.nvim_set_hl(0, group, style)
-  end
+  })
 
 end
 
-return M
+-- default with statusline but can be toggled with <leader>s
+
+vim.opt['laststatus'] = 3
+
+vim.keymap.set( 'n', '<leader>s',
+
+  function()
+
+    if vim.o.laststatus == 0 then
+      vim.cmd('set laststatus=3')
+    else
+      vim.cmd('set laststatus=0')
+    end
+
+  end
+
+)
+
+vim.cmd('set statusline=%!v:lua.Status_line()')
+
+vim.cmd([[
+  augroup Statusline
+    au!
+    au WinEnter,BufEnter * setlocal cursorline
+    au WinLeave,BufLeave * setlocal nocursorline
+]])
+
+
+-- set colors for each statusline components
+
+local group_styles = {
+
+  ['statusline_file']         = { fg = '#eeeeee', bg = '#333333', bold = true },
+  ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
+  ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
+  ['statusline_contexts']     = { fg = '#cccccc', bg = 'None' },
+
+  ['statusline_separator']    = { fg = '#333333', bg = 'None' },
+
+  ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
+  ['statusline_mode']   = { fg = '#eeeeee', bg = '#333333', bold = true },
+
+}
+
+for group, style in pairs(group_styles) do
+  vim.api.nvim_set_hl(0, group, style)
+end

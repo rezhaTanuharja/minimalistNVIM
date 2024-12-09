@@ -30,6 +30,8 @@ local config_files = {
   'keymaps',
   'colors',
   'diagnostics',
+  'statusline',
+  'promptbuffer',
   'plugins',
 }
 
