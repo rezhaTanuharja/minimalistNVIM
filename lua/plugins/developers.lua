@@ -98,6 +98,7 @@ opts.codefixers = {
     pattern = '*.py',
     actions = {
       'silent! !ruff check --fix %',
+      'silent! !ruff check --select I --fix %',
       'silent! !ruff format %',
     },
   },
