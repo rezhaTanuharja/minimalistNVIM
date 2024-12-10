@@ -81,6 +81,16 @@ function M.setup(opts)
           )
         end
 
+        if client.supports_method('textDocument/codeAction') then
+          vim.keymap.set('n',
+            opts.keymaps.code_action,
+            vim.lsp.buf.code_action,
+            {
+              buffer = args.buf
+            }
+          )
+        end
+
       end,
     }
   )
