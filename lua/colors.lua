@@ -11,6 +11,8 @@ local group_styles = {
   ['Constant']      = { fg = '#CCCCCC' },
   ['@variable']     = { fg = '#CCCCCC' },
 
+  ['QuickFixLine']  = { fg = '#CCCCCC', bold = true },
+
   ['Pmenu']         = { fg = '#EEEEEE', bg = '#151515'  },
 
   ['Question']      = { fg = '#666666' },
