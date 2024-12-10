@@ -104,21 +104,6 @@ opts.codefixers = {
 
 }
 
-opts.language.python = {
-
-  codefixer = {
-
-    executable = 'ruff',
-    pattern = '*.py',
-    actions = {
-      'silent! !ruff check --fix %',
-      'silent! !ruff format %',
-    },
-
-  },
-
-}
-
 return {
 
   'developers', dev = true,
