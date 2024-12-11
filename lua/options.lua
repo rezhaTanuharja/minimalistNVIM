@@ -61,6 +61,7 @@ local options = {
 
   pumheight = 8,              -- specify the max height of pop-up menu
   pumwidth = 20,              -- specify the min width of pop-up menu
+  pumblend = 15,              -- semi transparent pop-up menu
 
   -- text search
 
