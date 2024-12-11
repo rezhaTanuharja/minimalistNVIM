@@ -50,6 +50,9 @@ function M.setup(opts)
       group = 'LSP',
       callback = function(args)
 
+        vim.bo[args.buf].formatexpr = 'v:lua.vim.lsp.formatexpr'
+        vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
+
         local client = vim.lsp.get_client_by_id(args.data.client_id)
 
         -- assume that all LSs support definition
