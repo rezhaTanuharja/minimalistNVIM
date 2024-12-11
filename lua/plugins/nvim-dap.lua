@@ -108,10 +108,15 @@ return {
       }
     )
 
+    -- configure widgets
+
     local widgets = require('dap.ui.widgets')
-    local sidebar = widgets.sidebar(widgets.scopes, {}, 'vsplit')
-    local bottbar = widgets.sidebar(widgets.frames, {height = 10}, 'belowright split')
-    local repl = require('dap.repl')
+
+    -- set scopes as right pane
+    local scopes = widgets.sidebar(widgets.scopes, {}, 'vsplit')
+
+    -- set frames as bottom pane
+    local frames = widgets.sidebar(widgets.frames, {height = 10}, 'belowright split')
 
     vim.keymap.set('n', '<leader>dj', dap.continue)
     vim.keymap.set('n', '<leader>dm', dap.step_over)
@@ -120,6 +125,8 @@ return {
     vim.keymap.set('n', '<leader>dn', dap.clear_breakpoints)
     vim.keymap.set('n', '<leader>dt', dap.terminate)
 
+    local repl = require('dap.repl')
+
     vim.keymap.set(
       'n', '<leader>da',
       function()
@@ -127,8 +134,8 @@ return {
       end
     )
 
-    vim.keymap.set('n', '<leader>ds', sidebar.toggle)
-    vim.keymap.set('n', '<leader>du', bottbar.toggle)
+    vim.keymap.set('n', '<leader>ds', scopes.toggle)
+    vim.keymap.set('n', '<leader>du', frames.toggle)
     vim.keymap.set('n', '<leader>dh', widgets.hover)
 
   end
