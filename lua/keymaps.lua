@@ -33,8 +33,8 @@ local mode_keymaps = {
     ['<S-h>'] = { action = vim.cmd.bprev, desc = 'switch to the prev buffer' },
     ['<S-l>'] = { action = vim.cmd.bnext, desc = 'switch to the next buffer' },
 
-    ['<leader>v'] = { action = vim.cmd.new, desc = 'horizontal split' },
-    ['<leader>h'] = { action = vim.cmd.vnew, desc = 'vertical split' },
+    ['<leader>v'] = { action = vim.cmd.split, desc = 'horizontal split' },
+    ['<leader>h'] = { action = vim.cmd.vsplit, desc = 'vertical split' },
 
     ['<C-b>'] = { action = '<cmd>vertical resize -2<return>', desc = 'decrease rows in the current window' },
     ['<C-n>'] = { action = '<cmd>vertical resize +2<return>', desc = 'increase rows in the current window' },
