@@ -29,6 +29,8 @@ opts.keymaps = {
   deep_search = 'gs',
   refresh     = 'gn',
 
+  omnifunc    = 'go',
+
 }
 
 opts.hover = {

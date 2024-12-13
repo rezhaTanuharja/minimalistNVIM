@@ -109,6 +109,12 @@ function M.setup(opts)
     vim.lsp.handlers.signature_help, opts.signatureHelp
   )
 
+  vim.keymap.set('n',
+    opts.keymaps.omnifunc,
+    '<cmd>lua vim.bo.omnifunc="v:lua.vim.lsp.omnifunc"<return>',
+    { desc = 'manually force omnifunc' }
+  )
+
 end
 
 function M.set_client(opts)
