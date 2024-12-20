@@ -88,7 +88,7 @@ return {
 
     fuzzy = {
 
-      use_frecency = false,
+      use_frecency = true,
       use_proximity = false,
       max_items = 50,
 
