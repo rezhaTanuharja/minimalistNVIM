@@ -135,7 +135,7 @@ lazy.setup {
     { import = location .. 'nvim-tree' },
     { import = location .. 'nvim-dap' },
 
-    { import = location .. 'developers' },
+    { import = location .. 'developers.init' },
     -- { import = location .. 'statusline' },
     -- { import = location .. 'prompt' },
 
