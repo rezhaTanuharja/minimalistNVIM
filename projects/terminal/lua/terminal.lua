@@ -102,7 +102,7 @@ M.setup = function(opts)
 
           vim.api.nvim_win_close(picker.win, true)
 
-          local found_file = vim.fn.findfile(file_name, vim.o.path)
+          local found_file = vim.fn.findfile(file_name, '.')
 
           if found_file ~= '' then
             vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
@@ -142,7 +142,7 @@ M.setup = function(opts)
 
   M.goto_file = function()
     local file_name = vim.fn.expand('<cword>')
-    local found_file = vim.fn.findfile(file_name, vim.o.path)
+    local found_file = vim.fn.findfile(file_name, '.')
     if found_file ~= '' then
       vim.api.nvim_win_hide(M.state.win)
       vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
