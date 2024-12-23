@@ -28,7 +28,7 @@ return {
     nvim_tree.setup {
 
       update_focused_file = {
-        enable = true,
+        enable = false,
         update_cwd = false,
       },
 
@@ -90,8 +90,8 @@ return {
 
       git = {
 
-        enable = true,
-        show_on_dirs = true,
+        enable = false,
+        show_on_dirs = false,
         show_on_open_dirs = false,
 
       },
@@ -105,7 +105,7 @@ return {
       -- do not show hidden files
       filters = {
         dotfiles = true,
-        custom = { '__pycache__' },
+        custom = { '.*cache.*' },
       },
 
     }
@@ -123,8 +123,8 @@ return {
     local events = {
       Event.NodeRenamed,
       Event.FileCreated,
-      Event.FileRemoved,
-      Event.FolderRemoved,
+      -- Event.FileRemoved,
+      -- Event.FolderRemoved,
     }
 
     for _, event in pairs(events) do
