@@ -1,5 +1,5 @@
 ---
--- @file lua/plugins/developers.lua
+-- @file lua/plugins/developers/init.lua
 --
 -- @brief
 -- The configuration file for the plugin developers

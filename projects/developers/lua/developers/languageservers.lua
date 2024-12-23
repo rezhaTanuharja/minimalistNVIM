@@ -1,3 +1,14 @@
+---
+-- @file projects/developers/lua/developers/languageservers.lua
+--
+-- @brief
+-- The plugin file for developers - languageservers
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-12-23
+--
+
+
 local M = {}
 
 -- used if buffer root directory cannot be found

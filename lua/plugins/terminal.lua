@@ -1,3 +1,14 @@
+---
+-- @file lua/plugins/terminal.lua
+--
+-- @brief
+-- The configuration file for the terminal plugin
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-12-23
+--
+
+
 local opts = {}
 
 opts.keymaps = {

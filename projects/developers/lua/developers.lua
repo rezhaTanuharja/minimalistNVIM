@@ -1,3 +1,14 @@
+---
+-- @file projects/developers/lua/developers.lua
+--
+-- @brief
+-- The plugin file for developers
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-12-23
+--
+
+
 local languageservers = require('developers.languageservers')
 local tests = require('developers.tests')
 local codefixers = require('developers.codefixers')

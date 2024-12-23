@@ -1,3 +1,14 @@
+---
+-- @file projects/terminal/lua/terminal.lua
+--
+-- @brief
+-- The plugin file for terminal
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-12-23
+--
+
+
 local M = {}
 
 M.state = {
