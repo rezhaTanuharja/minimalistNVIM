@@ -73,7 +73,6 @@ return {
 
     vim.keymap.set('n', '<C-g>', '<cmd>Gitsigns stage_hunk<return>')
     vim.keymap.set('n', '<C-f>', '<cmd>Gitsigns stage_buffer<return>')
-    vim.keymap.set('n', '<C-i>', '<cmd>Gitsigns blame_line<return>')
 
     vim.api.nvim_set_hl(0, 'DiffAdd', { fg = '#dddddd' })
     vim.api.nvim_set_hl(0, 'DiffDelete', { fg = '#999999' })
