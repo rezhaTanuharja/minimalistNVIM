@@ -110,8 +110,6 @@ return {
 
     }
 
-    vim.keymap.set('n', '<leader>e', '<cmd>NvimTreeToggle<return>')
-
     vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = '#777777'})
 
 
@@ -119,6 +117,8 @@ return {
 
     local api = require('nvim-tree.api')
     local Event = api.events.Event
+
+    vim.keymap.set('n', '<leader>e', api.tree.toggle)
 
     local events = {
       Event.NodeRenamed,
