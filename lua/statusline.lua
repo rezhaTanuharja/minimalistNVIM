@@ -1,3 +1,13 @@
+---
+-- @file lua/statusline.lua
+--
+-- @brief
+-- Configure the statusline
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-12-20
+--
+
 
 -- a function to obtain and format the current git branch
 
@@ -28,6 +38,10 @@ local function file_name()
 
   if string.match(filename, 'NvimTree') then
     filename = 'NvimTree'
+  end
+
+  if vim.bo.buftype == 'terminal' then
+    filename = 'terminal'
   end
 
   -- change highlight group based on if the file has been modified

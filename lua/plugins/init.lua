@@ -1,8 +1,7 @@
 ---
 -- @file lua/plugins/init.lua
 --
--- @brief
--- The initialization file to load external plugins
+-- @brief The initialization file to load external plugins
 --
 -- @author Rezha Adrian Tanuharja
 -- @date 2024-08-31
@@ -125,8 +124,6 @@ lazy.setup {
   spec = {
 
     { import = location .. 'blink' },
-    { import = location .. 'fzf' },
-    { import = location .. 'telescope' },
     { import = location .. 'gitsigns' },
     { import = location .. 'autopairs' },
     { import = location .. 'treesitter' },
@@ -136,8 +133,7 @@ lazy.setup {
     { import = location .. 'nvim-dap' },
 
     { import = location .. 'developers.init' },
-    -- { import = location .. 'statusline' },
-    -- { import = location .. 'prompt' },
+    { import = location .. 'terminal' },
 
   },
 

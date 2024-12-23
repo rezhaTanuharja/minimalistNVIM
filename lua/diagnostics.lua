@@ -1,3 +1,14 @@
+---
+-- @file lua/diagnostics.lua
+--
+-- @brief
+-- Configure the behaviour of diagnostics
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-12-20
+--
+
+
 vim.diagnostic.config {
 
   virtual_text = false,

@@ -31,7 +31,6 @@ local config_files = {
   'colors',
   'diagnostics',
   'statusline',
-  'promptbuffer',
   'plugins',
 }
 

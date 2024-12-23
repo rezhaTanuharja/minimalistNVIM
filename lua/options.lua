@@ -26,7 +26,6 @@ local options = {
   splitright = true,          -- when splitting vertically, new window goes to the right
   showmode = false,           -- mode will be shown by statusline
   cmdheight = 0,              -- only need the commandline when typing command
-  path = { '.', '**' },       -- functions like find will search cwd and subdirs
 
   -- tabs and indentations
 

@@ -1,3 +1,14 @@
+---
+-- @file lua/colors.lua
+--
+-- @brief
+-- Change some of the highlight groups
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2024-12-20
+--
+
+
 local group_styles = {
 
   ['Normal']        = { fg = '#CCCCCC', bg = 'None' },
