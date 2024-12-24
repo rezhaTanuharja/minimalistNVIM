@@ -33,11 +33,11 @@ opts.window = {
 
 }
 
-opts.fzf_command = 'fzf'
-opts.live_grep_command = 'fzf --bind "change:reload(grep -nr --color=never --ignore-case --exclude-dir=.git {q} . || true)" --ansi'
+opts.fzf_command = 'fzf --layout=reverse'
+opts.live_grep_command = opts.fzf_command .. ' --bind "change:reload(grep -nr --color=never --ignore-case --exclude-dir=.git {q} . || true)" --ansi'
 
 if vim.fn.executable('rg') == 1 then
-  opts.live_grep_command = 'fzf --bind "change:reload(rg --line-number --color=never --ignore-case --follow {q} || true)" --ansi'
+  opts.live_grep_command = opts.fzf_command .. ' --bind "change:reload(rg --line-number --color=never --ignore-case {q} || true)" --ansi'
 end
 
 local fd_command = 'fd --type f --exclude "*.png" --exclude "*.pdf" --exclude "*.jp*g"'
