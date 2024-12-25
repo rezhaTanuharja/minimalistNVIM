@@ -16,10 +16,6 @@ M.state = {
   win = -1,
 }
 
-local fd_command = 'fd'
-local fzf_command = 'fzf'
-local rg_command = 'rg --line-number --color=never'
-
 M.setup = function(opts)
 
   M.create_floating_window = function(buf)
@@ -53,6 +49,11 @@ M.setup = function(opts)
     return { buffer = buffer, win = win }
 
   end
+
+  local fd_command = opts.fd.executable
+  local fzf_command = opts.fzf.executable
+  local rg_command = opts.rg.executable .. ' --line-number --color=never'
+
 
   for _, arg in pairs(opts.fzf.args) do
     fzf_command = fzf_command .. ' ' .. arg

@@ -35,18 +35,29 @@ opts.window = {
 }
 
 opts.fzf = {
+
+  executable = 'fzf',
+
   args = {
     '--layout=reverse',
   },
+
 }
 
 opts.rg = {
+
+  executable = 'rg',
+
   args = {
     '--ignore-case',
   },
+
 }
 
 opts.fd = {
+
+  executable = 'fd',
+
   args = {
     '--type f',
     '--exclude "*.png"',
