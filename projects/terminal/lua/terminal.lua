@@ -20,6 +20,8 @@ M.setup = function(opts)
 
   M.create_floating_window = function(buf)
 
+    buf = buf or -1
+
     local width = opts.window.width
     local height = opts.window.height
 
@@ -50,7 +52,7 @@ M.setup = function(opts)
 
   M.toggle_find_file = function()
 
-    local picker = M.create_floating_window(-1)
+    local picker = M.create_floating_window()
     local file_name = ''
 
     vim.fn.termopen(opts.find_file_command, {
@@ -86,7 +88,7 @@ M.setup = function(opts)
 
   M.toggle_find_buffer = function()
 
-    local picker = M.create_floating_window(-1)
+    local picker = M.create_floating_window()
     local file_name = ''
 
     vim.cmd('redir! > .out | silent ls | redir END')
@@ -125,7 +127,7 @@ M.setup = function(opts)
 
   M.toggle_live_grep = function()
 
-    local picker = M.create_floating_window(-1)
+    local picker = M.create_floating_window()
     local file_name = ''
 
     vim.fn.termopen(opts.live_grep_command, {
