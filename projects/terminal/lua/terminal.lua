@@ -16,6 +16,10 @@ M.state = {
   win = -1,
 }
 
+local fd_command = 'fd'
+local fzf_command = 'fzf'
+local rg_command = 'rg --line-number --color=never'
+
 M.setup = function(opts)
 
   M.create_floating_window = function(buf)
@@ -50,12 +54,24 @@ M.setup = function(opts)
 
   end
 
+  for _, arg in pairs(opts.fzf.args) do
+    fzf_command = fzf_command .. ' ' .. arg
+  end
+
+  for _, arg in pairs(opts.fd.args) do
+    fd_command = fd_command .. ' ' .. arg
+  end
+
+  for _, arg in pairs(opts.rg.args) do
+    rg_command = rg_command .. ' ' .. arg
+  end
+
   M.toggle_find_file = function()
 
     local picker = M.create_floating_window()
     local file_name = ''
 
-    vim.fn.termopen(opts.find_file_command, {
+    vim.fn.termopen(fd_command .. ' | ' .. fzf_command, {
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
@@ -93,7 +109,7 @@ M.setup = function(opts)
 
     vim.cmd('redir! > .out | silent ls | redir END')
 
-    vim.fn.termopen(opts.find_buffer_command, {
+    vim.fn.termopen([[sed -n 's/.*"\(.*\)".*/\1/p' .out | grep -v -E "term:|No Name" | ]] .. fzf_command, {
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
@@ -130,7 +146,7 @@ M.setup = function(opts)
     local picker = M.create_floating_window()
     local file_name = ''
 
-    vim.fn.termopen(opts.live_grep_command, {
+    vim.fn.termopen(fzf_command .. ' --bind "change:reload(' .. rg_command .. ' {q} || true)" --ansi', {
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
