@@ -73,6 +73,10 @@ return {
 
     vim.keymap.set('n', '<C-g>', gitsigns.stage_hunk)
     vim.keymap.set('n', '<C-f>', gitsigns.stage_buffer)
+    vim.keymap.set('n', '<C-i>', gitsigns.blame_line)
+
+    vim.keymap.set('n', 'gnh', function() gitsigns.nav_hunk('next') end)
+    vim.keymap.set('n', 'gph', function() gitsigns.nav_hunk('prev') end)
 
     vim.api.nvim_set_hl(0, 'DiffAdd', { fg = '#dddddd' })
     vim.api.nvim_set_hl(0, 'DiffDelete', { fg = '#999999' })
