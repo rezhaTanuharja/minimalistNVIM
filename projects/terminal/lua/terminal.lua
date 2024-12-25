@@ -53,7 +53,7 @@ M.setup = function(opts)
     local picker = M.create_floating_window(-1)
     local file_name = ''
 
-    vim.fn.termopen(opts.fzf_command, {
+    vim.fn.termopen(opts.find_file_command, {
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
@@ -76,6 +76,45 @@ M.setup = function(opts)
         else
           vim.api.nvim_win_close(picker.win, true)
         end
+
+      end
+    })
+
+    vim.cmd('startinsert')
+
+  end
+
+  M.toggle_find_buffer = function()
+
+    local picker = M.create_floating_window(-1)
+    local file_name = ''
+
+    vim.cmd('redir! > .out | silent ls | redir END')
+
+    vim.fn.termopen(opts.find_buffer_command, {
+      on_exit = function(_, exit_code)
+
+        if exit_code == 0 then
+
+          local lines = vim.api.nvim_buf_get_lines(picker.buffer, 0, -1, false)
+
+          if #lines > 0 then
+            file_name = lines[1]
+          end
+
+          vim.api.nvim_win_close(picker.win, true)
+
+          local found_file = vim.fn.findfile(file_name, vim.o.path)
+
+          if found_file ~= '' then
+            vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
+          end
+
+        else
+          vim.api.nvim_win_close(picker.win, true)
+        end
+
+        vim.cmd('silent! !rm .out')
 
       end
     })
@@ -152,6 +191,7 @@ M.setup = function(opts)
   vim.keymap.set('n', opts.keymaps.terminal, M.toggle_terminal)
   vim.keymap.set('n', opts.keymaps.find_file, M.toggle_find_file)
   vim.keymap.set('n', opts.keymaps.live_grep, M.toggle_live_grep)
+  vim.keymap.set('n', opts.keymaps.find_buffer, M.toggle_find_buffer)
   vim.keymap.set('t', opts.keymaps.normal_mode, '<c-\\><c-n>')
   vim.keymap.set('n', opts.keymaps.goto_file, M.goto_file, { buffer = M.state.buffer })
 end

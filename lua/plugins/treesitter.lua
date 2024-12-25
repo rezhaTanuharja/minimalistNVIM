@@ -31,6 +31,7 @@ return {
       ensure_installed = { 'lua', 'python' },
       sync_install = true,
       ignore_install = {},
+
       highlight = {
         enable = true,
         disable = function(_, bufnr)
@@ -42,6 +43,16 @@ return {
 
       fold = {
         enable = { 'python' },
+      },
+
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = 'gnn',
+          node_incremental = 'grn',
+          scope_incremental = 'grc',
+          node_decremental = 'grm',
+        },
       },
 
     }
