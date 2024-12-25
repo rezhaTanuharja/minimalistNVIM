@@ -50,18 +50,19 @@ M.setup = function(opts)
 
   end
 
-  local fd_command = opts.fd.executable
   local fzf_command = opts.fzf.executable
-  local rg_command = opts.rg.executable .. ' --line-number --color=never'
-
 
   for _, arg in pairs(opts.fzf.args) do
     fzf_command = fzf_command .. ' ' .. arg
   end
 
+  local fd_command = opts.fd.executable
+
   for _, arg in pairs(opts.fd.args) do
     fd_command = fd_command .. ' ' .. arg
   end
+
+  local rg_command = opts.rg.executable .. ' --line-number --color=never'
 
   for _, arg in pairs(opts.rg.args) do
     rg_command = rg_command .. ' ' .. arg
