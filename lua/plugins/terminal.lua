@@ -36,6 +36,7 @@ opts.window = {
 
 local fzf_command = 'fzf --layout=reverse'
 
+opts.find_file_command = fzf_command
 opts.live_grep_command = fzf_command .. ' --bind "change:reload(grep -nr --color=never --ignore-case --exclude-dir=.git {q} . || true)" --ansi'
 opts.find_buffer_command = [[sed -n 's/.*"\(.*\)".*/\1/p' .out | grep -v "term:" | ]] .. fzf_command
 
@@ -47,7 +48,7 @@ end
 local fd_command = 'fd --type f --exclude "*.png" --exclude "*.pdf" --exclude "*.jp*g"'
 
 if vim.fn.executable('fd') == 1 then
-  opts.find_file_command = fd_command .. ' | ' .. fzf_command
+  opts.find_file_command = fd_command .. ' | ' .. opts.find_file_command
   opts.live_grep_command = fd_command .. ' | ' .. opts.live_grep_command
 end
 
