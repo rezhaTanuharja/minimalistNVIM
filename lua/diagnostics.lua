@@ -54,6 +54,7 @@ vim.opt['signcolumn'] = 'yes'
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
 vim.keymap.set('n', 'gl', vim.diagnostic.open_float)
+vim.keymap.set('n', 'gq', vim.diagnostic.setqflist)
 
 -- removes underline
 vim.api.nvim_set_hl(0, 'DiagnosticUnderlineError', { sp = 'None'} )

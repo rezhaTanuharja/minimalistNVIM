@@ -28,7 +28,7 @@ return {
 
     treesitter.setup {
 
-      ensure_installed = { 'lua', 'python' },
+      ensure_installed = { 'lua', 'python', 'cpp' },
       sync_install = true,
       ignore_install = {},
 
