@@ -20,4 +20,12 @@ return {
     },
   },
 
+  {
+    executable = 'prettier',
+    pattern = { '*.ts', '*.tsx' },
+    actions = {
+      'silent! !prettier --write %',
+    }
+  },
+
 }

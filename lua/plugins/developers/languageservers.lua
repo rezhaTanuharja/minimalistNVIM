@@ -72,12 +72,12 @@ return {
 
   {
     name = 'tsls',
-    executable = 'tsserver',
-    pattern = 'javascript',
+    executable = 'typescript-language-server',
+    pattern = {'typescript', 'typescriptreact'},
     cmd = { 'typescript-language-server', '--stdio' },
 
     root_dir = function(buffer)
-      return vim.fs.root(buffer, {'.git', 'package.json'})
+      return vim.fs.root(buffer, {'.git', 'tsconfig.json'})
     end,
 
     settings = {},
