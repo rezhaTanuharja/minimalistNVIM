@@ -71,7 +71,7 @@ return {
   },
 
   {
-    name = 'typescript-language-server',
+    name = 'tsls',
     executable = 'tsserver',
     pattern = 'javascript',
     cmd = { 'typescript-language-server', '--stdio' },
