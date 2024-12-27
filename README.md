@@ -12,11 +12,7 @@
     <p align="left">
         This project attempts to create an IDE-like experience for writing, editing, and debugging code with Neovim.
         The configuration structure is heavily inspired by <a href="https://github.com/LunarVim">LunarVim</a> and the excellent step-by-step tutorial <a href="https://www.youtu.be/ctH-a-1eUME?si=mAsw4Qno6kmIIuQy">Neovim IDE from Scratch</a> by <a href="https://www.chrisatmachine.com">chris@machine</a>.
-        If you are interested in detailed explanations and guides, check him out.
-    </p>
-    <img src="assets/images/preview.png" alt="Preview" width="600"/>
-    <br>
-    <br>
+        If you are interested in detailed explanations and guides, check him out. </p> <img src="assets/images/preview.png" alt="Preview" width="600"/> <br> <br>
     <p align="left">
     As the title of the project suggests, a minimalist configuration with as few plugins as possible is the main goal.
     This improves robustness against breaking changes from external plugins and makes the config easier to update and maintain.
@@ -111,9 +107,16 @@
     </h2>
     <p>
     While we do not think startup time matters, some people apparently do care.
-    Last time we check, our startup time is ~7-15 ms, as shown below by <a href="https://github.com/folke/lazy.nvim.git">Lazy</a>'s profile.
+    Last time we check, our startup time is ~7-15 ms on a maxed-out Lenovo Legion Pro 7i 2024, as shown below by <a href="https://github.com/folke/lazy.nvim.git">Lazy</a>'s profile.
     </p>
     <div align="center">
-        <img src="assets/images/startup.jpeg" alt="Preview" width="600"/>
+        <img src="assets/images/startup_legion.jpeg" alt="Preview" width="600"/>
+    </div>
+    <p>
+    The startup time is still very short in older hardwares.
+    On our 2015 MacBook Pro with Arch, it is around ~28-35ms as shown below
+    </p>
+    <div align="center">
+        <img src="assets/images/startup_mbp.png" alt="Preview" width="600"/>
     </div>
 </div>
