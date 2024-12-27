@@ -70,4 +70,18 @@ return {
 
   },
 
+  {
+    name = 'typescript-language-server',
+    executable = 'tsserver',
+    pattern = 'javascript',
+    cmd = { 'typescript-language-server', '--stdio' },
+
+    root_dir = function(buffer)
+      return vim.fs.root(buffer, {'.git', 'package.json'})
+    end,
+
+    settings = {},
+
+  },
+
 }
