@@ -25,7 +25,7 @@ function M.set_test(opts)
         vim.bo[args.buf].makeprg = opts.makeprg
         vim.bo[args.buf].errorformat = opts.errorformat
 
-        vim.keymap.set('n', '<leader>t', '<cmd>make<return>', { buffer = args.buf })
+        vim.keymap.set('n', '<leader>i', '<cmd>make<return>', { buffer = args.buf })
 
       end,
 
