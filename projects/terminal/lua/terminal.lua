@@ -71,7 +71,6 @@ M.setup = function(opts)
   M.toggle_find_file = function()
 
     local picker = M.create_floating_window()
-    local file_name = ''
 
     vim.fn.termopen(fd_command .. ' | ' .. fzf_command, {
       on_exit = function(_, exit_code)
@@ -79,14 +78,10 @@ M.setup = function(opts)
         if exit_code == 0 then
 
           local lines = vim.api.nvim_buf_get_lines(picker.buffer, 0, -1, false)
-
-          if #lines > 0 then
-            file_name = lines[1]
-          end
+          local file_name = lines[1]
+          local found_file = vim.fn.findfile(file_name, vim.o.path)
 
           vim.api.nvim_win_close(picker.win, true)
-
-          local found_file = vim.fn.findfile(file_name, vim.o.path)
 
           if found_file ~= '' then
             vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
@@ -107,7 +102,6 @@ M.setup = function(opts)
   M.toggle_find_buffer = function()
 
     local picker = M.create_floating_window()
-    local file_name = ''
 
     vim.cmd('redir! > .out | silent ls | redir END')
 
@@ -117,14 +111,10 @@ M.setup = function(opts)
         if exit_code == 0 then
 
           local lines = vim.api.nvim_buf_get_lines(picker.buffer, 0, -1, false)
-
-          if #lines > 0 then
-            file_name = lines[1]
-          end
+          local file_name = lines[1]
+          local found_file = vim.fn.findfile(file_name, vim.o.path)
 
           vim.api.nvim_win_close(picker.win, true)
-
-          local found_file = vim.fn.findfile(file_name, vim.o.path)
 
           if found_file ~= '' then
             vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
@@ -146,7 +136,6 @@ M.setup = function(opts)
   M.toggle_live_grep = function()
 
     local picker = M.create_floating_window()
-    local file_name = ''
 
     vim.fn.termopen(fzf_command .. ' --bind "change:reload(' .. rg_command .. ' {q} || true)" --ansi', {
       on_exit = function(_, exit_code)
@@ -154,20 +143,15 @@ M.setup = function(opts)
         if exit_code == 0 then
 
           local lines = vim.api.nvim_buf_get_lines(picker.buffer, 0, -1, false)
-
-          if #lines > 0 then
-            file_name, line_num = lines[1]:match("([^:]+):(%d+)")
-          end
+          local file_name, line_num = lines[1]:match("([^:]+):(%d+)")
+          local found_file = vim.fn.findfile(file_name, '.')
 
           vim.api.nvim_win_close(picker.win, true)
-
-          local found_file = vim.fn.findfile(file_name, '.')
 
           if found_file ~= '' then
             vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
             vim.api.nvim_win_set_cursor(0, {tonumber(line_num), 0})
           end
-
 
         else
           vim.api.nvim_win_close(picker.win, true)
