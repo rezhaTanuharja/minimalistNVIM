@@ -26,7 +26,7 @@ function M.refresh()
   end
 
   if #window_buffer_map > 0 then
-    vim.cmd('bufdo write | edit')
+    vim.cmd('bufdo if &modifiable | write | edit | endif')
   end
 
   for _, entry in pairs(window_buffer_map) do
