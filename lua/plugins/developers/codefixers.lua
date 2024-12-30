@@ -28,4 +28,12 @@ return {
     }
   },
 
+  {
+    executable = 'texlab',
+    pattern = { '*.tex', '*.cls' },
+    actions = {
+      'lua vim.lsp.buf.format()'
+    },
+  },
+
 }

@@ -131,6 +131,7 @@ lazy.setup {
     { import = location .. 'blankline' },
     { import = location .. 'nvim-tree' },
     { import = location .. 'nvim-dap' },
+    { import = location .. 'vimtex' },
 
     { import = location .. 'developers.init' },
     { import = location .. 'terminal' },
