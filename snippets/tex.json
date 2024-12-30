@@ -1,0 +1,15 @@
+{
+
+  "Skeleton": {
+    "prefix": "skeleton",
+    "body": "\\documentclass{${1:type}}\n\n\\begin{document}\n\n$0\n\n\\end{document}",
+    "description": "Create a document skeleton"
+  },
+
+  "Environment": {
+    "prefix": "environment",
+    "body": "\\begin{${1:env}}\n\t$0\n\\end{${1}}",
+    "description": "Create the start and end of an environment"
+  }
+
+}
