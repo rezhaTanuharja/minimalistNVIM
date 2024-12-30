@@ -70,4 +70,40 @@ return {
 
   },
 
+  {
+    name = 'texlab',
+    executable = 'texlab',
+    pattern = { 'tex', 'plaintex', 'bib' },
+    cmd = { 'texlab' },
+
+    root_dir = function(buffer)
+      return vim.fs.root(buffer, {'.git', 'main.tex'})
+    end,
+
+    settings = {
+
+      texlab = {
+
+        bibtexFormatter = 'texlab',
+
+        build = {
+          onSave = false,
+          onType = false,
+        },
+
+        diagnosticDelay = 100,
+        formatterLineLength = 80,
+
+        forwardSearch = {
+          args = {},
+        },
+
+      }
+
+    },
+
+    single_file_support = true,
+
+  },
+
 }
