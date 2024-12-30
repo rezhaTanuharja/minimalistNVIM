@@ -39,8 +39,8 @@ M.setup = function(opts)
 
     buf = buf or -1
 
-    local width = opts.window.width
-    local height = opts.window.height
+    local width = opts.window.width()
+    local height = opts.window.height()
 
     local col = math.floor((vim.o.columns - width) / 2)
     local row = math.floor((vim.o.lines - height) / 2)

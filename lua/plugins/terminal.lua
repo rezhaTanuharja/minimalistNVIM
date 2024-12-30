@@ -26,8 +26,8 @@ opts.keymaps = {
 
 opts.window = {
 
-  width = math.floor(vim.o.columns * 0.8),
-  height = math.floor(vim.o.lines * 0.8),
+  width = function() return math.floor(vim.o.columns * 0.8) end,
+  height = function() return math.floor(vim.o.lines * 0.8) end,
 
   style = 'minimal',
   border = 'single',
