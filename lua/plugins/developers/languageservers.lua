@@ -57,20 +57,6 @@ return {
   },
 
   {
-    name = 'clangd',
-    executable = 'clangd',
-    pattern = 'cpp',
-    cmd = { 'clangd', '--background-index' },
-
-    root_dir = function(buffer)
-      return vim.fs.root(buffer, {'.git', 'compile_commands.json'})
-    end,
-
-    settings = {},
-
-  },
-
-  {
     name = 'tsls',
     executable = 'typescript-language-server',
     pattern = {'typescript', 'typescriptreact'},
