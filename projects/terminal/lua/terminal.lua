@@ -16,6 +16,23 @@ M.state = {
   win = -1,
 }
 
+local get_fzf_output = function(buffer)
+
+  local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
+  local output = ''
+
+  for row = 1, #lines do
+
+    if lines[row] == '' then
+      return output
+    end
+
+    output = output .. lines[row]
+
+  end
+
+end
+
 M.setup = function(opts)
 
   M.create_floating_window = function(buf)
@@ -77,8 +94,7 @@ M.setup = function(opts)
 
         if exit_code == 0 then
 
-          local lines = vim.api.nvim_buf_get_lines(picker.buffer, 0, -1, false)
-          local file_name = lines[1]
+          local file_name = get_fzf_output(picker.buffer)
           local found_file = vim.fn.findfile(file_name, vim.o.path)
 
           vim.api.nvim_win_close(picker.win, true)
@@ -102,6 +118,7 @@ M.setup = function(opts)
   M.toggle_find_buffer = function()
 
     local picker = M.create_floating_window()
+    local file_name = ''
 
     vim.cmd('redir! > .out | silent ls | redir END')
 
@@ -110,8 +127,7 @@ M.setup = function(opts)
 
         if exit_code == 0 then
 
-          local lines = vim.api.nvim_buf_get_lines(picker.buffer, 0, -1, false)
-          local file_name = lines[1]
+          local file_name = get_fzf_output(picker.buffer)
           local found_file = vim.fn.findfile(file_name, vim.o.path)
 
           vim.api.nvim_win_close(picker.win, true)
@@ -142,8 +158,8 @@ M.setup = function(opts)
 
         if exit_code == 0 then
 
-          local lines = vim.api.nvim_buf_get_lines(picker.buffer, 0, -1, false)
-          local file_name, line_num = lines[1]:match("([^:]+):(%d+)")
+          local output = get_fzf_output(picker.buffer)
+          local file_name, line_num = output:match("([^:]+):(%d+)")
           local found_file = vim.fn.findfile(file_name, '.')
 
           vim.api.nvim_win_close(picker.win, true)
