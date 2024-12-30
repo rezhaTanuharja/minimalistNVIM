@@ -13,14 +13,18 @@ local group_styles = {
 
   ['Normal']        = { fg = '#CCCCCC', bg = 'None' },
   ['NormalFloat']   = { fg = '#CCCCCC', bg = 'None' },
+
   ['String']        = { fg = '#BBBBBB' },
   ['Comment']       = { fg = '#777777' },
+
   ['Identifier']    = { fg = '#DDDDDD', bold = true },
   ['Statement']     = { fg = '#EEEEEE', bold = true },
-  ['Function']      = { fg = '#FFFFFF' },
   ['Special']       = { fg = '#BBBBBB', bold = true },
+
+  ['Function']      = { fg = '#FFFFFF' },
   ['Constant']      = { fg = '#CCCCCC' },
-  ['@variable']     = { fg = '#CCCCCC' },
+
+  ['Error']         = { fg = '#FFFFFF', bg = 'None', bold = true },
 
   ['QuickFixLine']  = { fg = '#CCCCCC', bold = true },
 
@@ -43,6 +47,7 @@ local group_styles = {
 
   ['DiagnosticUnnecessary'] = { fg = '#BBBBBB' },
 
+  ['@variable']         = { fg = '#CCCCCC' },
   ['@comment.warning']  = { fg = '#000000', bg = 'NvimLightYellow', bold = true },
   ['@comment.error']    = { fg = '#000000', bg = 'NvimLightRed', bold = true },
   ['@comment.note']     = { fg = '#000000', bg = '#D3EDE7', bold = true },
