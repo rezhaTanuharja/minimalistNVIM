@@ -10,6 +10,12 @@
     "prefix": "environment",
     "body": "\\begin{${1:env}}\n\t$0\n\\end{${1}}",
     "description": "Create the start and end of an environment"
+  },
+
+  "Fraction": {
+    "prefix": "fraction",
+    "body": "\\frac{\n\t${1:numerator}\n}{\n\t${2:denominator}\n}$0",
+    "description": "Create a fraction in math mode"
   }
 
 }
