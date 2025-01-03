@@ -78,16 +78,16 @@ return {
     vim.keymap.set('n', 'gnh', function() gitsigns.nav_hunk('next') end)
     vim.keymap.set('n', 'gph', function() gitsigns.nav_hunk('prev') end)
 
-    vim.api.nvim_set_hl(0, 'DiffAdd', { fg = '#dddddd' })
+    vim.api.nvim_set_hl(0, 'DiffAdd', { fg = '#DDDDDD' })
     vim.api.nvim_set_hl(0, 'DiffDelete', { fg = '#999999' })
-    vim.api.nvim_set_hl(0, 'DiffText', { fg = '#000000', bg = '#bbbbbb' })
-    vim.api.nvim_set_hl(0, 'Changed', { fg = '#eeeeee' })
+    vim.api.nvim_set_hl(0, 'DiffText', { fg = '#000000', bg = '#BBBBBB' })
+    vim.api.nvim_set_hl(0, 'Changed', { fg = '#EEEEEE' })
 
-    vim.api.nvim_set_hl(0, 'GitSignsAddInline', { fg = '#eeeeee', bg = '#444444' })
-    vim.api.nvim_set_hl(0, 'GitSignsDeleteInline', { fg = '#aaaaaa', bg = '#333333' })
-    vim.api.nvim_set_hl(0, 'GitSignsStagedAdd', { fg = '#aaaaaa' })
-    vim.api.nvim_set_hl(0, 'GitSignsStagedChange', { fg = '#aaaaaa' })
-    vim.api.nvim_set_hl(0, 'GitSignsStagedChangeDelete', { fg = '#aaaaaa' })
+    vim.api.nvim_set_hl(0, 'GitSignsAddInline', { fg = '#EEEEEE', bg = '#444444' })
+    vim.api.nvim_set_hl(0, 'GitSignsDeleteInline', { fg = '#AAAAAA', bg = '#333333' })
+    vim.api.nvim_set_hl(0, 'GitSignsStagedAdd', { fg = '#AAAAAA' })
+    vim.api.nvim_set_hl(0, 'GitSignsStagedChange', { fg = '#AAAAAA' })
+    vim.api.nvim_set_hl(0, 'GitSignsStagedChangeDelete', { fg = '#AAAAAA' })
 
   end
 

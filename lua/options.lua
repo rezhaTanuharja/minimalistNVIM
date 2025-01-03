@@ -13,10 +13,10 @@ local options = {
 
   -- user interface
 
-  termguicolors = true,
+  termguicolors = true,       -- enable 24-bit RGB color
   mouse = '',                 -- disable mouse in neovim
   clipboard = 'unnamedplus',  -- makes neovim use the system clipboard
-  cursorline = true,          -- makes it easier to follow the cursor
+  cursorline = true,          -- highlight the row where the cursor is
   showtabline = 0,            -- hide tabline
   inccommand = 'split',       -- when performing substitution, show preview at the bottom
   timeoutlen = 300,           -- time for user to finish a key combination
@@ -24,8 +24,8 @@ local options = {
   virtualedit = 'block',      -- enable highlighting empty spaces
   splitbelow = true,          -- when splitting horizontally, new window goes below
   splitright = true,          -- when splitting vertically, new window goes to the right
-  showmode = false,           -- mode will be shown by statusline
-  cmdheight = 0,              -- only need the commandline when typing command
+  showmode = false,           -- mode will be shown by statusline instead
+  cmdheight = 0,              -- hide the command line when not typing command
   path = '.,,**',             -- find-like operations works recursively
 
   -- tabs and indentations
@@ -36,19 +36,19 @@ local options = {
 
   -- number columns
 
-  relativenumber = false,     -- display relative line numbers
+  relativenumber = false,     -- don't display relative line numbers
   number = true,              -- display the current line number
   numberwidth = 3,            -- the column width to display line numbers
 
   -- text display
 
   foldlevelstart = 0,         -- open files with all folds closed
-  foldtext = '',              -- keep the first line of folded section
+  foldtext = '',              -- keep the first line of folded section visible
   foldmethod = 'expr',        -- assign fold based on expressions
 
   foldexpr = 'nvim_treesitter#foldexpr()',
 
-  wrap = false,               -- do not wrap lines because it is ugly
+  wrap = false,               -- do not wrap lines because it looks ugly and inconsistent
   smartindent = true,         -- automatic indentations
   scrolloff = 99,             -- keep cursorline in the middle
   sidescrolloff = 6,          -- minimul number of columns to the left and right of cursor
@@ -56,7 +56,7 @@ local options = {
   fillchars = {
     eob = ' ',                -- removes annoying tilde at the bottom of short files
     fold = '-',               -- replace dots with horizontal line to indicate folded sections
-    stl = '-',
+    stl = '-',                -- fill empty spaces in the statusline with this
   },
 
   pumheight = 8,              -- specify the max height of pop-up menu

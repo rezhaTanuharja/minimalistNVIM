@@ -187,15 +187,15 @@ vim.cmd([[
 
 local group_styles = {
 
-  ['statusline_file']         = { fg = '#eeeeee', bg = '#333333', bold = true },
-  ['statusline_modifiedfile'] = { fg = '#000000', bg = '#cccccc', bold = true },
-  ['statusline_diagnostics']  = { fg = '#eeeeee', bg = '#222222' },
-  ['statusline_contexts']     = { fg = '#cccccc', bg = 'None' },
+  ['statusline_file']         = { fg = '#EEEEEE', bg = '#333333', bold = true },
+  ['statusline_modifiedfile'] = { fg = '#000000', bg = '#CCCCCC', bold = true },
+  ['statusline_diagnostics']  = { fg = '#EEEEEE', bg = '#222222' },
+  ['statusline_contexts']     = { fg = '#CCCCCC', bg = 'None' },
 
   ['statusline_separator']    = { fg = '#333333', bg = 'None' },
 
-  ['statusline_branch'] = { fg = '#eeeeee', bg = '#222222' },
-  ['statusline_mode']   = { fg = '#eeeeee', bg = '#333333', bold = true },
+  ['statusline_branch'] = { fg = '#EEEEEE', bg = '#222222' },
+  ['statusline_mode']   = { fg = '#EEEEEE', bg = '#333333', bold = true },
 
 }
 

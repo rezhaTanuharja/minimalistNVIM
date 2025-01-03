@@ -15,8 +15,6 @@ return {
 
   version = 'v0.5.0',
 
-  keys = '<leader>b',
-
   opts = {
 
     keymap = {
@@ -92,7 +90,7 @@ return {
       use_proximity = false,
       max_items = 50,
 
-      sorts = { 'label', 'kind', 'score' },
+      sorts = { 'score', 'label', 'kind' },
 
       prebuilt_binaries = {
         download = true,

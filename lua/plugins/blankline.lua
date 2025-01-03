@@ -24,8 +24,16 @@ return {
     end
 
     blankline.setup {
+
       indent = {char = '│'},
       exclude = {},
+
+      scope = {
+        enabled = true,
+        show_start = true,
+        show_end = true,
+      },
+
     }
 
   end,

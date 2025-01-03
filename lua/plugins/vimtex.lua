@@ -1,3 +1,14 @@
+---
+-- @file lua/plugins/vimtex.lua
+--
+-- @brief
+-- The configuration file for the plugin vimtex
+--
+-- @author Rezha Adrian Tanuharja
+-- @date 2025-01-03
+--
+
+
 return {
 
   "lervag/vimtex",

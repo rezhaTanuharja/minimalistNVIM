@@ -20,14 +20,15 @@ return {
     check_ts = true,
 
     ts_config = {
-      lua = {'string', 'source'},
+      lua = { 'string' },
+      python = { 'string' },
     },
 
-    disable_filetype = {'TelescopePrompt', 'spectre_panel'},
+    disable_filetype = { 'TelescopePrompt', 'spectre_panel' },
 
     fast_wrap = {
       map = '<C-k>',
-      chars = {'{', '[', '(', '"', "'"},
+      chars = { '{', '[', '(', '"', "'" },
       pattern = [=[[%'%"%>%]%)%}%,]]=],
       offset = 0,
       end_key = 'k',

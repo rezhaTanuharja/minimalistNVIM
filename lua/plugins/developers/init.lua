@@ -19,7 +19,7 @@ opts.keymaps = {
 
   definition  = 'gd',
   references  = 'gr',
-  rename      = 'grn',
+  rename      = 'grr',
 
   code_action = 'ga',
 

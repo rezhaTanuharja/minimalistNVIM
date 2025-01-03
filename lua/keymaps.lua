@@ -117,6 +117,7 @@ local mode_keymaps = {
     ['"'] = { action = 'c""<esc>P', desc = 'put highlighted text inside pairing chars' },
     ['['] = { action = 'c[]<esc>P', desc = 'put highlighted text inside pairing chars' },
     ['('] = { action = 'c()<esc>P', desc = 'put highlighted text inside pairing chars' },
+    ['{'] = { action = 'c{}<esc>P', desc = 'put highlighted text inside pairing chars' },
     ["'"] = { action = "c''<esc>P", desc = 'put highlighted text inside pairing chars' },
     ['`'] = { action = 'c``<esc>P', desc = 'put highlighted text inside pairing chars' },
 
