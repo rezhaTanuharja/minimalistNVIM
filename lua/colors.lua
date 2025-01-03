@@ -1,7 +1,5 @@
 ---
--- @file lua/colors.lua
---
--- @brief
+-- @file lua/colors.lua @brief
 -- Change some of the highlight groups
 --
 -- @author Rezha Adrian Tanuharja
@@ -46,6 +44,8 @@ local group_styles = {
   ['CurSearch']     = { fg = '#000000', bg = '#AAAAAA' },
 
   ['DiagnosticUnnecessary'] = { fg = '#BBBBBB' },
+
+  ['Todo']              = { fg = 'NvimLightYellow', bg = 'None', bold = true },
 
   ['@variable']         = { fg = '#CCCCCC' },
   ['@comment.warning']  = { fg = '#000000', bg = 'NvimLightYellow', bold = true },
