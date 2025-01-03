@@ -16,12 +16,14 @@
     <p align="left">
     As the title of the project suggests, a minimalist configuration with as few plugins as possible is the main goal.
     This improves robustness against breaking changes from external plugins and makes the config easier to update and maintain.
-    Although the config uses less than 20 plugins, it has all essential IDE features:
+    Although the config uses only 12 plugins, it has all essential IDE features:
     </p>
     <ul align="left">
         <li align="left">Language servers and code diagnostics</li>
         <li align="left">Code completion and custom snippets</li>
         <li align="left">Debugging capability</li>
+        <li align="left">Auto formatting and linting</li>
+        <li align="left">Code testing</li>
     </ul>
     <p align="left">
     That being said, if you are a Neovim user, I hope you see something interesting to adopt to your own config. If you are still considering Neovim, I hope you become a part of our community soon!
