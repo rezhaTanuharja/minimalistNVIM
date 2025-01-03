@@ -65,7 +65,7 @@ return {
           autocomplete_north = { 'e', 'w', 'n', 's' },
           autocomplete_south = { 'e', 'w', 's', 'n' },
         },
-        auto_show = true,
+        auto_show = false,
         auto_show_delay_ms = 0,
         update_delay_ms = 0,
       },
@@ -86,11 +86,11 @@ return {
 
     fuzzy = {
 
-      use_frecency = true,
+      use_frecency = false,
       use_proximity = false,
       max_items = 50,
 
-      sorts = { 'score', 'label', 'kind' },
+      sorts = { 'score' },
 
       prebuilt_binaries = {
         download = true,

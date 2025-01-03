@@ -26,6 +26,7 @@ return {
         analysis = {
           typeCheckingMode = 'basic',
           autoSeachPaths = true,
+          indexing = true,
         }
       },
     },
