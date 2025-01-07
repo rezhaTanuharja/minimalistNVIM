@@ -62,7 +62,6 @@ function M.setup(opts)
       callback = function(args)
 
         vim.bo[args.buf].formatexpr = 'v:lua.vim.lsp.formatexpr'
-        vim.bo[args.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
         local client = vim.lsp.get_client_by_id(args.data.client_id)
 
@@ -118,12 +117,6 @@ function M.setup(opts)
 
   vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
     vim.lsp.handlers.signature_help, opts.signatureHelp
-  )
-
-  vim.keymap.set('n',
-    opts.keymaps.omnifunc,
-    '<cmd>lua vim.bo.omnifunc="v:lua.vim.lsp.omnifunc"<return>',
-    { desc = 'manually force omnifunc' }
   )
 
 end
