@@ -116,6 +116,12 @@ return {
     -- when project structure / element changes, refresh all buffers
 
     local api = require('nvim-tree.api')
+
+    vim.keymap.set('n', 'tt', function()
+      local node = api.tree.get_node_under_cursor()
+      vim.cmd('argadd ' .. node.absolute_path)
+    end)
+
     local Event = api.events.Event
 
     vim.keymap.set('n', '<leader>e', api.tree.toggle)
