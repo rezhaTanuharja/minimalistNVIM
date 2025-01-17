@@ -26,7 +26,9 @@ return {
     blankline.setup {
 
       indent = {char = '│'},
-      exclude = {},
+      exclude = {
+        filetypes = { 'tex', 'plaintex', 'bib' },
+      },
 
       scope = {
         enabled = true,
