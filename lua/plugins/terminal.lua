@@ -63,6 +63,9 @@ opts.fd = {
     '--exclude "*.png"',
     '--exclude "*.pdf"',
     '--exclude "*.jp*g"',
+    '--exclude "*.aux"',
+
+    '--exclude "**/build/**"',
   },
 }
 
