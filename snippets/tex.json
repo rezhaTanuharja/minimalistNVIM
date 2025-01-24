@@ -12,22 +12,10 @@
     "description": "Create the start and end of an environment"
   },
 
-  "Fraction": {
-    "prefix": "fraction",
-    "body": "\\frac{\n\t${1:numerator}\n}{\n\t${2:denominator}\n}",
-    "description": "Create a fraction in math mode"
-  },
-
-  "Derivative": {
-    "prefix": "derivative",
-    "body": "\\frac{\n\td ${1:dependent}\n}{\n\td ${2:variable}\n}",
-    "description": "Create a derivative in math mode"
-  },
-
-  "Partial Derivative": {
-    "prefix": "partial",
-    "body": "\\frac{\n\t\\partial ${1:dependent}\n}{\n\t\\partial ${2:variable}\n}",
-    "description": "Create a partial derivative in math mode"
+  "Bold": {
+    "prefix": "bold",
+    "body": "\\mathbf{${1:symbol}}$0",
+    "description": "Create a bold symbol"
   }
-
+  
 }
