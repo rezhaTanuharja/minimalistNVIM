@@ -33,7 +33,7 @@ opts.hover = {
   border = 'single',
   wrap = true,
   wrap_at = 80,
-  focus = false,
+  focusable = true,
 }
 
 opts.signatureHelp = {
