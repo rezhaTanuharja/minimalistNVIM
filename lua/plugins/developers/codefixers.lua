@@ -15,7 +15,8 @@ return {
     executable = 'ruff',
     pattern = '*.py',
     actions = {
-      'silent! !ruff check --extend-select I --fix %',
+      -- 'silent! !ruff check --extend-select I --fix %',
+      -- 'silent! !ruff check --fix %',
       'silent! !ruff format %',
     },
   },

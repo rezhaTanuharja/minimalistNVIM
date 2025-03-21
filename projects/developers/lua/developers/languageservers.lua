@@ -19,19 +19,26 @@ end
 -- refresh all buffer while preserving the current layout
 function M.refresh()
 
-  local window_buffer_map = {}
-  for _, window_id in pairs(vim.api.nvim_tabpage_list_wins(0)) do
-    local buffer_id = vim.api.nvim_win_get_buf(window_id)
-    table.insert(window_buffer_map, { window_id = window_id, buffer_id = buffer_id})
-  end
+  vim.lsp.stop_client(vim.lsp.get_clients(), true)
 
-  if #window_buffer_map > 0 then
-    vim.cmd('bufdo if &modifiable | write | edit | endif')
-  end
+  vim.defer_fn(
+    function()
+      local window_buffer_map = {}
+      for _, window_id in pairs(vim.api.nvim_tabpage_list_wins(0)) do
+        local buffer_id = vim.api.nvim_win_get_buf(window_id)
+        table.insert(window_buffer_map, { window_id = window_id, buffer_id = buffer_id})
+      end
 
-  for _, entry in pairs(window_buffer_map) do
-    vim.api.nvim_win_set_buf(entry.window_id, entry.buffer_id)
-  end
+      if #window_buffer_map > 0 then
+        vim.cmd('bufdo if &modifiable | write | edit | endif')
+      end
+
+      for _, entry in pairs(window_buffer_map) do
+        vim.api.nvim_win_set_buf(entry.window_id, entry.buffer_id)
+      end
+    end,
+    10
+  )
 
 end
 
@@ -125,7 +132,7 @@ function M.set_client(opts)
 
   if vim.fn.executable(opts.executable) == 1 then
 
-    vim.api.nvim_create_autocmd('FileType', {
+    vim.api.nvim_create_autocmd({'FileType', 'BufReadPost'}, {
 
       pattern = opts.pattern,
       group = 'LSP',
