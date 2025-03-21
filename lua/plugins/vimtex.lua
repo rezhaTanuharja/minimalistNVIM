@@ -12,7 +12,8 @@
 return {
 
   "lervag/vimtex",
-  lazy = false,
+  -- lazy = false,
+  ft = "tex",
 
   init = function()
 
