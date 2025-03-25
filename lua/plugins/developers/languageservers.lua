@@ -44,6 +44,22 @@ return {
   },
 
   {
+    name = 'clangd',
+    executable = 'clangd',
+    pattern = {'c', 'cpp'},
+    cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'},
+    root_dir = function(buffer)
+      return vim.fs.root(buffer, {'.git', 'compile_commands.json'})
+    end,
+
+    init_options = {
+      fallbackFlag = {'-std=c++17'},
+    },
+
+    settings = {},
+  },
+
+  {
     name = 'ruff',
     executable = 'ruff',
     pattern = 'python',
