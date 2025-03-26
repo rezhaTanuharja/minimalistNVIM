@@ -13,7 +13,7 @@ return {
 
   'saghen/blink.cmp',
 
-  version = 'v0.5.0',
+  version = '1.*',
 
   opts = {
 
@@ -30,80 +30,79 @@ return {
 
     },
 
-    highlight = {
-      use_nvim_cmp_as_default = false,
-    },
+    completion = {
 
-    accept = { auto_brackets = { enabled = false } },
-    trigger = { signature_help = { enabled = false } },
-
-    windows = {
-
-      autocomplete = {
-        min_width = 15,
-        max_height = 10,
-        border = 'single',
-        winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,Search:None,Pmenu:Normal',
-        scrolloff = 2,
-        direction_priority = { 's', 'n' },
-        auto_show = true,
-        selection = 'preselect',
-        draw = 'minimal',
-        cycle = {
-          from_bottom = true,
-          from_top = true,
-        },
+      accept = {
+        auto_brackets = { enabled = false },
       },
 
       documentation = {
-        min_width = 10,
-        max_width = 60,
-        max_height = 20,
-        border = 'single',
-        winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,Search:None,Pmenu:Normal',
-        direction_priority = {
-          autocomplete_north = { 'e', 'w', 'n', 's' },
-          autocomplete_south = { 'e', 'w', 's', 'n' },
-        },
-        auto_show = false,
-        auto_show_delay_ms = 0,
-        update_delay_ms = 0,
-      },
 
-      signature_help = {
-        min_width = 1,
-        max_width = 100,
-        max_height = 10,
-        border = 'single',
-        direction_priority = { 's', 'n' },
+        auto_show = false,
+
+        window = {
+
+          min_width = 10,
+          max_width = 60,
+          max_height = 20,
+          border = 'single',
+          scrollbar = false,
+
+          winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,Search:None,Pmenu:Normal',
+
+          direction_priority = {
+            menu_north = { 'e', 'w', 'n', 's' },
+            menu_south = { 'e', 'w', 's', 'n' },
+          }
+
+        },
+
+
       },
 
       ghost_text = {
         enabled = false,
       },
 
-    },
+      keyword = {
+        range = 'full'
+      },
 
-    fuzzy = {
+      list = {
+        selection = {
+          preselect = true,
+          auto_insert = true,
+        },
+      },
 
-      use_frecency = false,
-      use_proximity = false,
-      max_items = 50,
+      menu = {
 
-      sorts = { 'score' },
+        auto_show = true,
+        min_width = 15,
+        max_height = 10,
+        border = 'single',
 
-      prebuilt_binaries = {
-        download = true,
-        force_version = nil,
-        force_system_triple = nil,
+        scrollbar = false,
+
+        direction_priority = { 's', 'n' },
+
+        draw = {
+          columns = {
+            { 'label', 'kind', gap = 1 },
+          },
+        },
+
       },
 
     },
 
     sources = {
 
-      completion = {
-        enabled_providers = { 'snippets', 'lsp', 'path', 'buffer' },
+      default = {
+        'snippets',
+        'lsp',
+        'path',
+        'buffer',
       },
 
       providers = {
@@ -118,7 +117,7 @@ return {
           should_show_items = true,
           max_items = nil,
           min_keyword_length = 2,
-          fallback_for = {},
+          fallbacks = { 'buffer', 'path', },
           score_offset = 0,
           override = nil,
 
@@ -162,46 +161,32 @@ return {
           name = 'Buffer',
           module = 'blink.cmp.sources.buffer',
           min_keyword_length = 5,
-          fallback_for = { 'lsp' },
 
         },
       },
-    },
-
-    kind_icons = {
-
-      Text = '',
-      Method = '',
-      Function = '',
-      Constructor = '',
-
-      Field = '',
-      Variable = '',
-      Property = '',
-
-      Class = '',
-      Interface = '',
-      Struct = '',
-      Module = '',
-
-      Unit = '',
-      Value = '',
-      Enum = '',
-      EnumMember = '',
-
-      Keyword = '',
-      Constant = '',
-
-      Snippet = '',
-      Color = '',
-      File = '',
-      Reference = '',
-      Folder = '',
-      Event = '',
-      Operator = '',
-      TypeParameter = '',
 
     },
+
+    fuzzy = {
+
+      implementation = 'prefer_rust_with_warning',
+
+      use_frecency = true,
+      use_proximity = false,
+
+      sorts = {
+        'exact',
+        'score',
+        'sort_text'
+      },
+
+      prebuilt_binaries = {
+        download = true,
+      },
+
+
+    },
+
 
   },
 
