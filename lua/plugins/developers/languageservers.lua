@@ -12,19 +12,19 @@
 return {
 
   {
-    name = 'pyright',
-    executable = 'pyright',
-    pattern = 'python',
-    cmd = {'pyright-langserver', '--stdio'},
+    name = "pyright",
+    executable = "pyright",
+    pattern = "python",
+    cmd = {"pyright-langserver", "--stdio"},
 
     root_dir = function(buffer)
-      return vim.fs.root(buffer, {'.git', 'pyproject.toml'})
+      return vim.fs.root(buffer, {".git", "pyproject.toml"})
     end,
 
     settings = {
       python = {
         analysis = {
-          typeCheckingMode = 'basic',
+          typeCheckingMode = "basic",
           autoSeachPaths = true,
           indexing = true,
         }
@@ -33,40 +33,40 @@ return {
 
     deep_search = {
 
-      keymap = 'gs',
+      keymap = "gs",
       formatter = function(identifier)
-        return '\\(def\\|class\\) ' .. identifier
+        return "\\(def\\|class\\) " .. identifier
       end,
 
-      extension = 'py',
+      extension = "py",
 
     },
   },
 
   {
-    name = 'clangd',
-    executable = 'clangd',
-    pattern = {'c', 'cpp'},
-    cmd = {'clangd', '--background-index', '--clang-tidy', '--log=verbose'},
+    name = "clangd",
+    executable = "clangd",
+    pattern = {"c", "cpp"},
+    cmd = {"clangd", "--background-index", "--clang-tidy", "--log=verbose"},
     root_dir = function(buffer)
-      return vim.fs.root(buffer, {'.git', 'compile_commands.json'})
+      return vim.fs.root(buffer, {".git", "compile_commands.json"})
     end,
 
     init_options = {
-      fallbackFlag = {'-std=c++17'},
+      fallbackFlag = {"-std=c++17"},
     },
 
     settings = {},
   },
 
   {
-    name = 'ruff',
-    executable = 'ruff',
-    pattern = 'python',
-    cmd = { 'ruff', 'server' },
+    name = "ruff",
+    executable = "ruff",
+    pattern = "python",
+    cmd = { "ruff", "server" },
 
     root_dir = function(buffer)
-      return vim.fs.root(buffer, {'.git', 'pyproject.toml'})
+      return vim.fs.root(buffer, {".git", "pyproject.toml"})
     end,
 
     settings = {},
@@ -74,13 +74,13 @@ return {
   },
 
   {
-    name = 'tsls',
-    executable = 'typescript-language-server',
-    pattern = {'typescript', 'typescriptreact'},
-    cmd = { 'typescript-language-server', '--stdio' },
+    name = "tsls",
+    executable = "typescript-language-server",
+    pattern = {"typescript", "typescriptreact"},
+    cmd = { "typescript-language-server", "--stdio" },
 
     root_dir = function(buffer)
-      return vim.fs.root(buffer, {'.git', 'tsconfig.json'})
+      return vim.fs.root(buffer, {".git", "tsconfig.json"})
     end,
 
     settings = {},
@@ -88,20 +88,20 @@ return {
   },
 
   {
-    name = 'texlab',
-    executable = 'texlab',
-    pattern = { 'tex', 'plaintex', 'bib' },
-    cmd = { 'texlab' },
+    name = "texlab",
+    executable = "texlab",
+    pattern = { "tex", "plaintex", "bib" },
+    cmd = { "texlab" },
 
     root_dir = function(buffer)
-      return vim.fs.root(buffer, {'.git', 'main.tex'})
+      return vim.fs.root(buffer, {".git", "main.tex"})
     end,
 
     settings = {
 
       texlab = {
 
-        bibtexFormatter = 'texlab',
+        bibtexFormatter = "texlab",
 
         build = {
           onSave = false,

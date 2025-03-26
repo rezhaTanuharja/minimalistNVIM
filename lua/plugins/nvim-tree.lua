@@ -11,17 +11,17 @@
 
 return {
 
-  'kyazdani42/nvim-tree.lua',
+  "kyazdani42/nvim-tree.lua",
 
   keys = {
-    { '<leader>e', '<cmd>NvimTreeToggle<return>'},
+    { "<leader>e", "<cmd>NvimTreeToggle<return>"},
   },
 
   config = function()
 
-    local success, nvim_tree = pcall(require, 'nvim-tree')
+    local success, nvim_tree = pcall(require, "nvim-tree")
     if not success then
-      vim.notify('Failed to load plugin: nvim-tree')
+      vim.notify("Failed to load plugin: nvim-tree")
       return
     end
 
@@ -34,37 +34,37 @@ return {
 
       renderer = {
 
-        root_folder_modifier = ':t',
+        root_folder_modifier = ":t",
 
         icons = {
 
-          diagnostics_placement = 'signcolumn',
-          git_placement = 'after',
+          diagnostics_placement = "signcolumn",
+          git_placement = "after",
 
           glyphs = {
 
-            default = 'x',
-            symlink = 's',
+            default = "x",
+            symlink = "s",
 
             folder = {
-              arrow_open = '',
-              arrow_closed = '',
-              default = '[x]',
-              open = ']x[',
-              empty = '[ ]',
-              empty_open = '] [',
-              symlink = '[s]',
-              symlink_open = ']s[',
+              arrow_open = "",
+              arrow_closed = "",
+              default = "[x]",
+              open = "]x[",
+              empty = "[ ]",
+              empty_open = "] [",
+              symlink = "[s]",
+              symlink_open = "]s[",
             },
 
             git = {
-              unstaged = '*',
-              staged = '',
-              deleted = '',
-              unmerged = '',
-              renamed = '',
-              untracked = '',
-              ignored = '',
+              unstaged = "*",
+              staged = "",
+              deleted = "",
+              unmerged = "",
+              renamed = "",
+              untracked = "",
+              ignored = "",
             },
 
           },
@@ -80,10 +80,10 @@ return {
         show_on_open_dirs = false,
 
         icons = {
-          hint = '?',
-          info = '*',
-          warning = '!',
-          error = '!',
+          hint = "?",
+          info = "*",
+          warning = "!",
+          error = "!",
         },
 
       },
@@ -99,32 +99,32 @@ return {
       -- adjust the window size
       view = {
         width = 32,
-        side = 'left',
+        side = "left",
       },
 
       -- do not show hidden files
       filters = {
         dotfiles = true,
-        custom = { '.*cache.*' },
+        custom = { ".*cache.*" },
       },
 
     }
 
-    vim.api.nvim_set_hl(0, 'NvimTreeFolderIcon', { fg = '#777777'})
+    vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = "#777777"})
 
 
     -- when project structure / element changes, refresh all buffers
 
-    local api = require('nvim-tree.api')
+    local api = require("nvim-tree.api")
 
-    vim.keymap.set('n', 'tt', function()
+    vim.keymap.set("n", "tt", function()
       local node = api.tree.get_node_under_cursor()
-      vim.cmd('argadd ' .. node.absolute_path)
+      vim.cmd("argadd " .. node.absolute_path)
     end)
 
     local Event = api.events.Event
 
-    vim.keymap.set('n', '<leader>e', api.tree.toggle)
+    vim.keymap.set("n", "<leader>e", api.tree.toggle)
 
     local events = {
       Event.NodeRenamed,
@@ -139,12 +139,12 @@ return {
 
         function(_)
 
-          vim.keymap.set('n', '<leader>e',
+          vim.keymap.set("n", "<leader>e",
 
             function()
               api.tree.toggle()
-              require('developers.languageservers').refresh()
-              vim.keymap.set('n', '<leader>e', api.tree.toggle)
+              require("developers.languageservers").refresh()
+              vim.keymap.set("n", "<leader>e", api.tree.toggle)
             end
 
           )

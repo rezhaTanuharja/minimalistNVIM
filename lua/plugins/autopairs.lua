@@ -11,31 +11,31 @@
 
 return {
 
-  'windwp/nvim-autopairs',
+  "windwp/nvim-autopairs",
 
-  event = 'InsertEnter',
+  event = "InsertEnter",
 
   opts = {
 
     check_ts = true,
 
     ts_config = {
-      lua = { 'string' },
-      python = { 'string' },
+      lua = { "string" },
+      python = { "string" },
     },
 
-    disable_filetype = { 'TelescopePrompt', 'spectre_panel' },
+    disable_filetype = { "TelescopePrompt", "spectre_panel" },
 
     fast_wrap = {
-      map = '<C-k>',
-      chars = { '{', '[', '(', '"', "'" },
+      map = "<C-k>",
+      chars = { "{", "[", "(", '"', "'" },
       pattern = [=[[%'%"%>%]%)%}%,]]=],
       offset = 0,
-      end_key = 'k',
-      keys = 'qwertyuiopzxcvbnmasdfghjkl',
+      end_key = "k",
+      keys = "qwertyuiopzxcvbnmasdfghjkl",
       check_comma = true,
-      highlight = 'PmenuSel',
-      highlight_grey = 'LineNr',
+      highlight = "PmenuSel",
+      highlight_grey = "LineNr",
     },
 
   },

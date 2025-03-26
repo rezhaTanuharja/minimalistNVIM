@@ -13,7 +13,7 @@ local M = {}
 
 -- used if buffer root directory cannot be found
 function M.dir_fallback(buffer)
-  return vim.fn.fnamemodify(buffer, ':p:h')
+  return vim.fn.fnamemodify(buffer, ":p:h")
 end
 
 -- refresh all buffer while preserving the current layout
@@ -30,7 +30,7 @@ function M.refresh()
       end
 
       if #window_buffer_map > 0 then
-        vim.cmd('bufdo if &modifiable | write | edit | endif')
+        vim.cmd("bufdo if &modifiable | write | edit | endif")
       end
 
       for _, entry in pairs(window_buffer_map) do
@@ -49,31 +49,31 @@ function M.deep_search(formatter, extension)
 
   local success, active_clients = pcall(vim.lsp.get_clients, { bufnr = buf_number })
   if not success then
-    print('There is no active client')
+    print("There is no active client")
     return
   end
 
   local root_dir = active_clients[1].workspace_folders[1].name
-  local search_term = formatter(vim.fn.expand('<cword>'))
+  local search_term = formatter(vim.fn.expand("<cword>"))
 
-  vim.cmd('vimgrep /' .. search_term .. '/ ' .. root_dir .. '/**/*.' .. extension )
-  vim.cmd('copen')
+  vim.cmd("vimgrep /" .. search_term .. "/ " .. root_dir .. "/**/*." .. extension )
+  vim.cmd("copen")
 
 end
 
 function M.setup(opts)
 
   vim.api.nvim_create_autocmd(
-    'LspAttach', {
-      group = 'LSP',
+    "LspAttach", {
+      group = "LSP",
       callback = function(args)
 
-        vim.bo[args.buf].formatexpr = 'v:lua.vim.lsp.formatexpr'
+        vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr"
 
         local client = vim.lsp.get_client_by_id(args.data.client_id)
 
         -- assume that all LSs support definition
-        vim.keymap.set('n',
+        vim.keymap.set("n",
           opts.keymaps.definition,
           vim.lsp.buf.definition,
           {
@@ -81,8 +81,8 @@ function M.setup(opts)
           }
         )
 
-        if client.supports_method('textDocument/references') then
-          vim.keymap.set('n',
+        if client.supports_method("textDocument/references") then
+          vim.keymap.set("n",
             opts.keymaps.references,
             vim.lsp.buf.references,
             {
@@ -91,8 +91,8 @@ function M.setup(opts)
           )
         end
 
-        if client.supports_method('textDocument/rename') then
-          vim.keymap.set('n',
+        if client.supports_method("textDocument/rename") then
+          vim.keymap.set("n",
             opts.keymaps.rename,
             vim.lsp.buf.rename,
             {
@@ -101,8 +101,8 @@ function M.setup(opts)
           )
         end
 
-        if client.supports_method('textDocument/codeAction') then
-          vim.keymap.set('n',
+        if client.supports_method("textDocument/codeAction") then
+          vim.keymap.set("n",
             opts.keymaps.code_action,
             vim.lsp.buf.code_action,
             {
@@ -132,10 +132,10 @@ function M.set_client(opts)
 
   if vim.fn.executable(opts.executable) == 1 then
 
-    vim.api.nvim_create_autocmd({'FileType', 'BufReadPost'}, {
+    vim.api.nvim_create_autocmd({"FileType", "BufReadPost"}, {
 
       pattern = opts.pattern,
-      group = 'LSP',
+      group = "LSP",
 
       callback = function(args)
 
@@ -150,7 +150,7 @@ function M.set_client(opts)
           return
         end
 
-        vim.keymap.set('n',
+        vim.keymap.set("n",
           opts.deep_search.keymap,
           function()
             M.deep_search(

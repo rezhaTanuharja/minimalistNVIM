@@ -12,27 +12,27 @@
 return {
 
   {
-    executable = 'ruff',
-    pattern = '*.py',
+    executable = "ruff",
+    pattern = "*.py",
     actions = {
-      'silent! !ruff check --extend-select I --fix %',
-      'silent! !ruff format %',
+      "silent! !ruff check --extend-select I --fix %",
+      "silent! !ruff format %",
     },
   },
 
   {
-    executable = 'prettier',
-    pattern = { '*.ts', '*.tsx' },
+    executable = "prettier",
+    pattern = { "*.ts", "*.tsx" },
     actions = {
-      'silent! !prettier --write %',
+      "silent! !prettier --write %",
     }
   },
 
   {
-    executable = 'texlab',
-    pattern = { '*.tex', '*.cls' },
+    executable = "texlab",
+    pattern = { "*.tex", "*.cls" },
     actions = {
-      'lua vim.lsp.buf.format()'
+      "lua vim.lsp.buf.format()"
     },
   },
 

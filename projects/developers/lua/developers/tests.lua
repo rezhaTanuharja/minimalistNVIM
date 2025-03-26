@@ -15,17 +15,17 @@ function M.set_test(opts)
 
   if vim.fn.executable(opts.executable) == 1 then
 
-    vim.api.nvim_create_autocmd('FileType', {
+    vim.api.nvim_create_autocmd("FileType", {
 
       pattern = opts.pattern,
-      group = 'tests',
+      group = "tests",
 
       callback = function(args)
 
         vim.bo[args.buf].makeprg = opts.makeprg
         vim.bo[args.buf].errorformat = opts.errorformat
 
-        vim.keymap.set('n', '<leader>i', '<cmd>make<return>', { buffer = args.buf })
+        vim.keymap.set("n", "<leader>i", "<cmd>make<return>", { buffer = args.buf })
 
       end,
 

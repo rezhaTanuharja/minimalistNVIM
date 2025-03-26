@@ -11,34 +11,34 @@
 
 local opts = {}
 
-opts.servers    = require('plugins.developers.languageservers')
-opts.tests      = require('plugins.developers.tests')
-opts.codefixers = require('plugins.developers.codefixers')
+opts.servers    = require("plugins.developers.languageservers")
+opts.tests      = require("plugins.developers.tests")
+opts.codefixers = require("plugins.developers.codefixers")
 
 opts.keymaps = {
 
-  definition  = 'gd',
-  references  = 'gr',
-  rename      = 'grr',
+  definition  = "gd",
+  references  = "gr",
+  rename      = "grr",
 
-  code_action = 'ga',
+  code_action = "ga",
 
-  deep_search = 'gs',
-  refresh     = 'gn',
+  deep_search = "gs",
+  refresh     = "gn",
 
 }
 
 opts.hover = {
-  title = ' Language Server ',
-  border = 'single',
+  title = " Language Server ",
+  border = "single",
   wrap = true,
   wrap_at = 80,
   focusable = true,
 }
 
 opts.signatureHelp = {
-  title = ' Language Server ',
-  border = 'single',
+  title = " Language Server ",
+  border = "single",
   focusable = false,
   wrap = true,
   wrap_at = 80,
@@ -46,9 +46,9 @@ opts.signatureHelp = {
 
 return {
 
-  'developers', dev = true,
+  "developers", dev = true,
 
-  event = 'UIEnter',
+  event = "UIEnter",
   opts = opts,
 
 }

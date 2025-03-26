@@ -11,22 +11,22 @@
 
 return {
 
-  'saghen/blink.cmp',
+  "saghen/blink.cmp",
 
-  version = '1.*',
+  version = "1.*",
 
   opts = {
 
     keymap = {
 
-      ['<return>'] = { 'accept', 'fallback' },
-      ['<C-d>'] = { 'show', 'show_documentation', 'hide_documentation' },
+      ["<return>"] = { "accept", "fallback" },
+      ["<C-d>"] = { "show", "show_documentation", "hide_documentation" },
 
-      ['<C-p>'] = { 'select_prev', 'fallback' },
-      ['<C-n>'] = { 'select_next', 'fallback' },
+      ["<C-p>"] = { "select_prev", "fallback" },
+      ["<C-n>"] = { "select_next", "fallback" },
 
-      ['<Tab>'] = { 'snippet_forward', 'fallback' },
-      ['<S-Tab>'] = { 'snippet_backward', 'fallback' },
+      ["<Tab>"] = { "snippet_forward", "fallback" },
+      ["<S-Tab>"] = { "snippet_backward", "fallback" },
 
     },
 
@@ -45,14 +45,14 @@ return {
           min_width = 10,
           max_width = 60,
           max_height = 20,
-          border = 'single',
+          border = "single",
           scrollbar = false,
 
-          winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,Search:None,Pmenu:Normal',
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,Search:None,Pmenu:Normal",
 
           direction_priority = {
-            menu_north = { 'e', 'w', 'n', 's' },
-            menu_south = { 'e', 'w', 's', 'n' },
+            menu_north = { "e", "w", "n", "s" },
+            menu_south = { "e", "w", "s", "n" },
           }
 
         },
@@ -65,7 +65,7 @@ return {
       },
 
       keyword = {
-        range = 'full'
+        range = "full"
       },
 
       list = {
@@ -80,17 +80,17 @@ return {
         auto_show = true,
         min_width = 15,
         max_height = 10,
-        border = 'single',
+        border = "single",
 
         scrollbar = false,
 
-        winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,Search:None,Pmenu:Normal',
+        winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,Search:None,Pmenu:Normal",
 
-        direction_priority = { 's', 'n' },
+        direction_priority = { "s", "n" },
 
         draw = {
           columns = {
-            { 'label', 'kind', gap = 1 },
+            { "label", "kind", gap = 1 },
           },
         },
 
@@ -101,25 +101,25 @@ return {
     sources = {
 
       default = {
-        'snippets',
-        'lsp',
-        'path',
-        'buffer',
+        "snippets",
+        "lsp",
+        "path",
+        "buffer",
       },
 
       providers = {
 
         lsp = {
 
-          name = 'LSP',
-          module = 'blink.cmp.sources.lsp',
+          name = "LSP",
+          module = "blink.cmp.sources.lsp",
 
           enabled = true,
           transform_items = nil,
           should_show_items = true,
           max_items = nil,
           min_keyword_length = 2,
-          fallbacks = { 'buffer', 'path', },
+          fallbacks = { "buffer", "path", },
           score_offset = 0,
           override = nil,
 
@@ -127,15 +127,15 @@ return {
 
         path = {
 
-          name = 'Path',
-          module = 'blink.cmp.sources.path',
+          name = "Path",
+          module = "blink.cmp.sources.path",
           min_keyword_length = 2,
           score_offset = 0,
 
           opts = {
             trailing_slash = false,
             label_trailing_slash = true,
-            get_cwd = function(context) return vim.fn.expand( ('#%d:p:h'):format(context.bufnr) ) end,
+            get_cwd = function(context) return vim.fn.expand( ("#%d:p:h"):format(context.bufnr) ) end,
             show_hidden_files_by_default = false,
           }
 
@@ -143,15 +143,15 @@ return {
 
         snippets = {
 
-          name = 'Snippets',
-          module = 'blink.cmp.sources.snippets',
+          name = "Snippets",
+          module = "blink.cmp.sources.snippets",
           min_keyword_length = 2,
           score_offset = 3,
 
           opts = {
             friendly_snippets = true,
-            search_paths = { vim.fn.stdpath('config') .. '/snippets' },
-            global_snippets = { 'all' },
+            search_paths = { vim.fn.stdpath("config") .. "/snippets" },
+            global_snippets = { "all" },
             extended_filetypes = {},
             ignored_filetypes = {},
           }
@@ -160,8 +160,8 @@ return {
 
         buffer = {
 
-          name = 'Buffer',
-          module = 'blink.cmp.sources.buffer',
+          name = "Buffer",
+          module = "blink.cmp.sources.buffer",
           min_keyword_length = 5,
 
         },
@@ -171,15 +171,15 @@ return {
 
     fuzzy = {
 
-      implementation = 'prefer_rust_with_warning',
+      implementation = "prefer_rust_with_warning",
 
       use_frecency = true,
       use_proximity = false,
 
       sorts = {
-        'exact',
-        'score',
-        'sort_text'
+        "exact",
+        "score",
+        "sort_text"
       },
 
       prebuilt_binaries = {

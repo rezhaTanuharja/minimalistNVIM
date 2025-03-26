@@ -19,11 +19,11 @@ M.state = {
 local get_fzf_output = function(buffer)
 
   local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
-  local output = ''
+  local output = ""
 
   for row = 1, #lines do
 
-    if lines[row] == '' then
+    if lines[row] == "" then
       return output
     end
 
@@ -52,7 +52,7 @@ M.setup = function(opts)
       buffer = vim.api.nvim_create_buf(false, true) end
 
     local win_config = {
-      relative = 'editor',
+      relative = "editor",
       width = width,
       height = height,
       col = col,
@@ -70,26 +70,26 @@ M.setup = function(opts)
   local fzf_command = opts.fzf.executable
 
   for _, arg in pairs(opts.fzf.args) do
-    fzf_command = fzf_command .. ' ' .. arg
+    fzf_command = fzf_command .. " " .. arg
   end
 
   local fd_command = opts.fd.executable
 
   for _, arg in pairs(opts.fd.args) do
-    fd_command = fd_command .. ' ' .. arg
+    fd_command = fd_command .. " " .. arg
   end
 
-  local rg_command = opts.rg.executable .. ' --line-number --color=never'
+  local rg_command = opts.rg.executable .. " --line-number --color=never"
 
   for _, arg in pairs(opts.rg.args) do
-    rg_command = rg_command .. ' ' .. arg
+    rg_command = rg_command .. " " .. arg
   end
 
   M.toggle_find_file = function()
 
     local picker = M.create_floating_window()
 
-    vim.fn.termopen(fd_command .. ' | ' .. fzf_command, {
+    vim.fn.termopen(fd_command .. " | " .. fzf_command, {
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
@@ -99,8 +99,8 @@ M.setup = function(opts)
 
           vim.api.nvim_win_close(picker.win, true)
 
-          if found_file ~= '' then
-            vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
+          if found_file ~= "" then
+            vim.cmd("edit " .. vim.fn.fnameescape(found_file))
           end
 
 
@@ -111,16 +111,16 @@ M.setup = function(opts)
       end
     })
 
-    vim.cmd('startinsert')
+    vim.cmd("startinsert")
 
   end
 
   M.toggle_find_buffer = function()
 
     local picker = M.create_floating_window()
-    local file_name = ''
+    local file_name = ""
 
-    vim.cmd('redir! > .out | silent ls | redir END')
+    vim.cmd("redir! > .out | silent ls | redir END")
 
     vim.fn.termopen([[sed -n 's/.*"\(.*\)".*/\1/p' .out | grep -v -E "term:|No Name" | ]] .. fzf_command, {
       on_exit = function(_, exit_code)
@@ -132,20 +132,20 @@ M.setup = function(opts)
 
           vim.api.nvim_win_close(picker.win, true)
 
-          if found_file ~= '' then
-            vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
+          if found_file ~= "" then
+            vim.cmd("edit " .. vim.fn.fnameescape(found_file))
           end
 
         else
           vim.api.nvim_win_close(picker.win, true)
         end
 
-        vim.cmd('silent! !rm .out')
+        vim.cmd("silent! !rm .out")
 
       end
     })
 
-    vim.cmd('startinsert')
+    vim.cmd("startinsert")
 
   end
 
@@ -153,19 +153,19 @@ M.setup = function(opts)
 
     local picker = M.create_floating_window()
 
-    vim.fn.termopen(fzf_command .. ' --bind "change:reload(' .. rg_command .. ' {q} || true)" --ansi', {
+    vim.fn.termopen(fzf_command .. ' --bind "change:reload(" .. rg_command .. " {q} || true)" --ansi', {
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
 
           local output = get_fzf_output(picker.buffer)
           local file_name, line_num = output:match("([^:]+):(%d+)")
-          local found_file = vim.fn.findfile(file_name, '.')
+          local found_file = vim.fn.findfile(file_name, ".")
 
           vim.api.nvim_win_close(picker.win, true)
 
-          if found_file ~= '' then
-            vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
+          if found_file ~= "" then
+            vim.cmd("edit " .. vim.fn.fnameescape(found_file))
             vim.api.nvim_win_set_cursor(0, {tonumber(line_num), 0})
           end
 
@@ -176,7 +176,7 @@ M.setup = function(opts)
       end
     })
 
-    vim.cmd('startinsert')
+    vim.cmd("startinsert")
 
   end
 
@@ -185,12 +185,12 @@ M.setup = function(opts)
     if not vim.api.nvim_win_is_valid(M.state.win) then
       M.state = M.create_floating_window(M.state.buffer)
 
-      if vim.bo[M.state.buffer].buftype ~= 'terminal' then
+      if vim.bo[M.state.buffer].buftype ~= "terminal" then
 
         vim.cmd.terminal()
 
         local is_keyword = vim.bo[M.state.buffer].iskeyword
-        vim.bo[M.state.buffer].iskeyword = is_keyword .. ',.,/,-'
+        vim.bo[M.state.buffer].iskeyword = is_keyword .. ",.,/,-"
 
       end
     else
@@ -200,20 +200,20 @@ M.setup = function(opts)
   end
 
   M.goto_file = function()
-    local file_name = vim.fn.expand('<cword>')
-    local found_file = vim.fn.findfile(file_name, '.')
-    if found_file ~= '' then
+    local file_name = vim.fn.expand("<cword>")
+    local found_file = vim.fn.findfile(file_name, ".")
+    if found_file ~= "" then
       vim.api.nvim_win_hide(M.state.win)
-      vim.cmd('edit ' .. vim.fn.fnameescape(found_file))
+      vim.cmd("edit " .. vim.fn.fnameescape(found_file))
     end
   end
 
-  vim.keymap.set('n', opts.keymaps.terminal, M.toggle_terminal)
-  vim.keymap.set('n', opts.keymaps.find_file, M.toggle_find_file)
-  vim.keymap.set('n', opts.keymaps.live_grep, M.toggle_live_grep)
-  vim.keymap.set('n', opts.keymaps.find_buffer, M.toggle_find_buffer)
-  vim.keymap.set('t', opts.keymaps.normal_mode, '<c-\\><c-n>')
-  vim.keymap.set('n', opts.keymaps.goto_file, M.goto_file, { buffer = M.state.buffer })
+  vim.keymap.set("n", opts.keymaps.terminal, M.toggle_terminal)
+  vim.keymap.set("n", opts.keymaps.find_file, M.toggle_find_file)
+  vim.keymap.set("n", opts.keymaps.live_grep, M.toggle_live_grep)
+  vim.keymap.set("n", opts.keymaps.find_buffer, M.toggle_find_buffer)
+  vim.keymap.set("t", opts.keymaps.normal_mode, "<c-\\><c-n>")
+  vim.keymap.set("n", opts.keymaps.goto_file, M.goto_file, { buffer = M.state.buffer })
 end
 
 return M

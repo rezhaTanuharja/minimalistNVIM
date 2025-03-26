@@ -13,14 +13,14 @@ local opts = {}
 
 opts.keymaps = {
 
-  terminal = '<leader>t',
-  find_file = '<leader>f',
-  find_buffer = '<leader>y',
-  live_grep = '<leader>g',
+  terminal = "<leader>t",
+  find_file = "<leader>f",
+  find_buffer = "<leader>y",
+  live_grep = "<leader>g",
 
-  normal_mode = '<esc><esc>',
+  normal_mode = "<esc><esc>",
 
-  goto_file = 'gf',
+  goto_file = "gf",
 
 }
 
@@ -29,37 +29,37 @@ opts.window = {
   width = function() return math.floor(vim.o.columns * 0.8) end,
   height = function() return math.floor(vim.o.lines * 0.8) end,
 
-  style = 'minimal',
-  border = 'single',
+  style = "minimal",
+  border = "single",
 
 }
 
 opts.fzf = {
 
-  executable = 'fzf',
+  executable = "fzf",
 
   args = {
-    '--layout=reverse',
+    "--layout=reverse",
   },
 
 }
 
 opts.rg = {
 
-  executable = 'rg',
+  executable = "rg",
 
   args = {
-    '--ignore-case',
+    "--ignore-case",
   },
 
 }
 
 opts.fd = {
 
-  executable = 'fd',
+  executable = "fd",
 
   args = {
-    '--type f',
+    "--type f",
     '--exclude "*.png"',
     '--exclude "*.pdf"',
     '--exclude "*.jp*g"',
@@ -71,9 +71,9 @@ opts.fd = {
 
 return {
 
-  'terminal', dev = true,
+  "terminal", dev = true,
 
-  event = 'UIEnter',
+  event = "UIEnter",
   opts = opts,
 
 }

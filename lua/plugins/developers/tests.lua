@@ -12,10 +12,10 @@
 return {
 
   {
-    executable = 'pytest',
-    pattern = 'python',
+    executable = "pytest",
+    pattern = "python",
     makeprg = 'pytest \\| tee log \\| grep "Error$"',
-    errorformat = '%f:%l: %m',
+    errorformat = "%f:%l: %m",
   },
 
 }

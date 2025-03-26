@@ -8,24 +8,24 @@
 --
 
 
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 
 -- install lazy from github repository if it is not installed
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
 
   -- github repository for lazy
-  local lazyrepo = 'https://github.com/folke/lazy.nvim.git'
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
 
   -- command to clone repository
   local out = vim.fn.system({
-    'git', 'clone', '--filter=blob:none', '--branch=stable', lazyrepo, lazypath
+    "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath
   })
 
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
-      { 'Failed to clone lazy.nvim:\n', 'ErrorMsg' },
-      { out, 'WarningMsg' },
-      { '\nPress any key to exit...' },
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out, "WarningMsg" },
+      { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
     os.exit(1)
@@ -36,20 +36,20 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- use protected call to load lazy
-local success, lazy = pcall(require, 'lazy')
+local success, lazy = pcall(require, "lazy")
 if not success then
-  vim.notify('Failed to load plugin: lazy')
+  vim.notify("Failed to load plugin: lazy")
   return
 end
 
 -- all plugin settings are in this directory
-local location = 'plugins.'
+local location = "plugins."
 
 -- specify manually the plugins to load
 lazy.setup {
 
   dev = {
-    path = '~/.config/nvim/projects',
+    path = "~/.config/nvim/projects",
     fallback = false,
   },
 
@@ -61,18 +61,18 @@ lazy.setup {
   },
 
   ui = {
-    border = 'single',
+    border = "single",
     icons = {
-      cmd = '',
-      config = '',
-      event = '',
-      favorite = '',
-      ft = '',
-      init = '',
-      import = '',
-      keys = '',
-      lazy = '',
-      loaded = '●',
+      cmd = "",
+      config = "",
+      event = "",
+      favorite = "",
+      ft = "",
+      init = "",
+      import = "",
+      keys = "",
+      lazy = "",
+      loaded = "●",
       not_loaded = "○",
       plugin = "",
       runtime = "",
@@ -105,17 +105,17 @@ lazy.setup {
     rtp = {
       reset = true,
       disabled_plugins = {
-        'editorconfig',
-        'gzip',
-        'man',
-        'matchit',
-        'netrwPlugin',
-        'rplugin',
-        'spellfile',
-        'tarPlugin',
-        'tohtml',
-        'tutor',
-        'zipPlugin',
+        "editorconfig",
+        "gzip",
+        "man",
+        "matchit",
+        "netrwPlugin",
+        "rplugin",
+        "spellfile",
+        "tarPlugin",
+        "tohtml",
+        "tutor",
+        "zipPlugin",
       },
     },
 
@@ -123,21 +123,21 @@ lazy.setup {
 
   spec = {
 
-    { import = location .. 'blink' },
-    { import = location .. 'gitsigns' },
-    { import = location .. 'autopairs' },
-    { import = location .. 'treesitter' },
-    { import = location .. 'bbye' },
-    { import = location .. 'blankline' },
-    { import = location .. 'nvim-tree' },
-    { import = location .. 'nvim-dap' },
-    { import = location .. 'vimtex' },
+    { import = location .. "blink" },
+    { import = location .. "gitsigns" },
+    { import = location .. "autopairs" },
+    { import = location .. "treesitter" },
+    { import = location .. "bbye" },
+    { import = location .. "blankline" },
+    { import = location .. "nvim-tree" },
+    { import = location .. "nvim-dap" },
+    { import = location .. "vimtex" },
 
-    { import = location .. 'developers.init' },
-    { import = location .. 'terminal' },
+    { import = location .. "developers.init" },
+    { import = location .. "terminal" },
 
   },
 
-  install = { colorscheme = { 'default' } },
+  install = { colorscheme = { "default" } },
 
 }

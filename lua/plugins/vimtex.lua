@@ -16,12 +16,12 @@ return {
 
   init = function()
 
-    vim.g.vimtex_view_method = 'zathura'
+    vim.g.vimtex_view_method = "zathura"
 
-    vim.g.vimtex_compiler_method = 'latexmk'
+    vim.g.vimtex_compiler_method = "latexmk"
     vim.g.vimtex_compiler_latexmk = {
-      out_dir = 'build',
-      options = { '-pdf', '-interaction=nonstopmode', '-synctex=1'},
+      out_dir = "build",
+      options = { "-pdf", "-interaction=nonstopmode", "-synctex=1"},
     }
 
     vim.g.vimtex_doc_enabled = 0
@@ -31,7 +31,7 @@ return {
 
     vim.g.vimtex_view_forward_search_on_start = 0
 
-    vim.keymap.set('n', '<leader>ll', function() vim.cmd('VimtexCompile') end)
+    vim.keymap.set("n", "<leader>ll", function() vim.cmd("VimtexCompile") end)
 
   end
 }

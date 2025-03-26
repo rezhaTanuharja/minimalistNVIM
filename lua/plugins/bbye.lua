@@ -11,13 +11,13 @@
 
 return {
 
-  'moll/vim-bbye',
+  "moll/vim-bbye",
 
-  event = 'UIEnter',
+  event = "UIEnter",
 
   config = function()
-    vim.keymap.set('n', '<leader>c', '<cmd>Bdelete!<return>')
-    vim.keymap.set('n', '<leader>n', '<cmd>bufdo :Bdelete!<return>')
+    vim.keymap.set("n", "<leader>c", "<cmd>Bdelete!<return>")
+    vim.keymap.set("n", "<leader>n", "<cmd>bufdo :Bdelete!<return>")
   end
 
 }

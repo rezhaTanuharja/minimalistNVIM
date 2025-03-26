@@ -11,23 +11,23 @@
 
 return {
 
-  'lukas-reineke/indent-blankline.nvim',
+  "lukas-reineke/indent-blankline.nvim",
 
-  ft = { 'python', 'lua', 'typescript', 'typescriptreact' },
+  ft = { "python", "lua", "typescript", "typescriptreact" },
 
   config = function()
 
-    local success, blankline = pcall(require, 'ibl')
+    local success, blankline = pcall(require, "ibl")
     if not success then
-      vim.notify('Failed to load plugin: blankline')
+      vim.notify("Failed to load plugin: blankline")
       return
     end
 
     blankline.setup {
 
-      indent = {char = '│'},
+      indent = {char = "│"},
       exclude = {
-        filetypes = { 'tex', 'plaintex', 'bib' },
+        filetypes = { "tex", "plaintex", "bib" },
       },
 
       scope = {

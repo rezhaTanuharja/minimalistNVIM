@@ -15,10 +15,10 @@ function M.set_fixer(opts)
 
   if vim.fn.executable(opts.executable) == 1 then
 
-    vim.api.nvim_create_autocmd('BufWritePost', {
+    vim.api.nvim_create_autocmd("BufWritePost", {
 
       pattern = opts.pattern,
-      group = 'formatters',
+      group = "formatters",
 
       callback = function()
 

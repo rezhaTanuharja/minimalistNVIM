@@ -11,24 +11,24 @@
 
 return {
 
-  'nvim-treesitter/nvim-treesitter',
+  "nvim-treesitter/nvim-treesitter",
 
-  event = 'UIEnter',
+  event = "UIEnter",
 
-  build = ':TSUpdate',
-  main = 'nvim-treesitter.configs',
+  build = ":TSUpdate",
+  main = "nvim-treesitter.configs",
 
   config = function()
 
-    local success, treesitter = pcall(require, 'nvim-treesitter.configs')
+    local success, treesitter = pcall(require, "nvim-treesitter.configs")
     if not success then
-      vim.notify('Failed to load plugin: treesitter')
+      vim.notify("Failed to load plugin: treesitter")
       return
     end
 
     treesitter.setup {
 
-      ensure_installed = { 'lua', 'python', 'cpp' },
+      ensure_installed = { "lua", "python", "cpp" },
       sync_install = true,
       ignore_install = {},
 
@@ -42,16 +42,16 @@ return {
       indent = { enable = true },
 
       fold = {
-        enable = { 'python' },
+        enable = { "python" },
       },
 
       incremental_selection = {
         enable = true,
         keymaps = {
-          init_selection = 'gnn',
-          node_incremental = 'grn',
-          scope_incremental = 'grc',
-          node_decremental = 'grm',
+          init_selection = "gnn",
+          node_incremental = "grn",
+          scope_incremental = "grc",
+          node_decremental = "grm",
         },
       },
 
