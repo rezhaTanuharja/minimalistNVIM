@@ -84,6 +84,8 @@ return {
 
         scrollbar = false,
 
+        winhighlight = 'Normal:NormalFloat,FloatBorder:FloatBorder,Search:None,Pmenu:Normal',
+
         direction_priority = { 's', 'n' },
 
         draw = {
