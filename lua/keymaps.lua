@@ -89,11 +89,13 @@ local mode_keymaps = {
       action = function()
         local filename = vim.fn.expand("%")
         local line_number = vim.fn.line(".")
+        local column_number = vim.fn.col(".")
         local line_text = vim.fn.getline(".")
 
         local entry = {
           filename = filename,
           lnum = line_number,
+          col = column_number,
           text = line_text,
         }
 
@@ -111,7 +113,7 @@ local mode_keymaps = {
     ["K"] = { action = ":move '<-2<cr>gvgv", desc = "move highlighted part up" },
     ["L"] = { action = ">gv", desc = "move highlighted part to the right" },
 
-    ["<leader>i"] = { action = ":s/^/", desc = "spawn multiple cursors at the start of highlighted lines" },
+    ["<leader>i"] = { action = ":s/\\(\\s*\\)/\\1", desc = "spawn multiple cursors at the start of highlighted lines" },
     ["<leader>a"] = { action = ":s/$/", desc = "spawn multiple cursors at the end of highlighted lines" },
 
     ['"'] = { action = 'c""<esc>P', desc = 'put highlighted text inside pairing chars' },

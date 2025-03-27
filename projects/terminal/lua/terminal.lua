@@ -153,7 +153,7 @@ M.setup = function(opts)
 
     local picker = M.create_floating_window()
 
-    vim.fn.termopen(fzf_command .. ' --bind "change:reload(" .. rg_command .. " {q} || true)" --ansi', {
+    vim.fn.termopen(fzf_command .. ' --bind "change:reload(' .. rg_command .. ' {q} || true)" --ansi', {
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
