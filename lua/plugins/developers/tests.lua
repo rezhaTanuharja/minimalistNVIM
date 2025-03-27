@@ -4,7 +4,7 @@
 -- @brief
 -- The configuration file for the plugin developers: tests
 --
--- @author Rezha Adrian Tanuharja
+-- @author Tanuharja, R.A.
 -- @date 2024-12-20
 --
 

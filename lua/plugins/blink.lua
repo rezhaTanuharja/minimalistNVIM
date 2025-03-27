@@ -4,7 +4,7 @@
 -- @brief
 -- The configuration file for the plugin blink
 --
--- @author Rezha Adrian Tanuharja
+-- @author Tanuharja, R.A.
 -- @date 2024-11-02
 --
 

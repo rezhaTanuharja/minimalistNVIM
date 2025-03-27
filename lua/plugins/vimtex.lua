@@ -4,7 +4,7 @@
 -- @brief
 -- The configuration file for the plugin vimtex
 --
--- @author Rezha Adrian Tanuharja
+-- @author Tanuharja, R.A.
 -- @date 2025-01-03
 --
 

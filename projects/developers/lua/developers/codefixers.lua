@@ -4,7 +4,7 @@
 -- @brief
 -- The plugin file for developers - codefixers
 --
--- @author Rezha Adrian Tanuharja
+-- @author Tanuharja, R.A.
 -- @date 2024-12-23
 --
 

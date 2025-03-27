@@ -4,7 +4,7 @@
 -- @brief
 -- The configuration file for the plugin nvim-tree
 --
--- @author Rezha Adrian Tanuharja
+-- @author Tanuharja, R.A.
 -- @date 2024-08-31
 --
 

@@ -4,7 +4,7 @@
 -- @brief
 -- The starting point of the Neovim config
 --
--- @author Rezha Adrian Tanuharja
+-- @author Tanuharja, R.A.
 -- @date 2024-10-12
 --
 

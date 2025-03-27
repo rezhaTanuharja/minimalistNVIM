@@ -3,7 +3,7 @@
 --
 -- @brief The initialization file to load external plugins
 --
--- @author Rezha Adrian Tanuharja
+-- @author Tanuharja, R.A.
 -- @date 2024-08-31
 --
 

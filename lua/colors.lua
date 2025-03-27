@@ -2,7 +2,7 @@
 -- @file lua/colors.lua @brief
 -- Change some of the highlight groups
 --
--- @author Rezha Adrian Tanuharja
+-- @author Tanuharja, R.A.
 -- @date 2024-12-20
 --
 

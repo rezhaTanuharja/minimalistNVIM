@@ -4,7 +4,7 @@
 -- @brief
 -- The configuration file for the terminal plugin
 --
--- @author Rezha Adrian Tanuharja
+-- @author Tanuharja, R.A.
 -- @date 2024-12-23
 --
 

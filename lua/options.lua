@@ -4,7 +4,7 @@
 -- @brief
 -- The file to set general Neovim behaviours
 --
--- @author Rezha Adrian Tanuharja
+-- @author Tanuharja, R.A.
 -- @date 2024-10-12
 --
 
