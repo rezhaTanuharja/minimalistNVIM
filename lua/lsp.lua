@@ -1,9 +1,15 @@
-vim.lsp.enable({
+servers = {
   "clangd",
   "pyright",
   "ruff",
   "texlab",
-})
+}
+
+for _, server in pairs(servers) do
+  if vim.fn.executable(server) == 1 then
+    vim.lsp.enable(server)
+  end
+end
 
 local function refresh()
 
