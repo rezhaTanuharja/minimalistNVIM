@@ -122,37 +122,5 @@ return {
       vim.cmd("argadd " .. node.absolute_path)
     end)
 
-    local Event = api.events.Event
-
-    vim.keymap.set("n", "<leader>e", api.tree.toggle)
-
-    local events = {
-      Event.NodeRenamed,
-      Event.FileCreated,
-      -- Event.FileRemoved,
-      -- Event.FolderRemoved,
-    }
-
-    for _, event in pairs(events) do
-      api.events.subscribe(
-        event,
-
-        function(_)
-
-          vim.keymap.set("n", "<leader>e",
-
-            function()
-              api.tree.toggle()
-              require("developers.languageservers").refresh()
-              vim.keymap.set("n", "<leader>e", api.tree.toggle)
-            end
-
-          )
-
-        end
-
-      )
-    end
-
   end,
 }

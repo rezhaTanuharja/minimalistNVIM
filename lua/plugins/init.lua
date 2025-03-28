@@ -133,7 +133,6 @@ lazy.setup {
     { import = location .. "nvim-dap" },
     { import = location .. "vimtex" },
 
-    { import = location .. "developers.init" },
     { import = location .. "terminal" },
 
   },
