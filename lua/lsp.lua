@@ -57,4 +57,4 @@ vim.api.nvim_create_autocmd(
   }
 )
 
-vim.lsp.set_log_level(vim.log.levels.ERROR)
+vim.lsp.set_log_level(vim.log.levels.OFF)
