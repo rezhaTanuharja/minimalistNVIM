@@ -13,6 +13,8 @@ return {
 
   "saghen/blink.cmp",
 
+  event = "UIEnter",
+
   version = "1.*",
 
   opts = {

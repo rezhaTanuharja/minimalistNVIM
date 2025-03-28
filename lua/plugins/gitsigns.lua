@@ -13,6 +13,8 @@ return {
 
   "lewis6991/gitsigns.nvim",
 
+  event = "UIEnter",
+
   config = function()
 
     local success, gitsigns = pcall(require, "gitsigns")
