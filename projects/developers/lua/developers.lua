@@ -18,16 +18,16 @@ local M = {}
 
 function M.setup(opts)
 
-  vim.api.nvim_create_augroup("LSP", { clear = true })
+  -- vim.api.nvim_create_augroup("LSP", { clear = true })
   vim.api.nvim_create_augroup("tests", { clear = true })
   vim.api.nvim_create_augroup("formatters", { clear = true })
 
   languageservers.setup(opts)
 
-  for _, server in pairs(opts.servers) do
-    languageservers.set_client(server)
-  end
-
+  -- for _, server in pairs(opts.servers) do
+  --   languageservers.set_client(server)
+  -- end
+  --
   for _, test in pairs(opts.tests) do
       tests.set_test(test)
   end

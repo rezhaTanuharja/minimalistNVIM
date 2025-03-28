@@ -16,32 +16,7 @@ opts.tests      = require("plugins.developers.tests")
 opts.codefixers = require("plugins.developers.codefixers")
 
 opts.keymaps = {
-
-  definition  = "gd",
-  references  = "gr",
-  rename      = "grr",
-
-  code_action = "ga",
-
-  deep_search = "gs",
   refresh     = "gn",
-
-}
-
-opts.hover = {
-  title = " Language Server ",
-  border = "single",
-  wrap = true,
-  wrap_at = 80,
-  focusable = true,
-}
-
-opts.signatureHelp = {
-  title = " Language Server ",
-  border = "single",
-  focusable = false,
-  wrap = true,
-  wrap_at = 80,
 }
 
 return {

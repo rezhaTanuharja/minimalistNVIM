@@ -1,10 +1,10 @@
 return {
 
-  filetypes = { 'python' },
+  filetypes = { "python" },
 
   cmd = { "ruff", "server" },
 
-  root_markers = { '.git', 'pyproject.toml' },
+  root_markers = { ".git", "pyproject.toml" },
 
   settings = {},
 

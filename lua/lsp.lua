@@ -1,6 +1,8 @@
 vim.lsp.enable({
+  "clangd",
   "pyright",
-  "ruff"
+  "ruff",
+  "texlab",
 })
 
 vim.api.nvim_create_augroup("LSP", { clear = true })

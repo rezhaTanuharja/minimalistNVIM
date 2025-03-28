@@ -37,7 +37,7 @@ function M.refresh()
         vim.api.nvim_win_set_buf(entry.window_id, entry.buffer_id)
       end
     end,
-    10
+    100
   )
 
 end
@@ -63,111 +63,7 @@ end
 
 function M.setup(opts)
 
-  vim.api.nvim_create_autocmd(
-    "LspAttach", {
-      group = "LSP",
-      callback = function(args)
-
-        vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr"
-
-        local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-        -- assume that all LSs support definition
-        vim.keymap.set("n",
-          opts.keymaps.definition,
-          vim.lsp.buf.definition,
-          {
-            buffer = args.buf
-          }
-        )
-
-        if client.supports_method("textDocument/references") then
-          vim.keymap.set("n",
-            opts.keymaps.references,
-            vim.lsp.buf.references,
-            {
-              buffer = args.buf
-            }
-          )
-        end
-
-        if client.supports_method("textDocument/rename") then
-          vim.keymap.set("n",
-            opts.keymaps.rename,
-            vim.lsp.buf.rename,
-            {
-              buffer = args.buf
-            }
-          )
-        end
-
-        if client.supports_method("textDocument/codeAction") then
-          vim.keymap.set("n",
-            opts.keymaps.code_action,
-            vim.lsp.buf.code_action,
-            {
-              buffer = args.buf
-            }
-          )
-        end
-
-      end,
-    }
-  )
-
-
-  -- format floating window
-
-  vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(
-    vim.lsp.handlers.hover, opts.hover
-  )
-
-  vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(
-    vim.lsp.handlers.signature_help, opts.signatureHelp
-  )
-
-end
-
-function M.set_client(opts)
-
-  if vim.fn.executable(opts.executable) == 1 then
-
-    vim.api.nvim_create_autocmd({"FileType", "BufReadPost"}, {
-
-      pattern = opts.pattern,
-      group = "LSP",
-
-      callback = function(args)
-
-        vim.lsp.start({
-          name = opts.name,
-          cmd = opts.cmd,
-          root_dir = opts.root_dir(args.buf) or M.dir_fallback(args.buf),
-          settings = opts.settings,
-        })
-
-        if not opts.deep_search then
-          return
-        end
-
-        vim.keymap.set("n",
-          opts.deep_search.keymap,
-          function()
-            M.deep_search(
-              opts.deep_search.formatter,
-              opts.deep_search.extension
-            )
-          end,
-          {
-            buffer = args.buf
-          }
-        )
-
-      end,
-
-    })
-
-  end
+  vim.keymap.set("n", opts.keymaps.refresh, M.refresh)
 
 end
 
