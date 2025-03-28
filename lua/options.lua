@@ -16,6 +16,7 @@ local options = {
   termguicolors = true,       -- enable 24-bit RGB color
   mouse = "",                 -- disable mouse in neovim
   clipboard = "unnamedplus",  -- makes neovim use the system clipboard
+  winborder = "single",       -- all floating window has a single border
   cursorline = true,          -- highlight the row where the cursor is
   showtabline = 0,            -- hide tabline
   inccommand = "split",       -- when performing substitution, show preview at the bottom
