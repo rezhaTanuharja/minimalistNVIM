@@ -32,6 +32,7 @@ local config_files = {
   "diagnostics",
   "statusline",
   "plugins",
+  "lsp",
 }
 
 for _, file in pairs(config_files) do
