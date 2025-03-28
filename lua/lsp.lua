@@ -16,34 +16,6 @@ vim.api.nvim_create_autocmd(
 
       local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-      vim.keymap.set("n",
-        "gd",
-        vim.lsp.buf.definition,
-        {
-          buffer = args.buf
-        }
-      )
-
-      if client.supports_method("textDocument/references") then
-        vim.keymap.set("n",
-          "gr",
-          vim.lsp.buf.references,
-          {
-            buffer = args.buf
-          }
-        )
-      end
-
-      if client.supports_method("textDocument/rename") then
-        vim.keymap.set("n",
-          "grr",
-          vim.lsp.buf.rename,
-          {
-            buffer = args.buf
-          }
-        )
-      end
-
       if client.supports_method("textDocument/codeAction") then
         vim.keymap.set("n",
           "ga",
