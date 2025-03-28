@@ -43,7 +43,7 @@ vim.api.nvim_create_autocmd(
 
       local client = vim.lsp.get_client_by_id(args.data.client_id)
 
-      if client.supports_method("textDocument/formatting") then
+      if client:supports_method("textDocument/formatting") then
         vim.keymap.set("n",
           "grf",
           vim.lsp.buf.format,
