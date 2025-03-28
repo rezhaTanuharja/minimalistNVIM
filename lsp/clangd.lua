@@ -1,3 +1,14 @@
+---
+-- @file lsp/clangd.lua
+--
+-- @brief
+-- The configuration file for the clangd LSP
+--
+-- @author Tanuharja, R.A.
+-- @date 2025-03-28
+--
+
+
 return {
 
   filetypes = {"c", "cpp"},

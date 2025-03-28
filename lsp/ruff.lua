@@ -1,3 +1,14 @@
+---
+-- @file lsp/ruff.lua
+--
+-- @brief
+-- The configuration file for the Ruff LSP
+--
+-- @author Tanuharja, R.A.
+-- @date 2025-03-28
+--
+
+
 return {
 
   filetypes = { "python" },

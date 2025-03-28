@@ -1,3 +1,14 @@
+---
+-- @file lsp/pyright.lua
+--
+-- @brief
+-- The configuration file for the Pyright LSP
+--
+-- @author Tanuharja, R.A.
+-- @date 2025-03-28
+--
+
+
 return {
 
   filetypes = { "python" },
