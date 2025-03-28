@@ -32,29 +32,19 @@ end
 
 vim.keymap.set("n", "gn", refresh)
 
-vim.api.nvim_create_augroup("LSP", { clear = true })
+vim.lsp.config( "*", {
+  on_attach = function(client, buffer)
+    vim.bo[buffer].formatexpr = "v:lua.vim.lsp.formatexpr"
 
-vim.api.nvim_create_autocmd(
-  "LspAttach", {
-    group = "LSP",
-    callback = function(args)
+    if client:supports_method("textDocument/formatting") then
+      vim.keymap.set("n",
+        "grf",
+        vim.lsp.buf.format,
+        {
+          buffer = buffer
+        }
+      )
+    end
 
-      vim.bo[args.buf].formatexpr = "v:lua.vim.lsp.formatexpr"
-
-      local client = vim.lsp.get_client_by_id(args.data.client_id)
-
-      if client:supports_method("textDocument/formatting") then
-        vim.keymap.set("n",
-          "grf",
-          vim.lsp.buf.format,
-          {
-            buffer = args.buf
-          }
-        )
-      end
-
-    end,
-  }
-)
-
-vim.lsp.set_log_level(vim.log.levels.OFF)
+  end,
+})
