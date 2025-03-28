@@ -26,7 +26,8 @@ local group_styles = {
 
   ["QuickFixLine"]  = { fg = "#CCCCCC", bold = true },
 
-  ["Pmenu"]         = { fg = "#EEEEEE", bg = "#151515"  },
+  ["Pmenu"]         = { fg = "#DDDDDD", bg = "#222222"  },
+  ["PmenuSel"]      = { fg = "#CCCCCC", bg = "#444444" },
 
   ["Question"]      = { fg = "#666666" },
   ["Directory"]     = { fg = "#777777" },
