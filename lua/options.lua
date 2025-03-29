@@ -43,7 +43,7 @@ local options = {
 
   -- text display
 
-  foldlevelstart = 0,         -- open files with all folds closed
+  foldlevelstart = 99,        -- open files with all folds open
   foldtext = "",              -- keep the first line of folded section visible
   foldmethod = "expr",        -- assign fold based on expressions
 
