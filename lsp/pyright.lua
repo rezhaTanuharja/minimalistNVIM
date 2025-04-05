@@ -18,6 +18,9 @@ return {
   root_markers = { ".git", "pyproject.toml" },
 
   settings = {
+    pyright = {
+      disableOrganizeImports = true,
+    },
     python = {
       analysis = {
         autoImportCompletions= true,
