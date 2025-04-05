@@ -44,7 +44,7 @@ local group_styles = {
   ["Search"]        = { fg = "#000000", bg = "#777777" },
   ["CurSearch"]     = { fg = "#000000", bg = "#AAAAAA" },
 
-  ["DiagnosticUnnecessary"] = { fg = "#BBBBBB" },
+  ["DiagnosticUnnecessary"] = { fg = "#888888" },
 
   ["Todo"]              = { fg = "NvimLightYellow", bg = "None", bold = true },
 

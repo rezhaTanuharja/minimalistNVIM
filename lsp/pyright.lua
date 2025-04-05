@@ -20,9 +20,10 @@ return {
   settings = {
     python = {
       analysis = {
+        autoImportCompletions= true,
+        autoSeachPaths = false,
+        diagnosticMode = "openFilesOnly",
         typeCheckingMode = "basic",
-        autoSeachPaths = true,
-        indexing = true,
       }
     },
   },
