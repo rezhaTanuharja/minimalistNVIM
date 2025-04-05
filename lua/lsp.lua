@@ -40,16 +40,18 @@ vim.keymap.set("n", "gn", refresh)
 
 vim.lsp.config( "*", {
   on_attach = function(client, buffer)
+
     vim.bo[buffer].formatexpr = "v:lua.vim.lsp.formatexpr"
 
     if client:supports_method("textDocument/formatting") then
-      vim.keymap.set("n",
-        "grf",
-        vim.lsp.buf.format,
-        {
-          buffer = buffer
-        }
-      )
+
+      vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = buffer,
+        callback = function()
+          vim.lsp.buf.format({ buffer = buffer, id = client.id })
+        end,
+      })
+
     end
 
   end,
