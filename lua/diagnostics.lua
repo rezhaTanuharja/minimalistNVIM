@@ -55,7 +55,7 @@ vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 vim.keymap.set("n", "gq", vim.diagnostic.setqflist)
 
 -- removes underline
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = "None"} )
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { sp = "None"} )
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { sp = "None"} )
-vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { sp = "None"} )
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineError", { sp = "None" } )
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineWarn", { sp = "None" } )
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineHint", { sp = "None" } )
+vim.api.nvim_set_hl(0, "DiagnosticUnderlineInfo", { sp = "None" } )
