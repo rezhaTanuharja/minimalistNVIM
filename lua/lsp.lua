@@ -39,6 +39,11 @@ end
 vim.keymap.set("n", "gn", refresh)
 
 vim.lsp.config( "*", {
+
+  on_init = function(client)
+    client.offset_encoding = "utf-8"
+  end,
+
   on_attach = function(client, buffer)
 
     vim.bo[buffer].formatexpr = "v:lua.vim.lsp.formatexpr"
