@@ -27,6 +27,9 @@ return {
         autoSeachPaths = false,
         diagnosticMode = "openFilesOnly",
         typeCheckingMode = "basic",
+        diagnosticSeverityOverrides = {
+          reportPrivateImportUsage = "none",
+        },
       }
     },
   },

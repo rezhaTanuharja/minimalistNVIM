@@ -23,12 +23,10 @@ return {
       lint = {
         extendSelect = {
           "A",
-          "ANN",
           "ARG",
           "B",
           "COM",
           "C4",
-          "D",
           "DOC",
           "FBT",
           "I",
