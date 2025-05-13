@@ -13,9 +13,7 @@ return {
 
   "mfussenegger/nvim-dap",
 
-  ft = "python",
-
-  cond = vim.fn.executable("debugpy") == 1,
+  ft = {"python", "c", "cpp"},
 
   config = function()
 
@@ -90,6 +88,27 @@ return {
         end,
       },
 
+    }
+
+    dap.adapters.cpp = {
+      type = "executable",
+      command = "lldb-dap",
+      name = "lldb",
+    }
+
+    dap.configurations.cpp = {
+      {
+        name = "Launch LLDB",
+        type = "cpp",
+        request = "launch",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = '${workspaceFolder}',
+        stopOnEntry = false,
+        args = {},
+        runInTerminal = false,
+      }
     }
 
     vim.fn.sign_define(
