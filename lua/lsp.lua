@@ -3,6 +3,8 @@ servers = {
   "pyright",
   "ruff",
   "texlab",
+  "typescript-language-server",
+  "vscode-eslint-language-server",
 }
 
 for _, server in pairs(servers) do
