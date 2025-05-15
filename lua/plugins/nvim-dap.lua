@@ -57,6 +57,7 @@ return {
         pythonPath = function()
           return "python3"
         end,
+        console = "integratedTerminal",
       },
 
       {
@@ -68,6 +69,7 @@ return {
           local port = tonumber(vim.fn.input("Port: "))
           return {host = host, port = port}
         end,
+        console = "integratedTerminal",
       },
 
       {
@@ -86,6 +88,7 @@ return {
         pythonPath = function()
           return "python3"
         end,
+        console = "integratedTerminal",
       },
 
     }
