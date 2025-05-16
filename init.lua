@@ -14,7 +14,6 @@
 local disabled_providers = {
   "node",
   "perl",
-  "python3",
   "ruby",
 }
 

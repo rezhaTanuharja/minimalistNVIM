@@ -110,7 +110,7 @@ lazy.setup {
         "man",
         "matchit",
         "netrwPlugin",
-        "rplugin",
+        -- "rplugin",
         "spellfile",
         "tarPlugin",
         "tohtml",
@@ -134,6 +134,9 @@ lazy.setup {
     { import = location .. "vimtex" },
 
     { import = location .. "terminal" },
+
+    -- { import = location .. "image" },
+    { import = location .. "molten" },
 
   },
 
