@@ -41,7 +41,6 @@ local mode_keymaps = {
     ["<C-,>"] = { action = "<cmd>horizontal resize -2<return>", desc = "decrease columns in the current window" },
     ["<C-.>"] = { action = "<cmd>horizontal resize +2<return>", desc = "increase columns in the current window" },
 
-    ["<leader>a"] = { action = "za", desc = "fold the scope under cursor" },
     ["<leader>r"] = { action = "zR", desc = "unfold everything" },
     ["<leader>m"] = { action = "zM", desc = "fold everything" },
 
