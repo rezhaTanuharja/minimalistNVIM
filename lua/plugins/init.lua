@@ -135,8 +135,8 @@ lazy.setup {
 
     { import = location .. "terminal" },
 
-    -- { import = location .. "image" },
     { import = location .. "molten" },
+    { import = location .. "otter" },
 
   },
 
