@@ -48,6 +48,9 @@ return {
         vim.keymap.set("n", "<leader>an", "<cmd>MoltenNext<return>", { noremap = true, silent = true, desc = "move to the next cell"})
         vim.keymap.set("n", "<leader>ap", "<cmd>MoltenPrev<return>", { noremap = true, silent = true, desc = "move to the prev cell"})
         vim.keymap.set("n", "<leader>aa", "<cmd>MoltenReevaluateAll<return>", { noremap = true, silent = true, desc = "reevaluate all cells"})
+        vim.keymap.set("n", "<leader>ae", ":noautocmd MoltenEnterOutput<return>", { noremap = true, silent = true, desc = "enter the output window"})
+        vim.keymap.set("n", "<leader>af", "<cmd>MoltenImagePopup<return>", { noremap = true, silent = true, desc = "open image in a new window"})
+        vim.keymap.set("n", "<leader>as", "<cmd>MoltenDeinit<return>", { noremap = true, silent = true, desc = "stop molten"})
       end,
     })
 
