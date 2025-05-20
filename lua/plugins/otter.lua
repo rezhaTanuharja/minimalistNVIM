@@ -2,7 +2,7 @@ return {
 
   'jmbuhr/otter.nvim',
 
-  ft = { "markdown" },
+  ft = { "markdown", "quarto" },
 
   dependencies = {
     'nvim-treesitter/nvim-treesitter',
@@ -20,7 +20,7 @@ return {
     otter.setup{
 
       lsp = {
-        diagnostic_update_events = { "InsertLeave" },
+        diagnostic_update_events = { "InsertLeave", "TextChanged" },
         root_dir = function(_, bufnr)
           return vim.fs.root(bufnr or 0, {
             ".git",
@@ -51,6 +51,7 @@ return {
     }
 
     vim.api.nvim_set_hl(0, "@markup.raw.block.markdown", {})
+    vim.api.nvim_set_hl(0, "@label.markdown", { fg = "#555555" })
 
     vim.keymap.set("n", "<leader>op", 
       function()
@@ -62,6 +63,8 @@ return {
         )
       end
     )
+
+    vim.treesitter.language.register("markdown", "quarto")
 
   end
 

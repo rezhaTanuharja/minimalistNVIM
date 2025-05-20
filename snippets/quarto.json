@@ -1,0 +1,7 @@
+{
+  "Python code block": {
+    "prefix": "python",
+    "body": "```{python}\n$0\n```",
+    "description": "A python code block inside a quarto file"
+  }
+}

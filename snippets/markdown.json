@@ -1,7 +1,7 @@
 {
-  "Code block": {
+  "Python code block": {
     "prefix": "code",
-    "body": "```${1:language}\n$0\n```",
+    "body": "```python\n$0\n```",
     "description": "A code block inside a markdown file"
   }
 }
