@@ -52,6 +52,17 @@ return {
 
     vim.api.nvim_set_hl(0, "@markup.raw.block.markdown", {})
 
+    vim.keymap.set("n", "<leader>op", 
+      function()
+        otter.activate(
+          { "python" },
+          true,
+          true,
+          nil
+        )
+      end
+    )
+
   end
 
 }
