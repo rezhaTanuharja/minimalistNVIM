@@ -12,7 +12,7 @@ local group_styles = {
   ["Normal"]        = { fg = "#CCCCCC", bg = "None" },
   ["NormalFloat"]   = { fg = "#CCCCCC", bg = "None" },
 
-  ["String"]        = { fg = "#BBBBBB" },
+  ["String"]        = { fg = "#999999" },
   ["Comment"]       = { fg = "#777777" },
 
   ["Identifier"]    = { fg = "#DDDDDD", bold = true },
