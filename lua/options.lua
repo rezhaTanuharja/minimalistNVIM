@@ -28,6 +28,7 @@ local options = {
   showmode = false,           -- mode will be shown by statusline instead
   cmdheight = 0,              -- hide the command line when not typing command
   path = ".,,**",             -- find-like operations works recursively
+  colorcolumn="79",           -- add visual cue of where to break line
 
   -- tabs and indentations
 
