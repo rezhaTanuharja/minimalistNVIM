@@ -110,7 +110,6 @@ lazy.setup {
         "man",
         "matchit",
         "netrwPlugin",
-        -- "rplugin",
         "spellfile",
         "tarPlugin",
         "tohtml",
