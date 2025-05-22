@@ -26,7 +26,6 @@ return {
   init = function()
     vim.g.molten_image_provider = "image.nvim"
     vim.g.molten_output_win_max_height = 40
-    vim.g.molten_virt_text_output = true
     vim.g.molten_use_border = true
     vim.g.molten_auto_open_output = false
     vim.g.molten_image_location = "float"
@@ -37,13 +36,23 @@ return {
 
     vim.keymap.set("n", "<leader>ai", "<cmd>MoltenInit<return>", { noremap = true, silent = true, desc = "initialize molten"})
 
+    local run_block = function()
+      local node = vim.treesitter.get_node()
+      local start_row, _, end_row, _ = vim.treesitter.get_node_range(node)
+      vim.fn.MoltenEvaluateRange(start_row + 1, end_row)
+    end
+
     vim.api.nvim_create_autocmd("User", {
       pattern = "MoltenInitPost",
       callback = function()
+
+        vim.keymap.set("n", "<leader>ar", run_block, { noremap = true, silent = true, desc = "reevaluate the current block"})
+
+        vim.keymap.set("n", "<leader>am", "<cmd>MoltenReevaluateCell<return>", { noremap = true, silent = true, desc = "rerun cell"})
         vim.keymap.set("v", "<leader>am", ":<C-u>MoltenEvaluateVisual<return>", { noremap = true, silent = true, desc = "run highlighted code"})
+
         vim.keymap.set("n", "<leader>ao", "<cmd>MoltenShowOutput<return>", { noremap = true, silent = true, desc = "show outputs from the current cell"})
         vim.keymap.set("n", "<leader>ah", "<cmd>MoltenHideOutput<return>", { noremap = true, silent = true, desc = "hide outputs from the current cell"})
-        vim.keymap.set("n", "<leader>ar", "<cmd>MoltenReevaluateCell<return>", { noremap = true, silent = true, desc = "reevaluate the current cell"})
         vim.keymap.set("n", "<leader>al", "<cmd>MoltenEvaluateLine<return>", { noremap = true, silent = true, desc = "evaluate the current line"})
         vim.keymap.set("n", "<leader>an", "<cmd>MoltenNext<return>", { noremap = true, silent = true, desc = "move to the next cell"})
         vim.keymap.set("n", "<leader>ap", "<cmd>MoltenPrev<return>", { noremap = true, silent = true, desc = "move to the prev cell"})
