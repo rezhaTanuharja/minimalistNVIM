@@ -120,7 +120,7 @@ return {
           transform_items = nil,
           should_show_items = true,
           max_items = nil,
-          min_keyword_length = 2,
+          min_keyword_length = 0,
           fallbacks = { "buffer", "path", },
           score_offset = 0,
           override = nil,
