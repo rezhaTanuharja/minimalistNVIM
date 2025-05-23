@@ -1,3 +1,85 @@
+local convert_to_normal_script = function()
+
+  local filename = "temp.py"
+
+  local query = vim.treesitter.query.parse('markdown', [[
+    ((code_fence_content) @code)
+  ]])
+
+  local parser = vim.treesitter.get_parser(0, "markdown")
+  local tree = parser:parse()[1]
+  local root = tree:root()
+
+  local lines = {}
+
+  for _, node in query:iter_captures(root, 0) do
+
+    local text = vim.treesitter.get_node_text(node, 0)
+
+    for _, line in ipairs(vim.fn.split(text, '\n')) do
+      table.insert(lines, line)
+    end
+
+  end
+
+  local file = io.open(filename, "w")
+
+  for _, line in ipairs(lines) do
+    file:write(line .. "\n")
+  end
+
+  file:close()
+
+  vim.cmd("edit " .. filename)
+
+end
+
+local move_imports_to_top = function()
+  local bufnr = 0
+  local root = vim.treesitter.get_parser(bufnr, "python"):parse()[1]:root()
+
+  local query = vim.treesitter.query.parse("python", [[
+    (import_statement) @imp
+    (import_from_statement) @imp
+  ]])
+
+  local import_nodes = {}
+  for _, node in query:iter_captures(root, bufnr) do
+    table.insert(import_nodes, node)
+  end
+
+  table.sort(import_nodes, function(a,b) return a:start() < b:start() end)
+
+  local lines_to_remove = {}
+  local import_texts = {}
+
+  for _, node in ipairs(import_nodes) do
+    local s, _, e, _ = node:range()
+    for i = s, e do lines_to_remove[i] = true end
+    table.insert(import_texts, vim.treesitter.get_node_text(node, bufnr))
+  end
+
+  local buf_lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+  for i = #buf_lines - 1, 0, -1 do
+    if lines_to_remove[i] then table.remove(buf_lines, i + 1) end
+  end
+
+  local imports_lines = {}
+  for _, text in ipairs(import_texts) do
+    for line in text:gmatch("[^\r\n]+") do
+      table.insert(imports_lines, line)
+    end
+  end
+  table.insert(imports_lines, "")
+
+  for i = #imports_lines, 1, -1 do
+    table.insert(buf_lines, 1, imports_lines[i])
+  end
+
+  vim.api.nvim_buf_set_lines(bufnr, 0, -1, false, buf_lines)
+end
+
+
 return {
 
   'jmbuhr/otter.nvim',
@@ -66,6 +148,10 @@ return {
     )
 
     vim.treesitter.language.register("markdown", "quarto")
+
+
+    vim.keymap.set("n", "<leader>aj", convert_to_normal_script)
+    vim.keymap.set("n", "<leader>ak", move_imports_to_top)
 
   end
 
