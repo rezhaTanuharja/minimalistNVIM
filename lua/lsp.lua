@@ -50,6 +50,10 @@ vim.lsp.config( "*", {
 
     vim.bo[buffer].formatexpr = "v:lua.vim.lsp.formatexpr"
 
+    if client.name == 'ruff' then
+      client.server_capabilities.hoverProvider = false
+    end
+
     if client:supports_method("textDocument/formatting") then
 
       vim.api.nvim_create_autocmd("BufWritePre", {
