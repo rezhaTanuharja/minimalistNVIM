@@ -61,7 +61,8 @@ return {
           true,
           nil
         )
-      end
+      end,
+      { desc = "start otter for Python with language server and completion" }
     )
 
     vim.treesitter.language.register("markdown", "quarto")
