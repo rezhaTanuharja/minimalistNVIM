@@ -19,7 +19,7 @@ return {
 
   init_options = {
     settings = {
-      organizeImports = false,
+      organizeImports = true,
       lint = {
         extendSelect = {
           "A",
