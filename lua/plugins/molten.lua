@@ -44,24 +44,48 @@ return {
 
     vim.api.nvim_create_autocmd("User", {
       pattern = "MoltenInitPost",
-      callback = function()
+      callback = function(arg)
 
         vim.opt_local.colorcolumn="79"
 
-        vim.keymap.set("n", "<leader>ar", run_block, { noremap = true, silent = true, desc = "reevaluate the current block"})
+        vim.keymap.set("n", "<leader>ar", run_block, { buffer = arg.buf, desc = "reevaluate the current block"})
 
-        vim.keymap.set("n", "<leader>am", "<cmd>MoltenReevaluateCell<return>", { noremap = true, silent = true, desc = "rerun cell"})
-        vim.keymap.set("v", "<leader>am", ":<C-u>MoltenEvaluateVisual<return>", { noremap = true, silent = true, desc = "run highlighted code"})
+        vim.keymap.set("n", "<leader>am", "<cmd>MoltenReevaluateCell<return>", { buffer = arg.buf, desc = "rerun cell"})
+        vim.keymap.set("v", "<leader>am", ":<C-u>MoltenEvaluateVisual<return>", { buffer = arg.buf, desc = "run highlighted code"})
 
-        vim.keymap.set("n", "<leader>ao", "<cmd>MoltenShowOutput<return>", { noremap = true, silent = true, desc = "show outputs from the current cell"})
-        vim.keymap.set("n", "<leader>ah", "<cmd>MoltenHideOutput<return>", { noremap = true, silent = true, desc = "hide outputs from the current cell"})
-        vim.keymap.set("n", "<leader>al", "<cmd>MoltenEvaluateLine<return>", { noremap = true, silent = true, desc = "evaluate the current line"})
-        vim.keymap.set("n", "<leader>an", "<cmd>MoltenNext<return>", { noremap = true, silent = true, desc = "move to the next cell"})
-        vim.keymap.set("n", "<leader>ap", "<cmd>MoltenPrev<return>", { noremap = true, silent = true, desc = "move to the prev cell"})
-        vim.keymap.set("n", "<leader>aa", "<cmd>MoltenReevaluateAll<return>", { noremap = true, silent = true, desc = "reevaluate all cells"})
-        vim.keymap.set("n", "<leader>ae", ":noautocmd MoltenEnterOutput<return>", { noremap = true, silent = true, desc = "enter the output window"})
-        vim.keymap.set("n", "<leader>af", "<cmd>MoltenImagePopup<return>", { noremap = true, silent = true, desc = "open image in a new window"})
-        vim.keymap.set("n", "<leader>as", "<cmd>MoltenDeinit<return>", { noremap = true, silent = true, desc = "stop molten"})
+        vim.keymap.set("n", "<leader>ao", "<cmd>MoltenShowOutput<return>", { buffer = arg.buf, desc = "show outputs from the current cell"})
+        vim.keymap.set("n", "<leader>ah", "<cmd>MoltenHideOutput<return>", { buffer = arg.buf, desc = "hide outputs from the current cell"})
+        vim.keymap.set("n", "<leader>al", "<cmd>MoltenEvaluateLine<return>", { buffer = arg.buf, desc = "evaluate the current line"})
+        vim.keymap.set("n", "<leader>an", "<cmd>MoltenNext<return>", { buffer = arg.buf, desc = "move to the next cell"})
+        vim.keymap.set("n", "<leader>ap", "<cmd>MoltenPrev<return>", { buffer = arg.buf, desc = "move to the prev cell"})
+        vim.keymap.set("n", "<leader>aa", "<cmd>MoltenReevaluateAll<return>", { buffer = arg.buf, desc = "reevaluate all cells"})
+        vim.keymap.set("n", "<leader>ae", ":noautocmd MoltenEnterOutput<return>", { buffer = arg.buf, desc = "enter the output window"})
+        vim.keymap.set("n", "<leader>af", "<cmd>MoltenImagePopup<return>", { buffer = arg.buf, desc = "open image in a new window"})
+        vim.keymap.set("n", "<leader>as", "<cmd>MoltenDeinit<return>", { buffer = arg.buf, desc = "stop molten"})
+      end,
+    })
+
+    vim.api.nvim_create_autocmd("User", {
+      pattern = "MoltenDeinitPost",
+      callback = function(arg)
+
+        vim.opt_local.colorcolumn=""
+
+        vim.keymap.del("n", "<leader>ar", { buffer = arg.buf })
+
+        vim.keymap.del("n", "<leader>am", { buffer = arg.buf })
+        vim.keymap.del("v", "<leader>am", { buffer = arg.buf })
+
+        vim.keymap.del("n", "<leader>ao", { buffer = arg.buf })
+        vim.keymap.del("n", "<leader>ah", { buffer = arg.buf })
+        vim.keymap.del("n", "<leader>al", { buffer = arg.buf })
+        vim.keymap.del("n", "<leader>an", { buffer = arg.buf })
+        vim.keymap.del("n", "<leader>ap", { buffer = arg.buf })
+        vim.keymap.del("n", "<leader>aa", { buffer = arg.buf })
+        vim.keymap.del("n", "<leader>ae", { buffer = arg.buf })
+        vim.keymap.del("n", "<leader>af", { buffer = arg.buf })
+        vim.keymap.del("n", "<leader>as", { buffer = arg.buf })
+
       end,
     })
 
