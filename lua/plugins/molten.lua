@@ -46,6 +46,8 @@ return {
       pattern = "MoltenInitPost",
       callback = function()
 
+        vim.opt_local.colorcolumn="79"
+
         vim.keymap.set("n", "<leader>ar", run_block, { noremap = true, silent = true, desc = "reevaluate the current block"})
 
         vim.keymap.set("n", "<leader>am", "<cmd>MoltenReevaluateCell<return>", { noremap = true, silent = true, desc = "rerun cell"})
