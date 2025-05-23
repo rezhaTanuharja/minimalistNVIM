@@ -62,6 +62,19 @@ return {
         vim.keymap.set("n", "<leader>ae", ":noautocmd MoltenEnterOutput<return>", { buffer = arg.buf, desc = "enter the output window"})
         vim.keymap.set("n", "<leader>af", "<cmd>MoltenImagePopup<return>", { buffer = arg.buf, desc = "open image in a new window"})
         vim.keymap.set("n", "<leader>as", "<cmd>MoltenDeinit<return>", { buffer = arg.buf, desc = "stop molten"})
+
+        vim.keymap.set(
+          "n",
+          "<leader>ad",
+          function()
+            vim.cmd("MoltenEvaluateArgument import debugpy")
+            vim.cmd("MoltenEvaluateArgument _ = debugpy.listen(('localhost', 5678))")
+          end,
+          { buffer = arg.buf, desc = "initialize debugger"}
+        )
+
+        vim.keymap.set("n", "<leader>dd", "<cmd>MoltenEvaluateArgument debugpy.breakpoint()<return>", { buffer = arg.buf, desc = "enter virtual breakpoint"})
+
       end,
     })
 
@@ -85,6 +98,9 @@ return {
         vim.keymap.del("n", "<leader>ae", { buffer = arg.buf })
         vim.keymap.del("n", "<leader>af", { buffer = arg.buf })
         vim.keymap.del("n", "<leader>as", { buffer = arg.buf })
+
+        vim.keymap.del("n", "<leader>ad", { buffer = arg.buf })
+        vim.keymap.del("n", "<leader>dd", { buffer = arg.buf })
 
       end,
     })
