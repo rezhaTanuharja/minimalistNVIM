@@ -153,6 +153,30 @@ return {
     vim.keymap.set("n", "<leader>aj", convert_to_normal_script)
     vim.keymap.set("n", "<leader>ak", move_imports_to_top)
 
+    vim.api.nvim_create_autocmd(
+      { "BufEnter", "BufWinEnter", "TextChanged", "InsertLeave" },
+      {
+        pattern = { "*.md", "*.qmd" },
+        callback = function()
+          local bufnr = vim.api.nvim_get_current_buf()
+          local ns_id = vim.api.nvim_create_namespace("codeblock_hr")
+          vim.api.nvim_buf_clear_namespace(bufnr, ns_id, 0, -1)
+
+          for i = 0, vim.api.nvim_buf_line_count(bufnr) - 1 do
+            local line = vim.api.nvim_buf_get_lines(bufnr, i, i + 1, false)[1]
+            if line:match("^```.*$") then
+              vim.api.nvim_buf_set_extmark(bufnr, ns_id, i, 0, {
+                virt_text = { { string.rep("─", 79), "Comment" } },
+                virt_text_pos = "overlay",
+              })
+            end
+          end
+        end,
+      }
+    )
+
+    vim.api.nvim_set_hl(0, "@spell", { fg = "#999999" })
+
   end
 
 }

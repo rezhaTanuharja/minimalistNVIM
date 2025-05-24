@@ -46,7 +46,7 @@ return {
       pattern = "MoltenInitPost",
       callback = function(arg)
 
-        vim.opt_local.colorcolumn="79"
+        vim.opt_local.colorcolumn="80"
 
         vim.keymap.set("n", "<leader>ar", run_block, { buffer = arg.buf, desc = "reevaluate the current block"})
 
