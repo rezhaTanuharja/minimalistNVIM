@@ -175,7 +175,7 @@ return {
       }
     )
 
-    vim.api.nvim_set_hl(0, "@spell", { fg = "#999999" })
+    vim.api.nvim_set_hl(0, "@spell", { fg = "#888888" })
 
   end
 

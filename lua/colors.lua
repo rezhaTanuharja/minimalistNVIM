@@ -12,14 +12,14 @@ local group_styles = {
   ["Normal"]        = { fg = "#CCCCCC", bg = "None" },
   ["NormalFloat"]   = { fg = "#CCCCCC", bg = "None" },
 
-  ["String"]        = { fg = "#999999" },
+  ["String"]        = { fg = "#BFCFBB" },
   ["Comment"]       = { fg = "#777777" },
 
   ["Identifier"]    = { fg = "#DDDDDD", bold = true },
   ["Statement"]     = { fg = "#EEEEEE", bold = true },
-  ["Special"]       = { fg = "#BBBBBB", bold = true },
+  ["Special"]       = { fg = "#999ECF", bold = false },
 
-  ["Function"]      = { fg = "#FFFFFF" },
+  ["Function"]      = { fg = "#999ECF" },
   ["Constant"]      = { fg = "#CCCCCC" },
 
   ["Error"]         = { fg = "#FFFFFF", bg = "None", bold = true },
@@ -48,10 +48,11 @@ local group_styles = {
 
   ["Todo"]              = { fg = "NvimLightYellow", bg = "None", bold = true },
 
-  ["@variable"]         = { fg = "#CCCCCC" },
-  ["@comment.warning"]  = { fg = "#000000", bg = "NvimLightYellow", bold = true },
-  ["@comment.error"]    = { fg = "#000000", bg = "NvimLightRed", bold = true },
-  ["@comment.note"]     = { fg = "#000000", bg = "#D3EDE7", bold = true },
+  ["@variable"]             = { fg = "#CCCCCC" },
+  ["@string.documentation"] = { fg = "#777777" },
+  ["@comment.warning"]      = { fg = "#000000", bg = "NvimLightYellow", bold = true },
+  ["@comment.error"]        = { fg = "#000000", bg = "NvimLightRed", bold = true },
+  ["@comment.note"]         = { fg = "#000000", bg = "#D3EDE7", bold = true },
 
   ["LspSignatureActiveParameter"] = { bg = "None" },
 
