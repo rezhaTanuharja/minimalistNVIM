@@ -89,7 +89,8 @@ M.setup = function(opts)
 
     local picker = M.create_floating_window()
 
-    vim.fn.termopen(fd_command .. " | " .. fzf_command, {
+    vim.fn.jobstart(fd_command .. " | " .. fzf_command, {
+      term = true,
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
@@ -122,7 +123,8 @@ M.setup = function(opts)
 
     vim.cmd("redir! > .out | silent ls | redir END")
 
-    vim.fn.termopen([[sed -n 's/.*"\(.*\)".*/\1/p' .out | grep -v -E "term:|No Name" | ]] .. fzf_command, {
+    vim.fn.jobstart([[sed -n 's/.*"\(.*\)".*/\1/p' .out | grep -v -E "term:|No Name" | ]] .. fzf_command, {
+      term = true,
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
@@ -153,7 +155,8 @@ M.setup = function(opts)
 
     local picker = M.create_floating_window()
 
-    vim.fn.termopen(fzf_command .. ' --bind "change:reload(' .. rg_command .. ' {q} || true)" --ansi', {
+    vim.fn.jobstart(fzf_command .. ' --bind "change:reload(' .. rg_command .. ' {q} || true)" --ansi', {
+      term = true,
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
