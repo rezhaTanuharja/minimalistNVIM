@@ -108,7 +108,6 @@ lazy.setup {
         "editorconfig",
         "gzip",
         "man",
-        "matchit",
         "netrwPlugin",
         "spellfile",
         "tarPlugin",

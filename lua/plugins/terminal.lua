@@ -18,7 +18,7 @@ opts.keymaps = {
   find_buffer = "<leader>y",
   live_grep = "<leader>g",
 
-  normal_mode = "<esc><esc>",
+  normal_mode = "<C-u>",
 
   goto_file = "gf",
 
