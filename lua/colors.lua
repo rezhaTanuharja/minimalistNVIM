@@ -12,7 +12,7 @@ local group_styles = {
   ["Normal"]        = { fg = "#CCCCCC", bg = "None" },
   ["NormalFloat"]   = { fg = "#CCCCCC", bg = "None" },
 
-  ["String"]        = { fg = "#BFCFBB" },
+  ["String"]        = { fg = "#D6DFD4" },
   ["Comment"]       = { fg = "#777777" },
 
   ["Identifier"]    = { fg = "#DDDDDD", bold = true },
@@ -22,6 +22,13 @@ local group_styles = {
   ["Function"]      = { fg = "#999ECF" },
   ["Constant"]      = { fg = "#CCCCCC" },
 
+  ["DiffAdd"]       = { fg = "NvimLightYellow" },
+  ["DiffDelete"]    = { fg = "#666666" },
+  ["DiffText"]      = { fg = "NvimLightYellow", bg = "None" },
+  ["DiffChange"]    = { fg = "None", bg = "None" },
+
+  ["Changed"]       = { fg = "#EEEEEE", bg = "None" },
+  
   ["Error"]         = { fg = "#FFFFFF", bg = "None", bold = true },
 
   ["QuickFixLine"]  = { fg = "#CCCCCC", bold = true },

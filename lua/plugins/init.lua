@@ -1,7 +1,8 @@
 ---
 -- @file lua/plugins/init.lua
 --
--- @brief The initialization file to load external plugins
+-- @brief
+-- The initialization file to load external plugins
 --
 -- @author Tanuharja, R.A.
 -- @date 2024-08-31
