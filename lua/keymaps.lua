@@ -18,8 +18,6 @@ local mode_keymaps = {
 
   normal = {
 
-    ["q"] = { action = "<nop>", desc = "do not record macro, ever" },
-
     ["x"] = { action = '"_x', desc = 'delete a character without storing it in the clipboard' },
 
     ["<leader>qq"] = { action = vim.cmd.quit, desc = "close the current window" },
