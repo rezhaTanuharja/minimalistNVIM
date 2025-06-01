@@ -14,7 +14,8 @@ return {
   "kyazdani42/nvim-tree.lua",
 
   keys = {
-    { "<leader>ee", "<cmd>NvimTreeToggle<return>"},
+    { "<leader>ee", "<cmd>NvimTreeToggle<return>" },
+    { "<leader>eo", "<cmd>NvimTreeFindFile<return>" },
   },
 
   config = function()
@@ -114,17 +115,6 @@ return {
 
 
     local api = require("nvim-tree.api")
-
-    vim.keymap.set(
-      "n", "<leader>eo",
-      function()
-        api.tree.find_file({
-          open = true,
-          focus = true,
-        })
-      end,
-      { desc = "open file tree and focus on current buffer's node" }
-    )
 
     vim.keymap.set(
       "n", "<leader>er",
