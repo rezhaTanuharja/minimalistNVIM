@@ -129,7 +129,7 @@ return {
     vim.keymap.set(
       "n", "<leader>er",
       function()
-        api.tree.collapse_all({keep_buffers = false})
+        api.tree.collapse_all()
       end,
       { desc = "collapse all node on the file tree" }
     )
