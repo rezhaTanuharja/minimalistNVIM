@@ -14,7 +14,7 @@ return {
   "kyazdani42/nvim-tree.lua",
 
   keys = {
-    { "<leader>e", "<cmd>NvimTreeToggle<return>"},
+    { "<leader>ee", "<cmd>NvimTreeToggle<return>"},
   },
 
   config = function()
@@ -113,14 +113,35 @@ return {
     vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = "#777777"})
 
 
-    -- when project structure / element changes, refresh all buffers
-
     local api = require("nvim-tree.api")
 
-    vim.keymap.set("n", "tt", function()
-      local node = api.tree.get_node_under_cursor()
-      vim.cmd("argadd " .. node.absolute_path)
-    end)
+    vim.keymap.set(
+      "n", "<leader>eo",
+      function()
+        api.tree.find_file({
+          open = true,
+          focus = true,
+        })
+      end,
+      { desc = "open file tree and focus on current buffer's node" }
+    )
+
+    vim.keymap.set(
+      "n", "<leader>er",
+      function()
+        api.tree.collapse_all({keep_buffers = false})
+      end,
+      { desc = "collapse all node on the file tree" }
+    )
+
+    vim.keymap.set(
+      "n", "<leader>et",
+      function()
+        local node = api.tree.get_node_under_cursor()
+        vim.cmd("argadd " .. node.absolute_path)
+      end,
+      { desc = "add file under cursor to the arglist, to open multi files" }
+    )
 
   end,
 }
