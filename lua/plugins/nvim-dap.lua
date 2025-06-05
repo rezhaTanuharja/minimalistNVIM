@@ -25,7 +25,7 @@ return {
 
         callback({
           type = "executable",
-          command = "python3",
+          command = "python",
           args = { "-m", "debugpy.adapter" },
         })
 

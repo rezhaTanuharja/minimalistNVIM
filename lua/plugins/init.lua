@@ -133,6 +133,7 @@ lazy.setup {
     { import = location .. "vimtex" },
 
     { import = location .. "terminal" },
+    { import = location .. "notebook" },
 
     { import = location .. "molten" },
     { import = location .. "otter" },
