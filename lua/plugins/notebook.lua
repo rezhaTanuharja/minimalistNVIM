@@ -55,15 +55,26 @@ return {
 
   dependencies = {
 
-    'jmbuhr/otter.nvim',
     'nvim-treesitter/nvim-treesitter',
+
+    {
+      'jmbuhr/otter.nvim',
+
+      opts = {
+        lsp = {
+          diagnostic_update_events = {
+            "BufWritePost",
+            "InsertLeave",
+            "TextChanged"
+          },
+        },
+      },
+    },
 
     {
 
       "benlubas/molten-nvim",
       version = "^1.0.0",
-
-      ft = {"python", "quarto"},
 
       dependencies = {
 
