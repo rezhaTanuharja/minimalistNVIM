@@ -103,6 +103,12 @@ M.execute_block = function()
   vim.fn.MoltenEvaluateRange(start_row + 1, end_row)
 end
 
+M.format_block = function()
+  local node = vim.treesitter.get_node()
+  local start_row, _, end_row, _ = vim.treesitter.get_node_range(node)
+  vim.cmd(start_row + 1 .. "," .. end_row .. "!black -q -")
+end
+
 M.render_block = function()
   local bufnr = vim.api.nvim_get_current_buf()
   local ns_id = vim.api.nvim_create_namespace("codeblock_hr")
@@ -175,18 +181,26 @@ M.setup = function(opts)
       vim.keymap.set("n", opts.keymaps.next_block, "<cmd>MoltenNext<return>", { buffer = arg.buf })
       vim.keymap.set("n", opts.keymaps.prev_block, "<cmd>MoltenPrev<return>", { buffer = arg.buf })
 
-      vim.keymap.set(
-        "n",
-        "<leader>ad",
-        function()
-          vim.cmd("MoltenEvaluateArgument import debugpy")
-          vim.cmd("MoltenEvaluateArgument _ = debugpy.listen(('localhost', 5678))")
-          vim.notify("debugpy has been initialized")
-        end,
-        { buffer = arg.buf, desc = "initialize debugger"}
-      )
+      if vim.fn.executable("debugpy") == 1 then
 
-      vim.keymap.set("n", "<leader>dd", "<cmd>MoltenEvaluateArgument debugpy.breakpoint()<return>", { buffer = arg.buf, desc = "enter virtual breakpoint"})
+        vim.keymap.set(
+          "n",
+          "<leader>ad",
+          function()
+            vim.cmd("MoltenEvaluateArgument import debugpy")
+            vim.cmd("MoltenEvaluateArgument _ = debugpy.listen(('localhost', 5678))")
+            vim.notify("debugpy has been initialized")
+          end,
+          { buffer = arg.buf, desc = "initialize debugger"}
+        )
+
+        vim.keymap.set("n", "<leader>dd", "<cmd>MoltenEvaluateArgument debugpy.breakpoint()<return>", { buffer = arg.buf, desc = "enter virtual breakpoint"})
+
+      end
+
+      if vim.fn.executable("black") == 1 then
+        vim.keymap.set("n", opts.keymaps.format_block, M.format_block, { buffer = arg.buf })
+      end
 
     end,
   })
@@ -218,8 +232,14 @@ M.setup = function(opts)
       vim.keymap.del("n", opts.keymaps.next_block, { buffer = arg.buf })
       vim.keymap.del("n", opts.keymaps.prev_block, { buffer = arg.buf })
 
-      vim.keymap.del("n", "<leader>ad", { buffer = arg.buf })
-      vim.keymap.del("n", "<leader>dd", { buffer = arg.buf })
+      if vim.fn.executable("debugpy") == 1 then
+        vim.keymap.del("n", "<leader>ad", { buffer = arg.buf })
+        vim.keymap.del("n", "<leader>dd", { buffer = arg.buf })
+      end
+
+      if vim.fn.executable("black") == 1 then
+        vim.keymap.del("n", opts.keymaps.format_block, { buffer = arg.buf })
+      end
 
     end,
   })

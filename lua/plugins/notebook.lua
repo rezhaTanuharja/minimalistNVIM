@@ -35,6 +35,8 @@ opts.keymaps = {
   next_block = "<leader>an",
   prev_block = "<leader>ap",
 
+  format_block = "<leader>at",
+
 }
 
 
