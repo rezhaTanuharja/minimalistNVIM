@@ -33,7 +33,9 @@ return {
       scope = {
         enabled = true,
         show_start = false,
-        show_end = true,
+        show_end = false,
+        highlight = { "Special" },
+        priority = 500,
       },
 
     }
