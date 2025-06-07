@@ -127,6 +127,23 @@ local function contexts()
 
 end
 
+-- a function to display the current search position
+
+local function search_position()
+
+  if vim.v.hlsearch == 0 then
+    return "" 
+  end
+
+  local ok, result = pcall(vim.fn.searchcount, { maxcount = 999, timeout = 500 })
+  if not ok or result.total == 0 then
+    return "" 
+  end
+
+  return "%#statusline_search# [" .. result.current .. "/" .. result.total .. "] "
+
+end
+
 -- a function to assign highlight group to the separator
 
 local function separator()
@@ -148,6 +165,7 @@ function Status_line()
 
     separator(),
 
+    search_position(),
     git_branch(),
     current_mode(),
 
@@ -194,6 +212,7 @@ local group_styles = {
 
   ["statusline_separator"]    = { fg = "#333333", bg = "None" },
 
+  ["statusline_search"] = { fg = "#CCCCCC", bg = "None" },
   ["statusline_branch"] = { fg = "#EEEEEE", bg = "#222222" },
   ["statusline_mode"]   = { fg = "#EEEEEE", bg = "#333333", bold = true },
 
