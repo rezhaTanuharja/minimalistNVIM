@@ -127,3 +127,24 @@ vim.keymap.set(
     buffer = true
   }
 )
+
+
+vim.keymap.set(
+  "n", "gcf",
+  function()
+    local class_definition = textobj.get_node("class_definition")
+    local body = textobj.get_field(class_definition, "body")
+
+    if not body or #body < 1 then
+      return
+    end
+
+    local method = textobj.get_next_child_by_name(body[1], "function_definition")
+
+    textobj.goto_node(method)
+  end,
+  { 
+    desc = "jump to class function (cyclic)",
+    buffer = true
+  }
+)

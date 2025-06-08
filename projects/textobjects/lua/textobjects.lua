@@ -14,6 +14,7 @@ local M = {}
 
 M.cache = {
   parent_node = nil,
+  children = nil,
   child_index = -1,
 }
 
@@ -81,6 +82,37 @@ M.get_next_child = function(parent_node)
   end
 
   return M.cache.parent_node:named_child(M.cache.child_index)
+end
+
+
+M.get_next_child_by_name = function(parent_node, child_name)
+  if not parent_node then
+    return nil
+  end
+
+  if not M.cache.parent_node or M.cache.parent_node ~= parent_node then
+    M.cache.parent_node = parent_node
+    M.cache.child_index = 0
+
+    M.cache.children = {}
+    for _, child in ipairs(parent_node:named_children()) do
+      if child:type() == child_name then
+        table.insert(M.cache.children, child)
+      end
+    end
+  end
+
+  if #M.cache.children == 0 then
+    return nil
+  end
+
+  M.cache.child_index = M.cache.child_index + 1
+
+  if M.cache.child_index > #M.cache.children then
+    M.cache.child_index = 1
+  end
+
+  return M.cache.children[M.cache.child_index]
 end
 
 
