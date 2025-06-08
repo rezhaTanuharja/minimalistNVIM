@@ -1,3 +1,13 @@
+---
+-- @file lsp/vscode-eslint-language-server.lua
+--
+-- @brief
+-- The configuration file for the eslint LSP
+--
+-- @author Tanuharja, R.A.
+-- @date 2025-03-28
+--
+
 
 return {
 
