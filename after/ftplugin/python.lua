@@ -139,7 +139,13 @@ vim.keymap.set(
       return
     end
 
-    local method = textobj.get_next_child_by_name(body[1], "function_definition")
+    local method = textobj.get_next_child_by_name(
+      body[1],
+      {
+        ["function_definition"] = true,
+        ["decorated_definition"] = true,
+      }
+    )
 
     textobj.goto_node(method)
   end,

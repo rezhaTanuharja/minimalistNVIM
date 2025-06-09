@@ -85,7 +85,7 @@ M.get_next_child = function(parent_node)
 end
 
 
-M.get_next_child_by_name = function(parent_node, child_name)
+M.get_next_child_by_name = function(parent_node, child_names)
   if not parent_node then
     return nil
   end
@@ -96,7 +96,7 @@ M.get_next_child_by_name = function(parent_node, child_name)
 
     M.cache.children = {}
     for _, child in ipairs(parent_node:named_children()) do
-      if child:type() == child_name then
+      if child_names[child:type()] then
         table.insert(M.cache.children, child)
       end
     end

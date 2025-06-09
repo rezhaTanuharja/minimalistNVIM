@@ -47,7 +47,7 @@ local options = {
   foldtext = "",              -- keep the first line of folded section visible
   foldmethod = "expr",        -- assign fold based on expressions
 
-  foldexpr = "nvim_treesitter#foldexpr()",
+  foldexpr = 'v:lua.vim.treesitter.foldexpr()',
 
   wrap = false,               -- do not wrap lines because it looks ugly and inconsistent
   smartindent = true,         -- automatic indentations
