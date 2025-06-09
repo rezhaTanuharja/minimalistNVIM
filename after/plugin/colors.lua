@@ -24,9 +24,9 @@ local group_styles = {
   ["Function"]      = { fg = "#999ECF" },
   ["Constant"]      = { fg = "#CCCCCC" },
 
-  ["DiffAdd"]       = { fg = "NvimLightYellow" },
+  ["DiffAdd"]       = { fg = "None", bg = "#000022", sp = "None" },
   ["DiffDelete"]    = { fg = "#666666" },
-  ["DiffText"]      = { fg = "NvimLightYellow", bg = "None" },
+  ["DiffText"]      = { fg = "NvimLightYellow", bg = "None", sp = "None" },
   ["DiffChange"]    = { fg = "None", bg = "None" },
 
   ["Changed"]       = { fg = "#EEEEEE", bg = "None" },
