@@ -23,10 +23,10 @@ return {
     },
     python = {
       analysis = {
-        autoImportCompletions= true,
+        autoImportCompletions= false,
         autoSeachPaths = false,
-        diagnosticMode = "openFilesOnly",
-        typeCheckingMode = "basic",
+        diagnosticMode = "workspace",
+        typeCheckingMode = "standard",
         diagnosticSeverityOverrides = {
           reportPrivateImportUsage = "none",
         },
