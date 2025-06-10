@@ -39,14 +39,25 @@ return {
         end,
       },
 
-      indent = { enable = true },
+      indent = {
+        enable = true,
+        disable = function(_, bufnr)
+          return vim.api.nvim_buf_line_count(bufnr) > 2000
+        end,
+      },
 
       fold = {
         enable = { "python" },
+        disable = function(_, bufnr)
+          return vim.api.nvim_buf_line_count(bufnr) > 2000
+        end,
       },
 
       incremental_selection = {
         enable = true,
+        disable = function(_, bufnr)
+          return vim.api.nvim_buf_line_count(bufnr) > 2000
+        end,
         keymaps = {
           init_selection = "gnn",
           node_incremental = "grn",

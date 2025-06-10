@@ -80,11 +80,13 @@ return {
     vim.keymap.set("n", "gnh", function() gitsigns.nav_hunk("next") end)
     vim.keymap.set("n", "gph", function() gitsigns.nav_hunk("prev") end)
 
-    vim.api.nvim_set_hl(0, "GitSignsAddInline", { fg = "#EEEEEE", bg = "#444444" })
-    vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { fg = "#AAAAAA", bg = "#333333" })
+    vim.api.nvim_set_hl(0, "GitSignsAddInline", { fg = "NvimLightYellow", bg = "None" })
+    vim.api.nvim_set_hl(0, "GitSignsDeleteInline", { fg = "NvimLightYellow", bg = "None" })
     vim.api.nvim_set_hl(0, "GitSignsStagedAdd", { fg = "#AAAAAA" })
     vim.api.nvim_set_hl(0, "GitSignsStagedChange", { fg = "#AAAAAA" })
     vim.api.nvim_set_hl(0, "GitSignsStagedChangeDelete", { fg = "#AAAAAA" })
+
+    vim.api.nvim_set_hl(0, "GitSignsAddPreview", { link = "Statement" })
 
   end
 

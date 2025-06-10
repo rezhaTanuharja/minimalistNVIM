@@ -183,6 +183,21 @@ M.setup = function(opts)
 
   end
 
+  M.lazygit = function()
+
+    local picker = M.create_floating_window()
+
+    vim.fn.jobstart("lazygit", {
+      term = true,
+      on_exit = function(_, _)
+        vim.api.nvim_win_close(picker.win, true)
+      end
+    })
+
+    vim.cmd("startinsert")
+
+  end
+
   M.toggle_terminal = function()
 
     if not vim.api.nvim_win_is_valid(M.state.win) then
@@ -217,6 +232,7 @@ M.setup = function(opts)
   vim.keymap.set("n", opts.keymaps.find_buffer, M.toggle_find_buffer)
   vim.keymap.set("t", opts.keymaps.normal_mode, "<c-\\><c-n>")
   vim.keymap.set("n", opts.keymaps.goto_file, M.goto_file, { buffer = M.state.buffer })
+  vim.keymap.set("n", "<leader>l", M.lazygit)
 end
 
 return M
