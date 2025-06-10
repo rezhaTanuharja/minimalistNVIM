@@ -18,120 +18,83 @@ return {
     { "<leader>eo", "<cmd>NvimTreeFindFile<return>" },
   },
 
-  config = function()
+  opts = {
+    update_focused_file = {
+      enable = false,
+      update_cwd = false,
+    },
 
-    local success, nvim_tree = pcall(require, "nvim-tree")
-    if not success then
-      vim.notify("Failed to load plugin: nvim-tree")
-      return
-    end
+    renderer = {
 
-    nvim_tree.setup {
+      root_folder_modifier = ":t",
 
-      update_focused_file = {
-        enable = false,
-        update_cwd = false,
-      },
+      icons = {
 
-      renderer = {
+        diagnostics_placement = "signcolumn",
+        git_placement = "after",
 
-        root_folder_modifier = ":t",
+        glyphs = {
 
-        icons = {
+          default = "x",
+          symlink = "s",
 
-          diagnostics_placement = "signcolumn",
-          git_placement = "after",
+          folder = {
+            arrow_open = "",
+            arrow_closed = "",
+            default = "[x]",
+            open = "]x[",
+            empty = "[ ]",
+            empty_open = "] [",
+            symlink = "[s]",
+            symlink_open = "]s[",
+          },
 
-          glyphs = {
-
-            default = "x",
-            symlink = "s",
-
-            folder = {
-              arrow_open = "",
-              arrow_closed = "",
-              default = "[x]",
-              open = "]x[",
-              empty = "[ ]",
-              empty_open = "] [",
-              symlink = "[s]",
-              symlink_open = "]s[",
-            },
-
-            git = {
-              unstaged = "*",
-              staged = "",
-              deleted = "",
-              unmerged = "",
-              renamed = "",
-              untracked = "",
-              ignored = "",
-            },
-
+          git = {
+            unstaged = "*",
+            staged = "+",
+            deleted = "-",
+            unmerged = "+",
+            renamed = "*",
+            untracked = "?",
+            ignored = "i",
           },
 
         },
 
       },
 
-      diagnostics = {
+    },
 
-        enable = true,
-        show_on_dirs = true,
-        show_on_open_dirs = false,
+    diagnostics = {
 
-        icons = {
-          hint = "?",
-          info = "*",
-          warning = "!",
-          error = "!",
-        },
+      enable = true,
+      show_on_dirs = true,
+      show_on_open_dirs = false,
 
+      icons = {
+        hint = "?",
+        info = "*",
+        warning = "!",
+        error = "!",
       },
 
-      git = {
+    },
 
-        enable = false,
-        show_on_dirs = false,
-        show_on_open_dirs = false,
+    git = {
+      enable = true,
+      show_on_dirs = true,
+      show_on_open_dirs = false,
+    },
 
-      },
+    view = {
+      width = 32,
+      side = "left",
+    },
 
-      -- adjust the window size
-      view = {
-        width = 32,
-        side = "left",
-      },
+    filters = {
+      dotfiles = true,
+      custom = { ".*cache.*" },
+    },
+  },
 
-      -- do not show hidden files
-      filters = {
-        dotfiles = true,
-        custom = { ".*cache.*" },
-      },
-
-    }
-
-    vim.api.nvim_set_hl(0, "NvimTreeFolderIcon", { fg = "#777777"})
-
-
-    local api = require("nvim-tree.api")
-
-    vim.keymap.set(
-      "n", "<leader>er",
-      function()
-        api.tree.collapse_all()
-      end,
-      { desc = "collapse all node on the file tree" }
-    )
-
-    vim.keymap.set(
-      "n", "<leader>et",
-      function()
-        local node = api.tree.get_node_under_cursor()
-        vim.cmd("argadd " .. node.absolute_path)
-      end,
-      { desc = "add file under cursor to the arglist, to open multi files" }
-    )
-
-  end,
 }
