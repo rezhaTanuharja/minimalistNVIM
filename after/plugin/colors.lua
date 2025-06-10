@@ -65,6 +65,14 @@ local group_styles = {
 
   ["LspSignatureActiveParameter"] = { bg = "None" },
 
+  ["NvimTreeGitDeletedIcon"] = { fg = "#999ECF", bg = "None" },
+  ["NvimTreeGitDirtyIcon"]   = { fg = "#999ECF", bg = "None" },
+  ["NvimTreeGitIgnoredIcon"] = { fg = "#999ECF", bg = "None" },
+  ["NvimTreeGitMergeIcon"]   = { fg = "#999ECF", bg = "None" },
+  ["NvimTreeGitNewIcon"]     = { fg = "#999ECF", bg = "None" },
+  ["NvimTreeGitRenamedIcon"] = { fg = "#999ECF", bg = "None" },
+  ["NvimTreeGitStagedIcon"]  = { fg = "#999ECF", bg = "None" },
+
 }
 
 for group, style in pairs(group_styles) do
