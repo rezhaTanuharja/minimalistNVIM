@@ -22,6 +22,8 @@ opts.keymaps = {
 
   goto_file = "gf",
 
+  lazygit = "<leader>l",
+
 }
 
 opts.window = {

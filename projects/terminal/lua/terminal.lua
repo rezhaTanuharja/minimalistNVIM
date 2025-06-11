@@ -194,6 +194,7 @@ M.setup = function(opts)
       end
     })
 
+    vim.opt_local.sidescrolloff = 0
     vim.cmd("startinsert")
 
   end
@@ -232,7 +233,10 @@ M.setup = function(opts)
   vim.keymap.set("n", opts.keymaps.find_buffer, M.toggle_find_buffer)
   vim.keymap.set("t", opts.keymaps.normal_mode, "<c-\\><c-n>")
   vim.keymap.set("n", opts.keymaps.goto_file, M.goto_file, { buffer = M.state.buffer })
-  vim.keymap.set("n", "<leader>l", M.lazygit)
+
+  if vim.fn.executable("lazygit") == 1 then
+    vim.keymap.set("n", opts.keymaps.lazygit, M.lazygit)
+  end
 end
 
 return M
