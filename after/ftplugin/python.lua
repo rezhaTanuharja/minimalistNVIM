@@ -170,7 +170,7 @@ vim.keymap.set("n", "mfd", function()
     return
   end
 
-  local _, col, row, _ = body:range()
+  local row, col, _, _ = body:range()
   local indent = string.rep(" ", col)
 
   local first_content = body:named_child(0)
@@ -180,7 +180,6 @@ vim.keymap.set("n", "mfd", function()
     if expression and expression:type() == "string" then
       local start_row, _, end_row, _ = expression:range()
       vim.api.nvim_buf_set_lines(0, start_row, end_row + 1, false, {})
-      row = row - (end_row - start_row + 1)
     end
   end
 
