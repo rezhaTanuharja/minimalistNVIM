@@ -154,3 +154,72 @@ vim.keymap.set(
     buffer = true
   }
 )
+
+
+vim.keymap.set("n", "mfd", function()
+  local function_definition = textobj.get_node("function_definition")
+  if not function_definition then return end
+
+  local parameters = textobj.get_field(function_definition, "parameters")
+  if not parameters or #parameters < 1 then
+    return
+  end
+
+  local body = textobj.get_field(function_definition, "body")[1]
+  if not body or #body < 1 then
+    return
+  end
+
+  local _, col, row, _ = body:range()
+  local indent = string.rep(" ", col)
+
+  local first_content = body:named_child(0)
+
+  if first_content and first_content:type() == "expression_statement" then
+    local expression = first_content:named_child(0)
+    if expression and expression:type() == "string" then
+      local start_row, _, end_row, _ = expression:range()
+      vim.api.nvim_buf_set_lines(0, start_row, end_row + 1, false, {})
+      row = row - (end_row - start_row + 1)
+    end
+  end
+
+  local docstring = {}
+  table.insert(docstring, indent .. '"""${1:Description}')
+  table.insert(docstring, "")
+  table.insert(docstring, indent .. 'Parameters')
+  table.insert(docstring, indent .. '----------')
+
+  local param_nodes = parameters[1]
+  local num_parameters = param_nodes:named_child_count()
+
+  for i = 0, num_parameters - 1 do
+    local param_node = param_nodes:named_child(i)
+    local param_name = vim.treesitter.get_node_text(param_node, 0)
+    if param_name ~= "self" then
+      table.insert(docstring, indent .. '`' .. param_name .. '`')
+      table.insert(docstring, indent .. "${" .. i + 2 .. ":description}")
+      table.insert(docstring, "")
+    end
+  end
+
+  local return_type = textobj.get_field(function_definition, "return_type")[1]
+  if return_type then
+    local type = vim.treesitter.get_node_text(return_type, 0)
+    table.insert(docstring, indent .. 'Returns')
+    table.insert(docstring, indent .. '-------')
+    table.insert(docstring, indent .. '`' .. type .. '`')
+    table.insert(docstring, indent .. "${" .. num_parameters + 2 .. ":description}")
+  end
+
+  table.insert(docstring, indent .. '"""')
+
+  vim.api.nvim_buf_set_lines(0, row, row, false, { "" })
+  vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
+
+  vim.snippet.expand(table.concat(docstring, "\n"))
+end, {
+  desc = "Insert function parameter docstring",
+  buffer = true
+})
+
