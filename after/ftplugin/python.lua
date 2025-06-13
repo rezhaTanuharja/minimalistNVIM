@@ -187,29 +187,46 @@ vim.keymap.set("n", "mfd", function()
   local docstring = {}
   table.insert(docstring, indent .. '"""${1:Description}')
   table.insert(docstring, "")
-  table.insert(docstring, indent .. 'Parameters')
-  table.insert(docstring, indent .. '----------')
 
   local param_nodes = parameters[1]
   local num_parameters = param_nodes:named_child_count()
 
-  for i = 0, num_parameters - 1 do
-    local param_node = param_nodes:named_child(i)
+  if num_parameters > 1 then
+    table.insert(docstring, indent .. 'Parameters')
+    table.insert(docstring, indent .. '----------')
+    for i = 0, num_parameters - 1 do
+      local param_node = param_nodes:named_child(i)
+      local param_name = vim.treesitter.get_node_text(param_node, 0)
+      if param_name ~= "self" then
+        table.insert(docstring, indent .. '`' .. param_name .. '`')
+        table.insert(docstring, indent .. "${" .. i + 2 .. ":description}")
+        table.insert(docstring, "")
+      end
+    end
+  elseif num_parameters == 1 then
+    local param_node = param_nodes:named_child(0)
     local param_name = vim.treesitter.get_node_text(param_node, 0)
     if param_name ~= "self" then
+      table.insert(docstring, indent .. 'Parameters')
+      table.insert(docstring, indent .. '----------')
       table.insert(docstring, indent .. '`' .. param_name .. '`')
-      table.insert(docstring, indent .. "${" .. i + 2 .. ":description}")
+      table.insert(docstring, indent .. "${2:description}")
       table.insert(docstring, "")
     end
   end
 
+
   local return_type = textobj.get_field(function_definition, "return_type")[1]
   if return_type then
     local type = vim.treesitter.get_node_text(return_type, 0)
-    table.insert(docstring, indent .. 'Returns')
-    table.insert(docstring, indent .. '-------')
-    table.insert(docstring, indent .. '`' .. type .. '`')
-    table.insert(docstring, indent .. "${" .. num_parameters + 2 .. ":description}")
+    if type ~= "None" then
+      table.insert(docstring, indent .. 'Returns')
+      table.insert(docstring, indent .. '-------')
+      table.insert(docstring, indent .. '`' .. type .. '`')
+      table.insert(docstring, indent .. "${" .. num_parameters + 2 .. ":description}")
+    else
+      table.remove(docstring)
+    end
   end
 
   table.insert(docstring, indent .. '"""')
