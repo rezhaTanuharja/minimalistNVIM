@@ -17,7 +17,7 @@ local group_styles = {
   ["String"]        = { fg = "#D6DFD4" },
   ["Comment"]       = { fg = "#777777" },
 
-  ["Visual"]        = { bg = "#333333" },
+  ["Visual"]        = { fg = "#000000", bg = "#CCCCCC"},
 
   ["Identifier"]    = { fg = "#DDDDDD", bold = true },
   ["Statement"]     = { fg = "#EEEEEE", bold = true },
