@@ -27,7 +27,6 @@ return {
           "B",
           "COM",
           "C4",
-          "DOC",
           "FBT",
           "I",
           "ICN",
@@ -45,6 +44,23 @@ return {
       },
     },
   },
+
+  on_init = function(client)
+    client.offset_encoding = "utf-8"
+  end,
+
+  on_attach = function(client, buffer)
+
+    client.server_capabilities.hoverProvider = false
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = buffer,
+      callback = function()
+        vim.lsp.buf.format({ buffer = buffer, id = client.id })
+      end,
+    })
+
+  end,
 
   settings = {},
 

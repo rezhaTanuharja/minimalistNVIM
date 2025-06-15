@@ -17,6 +17,17 @@ return {
 
   root_markers = { ".git", "main.tex" },
 
+  on_attach = function(client, buffer)
+
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = buffer,
+      callback = function()
+        vim.lsp.buf.format({ buffer = buffer, id = client.id })
+      end,
+    })
+
+  end,
+
   settings = {
 
     texlab = {
