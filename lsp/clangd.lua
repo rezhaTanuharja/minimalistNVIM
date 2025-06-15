@@ -18,7 +18,7 @@ return {
   root_markers = { ".git", "compile_commands.json" },
 
   init_options = {
-    fallbackFlag = {"-std=c++17"},
+    fallbackFlags = {"-std=c++17"},
   },
 
   on_attach = function(client, buffer)
