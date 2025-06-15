@@ -24,6 +24,8 @@ for _, server in pairs(servers) do
   end
 end
 
+vim.lsp.set_log_level("ERROR")
+
 local function refresh()
 
   vim.lsp.stop_client(vim.lsp.get_clients(), true)
