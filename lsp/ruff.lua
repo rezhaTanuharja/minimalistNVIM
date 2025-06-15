@@ -47,11 +47,10 @@ return {
 
   on_init = function(client)
     client.offset_encoding = "utf-8"
+    client.server_capabilities.hoverProvider = false
   end,
 
   on_attach = function(client, buffer)
-
-    client.server_capabilities.hoverProvider = false
 
     vim.api.nvim_create_autocmd("BufWritePre", {
       buffer = buffer,
