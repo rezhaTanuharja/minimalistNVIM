@@ -17,7 +17,7 @@ local group_styles = {
   ["String"]        = { fg = "#D6DFD4" },
   ["Comment"]       = { fg = "#777777" },
 
-  ["Visual"]        = { fg = "#000000", bg = "#CCCCCC"},
+  ["Visual"]        = { fg = "#000000", bg = "#888888"},
 
   ["Identifier"]    = { fg = "#DDDDDD", bold = true },
   ["Statement"]     = { fg = "#EEEEEE", bold = true },
@@ -66,6 +66,7 @@ local group_styles = {
   ["@comment.note"]         = { fg = "#000000", bg = "#D3EDE7", bold = true },
 
   ["LspSignatureActiveParameter"] = { bg = "None" },
+  ["LspReferenceTarget"]          = { bg = "None" },
 
   ["NvimTreeGitDeletedIcon"] = { fg = "#999ECF", bg = "None" },
   ["NvimTreeGitDirtyIcon"]   = { fg = "#999ECF", bg = "None" },
