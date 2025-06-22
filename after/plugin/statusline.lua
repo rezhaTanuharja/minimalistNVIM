@@ -90,7 +90,7 @@ end
 
 local function contexts()
 
-  if vim.bo.filetype ~= "python" then
+  if vim.bo.filetype ~= "python" and vim.bo.filetype ~= "javascript" then
     return ""
   end
 
@@ -106,6 +106,7 @@ local function contexts()
     transform_fn = function(line)
 
       line = line:gsub("class%s*", "")
+      line = line:gsub("function%s*", "")
       line = line:gsub("def%s*", "")
       line = line:gsub(":", "")
 
