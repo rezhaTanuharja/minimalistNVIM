@@ -13,7 +13,7 @@ return {
 
   filetypes = {"c", "cpp"},
 
-  cmd = {"clangd", "--background-index", "--clang-tidy", "--log=verbose"},
+  cmd = {"clangd", "--background-index", "--clang-tidy", "--log=error"},
 
   root_markers = { ".git", "compile_commands.json" },
 
