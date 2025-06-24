@@ -15,148 +15,7 @@ if not success then
   return
 end
 
-
-vim.keymap.set(
-  "n", "dif",
-  function()
-    local function_definition = textobj.get_node("function_definition")
-    textobj.yank_node(function_definition)
-    textobj.delete_node(function_definition)
-  end,
-  { 
-    desc = "delete a function definition",
-    buffer = true
-  }
-)
-
-
-vim.keymap.set(
-  "n", "dic",
-  function()
-    local class_definition = textobj.get_node("class_definition")
-    textobj.yank_node(class_definition)
-    textobj.delete_node(class_definition)
-  end,
-  { 
-    desc = "delete a class definition",
-    buffer = true
-  }
-)
-
-
-vim.keymap.set(
-  "n", "yif",
-  function()
-    local function_definition = textobj.get_node("function_definition")
-    textobj.yank_node(function_definition)
-  end,
-  { 
-    desc = "yank a function definition",
-    buffer = true
-  }
-)
-
-
-vim.keymap.set(
-  "n", "yic",
-  function()
-    local class_definition = textobj.get_node("class_definition")
-    textobj.yank_node(class_definition)
-  end,
-  { 
-    desc = "yank a class definition",
-    buffer = true
-  }
-)
-
-
-vim.keymap.set(
-  "n", "gfn",
-  function()
-    local function_definition = textobj.get_node("function_definition")
-    local name_fields = textobj.get_field(function_definition, "name")
-    
-    if not name_fields or #name_fields < 1 then
-      return
-    end
-
-    textobj.goto_node(name_fields[1])
-  end,
-  { 
-    desc = "jump to function name",
-    buffer = true
-  }
-)
-
-
-vim.keymap.set(
-  "n", "gcn",
-  function()
-    local class_definition = textobj.get_node("class_definition")
-    local name_fields = textobj.get_field(class_definition, "name")
-
-    if not name_fields or #name_fields < 1 then
-      return
-    end
-
-    textobj.goto_node(name_fields[1])
-  end,
-  { 
-    desc = "jump to class name",
-    buffer = true
-  }
-)
-
-
-vim.keymap.set(
-  "n", "gfp",
-  function()
-    local function_definition = textobj.get_node("function_definition")
-    local parameters = textobj.get_field(function_definition, "parameters")
-
-    if not parameters or #parameters < 1 then
-      return
-    end
-
-    local parameter = textobj.get_next_child(parameters[1])
-
-    textobj.goto_node(parameter)
-  end,
-  { 
-    desc = "jump to function parameters (cyclic)",
-    buffer = true
-  }
-)
-
-
-vim.keymap.set(
-  "n", "gcf",
-  function()
-    local class_definition = textobj.get_node("class_definition")
-    local body = textobj.get_field(class_definition, "body")
-
-    if not body or #body < 1 then
-      return
-    end
-
-    local method = textobj.get_next_child_by_name(
-      body[1],
-      {
-        ["function_definition"] = true,
-        ["decorated_definition"] = true,
-      }
-    )
-
-    textobj.goto_node(method)
-  end,
-  { 
-    desc = "jump to class function (cyclic)",
-    buffer = true
-  }
-)
-
-
-vim.keymap.set("n", "mfd", function()
+local generate_function_docstring = function()
   local function_definition = textobj.get_node("function_definition")
   if not function_definition then return end
 
@@ -234,7 +93,189 @@ vim.keymap.set("n", "mfd", function()
   vim.api.nvim_win_set_cursor(0, { row + 1, 0 })
 
   vim.snippet.expand(table.concat(docstring, "\n"))
-end, {
+end
+
+
+vim.keymap.set(
+  "n", "dif",
+  function()
+    local function_definition = textobj.get_node("function_definition")
+    local body = textobj.get_field(function_definition, "body")[1]
+
+    textobj.yank_node(body)
+    textobj.delete_node(body)
+
+    textobj.goto_node(function_definition)
+  end,
+  { 
+    desc = "delete the body of a function definition",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "daf",
+  function()
+    local function_definition = textobj.get_node("function_definition")
+    textobj.yank_node(function_definition)
+    textobj.delete_node(function_definition)
+  end,
+  { 
+    desc = "delete a function definition",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "dic",
+  function()
+    local class_definition = textobj.get_node("class_definition")
+    local body = textobj.get_field(class_definition, "body")[1]
+
+    textobj.yank_node(body)
+    textobj.delete_node(body)
+
+    textobj.goto_node(class_definition)
+  end,
+  { 
+    desc = "delete the body of a class definition",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "dac",
+  function()
+    local class_definition = textobj.get_node("class_definition")
+    textobj.yank_node(class_definition)
+    textobj.delete_node(class_definition)
+  end,
+  { 
+    desc = "delete a class definition",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "yif",
+  function()
+    local function_definition = textobj.get_node("function_definition")
+    local body = textobj.get_field(function_definition, "body")[1]
+
+    textobj.yank_node(body)
+  end,
+  { 
+    desc = "yank the body of function definition",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "yaf",
+  function()
+    local function_definition = textobj.get_node("function_definition")
+    textobj.yank_node(function_definition)
+  end,
+  { 
+    desc = "yank a function definition",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "yic",
+  function()
+    local class_definition = textobj.get_node("class_definition")
+    local body = textobj.get_field(class_definition, "body")[1]
+
+    textobj.yank_node(body)
+  end,
+  { 
+    desc = "yank the body of a class definition",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "yac",
+  function()
+    local class_definition = textobj.get_node("class_definition")
+    textobj.yank_node(class_definition)
+  end,
+  { 
+    desc = "yank a class definition",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "gfn",
+  function()
+    local function_definition = textobj.get_node("function_definition")
+    local name_fields = textobj.get_field(function_definition, "name")
+    
+    if not name_fields or #name_fields < 1 then
+      return
+    end
+
+    textobj.goto_node(name_fields[1])
+  end,
+  { 
+    desc = "jump to function name",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "gcn",
+  function()
+    local class_definition = textobj.get_node("class_definition")
+    local name_fields = textobj.get_field(class_definition, "name")
+
+    if not name_fields or #name_fields < 1 then
+      return
+    end
+
+    textobj.goto_node(name_fields[1])
+  end,
+  { 
+    desc = "jump to class name",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "gfp",
+  function()
+    local function_definition = textobj.get_node("function_definition")
+    local parameters = textobj.get_field(function_definition, "parameters")
+
+    if not parameters or #parameters < 1 then
+      return
+    end
+
+    local parameter = textobj.get_next_child(parameters[1])
+
+    textobj.goto_node(parameter)
+  end,
+  { 
+    desc = "jump to function parameters (cyclic)",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set("n", "mfd", generate_function_docstring, {
   desc = "Insert function parameter docstring",
   buffer = true
 })
