@@ -37,7 +37,12 @@ local mode_keymaps = {
     ["<leader>r"] = { action = "zR", desc = "unfold everything" },
     ["<leader>m"] = { action = "zM", desc = "fold everything" },
 
-    ["<S-m>"] = { action = vim.cmd.nohlsearch, desc = "remove highlight from search results" },
+    ["<S-m>"] = {
+      action = function ()
+        vim.o.hlsearch = not vim.o.hlsearch
+      end,
+      desc = "remove highlight from search results"
+    },
 
     ["<leader>j"] = { action = vim.cmd.copen, desc = "open the quickfix list" },
     ["<leader>J"] = { action = vim.cmd.cclose, desc = "close the quickfix list" },

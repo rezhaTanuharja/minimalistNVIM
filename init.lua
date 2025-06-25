@@ -78,6 +78,7 @@ local options = {
 
   ignorecase = true,          -- make search case-insensitive
   smartcase = true,           -- but if our search contains uppercase(s), it becomes case-sensitive
+  hlsearch = false,           -- don't highlight search
 
   -- miscellaneous
 

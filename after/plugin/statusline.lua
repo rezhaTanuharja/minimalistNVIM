@@ -132,16 +132,12 @@ end
 
 local function search_position()
 
-  if vim.v.hlsearch == 0 then
-    return "" 
-  end
-
   local ok, result = pcall(vim.fn.searchcount, { maxcount = 999, timeout = 500 })
   if not ok or result.total == 0 then
     return "" 
   end
 
-  return "%#statusline_search# [" .. result.current .. "/" .. result.total .. "] "
+  return "%#statusline_search# " .. vim.fn.getreg("/") .. " [" .. result.current .. "/" .. result.total .. "] "
 
 end
 
