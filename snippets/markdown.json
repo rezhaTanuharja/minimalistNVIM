@@ -1,7 +1,0 @@
-{
-  "Python code block": {
-    "prefix": "code",
-    "body": "```python\n$0\n```",
-    "description": "A code block inside a markdown file"
-  }
-}
