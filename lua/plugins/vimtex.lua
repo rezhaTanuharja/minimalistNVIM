@@ -31,7 +31,5 @@ return {
 
     vim.g.vimtex_view_forward_search_on_start = 0
 
-    vim.keymap.set("n", "<leader>ll", function() vim.cmd("VimtexCompile") end)
-
   end
 }

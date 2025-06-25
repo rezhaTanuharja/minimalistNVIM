@@ -28,7 +28,15 @@ return {
 
     treesitter.setup {
 
-      ensure_installed = { "lua", "python", "cpp", "javascript", "markdown", "markdown_inline" },
+      ensure_installed = {
+        "cpp",
+        "javascript",
+        "latex",
+        "lua",
+        "markdown",
+        "markdown_inline",
+        "python",
+      },
       sync_install = true,
       ignore_install = {},
 
