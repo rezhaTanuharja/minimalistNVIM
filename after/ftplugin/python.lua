@@ -8,6 +8,13 @@
 -- @date 2025-06-08
 --
 
+if vim.fn.executable("pyright") == 1 then
+  vim.lsp.enable("pyright")
+end
+
+if vim.fn.executable("ruff") == 1 then
+  vim.lsp.enable("ruff")
+end
 
 local create_skeleton = function()
   local skeleton = {

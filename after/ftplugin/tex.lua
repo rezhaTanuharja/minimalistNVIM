@@ -8,6 +8,9 @@
 -- @date 2025-06-24
 --
 
+if vim.fn.executable("texlab") then
+  vim.lsp.enable("texlab")
+end
 
 local create_skeleton = function()
   local skeleton = {

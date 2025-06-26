@@ -9,21 +9,6 @@
 --
 
 
-servers = {
-  "clangd",
-  "pyright",
-  "ruff",
-  "texlab",
-  "typescript-language-server",
-  "vscode-eslint-language-server",
-}
-
-for _, server in pairs(servers) do
-  if vim.fn.executable(server) == 1 then
-    vim.lsp.enable(server)
-  end
-end
-
 vim.lsp.set_log_level("ERROR")
 
 local function refresh()
