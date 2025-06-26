@@ -15,9 +15,6 @@ local mode_keymaps = {
 
     ["x"] = { action = '"_x', desc = 'delete a character without storing it in the clipboard' },
 
-    ["<leader>qq"] = { action = vim.cmd.quit, desc = "close the current window" },
-    ["<leader>w"] = { action = vim.cmd.write, desc = "save changes in the current buffer" },
-
     ["<C-h>"] = { action = "<C-w>h", desc = "move focus to the pane on the left" },
     ["<C-j>"] = { action = "<C-w>j", desc = "move focus to the pane below" },
     ["<C-k>"] = { action = "<C-w>k", desc = "move focus to the pane above" },
@@ -106,8 +103,6 @@ local mode_keymaps = {
   visual = {
 
     ["H"] = { action = "<gv", desc = "move highlighted part to the left" },
-    ["J"] = { action = ":move '>+1<cr>gvgv", desc = "move highlighted part down" },
-    ["K"] = { action = ":move '<-2<cr>gvgv", desc = "move highlighted part up" },
     ["L"] = { action = ">gv", desc = "move highlighted part to the right" },
 
     ["<leader>i"] = { action = ":s/\\(\\s*\\)/\\1", desc = "spawn multiple cursors at the start of highlighted lines" },
