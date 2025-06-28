@@ -8,7 +8,7 @@
 -- @date 2025-06-08
 --
 
-if vim.fn.executable("pyright") == 1 then
+if vim.fn.executable("pyright-langserver") == 1 then
   vim.lsp.enable("pyright")
 end
 
