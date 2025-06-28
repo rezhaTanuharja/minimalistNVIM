@@ -15,14 +15,6 @@ local mode_keymaps = {
 
     ["x"] = { action = '"_x', desc = 'delete a character without storing it in the clipboard' },
 
-    ["<C-h>"] = { action = "<C-w>h", desc = "move focus to the pane on the left" },
-    ["<C-j>"] = { action = "<C-w>j", desc = "move focus to the pane below" },
-    ["<C-k>"] = { action = "<C-w>k", desc = "move focus to the pane above" },
-    ["<C-l>"] = { action = "<C-w>l", desc = "move focus to the pane on the right" },
-
-    ["<S-h>"] = { action = vim.cmd.bprev, desc = "switch to the prev buffer" },
-    ["<S-l>"] = { action = vim.cmd.bnext, desc = "switch to the next buffer" },
-
     ["<leader>v"] = { action = vim.cmd.split, desc = "horizontal split" },
     ["<leader>h"] = { action = vim.cmd.vsplit, desc = "vertical split" },
 
@@ -38,7 +30,7 @@ local mode_keymaps = {
       action = function ()
         vim.o.hlsearch = not vim.o.hlsearch
       end,
-      desc = "remove highlight from search results"
+      desc = "toggle highlight from search results"
     },
 
     ["<leader>j"] = { action = vim.cmd.copen, desc = "open the quickfix list" },
