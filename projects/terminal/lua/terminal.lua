@@ -183,6 +183,54 @@ M.setup = function(opts)
 
   end
 
+  M.toggle_live_current_grep = function()
+
+    local extension = vim.fn.expand("%:e")
+
+    local reload_command = string.format(
+      [[%s --extension %s | xargs %s {q} -- || true]],
+      fd_command,
+      extension,
+      rg_command
+    )
+    
+    local fzf_bind = string.format(
+      [[ --bind 'change:reload(%s)' --ansi ]],
+      reload_command
+    )
+
+    local picker = M.create_floating_window()
+
+    vim.fn.jobstart(
+      fzf_command .. fzf_bind,
+      {
+      term = true,
+      on_exit = function(_, exit_code)
+
+        if exit_code == 0 then
+
+          local output = get_fzf_output(picker.buffer)
+          local file_name, line_num = output:match("([^:]+):(%d+)")
+          local found_file = vim.fn.findfile(file_name, ".")
+
+          vim.api.nvim_win_close(picker.win, true)
+
+          if found_file ~= "" then
+            vim.cmd("edit " .. vim.fn.fnameescape(found_file))
+            vim.api.nvim_win_set_cursor(0, {tonumber(line_num), 0})
+          end
+
+        else
+          vim.api.nvim_win_close(picker.win, true)
+        end
+
+      end
+    })
+
+    vim.cmd("startinsert")
+
+  end
+
   M.lazygit = function()
 
     local picker = M.create_floating_window()
@@ -233,6 +281,7 @@ M.setup = function(opts)
   vim.keymap.set("n", opts.keymaps.find_buffer, M.toggle_find_buffer)
   vim.keymap.set("t", opts.keymaps.normal_mode, "<c-\\><c-n>")
   vim.keymap.set("n", opts.keymaps.goto_file, M.goto_file, { buffer = M.state.buffer })
+  vim.keymap.set("n", opts.keymaps.live_current_grep, M.toggle_live_current_grep)
 
   if vim.fn.executable("lazygit") == 1 then
     vim.keymap.set("n", opts.keymaps.lazygit, M.lazygit)

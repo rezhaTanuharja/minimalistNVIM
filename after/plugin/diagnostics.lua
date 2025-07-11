@@ -13,6 +13,7 @@ vim.diagnostic.config {
 
   underline = false,
   virtual_text = false,
+  virtual_lines = false,
   severity_sort = true,
   update_in_insert = false,
 
@@ -55,22 +56,24 @@ vim.opt["signcolumn"] = "yes"
 vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 vim.keymap.set("n", "gq", vim.diagnostic.setqflist)
 
-vim.keymap.set(
-  "n",
-  "gh",
-  function()
-    local line = vim.api.nvim_win_get_cursor(0)[1]
-    local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
+vim.keymap.set("n", "gK", function()
+  local new_config = not vim.diagnostic.config().virtual_lines
+  vim.diagnostic.config({ virtual_lines = new_config })
+end, { desc = "Toggle diagnostic virtual_lines" })
 
-    -- empty the register first
-    vim.fn.setreg('+', {}, 'V')
 
-    for _, diagnostic in ipairs(diagnostics) do
-      vim.fn.setreg(
-        '+',
-        vim.fn.getreg('+') .. diagnostic["message"],
-        'V'
-      )
-    end
+vim.keymap.set("n","gh", function()
+  local line = vim.api.nvim_win_get_cursor(0)[1]
+  local diagnostics = vim.diagnostic.get(0, { lnum = line - 1 })
+
+  vim.fn.setreg('+', {}, 'V')
+
+  for _, diagnostic in ipairs(diagnostics) do
+    vim.fn.setreg(
+      '+',
+      vim.fn.getreg('+') .. diagnostic["message"],
+      'V'
+    )
   end
+end
 )

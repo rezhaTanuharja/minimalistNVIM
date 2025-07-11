@@ -81,8 +81,9 @@ local function diagnostics()
   local num_warning = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN  })
   local num_error   = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR })
   local num_hint    = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT  })
+  local num_info    = #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO  })
 
-  return "%#statusline_diagnostics# " .. "E" .. num_error .. " W" .. num_warning .. " H" .. num_hint .. " "
+  return "%#statusline_diagnostics# " .. "E" .. num_error .. " W" .. num_warning .. " H" .. num_hint .. " I" .. num_info .. " "
 
 end
 
@@ -137,7 +138,7 @@ local function search_position()
     return "" 
   end
 
-  return "%#statusline_search# " .. vim.fn.getreg("/") .. " [" .. result.current .. "/" .. result.total .. "] "
+  return "%#statusline_misc# " .. vim.fn.getreg("/") .. " [" .. result.current .. "/" .. result.total .. "] "
 
 end
 
@@ -149,6 +150,16 @@ local function separator()
   return "%#" .. highlight_group .. "#%="
 
 end
+
+local function miscellaneous()
+  local reg = vim.fn.reg_recording()
+  if reg == "" then
+    return search_position()
+  else
+    return "%#statusline_misc# recording @" .. reg
+  end
+end
+
 
 -- a function to call and place the statusline components
 
@@ -162,7 +173,8 @@ function Status_line()
 
     separator(),
 
-    search_position(),
+    miscellaneous(),
+    -- search_position(),
     git_branch(),
     current_mode(),
 
@@ -209,7 +221,7 @@ local group_styles = {
 
   ["statusline_separator"]    = { fg = "#333333", bg = "None" },
 
-  ["statusline_search"] = { fg = "#CCCCCC", bg = "None" },
+  ["statusline_misc"]   = { fg = "#CCCCCC", bg = "None" },
   ["statusline_branch"] = { fg = "#EEEEEE", bg = "#222222" },
   ["statusline_mode"]   = { fg = "#EEEEEE", bg = "#333333", bold = true },
 

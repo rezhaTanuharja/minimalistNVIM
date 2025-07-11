@@ -26,11 +26,11 @@ return {
     gitsigns.setup {
 
       signs = {
-        add = {text = "+"},
-        change = {text = "*"},
-        delete = {text = "-"},
-        topdelete = {text = "-"},
-        changedelete = {text = "*"},
+        add = {text = "│"},
+        change = {text = "│"},
+        delete = {text = "│"},
+        topdelete = {text = "│"},
+        changedelete = {text = "│"},
       },
 
       signcolumn = true,
@@ -75,7 +75,8 @@ return {
 
     vim.keymap.set("n", "<C-g>", gitsigns.stage_hunk)
     vim.keymap.set("n", "<C-f>", gitsigns.stage_buffer)
-    vim.keymap.set("n", "<C-i>", gitsigns.blame_line)
+    vim.keymap.set("n", "<C-e>", gitsigns.blame_line)
+    vim.keymap.set("n", "<C-a>", gitsigns.blame)
 
     vim.keymap.set("n", "gnh", function() gitsigns.nav_hunk("next") end)
     vim.keymap.set("n", "gph", function() gitsigns.nav_hunk("prev") end)

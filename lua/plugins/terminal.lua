@@ -16,7 +16,8 @@ opts.keymaps = {
   terminal = "<leader>t",
   find_file = "<leader>f",
   find_buffer = "<leader>y",
-  live_grep = "<leader>g",
+  live_grep = "<leader>ga",
+  live_current_grep = "<leader>gg",
 
   normal_mode = "<C-u>",
 
@@ -62,11 +63,13 @@ opts.fd = {
 
   args = {
     "--type f",
+    "--no-require-git",
     '--exclude "*.png"',
     '--exclude "*.pdf"',
     '--exclude "*.jp*g"',
     '--exclude "*.aux"',
 
+    '--exclude "**/*cache*/**"',
     '--exclude "**/build/**"',
   },
 }

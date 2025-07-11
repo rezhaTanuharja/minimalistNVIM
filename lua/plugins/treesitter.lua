@@ -36,7 +36,12 @@ return {
         "markdown",
         "markdown_inline",
         "python",
+        "ruby",
+        "json",
+        "html",
+        "tsx",
       },
+
       sync_install = true,
       ignore_install = {},
 
@@ -55,28 +60,21 @@ return {
       },
 
       fold = {
-        enable = { "python" },
-        disable = function(_, bufnr)
-          return vim.api.nvim_buf_line_count(bufnr) > 2000
-        end,
-      },
-
-      incremental_selection = {
-        enable = true,
-        disable = function(_, bufnr)
-          return vim.api.nvim_buf_line_count(bufnr) > 2000
-        end,
-        keymaps = {
-          init_selection = "gnn",
-          node_incremental = "grn",
-          scope_incremental = "grc",
-          node_decremental = "grm",
+        enable = {
+          "python",
+          "javascript",
+          "ruby",
+          "typescriptreact",
+          "html",
+          "json",
+          "html",
         },
+        disable = function(_, bufnr)
+          return vim.api.nvim_buf_line_count(bufnr) > 2000
+        end,
       },
 
     }
-
-    vim.g._ts_force_sync_parsing = true
 
   end
 

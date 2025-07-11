@@ -13,7 +13,7 @@ return {
 
   "lukas-reineke/indent-blankline.nvim",
 
-  ft = { "python", "lua", "typescript", "typescriptreact" },
+  ft = { "python", "lua", "typescript", "typescriptreact", "ruby" },
 
   config = function()
 
