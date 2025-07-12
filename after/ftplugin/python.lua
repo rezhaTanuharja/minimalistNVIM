@@ -16,22 +16,6 @@ if vim.fn.executable("ruff") == 1 then
   vim.lsp.enable("ruff")
 end
 
-local create_skeleton = function()
-  local skeleton = {
-    "def main():",
-    "\t$0",
-    "",
-    "",
-    "if __name__ == \"__main__\":",
-    "\tmain()",
-  }
-
-  vim.snippet.expand(table.concat(skeleton, "\n"))
-end
-
-vim.keymap.set("n", "<leader>ss", create_skeleton, { buffer = true })
-
-
 local success, textobj = pcall(require, "textobjects")
 if not success then
   vim.notify("failed to load a plugin: textobjects")
