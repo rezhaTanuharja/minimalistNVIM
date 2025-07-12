@@ -68,12 +68,18 @@ M.setup = function(opts)
     rg_command = rg_command .. " " .. arg
   end
 
-  M.toggle_find_file = function()
+  M.toggle_find_file = function(pattern)
+
+    local find_command = fd_command
+
+    if pattern then
+      find_command = find_command .. " '" .. pattern .. "'"
+    end
 
     local tmpfile = vim.fn.tempname()
     local picker = M.create_floating_window()
 
-    vim.fn.jobstart(fd_command .. " | " .. fzf_command .. " > " .. tmpfile, {
+    vim.fn.jobstart(find_command .. " | " .. fzf_command .. " --header='Find a file' " .. " > " .. tmpfile, {
       term = true,
       on_exit = function(_, exit_code)
 
@@ -110,7 +116,7 @@ M.setup = function(opts)
 
     vim.cmd("redir! > " .. buffer_list .. " | silent ls | redir END")
 
-    vim.fn.jobstart([[sed -n 's/.*"\(.*\)".*/\1/p' ]] .. buffer_list .. [[ | grep -v -E "term:|No Name" | ]] .. fzf_command .. " > " .. tmpfile, {
+    vim.fn.jobstart([[sed -n 's/.*"\(.*\)".*/\1/p' ]] .. buffer_list .. [[ | grep -v -E "term:|No Name" | ]] .. fzf_command .. " --header='Find a buffer' " .. " > " .. tmpfile, {
       term = true,
       on_exit = function(_, exit_code)
 
@@ -156,7 +162,7 @@ M.setup = function(opts)
       reload_command
     )
 
-    vim.fn.jobstart(fzf_command .. fzf_bind .. " > " .. tmpfile, {
+    vim.fn.jobstart(fzf_command .. " --header='Live grep' " .. fzf_bind .. " > " .. tmpfile, {
       term = true,
       on_exit = function(_, exit_code)
 
@@ -215,7 +221,7 @@ M.setup = function(opts)
     local tmpfile = vim.fn.tempname()
     local picker = M.create_floating_window()
 
-    vim.fn.jobstart(fzf_command .. fzf_bind .. " > " .. tmpfile, {
+    vim.fn.jobstart(fzf_command .. " --header='Live current grep' " .. fzf_bind .. " > " .. tmpfile, {
       term = true,
       on_exit = function(_, exit_code)
 

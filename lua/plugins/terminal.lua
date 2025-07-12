@@ -14,7 +14,7 @@ local opts = {}
 opts.keymaps = {
 
   terminal = "<leader>t",
-  find_file = "<leader>f",
+  find_file = "<leader>ff",
   find_buffer = "<leader>y",
   live_grep = "<leader>ga",
   live_current_grep = "<leader>gg",
@@ -44,6 +44,7 @@ opts.fzf = {
   args = {
     "--multi",
     "--layout=reverse",
+    "--header-first",
     "--bind 'ctrl-a:toggle-all'",
   },
 
@@ -66,6 +67,7 @@ opts.fd = {
 
   args = {
     "--type f",
+    "--full-path",
     "--no-require-git",
     '--exclude "*.png"',
     '--exclude "*.pdf"',
