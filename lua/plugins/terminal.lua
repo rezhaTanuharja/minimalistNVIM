@@ -42,7 +42,9 @@ opts.fzf = {
   executable = "fzf",
 
   args = {
+    "--multi",
     "--layout=reverse",
+    "--bind 'ctrl-a:toggle-all'",
   },
 
 }
@@ -52,6 +54,7 @@ opts.rg = {
   executable = "rg",
 
   args = {
+    "--vimgrep",
     "--ignore-case",
   },
 

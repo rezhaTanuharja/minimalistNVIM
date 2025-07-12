@@ -16,23 +16,6 @@ M.state = {
   win = -1,
 }
 
-local get_fzf_output = function(buffer)
-
-  local lines = vim.api.nvim_buf_get_lines(buffer, 0, -1, false)
-  local output = ""
-
-  for row = 1, #lines do
-
-    if lines[row] == "" then
-      return output
-    end
-
-    output = output .. lines[row]
-
-  end
-
-end
-
 M.setup = function(opts)
 
   M.create_floating_window = function(buf)
@@ -87,15 +70,16 @@ M.setup = function(opts)
 
   M.toggle_find_file = function()
 
+    local tmpfile = vim.fn.tempname()
     local picker = M.create_floating_window()
 
-    vim.fn.jobstart(fd_command .. " | " .. fzf_command, {
+    vim.fn.jobstart(fd_command .. " | " .. fzf_command .. " > " .. tmpfile, {
       term = true,
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
 
-          local file_name = get_fzf_output(picker.buffer)
+          local file_name = vim.fn.readfile(tmpfile)[1]
           local found_file = vim.fn.findfile(file_name, vim.o.path)
 
           vim.api.nvim_win_close(picker.win, true)
@@ -109,6 +93,8 @@ M.setup = function(opts)
           vim.api.nvim_win_close(picker.win, true)
         end
 
+        vim.fn.delete(tmpfile)
+
       end
     })
 
@@ -118,18 +104,21 @@ M.setup = function(opts)
 
   M.toggle_find_buffer = function()
 
+    local buffer_list = vim.fn.tempname()
+    local tmpfile = vim.fn.tempname()
     local picker = M.create_floating_window()
-    local file_name = ""
 
-    vim.cmd("redir! > .out | silent ls | redir END")
+    vim.cmd("redir! > " .. buffer_list .. " | silent ls | redir END")
 
-    vim.fn.jobstart([[sed -n 's/.*"\(.*\)".*/\1/p' .out | grep -v -E "term:|No Name" | ]] .. fzf_command, {
+    vim.fn.jobstart([[sed -n 's/.*"\(.*\)".*/\1/p' ]] .. buffer_list .. [[ | grep -v -E "term:|No Name" | ]] .. fzf_command .. " > " .. tmpfile, {
       term = true,
       on_exit = function(_, exit_code)
 
+        vim.fn.delete(buffer_list)
+
         if exit_code == 0 then
 
-          local file_name = get_fzf_output(picker.buffer)
+          local file_name = vim.fn.readfile(tmpfile)[1]
           local found_file = vim.fn.findfile(file_name, vim.o.path)
 
           vim.api.nvim_win_close(picker.win, true)
@@ -143,6 +132,7 @@ M.setup = function(opts)
         end
 
         vim.cmd("silent! !rm .out")
+        vim.fn.delete(tmpfile)
 
       end
     })
@@ -153,6 +143,7 @@ M.setup = function(opts)
 
   M.toggle_live_grep = function()
 
+    local tmpfile = vim.fn.tempname()
     local picker = M.create_floating_window()
 
     local reload_command = string.format(
@@ -166,26 +157,38 @@ M.setup = function(opts)
       reload_command
     )
 
-    vim.fn.jobstart(fzf_command .. fzf_bind, {
+    vim.fn.jobstart(fzf_command .. fzf_bind .. " > " .. tmpfile, {
       term = true,
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
 
-          local output = get_fzf_output(picker.buffer)
-          local file_name, line_num = output:match("([^:]+):(%d+)")
-          local found_file = vim.fn.findfile(file_name, ".")
+          local output = vim.fn.readfile(tmpfile)
 
-          vim.api.nvim_win_close(picker.win, true)
+          if #output > 0 then
 
-          if found_file ~= "" then
-            vim.cmd("edit " .. vim.fn.fnameescape(found_file))
-            vim.api.nvim_win_set_cursor(0, {tonumber(line_num), 0})
+            local qf_list = {}
+
+            for _, line in ipairs(output) do
+              local file, row, col, text = line:match("^(.-):(%d+):(%d+):(.*)$")
+
+              table.insert(qf_list, {
+                filename = file,
+                lnum = tonumber(row),
+                col = tonumber(col),
+                text = text,
+              })
+            end
+
+            if #qf_list > 0 then
+              vim.fn.setqflist({}, ' ', { title = 'Live Grep Results', items = qf_list })
+              vim.cmd("copen")
+            end
           end
-
-        else
-          vim.api.nvim_win_close(picker.win, true)
         end
+
+        vim.api.nvim_win_close(picker.win, true)
+        vim.fn.delete(tmpfile)
 
       end
     })
@@ -210,30 +213,41 @@ M.setup = function(opts)
       reload_command
     )
 
+    local tmpfile = vim.fn.tempname()
     local picker = M.create_floating_window()
 
-    vim.fn.jobstart(
-      fzf_command .. fzf_bind,
-      {
+    vim.fn.jobstart(fzf_command .. fzf_bind .. " > " .. tmpfile, {
       term = true,
       on_exit = function(_, exit_code)
 
         if exit_code == 0 then
 
-          local output = get_fzf_output(picker.buffer)
-          local file_name, line_num = output:match("([^:]+):(%d+)")
-          local found_file = vim.fn.findfile(file_name, ".")
+          local output = vim.fn.readfile(tmpfile)
 
-          vim.api.nvim_win_close(picker.win, true)
+          if #output > 0 then
 
-          if found_file ~= "" then
-            vim.cmd("edit " .. vim.fn.fnameescape(found_file))
-            vim.api.nvim_win_set_cursor(0, {tonumber(line_num), 0})
+            local qf_list = {}
+
+            for _, line in ipairs(output) do
+              local file, row, col, text = line:match("^(.-):(%d+):(%d+):(.*)$")
+
+              table.insert(qf_list, {
+                filename = file,
+                lnum = tonumber(row),
+                col = tonumber(col),
+                text = text,
+              })
+            end
+
+            if #qf_list > 0 then
+              vim.fn.setqflist({}, ' ', { title = 'Live Grep Results', items = qf_list })
+              vim.cmd("copen")
+            end
           end
-
-        else
-          vim.api.nvim_win_close(picker.win, true)
         end
+
+        vim.api.nvim_win_close(picker.win, true)
+        vim.fn.delete(tmpfile)
 
       end
     })
