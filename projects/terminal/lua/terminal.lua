@@ -131,7 +131,6 @@ M.setup = function(opts)
           vim.api.nvim_win_close(picker.win, true)
         end
 
-        vim.cmd("silent! !rm .out")
         vim.fn.delete(tmpfile)
 
       end
