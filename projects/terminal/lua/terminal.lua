@@ -155,7 +155,18 @@ M.setup = function(opts)
 
     local picker = M.create_floating_window()
 
-    vim.fn.jobstart(fzf_command .. ' --bind "change:reload(' .. rg_command .. ' {q} || true)" --ansi', {
+    local reload_command = string.format(
+      [[%s | xargs %s {q} -- || true]],
+      fd_command,
+      rg_command
+    )
+    
+    local fzf_bind = string.format(
+      [[ --bind 'change:reload(%s)' --ansi ]],
+      reload_command
+    )
+
+    vim.fn.jobstart(fzf_command .. fzf_bind, {
       term = true,
       on_exit = function(_, exit_code)
 

@@ -48,6 +48,7 @@ local options = {
   -- number columns
 
   relativenumber = false,     -- don't display relative line numbers
+  relativenumber = true,      -- don't display relative line numbers
   number = true,              -- display the current line number
   numberwidth = 3,            -- the column width to display line numbers
 
