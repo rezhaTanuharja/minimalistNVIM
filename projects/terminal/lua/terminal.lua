@@ -152,8 +152,7 @@ M.setup = function(opts)
     local picker = M.create_floating_window()
 
     local reload_command = string.format(
-      [[%s | xargs %s {q} -- || true]],
-      fd_command,
+      [[%s {q} -- || true]],
       rg_command
     )
     
