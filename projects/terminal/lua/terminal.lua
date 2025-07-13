@@ -130,7 +130,7 @@ M.setup = function(opts)
           vim.api.nvim_win_close(picker.win, true)
 
           if found_file ~= "" then
-            vim.cmd("edit " .. vim.fn.fnameescape(found_file))
+            vim.cmd("drop " .. vim.fn.fnameescape(found_file))
           end
 
         else
