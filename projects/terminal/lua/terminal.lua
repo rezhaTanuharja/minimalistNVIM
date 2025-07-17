@@ -184,14 +184,24 @@ M.setup = function(opts)
               })
             end
 
-            if #qf_list > 0 then
-              vim.fn.setqflist({}, ' ', { title = 'Live Grep Results', items = qf_list })
+            vim.fn.setqflist({}, ' ', { title = 'Live Grep Results', items = qf_list })
+
+            vim.api.nvim_win_close(picker.win, true)
+
+            if #qf_list == 1 then
+              local item = qf_list[1]
+              vim.cmd(string.format("edit %s", item.filename))
+              vim.api.nvim_win_set_cursor(0, { item.lnum, item.col - 1 })
+            else
               vim.cmd("copen")
             end
+
           end
+
+        else
+          vim.api.nvim_win_close(picker.win, true)
         end
 
-        vim.api.nvim_win_close(picker.win, true)
         vim.fn.delete(tmpfile)
 
       end
@@ -243,14 +253,24 @@ M.setup = function(opts)
               })
             end
 
-            if #qf_list > 0 then
-              vim.fn.setqflist({}, ' ', { title = 'Live Grep Results', items = qf_list })
+            vim.fn.setqflist({}, ' ', { title = 'Live Grep Results', items = qf_list })
+
+            vim.api.nvim_win_close(picker.win, true)
+
+            if #qf_list == 1 then
+              local item = qf_list[1]
+              vim.cmd(string.format("edit %s", item.filename))
+              vim.api.nvim_win_set_cursor(0, { item.lnum, item.col - 1 })
+            else
               vim.cmd("copen")
             end
+
           end
+
+        else
+          vim.api.nvim_win_close(picker.win, true)
         end
 
-        vim.api.nvim_win_close(picker.win, true)
         vim.fn.delete(tmpfile)
 
       end
