@@ -85,15 +85,11 @@ M.setup = function(opts)
 
         if exit_code == 0 then
 
-          local file_name = vim.fn.readfile(tmpfile)[1]
-          local found_file = vim.fn.findfile(file_name, vim.o.path)
+          local file_names = vim.fn.readfile(tmpfile)
 
           vim.api.nvim_win_close(picker.win, true)
 
-          if found_file ~= "" then
-            vim.cmd("edit " .. vim.fn.fnameescape(found_file))
-          end
-
+          vim.cmd("argedit " .. table.concat(file_names, " "))
 
         else
           vim.api.nvim_win_close(picker.win, true)
