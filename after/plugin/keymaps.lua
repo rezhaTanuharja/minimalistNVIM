@@ -18,8 +18,7 @@ local mode_keymaps = {
     ["<leader>v"] = { action = vim.cmd.split, desc = "horizontal split" },
     ["<leader>h"] = { action = vim.cmd.vsplit, desc = "vertical split" },
 
-    ["<C-b>"] = { action = "<cmd>vertical resize -2<return>", desc = "decrease rows in the current window" },
-    ["<C-n>"] = { action = "<cmd>vertical resize +2<return>", desc = "increase rows in the current window" },
+    ["<C-b>"] = { action = "<cmd>vertical resize +2<return>", desc = "increase rows in the current window" },
     ["<C-,>"] = { action = "<cmd>horizontal resize -2<return>", desc = "decrease columns in the current window" },
     ["<C-.>"] = { action = "<cmd>horizontal resize +2<return>", desc = "increase columns in the current window" },
 
@@ -36,7 +35,27 @@ local mode_keymaps = {
     ["<leader>j"] = { action = vim.cmd.copen, desc = "open the quickfix list" },
     ["<leader>J"] = { action = vim.cmd.cclose, desc = "close the quickfix list" },
 
-    ["<leader>qj"] = {
+    ["]a"] = {
+      action = function()
+        local success = pcall(vim.cmd, "next")
+        if not success then
+          local _ = pcall(vim.cmd, "first")
+        end
+      end,
+      desc = "navigate to the next arglist item"
+    },
+
+    ["[a"] = {
+      action = function()
+        local success = pcall(vim.cmd, "prev")
+        if not success then
+          local _ = pcall(vim.cmd, "last")
+        end
+      end,
+      desc = "navigate to the prev arglist item"
+    },
+
+    ["]q"] = {
       action = function()
         local success = pcall(vim.cmd, "cnext")
         if not success then
@@ -46,7 +65,7 @@ local mode_keymaps = {
       desc = "navigate to the next quickfix item"
     },
 
-    ["<leader>qk"] = {
+    ["[q"] = {
       action = function()
         local success = pcall(vim.cmd, "cprev")
         if not success then
