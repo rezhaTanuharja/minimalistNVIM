@@ -93,19 +93,6 @@ return {
 
     }
 
-    dap.configurations.quarto = {
-      {
-        type = "python",
-        request = "attach",
-        name = "Attach a debugging session",
-        connect = {
-          host = "127.0.0.1",
-          port = "5678"
-        },
-        console = "integratedTerminal",
-      },
-    }
-
     dap.adapters.cpp = {
       type = "executable",
       command = "lldb-dap",
