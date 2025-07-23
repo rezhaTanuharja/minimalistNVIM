@@ -89,7 +89,15 @@ M.setup = function(opts)
 
           vim.api.nvim_win_close(picker.win, true)
 
-          vim.cmd("argedit " .. table.concat(file_names, " "))
+          if #file_names == 1 then
+            vim.cmd("edit " .. file_names[1])
+          else
+            if vim.fn.argc() > 0 then
+              vim.cmd("argdelete *")
+            end
+
+            vim.cmd("argedit " .. table.concat(file_names, " "))
+          end
 
         else
           vim.api.nvim_win_close(picker.win, true)
