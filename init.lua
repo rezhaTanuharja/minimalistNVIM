@@ -39,6 +39,8 @@ local options = {
   cmdheight = 0,              -- hide the command line when not typing command
   path = ".,,**",             -- find-like operations works recursively
 
+  messagesopt = "wait:1000,history:100",
+
   -- tabs and indentations
 
   expandtab = true,           -- convert tabs into spaces
