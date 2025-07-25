@@ -18,7 +18,7 @@ vim.bo.errorformat = "rspec %f:%l # %m"
 
 local swap_app_and_spec = function()
 
-  file_name = vim.fn.expand("%")
+  local file_name = vim.fn.expand("%")
 
   if file_name:find("app") then
     file_name = file_name:gsub("app", "spec")
@@ -28,7 +28,11 @@ local swap_app_and_spec = function()
     file_name = file_name:gsub("spec", "app")
   end
 
-  local _ = pcall(vim.cmd, "edit " .. file_name)
+  local _ = pcall(
+    function()
+      vim.cmd("edit " .. file_name)
+    end
+  )
 
 end
 
@@ -59,7 +63,7 @@ vim.keymap.set(
 
     textobj.goto_node(method_definition)
   end,
-  { 
+  {
     desc = "delete the body of a method definition",
     buffer = true
   }
@@ -73,7 +77,7 @@ vim.keymap.set(
     textobj.yank_node(method_definition)
     textobj.delete_node(method_definition)
   end,
-  { 
+  {
     desc = "delete a method definition",
     buffer = true
   }
@@ -87,7 +91,7 @@ vim.keymap.set(
 
     textobj.yank_node(body)
   end,
-  { 
+  {
     desc = "yank the body of a method definition",
     buffer = true
   }
@@ -100,7 +104,7 @@ vim.keymap.set(
 
     textobj.yank_node(method_definition)
   end,
-  { 
+  {
     desc = "yank a method definition",
     buffer = true
   }
@@ -111,14 +115,14 @@ vim.keymap.set(
   function()
     local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
     local name_fields = textobj.get_field(method_definition, "name")
-    
+
     if not name_fields or #name_fields < 1 then
       return
     end
 
     textobj.goto_node(name_fields[1])
   end,
-  { 
+  {
     desc = "jump to method name",
     buffer = true
   }
