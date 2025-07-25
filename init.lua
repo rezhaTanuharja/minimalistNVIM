@@ -131,7 +131,7 @@ end
 lazy.setup {
 
   dev = {
-    path = "~/.config/nvim/projects",
+    path = vim.fn.stdpath("config") .. "/" .. "projects",
     fallback = false,
   },
 
