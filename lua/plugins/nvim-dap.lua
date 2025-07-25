@@ -13,7 +13,13 @@ return {
 
   "mfussenegger/nvim-dap",
 
-  ft = {"python", "c", "cpp"},
+  ft = {"python", "c", "cpp", "javascript", "typescript", "javascriptreact", "typescriptreact"},
+
+  dependencies = {
+    "microsoft/vscode-js-debug",
+    build = "npm install --legacy-peer-deps --no-save && npx gulp dapDebugServer",
+    version = "1.*",
+  },
 
   config = function()
 
@@ -114,10 +120,66 @@ return {
       }
     }
 
+    local js_adapter = {
+      type = "server",
+      host = "localhost",
+      port = "${port}",
+      executable = {
+        command = "node",
+        args = {
+          vim.fn.stdpath("data") .. "/lazy/vscode-js-debug/dist/src/dapDebugServer.js",
+          "${port}",
+        },
+      },
+    }
+
+    dap.adapters["pwa-node"] = js_adapter
+    dap.adapters["pwa-chrome"] = js_adapter
+
+    local js_configuration = {
+      {
+        type = "pwa-node",
+        request = "launch",
+        name = "Launch file using node",
+        program = "${file}",
+        cwd = "${workspaceFolder}",
+      },
+      {
+        type = "pwa-node",
+        request = "attach",
+        name = "Attach to a process using node",
+        processId = require("dap.utils").pick_process,
+        cwd = "${workspaceFolder}",
+      },
+      {
+        type = "pwa-chrome",
+        request = "launch",
+        name = "Launch Chrome",
+        url = function()
+          return vim.fn.input("URL: ", "http://localhost:3000")
+        end,
+        webRoot = "${workspaceFolder}",
+        sourceMaps = true,
+      },
+    }
+
+    dap.configurations["typescript"] = js_configuration
+    dap.configurations["javascript"] = js_configuration
+    dap.configurations["typescriptreact"] = js_configuration
+    dap.configurations["javascriptreact"] = js_configuration
+
     vim.fn.sign_define(
       "DapBreakpoint", {
         text = "--",
         texthl = "DiagnosticError",
+        numhl = ""
+      }
+    )
+
+    vim.fn.sign_define(
+      "DapBreakpointRejected", {
+        text = "--",
+        texthl = "DiagnosticWarn",
         numhl = ""
       }
     )
