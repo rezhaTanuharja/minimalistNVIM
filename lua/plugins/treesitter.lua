@@ -30,15 +30,16 @@ return {
 
       ensure_installed = {
         "cpp",
+        "go",
+        "html",
         "javascript",
+        "json",
         "latex",
         "lua",
-        "markdown",
         "markdown_inline",
+        "markdown",
         "python",
         "ruby",
-        "json",
-        "html",
         "tsx",
       },
 
