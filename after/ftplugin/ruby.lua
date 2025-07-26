@@ -8,9 +8,22 @@
 -- @date 2025-07-08
 --
 
-if vim.fn.executable("ruby-lsp") == 1 then
-  vim.lsp.enable("ruby-lsp")
-end
+--
+-- Sets up development environment for Ruby.
+--
+-- + uses a global flag _G.ruby_env_set to set only once per session.
+-- + checks if the language server is installed before enabling.
+--
+_G.ruby_env_set = _G.ruby_env_set or (function()
+
+  if vim.fn.executable("ruby-lsp") == 1 then
+    vim.lsp.enable("ruby-lsp")
+  end
+
+  return true
+
+end)()
+
 
 vim.bo.makeprg = "bundle exec rspec %"
 vim.bo.errorformat = "rspec %f:%l # %m"

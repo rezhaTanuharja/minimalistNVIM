@@ -1,11 +1,11 @@
 ---
--- @file after/ftplugin/typescript.lua
+-- @file after/ftplugin/javascriptreact.lua
 --
 -- @brief
--- TS - specific config
+-- Javascriptreact - specific config
 --
 -- @author Tanuharja, R.A.
--- @date 2025-07-08
+-- @date 2025-07-26
 --
 
 --

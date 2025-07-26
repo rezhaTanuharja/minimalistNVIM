@@ -8,13 +8,106 @@
 -- @date 2025-06-08
 --
 
-if vim.fn.executable("pyright-langserver") == 1 then
-  vim.lsp.enable("pyright")
-end
+--
+-- Sets up development environment for Python.
+--
+-- + uses a global flag _G.python_env_set to set only once per session.
+-- + checks if the language server is installed before enabling.
+-- + set adapters and configurations for DAP.
+--
+_G.python_env_set = _G.python_env_set or (function()
 
-if vim.fn.executable("ruff") == 1 then
-  vim.lsp.enable("ruff")
-end
+  if vim.fn.executable("pyright-langserver") == 1 then
+    vim.lsp.enable("pyright")
+  end
+
+  if vim.fn.executable("ruff") == 1 then
+    vim.lsp.enable("ruff")
+  end
+
+  local success, dap = pcall(require, "dap")
+  if not success then
+    vim.notify("failed to load a plugin: dap")
+    return true
+  end
+
+  dap.adapters.python = function(callback, config)
+
+    if config.request == "launch" then
+
+      callback({
+        type = "executable",
+        command = "python",
+        args = { "-m", "debugpy.adapter" },
+      })
+
+    elseif config.request == "attach" then
+
+      local port = config.connect.port
+      local host = config.connect.host
+
+      callback({
+        type = "server",
+        port = port,
+        host = host,
+        options = {
+          source_filetype = "python"
+        }
+      })
+
+    end
+
+  end
+
+  dap.configurations.python = {
+
+    {
+      type = "python",
+      request = "launch",
+      name = "Launch a debugging session",
+      program = "${file}",
+      pythonPath = function()
+        return "python3"
+      end,
+      console = "integratedTerminal",
+    },
+
+    {
+      type = "python",
+      request = "attach",
+      name = "Attach a debugging session",
+      connect = function()
+        local host = vim.fn.input("Host: ")
+        local port = tonumber(vim.fn.input("Port: "))
+        return {host = host, port = port}
+      end,
+      console = "integratedTerminal",
+    },
+
+    {
+      type = "python",
+      request = "launch",
+      name = "Launch a debugging session with arguments",
+      program = "${file}",
+      args = function()
+        local args_string = vim.fn.input("Arguments: ")
+        local utils = require("dap.utils")
+        if utils.splitstr and vim.fn.has("nvim-0.10") == 1 then
+          return utils.splitstr(args_string)
+        end
+        return vim.split(args_string, " +")
+      end,
+      pythonPath = function()
+        return "python3"
+      end,
+      console = "integratedTerminal",
+    },
+  }
+
+  return true
+
+end)()
+
 
 local success, textobj = pcall(require, "textobjects")
 if not success then
@@ -286,4 +379,3 @@ vim.keymap.set("n", "mfd", generate_function_docstring, {
   desc = "Insert function parameter docstring",
   buffer = true
 })
-

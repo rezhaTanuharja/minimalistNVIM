@@ -8,36 +8,20 @@
 -- @date 2025-06-24
 --
 
-if vim.fn.executable("texlab") then
-  vim.lsp.enable("texlab")
-end
+--
+-- Sets up development environment for Tex.
+--
+-- + uses a global flag _G.tex_env_set to set only once per session.
+-- + checks if the language server is installed before enabling.
+--
+_G.tex_env_set = _G.tex_env_set or (function()
 
-local create_skeleton = function()
-  local skeleton = {
-    "\\documentclass{${1:type}}",
-    " ",
-    "${2:% preambles}",
-    " ",
-    "\\begin{document}",
-    " ",
-    "$0",
-    " ",
-    "\\end{document}",
-  }
+  if vim.fn.executable("texlab") then
+    vim.lsp.enable("texlab")
+  end
+  
+  return true
 
-  vim.snippet.expand(table.concat(skeleton, "\n"))
-end
+end)()
 
-local create_environment = function()
-  local environment = {
-    "\\begin{${1:env}}",
-    "\t$0",
-    "\\end{${1}}",
-  }
-
-  vim.snippet.expand(table.concat(environment, "\n"))
-end
-
-
-vim.keymap.set("n", "<leader>ss", create_skeleton, { buffer = true })
-vim.keymap.set("n", "<leader>se", create_environment, { buffer = true })
+vim.bo.messagesopt = "wait:1000,history:100"

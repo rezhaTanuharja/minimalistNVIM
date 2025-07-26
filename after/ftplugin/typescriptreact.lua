@@ -8,10 +8,111 @@
 -- @date 2025-07-08
 --
 
-if vim.fn.executable("typescript-language-server") == 1 then
-  vim.lsp.enable("typescript-language-server")
+--
+-- Sets up development environment for JS, TS, JSX, and TSX.
+--
+-- + uses a global flag _G.jsx_tsx_env_set to set only once per session.
+-- + checks if the language server is installed before enabling.
+-- + set adapters and configurations for DAP.
+--
+_G.jsx_tsx_env_set = _G.jsx_tsx_env_set or (function()
+
+  if vim.fn.executable("typescript-language-server") == 1 then
+    vim.lsp.enable("typescript-language-server")
+  end
+
+  if vim.fn.executable("vscode-eslint-language-server") == 1 then
+    vim.lsp.enable("vscode-eslint-language-server")
+  end
+
+  local success, dap = pcall(require, "dap")
+  if not success then
+    vim.notify("failed to load a plugin: dap")
+    return true
+  end
+
+  local js_adapter = {
+    type = "server",
+    host = "localhost",
+    port = "${port}",
+    executable = {
+      command = "node",
+      args = {
+        vim.fn.stdpath("data") .. "/lazy/vscode-js-debug/dist/src/dapDebugServer.js",
+        "${port}",
+      },
+    },
+  }
+
+  dap.adapters["pwa-node"] = js_adapter
+  dap.adapters["pwa-chrome"] = js_adapter
+
+  local js_configuration = {
+    {
+      type = "pwa-node",
+      request = "launch",
+      name = "Launch file using node",
+      program = "${file}",
+      cwd = "${workspaceFolder}",
+    },
+    {
+      type = "pwa-node",
+      request = "attach",
+      name = "Attach to a process using node",
+      processId = require("dap.utils").pick_process,
+      cwd = "${workspaceFolder}",
+    },
+    {
+      type = "pwa-chrome",
+      request = "launch",
+      name = "Launch Chrome",
+      url = function()
+        return vim.fn.input("URL: ", "http://localhost:3000")
+      end,
+      webRoot = "${workspaceFolder}",
+      sourceMaps = true,
+    },
+  }
+
+  dap.configurations["typescript"] = js_configuration
+  dap.configurations["javascript"] = js_configuration
+  dap.configurations["typescriptreact"] = js_configuration
+  dap.configurations["javascriptreact"] = js_configuration
+
+  return true
+
+end)()
+
+
+local success, textobj = pcall(require, "textobjects")
+if not success then
+  vim.notify("failed to load a plugin: textobjects")
+  return
 end
 
-if vim.fn.executable("vscode-eslint-language-server") == 1 then
-  vim.lsp.enable("vscode-eslint-language-server")
-end
+
+vim.keymap.set(
+  "n", "die",
+  function()
+    local jsx_element = textobj.get_node("jsx_element")
+    textobj.yank_node(jsx_element)
+    textobj.delete_node(jsx_element)
+  end,
+  { 
+    desc = "delete a jsx element",
+    buffer = true
+  }
+)
+
+
+vim.keymap.set(
+  "n", "yie",
+  function()
+    local jsx_element = textobj.get_node("jsx_element")
+    textobj.yank_node(jsx_element)
+  end,
+  { 
+    desc = "yank a jsx element",
+    buffer = true
+  }
+)
