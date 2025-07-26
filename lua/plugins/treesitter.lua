@@ -62,13 +62,15 @@ return {
 
       fold = {
         enable = {
-          "python",
+          "html",
+          "html",
           "javascript",
-          "ruby",
-          "typescriptreact",
-          "html",
+          "javascriptreact",
           "json",
-          "html",
+          "python",
+          "ruby",
+          "typescript",
+          "typescriptreact",
         },
         disable = function(_, bufnr)
           return vim.api.nvim_buf_line_count(bufnr) > 2000
