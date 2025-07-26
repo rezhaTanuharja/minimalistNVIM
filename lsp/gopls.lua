@@ -66,13 +66,13 @@ local function get_root_dir(fname)
   if mod_cache and fname:sub(1, #mod_cache) == mod_cache then
     local clients = vim.lsp.get_clients({ name = "gopls" })
     if #clients > 0 then
-      return clients[#clients].config.root.dir
+      return clients[#clients].config.root_dir
     end
   end
   if std_lib and fname:sub(1, #std_lib) == std_lib then
     local clients = vim.lsp.get_clients({ name = "gopls" })
     if #clients > 0 then
-      return clients[#clients].config.root.dir
+      return clients[#clients].config.root_dir
     end
   end
   return vim.fs.root(fname, "go.work") or vim.fs.root(fname, "go.mod") or vim.fs.root(fname, ".git")
