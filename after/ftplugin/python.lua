@@ -64,7 +64,7 @@ _G.python_env_set = _G.python_env_set or (function()
     {
       type = "python",
       request = "launch",
-      name = "Launch a debugging session",
+      name = "[Python] Launch a debugging session",
       program = "${file}",
       pythonPath = function()
         return "python3"
@@ -75,7 +75,7 @@ _G.python_env_set = _G.python_env_set or (function()
     {
       type = "python",
       request = "attach",
-      name = "Attach a debugging session",
+      name = "[Python] Attach a debugging session",
       connect = function()
         local host = vim.fn.input("Host: ")
         local port = tonumber(vim.fn.input("Port: "))
@@ -87,7 +87,7 @@ _G.python_env_set = _G.python_env_set or (function()
     {
       type = "python",
       request = "launch",
-      name = "Launch a debugging session with arguments",
+      name = "[Python] Launch a debugging session with arguments",
       program = "${file}",
       args = function()
         local args_string = vim.fn.input("Arguments: ")

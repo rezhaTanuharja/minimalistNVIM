@@ -35,7 +35,7 @@ _G.cpp_env_set = _G.cpp_env_set or (function()
 
   dap.configurations.cpp = {
     {
-      name = "Launch LLDB",
+      name = "[CPP] Launch LLDB",
       type = "cpp",
       request = "launch",
       program = function()

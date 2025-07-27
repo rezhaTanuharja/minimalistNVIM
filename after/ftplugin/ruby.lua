@@ -61,7 +61,7 @@ _G.ruby_env_set = _G.ruby_env_set or (function()
   dap.configurations.ruby = {
     {
       type = "ruby",
-      name = "Run the current spec file",
+      name = "[Ruby] Run the current spec file",
       request = "attach",
       command = "bundle",
       args = { "exec", "rspec", "${file}" },
@@ -69,10 +69,23 @@ _G.ruby_env_set = _G.ruby_env_set or (function()
     },
     {
       type = "ruby",
-      name = "Run the Rails server",
+      name = "[Ruby] Run the Rails server",
       request = "attach",
       command = "bundle",
       args = { "exec", "rails", "s" },
+      localfs = true,
+    },
+    {
+      type = "ruby",
+      name = "[Ruby] Run a custom command",
+      request = "attach",
+      command = function()
+        return vim.fn.input("Command: ", "bundle")
+      end,
+      args = function()
+        local input = vim.fn.input("Args (space separated): ", "exec rails s")
+        return vim.split(input, "%s+")
+      end,
       localfs = true,
     },
   }

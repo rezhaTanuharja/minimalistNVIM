@@ -87,45 +87,22 @@ local function diagnostics()
 
 end
 
--- a function to display the current class or function in the statusline
+-- a function to display the current debugger session
 
-local function contexts()
+local function debugger_session()
 
-  if vim.bo.filetype ~= "python" and vim.bo.filetype ~= "javascript" then
-    return ""
-  end
-
-  local success, treesitter = pcall(require, "nvim-treesitter")
+  local success, dap = pcall(require, "dap")
   if not success then
     return ""
   end
 
-  local context = treesitter.statusline {
+  local active_session = dap.session()
 
-    type_patterns = { "class", "function", "method" },
-
-    transform_fn = function(line)
-
-      line = line:gsub("class%s*", "")
-      line = line:gsub("function%s*", "")
-      line = line:gsub("def%s*", "")
-      line = line:gsub(":", "")
-
-      return line:gsub("%s*[%(%{%[].*[%]%}%)]*%s*$", "")
-
-    end,
-
-    separator = " -> ",
-
-    allow_duplicates = false,
-
-  }
-
-  if context == nil then
+  if active_session == nil then
     return ""
   end
 
-  return "%#statusline_contexts# " .. context .. " "
+  return "%#statusline_debugger_session# " .. active_session.config.name .. " "
 
 end
 
@@ -169,12 +146,11 @@ function Status_line()
 
     file_name(),
     diagnostics(),
-    contexts(),
+    debugger_session(),
 
     separator(),
 
     miscellaneous(),
-    -- search_position(),
     git_branch(),
     current_mode(),
 
@@ -214,10 +190,10 @@ vim.cmd([[
 
 local group_styles = {
 
-  ["statusline_file"]         = { fg = "#EEEEEE", bg = "#333333", bold = true },
-  ["statusline_modifiedfile"] = { fg = "#000000", bg = "#CCCCCC", bold = true },
-  ["statusline_diagnostics"]  = { fg = "#EEEEEE", bg = "#222222" },
-  ["statusline_contexts"]     = { fg = "#CCCCCC", bg = "None" },
+  ["statusline_file"]             = { fg = "#EEEEEE", bg = "#333333", bold = true },
+  ["statusline_modifiedfile"]     = { fg = "#000000", bg = "#CCCCCC", bold = true },
+  ["statusline_diagnostics"]      = { fg = "#EEEEEE", bg = "#222222" },
+  ["statusline_debugger_session"] = { fg = "#CCCCCC", bg = "None" },
 
   ["statusline_separator"]    = { fg = "#333333", bg = "None" },
 

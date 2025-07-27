@@ -51,22 +51,23 @@ _G.jsx_tsx_env_set = _G.jsx_tsx_env_set or (function()
     {
       type = "pwa-node",
       request = "launch",
-      name = "Launch file using node",
+      name = "[JS/TS] Launch file using node",
       program = "${file}",
       cwd = "${workspaceFolder}",
     },
     {
       type = "pwa-node",
       request = "attach",
-      name = "Attach to a process using node",
+      name = "[JS/TS] Attach to a process using node",
       processId = require("dap.utils").pick_process,
       cwd = "${workspaceFolder}",
     },
     {
       type = "pwa-chrome",
       request = "launch",
-      name = "Launch Chrome",
+      name = "[JS/TS] Launch Chrome",
       url = function()
+        vim.cmd("redraw")
         return vim.fn.input("URL: ", "http://localhost:3000")
       end,
       webRoot = "${workspaceFolder}",

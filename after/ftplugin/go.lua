@@ -48,7 +48,7 @@ _G.go_env_set = _G.go_env_set or (function()
 
   dap.configurations.go = {
     {
-      name = "Attach Delve to A Web Server",
+      name = "[Go] Attach Delve to A Web Server",
       type = "delve",
       request = "attach",
       mode = "local",
@@ -58,7 +58,7 @@ _G.go_env_set = _G.go_env_set or (function()
       end,
     },
     {
-      name = "Attach to Delve",
+      name = "[Go] Attach to Delve",
       type = "delve",
       request = "attach",
       mode = "remote",
