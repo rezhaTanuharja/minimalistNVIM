@@ -20,6 +20,59 @@ _G.ruby_env_set = _G.ruby_env_set or (function()
     vim.lsp.enable("ruby-lsp")
   end
 
+  local success, dap = pcall(require, "dap")
+  if not success then
+    vim.notify("failed to load a plugin: dap")
+    return true
+  end
+  
+  local base_args = {
+    "exec", "rdbg",
+    "-n",
+    "--open",
+    "--port", "${port}",
+    "-c",
+    "--",
+  }
+
+  dap.adapters.ruby = function(callback, config)
+
+    local executable_args = vim.list_extend({}, base_args) 
+
+    table.insert(executable_args, config.command)
+    vim.list_extend(executable_args, config.args)
+
+    callback({
+      type = "server",
+      host = "127.0.0.1",
+      port = "${port}",
+      executable = {
+        command = "bundle",
+        args = executable_args,
+      },
+    })
+
+  end
+
+  dap.configurations.ruby = {
+    {
+      type = "ruby",
+      name = "Run the current spec file",
+      request = "attach",
+      command = "bundle",
+      args = { "exec", "rspec", "${file}" },
+      localfs = true,
+    },
+    {
+      type = "ruby",
+      name = "Run the Rails server",
+      request = "attach",
+      command = "bundle",
+      args = { "exec", "rails", "s" },
+      localfs = true,
+    },
+  }
+
   return true
 
 end)()
