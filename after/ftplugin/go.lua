@@ -48,7 +48,7 @@ _G.go_env_set = _G.go_env_set or (function()
 
   dap.configurations.go = {
     {
-      name = "Attach to Web Server",
+      name = "Attach Delve to A Web Server",
       type = "delve",
       request = "attach",
       mode = "local",
@@ -56,11 +56,9 @@ _G.go_env_set = _G.go_env_set or (function()
       processId = function()
         return require('dap.utils').pick_process({ filter = "webserver" })
       end,
-
-      program = "${workspaceFolder}/cmd/webserver",
     },
     {
-      name = "Attach to A Headless Delve",
+      name = "Attach to Delve",
       type = "delve",
       request = "attach",
       mode = "remote",
