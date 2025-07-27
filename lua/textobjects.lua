@@ -1,11 +1,11 @@
 ---
--- @file projects/textobjects/lua/textobjects.lua
+-- @file lua/textobjects.lua
 --
 -- @brief
--- The plugin file for textobjects
+-- The module file for textobjects
 --
 -- @author Tanuharja, R.A.
--- @date 2025-06-08
+-- @date 2025-07-27
 --
 
 
