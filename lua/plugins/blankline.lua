@@ -13,7 +13,7 @@ return {
 
   "lukas-reineke/indent-blankline.nvim",
 
-  ft = { "python", "lua", "typescript", "typescriptreact", "ruby" },
+  event = "UIEnter",
 
   config = function()
 
