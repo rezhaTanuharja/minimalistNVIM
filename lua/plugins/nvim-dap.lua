@@ -19,35 +19,6 @@ return {
 
     local dap = require("dap")
 
-    dap.listeners.before.attach["truncate_variables"] = function(session)
-      if session._original_request_truncate then
-        return
-      end
-
-      session._original_request_truncate = session.request
-
-      session.request = function(_, command, args, callback)
-        if command == "variables" then
-          local wrapped_callback = function(response)
-            if response and type(response.body) == "table" and type(response.body.variables) == "table" then
-              for _, var in ipairs(response.body.variables) do
-                local val = tostring(var.value or "")
-                if #val > 300 then
-                  var.value = val:sub(1, 300) .. "… [truncated]"
-                end
-              end
-            end
-            if callback then
-              callback(response)
-            end
-          end
-          session._original_request_truncate(session, command, args, wrapped_callback)
-        else
-          session._original_request_truncate(session, command, args, callback)
-        end
-      end
-    end
-
     vim.keymap.set("n", "<leader>dj", dap.continue)
     vim.keymap.set("n", "<leader>dm", dap.step_over)
     vim.keymap.set("n", "<leader>di", dap.step_into)
