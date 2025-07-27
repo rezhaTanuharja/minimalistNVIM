@@ -141,14 +141,6 @@ vim.keymap.set(
   }
 )
 
-
-local terminal_success, terminal = pcall(require, "terminal")
-if not terminal_success then
-  vim.notify("failed to load a plugin: terminal")
-  return
-end
-
-
 vim.keymap.set(
   "n", "<leader>fm",
   function()
@@ -157,7 +149,7 @@ vim.keymap.set(
     pattern = pattern:gsub("_controller", "")
     pattern = pattern:gsub("_spec", "")
 
-    terminal.toggle_find_file(pattern)
+    _G.find_file(pattern)
   end,
   {
     desc = "Find a file matching the current file name",
