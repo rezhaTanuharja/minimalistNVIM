@@ -128,11 +128,6 @@ end
 
 lazy.setup {
 
-  dev = {
-    path = vim.fn.stdpath("config") .. "/" .. "projects",
-    fallback = false,
-  },
-
   lockfile = nil,
 
   rocks = {
