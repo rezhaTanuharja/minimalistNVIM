@@ -1,25 +1,18 @@
 ---
--- @file lsp/ruby-lsp.lua
+-- @file lsp/rubocop.lua
 --
 -- @brief
--- The configuration file for the Ruby LSP
+-- The configuration file for the Rubocop LSP
 --
 -- @author Tanuharja, R.A.
--- @date 2025-07-08
+-- @date 2025-07-27
 --
 
 return {
 
+  cmd = { "rubocop", "--lsp" },
   filetypes = { "ruby" },
-
-  cmd = { "ruby-lsp" },
-
   root_markers = { "Gemfile", ".git" },
-  
-  init_options = {
-    formatter = 'standard',
-    linters = { 'standard' },
-  },
 
   on_init = function(client)
     client.offset_encoding = "utf-8"

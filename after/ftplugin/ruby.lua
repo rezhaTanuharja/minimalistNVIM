@@ -20,6 +20,10 @@ _G.ruby_env_set = _G.ruby_env_set or (function()
     vim.lsp.enable("ruby-lsp")
   end
 
+  if vim.fn.executable("rubocop") == 1 then
+    vim.lsp.enable("rubocop")
+  end
+
   local success, dap = pcall(require, "dap")
   if not success then
     vim.notify("failed to load a plugin: dap")
