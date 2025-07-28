@@ -54,6 +54,9 @@ _G.ruby_env_set = _G.ruby_env_set or (function()
         command = "bundle",
         args = executable_args,
       },
+      options = {
+        max_retries = 100,
+      },
     })
 
   end
