@@ -25,60 +25,13 @@ _G.jsx_tsx_env_set = _G.jsx_tsx_env_set or (function()
     vim.lsp.enable("vscode-eslint-language-server")
   end
 
-  local success, dap = pcall(require, "dap")
+  local success, jsdebug = pcall(require, "jsdebug")
   if not success then
-    vim.notify("failed to load a plugin: dap")
+    vim.notify("missing module: jsdebug")
     return true
   end
 
-  local js_adapter = {
-    type = "server",
-    host = "localhost",
-    port = "${port}",
-    executable = {
-      command = "node",
-      args = {
-        vim.fn.stdpath("data") .. "/lazy/vscode-js-debug/dist/src/dapDebugServer.js",
-        "${port}",
-      },
-    },
-  }
-
-  dap.adapters["pwa-node"] = js_adapter
-  dap.adapters["pwa-chrome"] = js_adapter
-
-  local js_configuration = {
-    {
-      type = "pwa-node",
-      request = "launch",
-      name = "[JS/TS] Launch file using node",
-      program = "${file}",
-      cwd = "${workspaceFolder}",
-    },
-    {
-      type = "pwa-node",
-      request = "attach",
-      name = "[JS/TS] Attach to a process using node",
-      processId = require("dap.utils").pick_process,
-      cwd = "${workspaceFolder}",
-    },
-    {
-      type = "pwa-chrome",
-      request = "launch",
-      name = "[JS/TS] Launch Chrome",
-      url = function()
-        vim.cmd("redraw")
-        return vim.fn.input("URL: ", "http://localhost:3000")
-      end,
-      webRoot = "${workspaceFolder}",
-      sourceMaps = true,
-    },
-  }
-
-  dap.configurations["typescript"] = js_configuration
-  dap.configurations["javascript"] = js_configuration
-  dap.configurations["typescriptreact"] = js_configuration
-  dap.configurations["javascriptreact"] = js_configuration
+  jsdebug.setup()
 
   return true
 
