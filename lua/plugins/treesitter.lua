@@ -8,6 +8,20 @@
 -- @date 2024-08-31
 --
 
+local languages = {
+  "cpp",
+  "go",
+  "html",
+  "javascript",
+  "json",
+  "latex",
+  "lua",
+  "markdown_inline",
+  "markdown",
+  "python",
+  "ruby",
+  "tsx",
+}
 
 return {
 
@@ -20,6 +34,31 @@ return {
 
   config = function()
 
+    local parsers_ok, parsers = pcall(require, "nvim-treesitter.parsers")
+
+    if parsers_ok then
+
+      local parser_config = parsers.get_parser_configs()
+
+      parser_config.embedded_template = {
+        install_info = {
+          url = "https://github.com/tree-sitter/tree-sitter-embedded-template",
+          files = { "src/parser.c" },
+          requires_generate_from_grammar = true,
+        },
+      }
+
+      if not parsers.filetype_to_parsername then
+        parsers.filetype_to_parsername = {}
+      end
+
+      parsers.filetype_to_parsername.erb = "embedded_template"
+      parsers.filetype_to_parsername.ejs = "embedded_template"
+
+      table.insert(languages, "embedded_template")
+
+    end
+
     local success, treesitter = pcall(require, "nvim-treesitter.configs")
     if not success then
       vim.notify("Failed to load plugin: treesitter")
@@ -28,20 +67,7 @@ return {
 
     treesitter.setup {
 
-      ensure_installed = {
-        "cpp",
-        "go",
-        "html",
-        "javascript",
-        "json",
-        "latex",
-        "lua",
-        "markdown_inline",
-        "markdown",
-        "python",
-        "ruby",
-        "tsx",
-      },
+      ensure_installed = languages,
 
       sync_install = true,
       ignore_install = {},
