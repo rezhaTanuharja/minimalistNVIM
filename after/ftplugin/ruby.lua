@@ -69,6 +69,7 @@ _G.ruby_env_set = _G.ruby_env_set or (function()
       command = "bundle",
       args = { "exec", "rspec", "${file}" },
       localfs = true,
+      justMyCode = true,
     },
     {
       type = "ruby",
@@ -77,6 +78,7 @@ _G.ruby_env_set = _G.ruby_env_set or (function()
       command = "bundle",
       args = { "exec", "rails", "s" },
       localfs = true,
+      justMyCode = true,
     },
     {
       type = "ruby",
@@ -90,6 +92,7 @@ _G.ruby_env_set = _G.ruby_env_set or (function()
         return vim.split(input, "%s+")
       end,
       localfs = true,
+      justMyCode = true,
     },
   }
 
@@ -106,12 +109,12 @@ local swap_app_and_spec = function()
 
   local file_name = vim.fn.expand("%")
 
-  if file_name:find("app") then
-    file_name = file_name:gsub("app", "spec")
+  if file_name:find("app/") then
+    file_name = file_name:gsub("app/", "spec/")
     file_name = file_name:gsub(".rb", "_spec.rb")
-  elseif file_name:find("spec") then
+  elseif file_name:find("spec/") then
     file_name = file_name:gsub("_spec.rb", ".rb")
-    file_name = file_name:gsub("spec", "app")
+    file_name = file_name:gsub("spec/", "app/")
   end
 
   local _ = pcall(
