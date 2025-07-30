@@ -104,6 +104,16 @@ end)()
 vim.bo.makeprg = "bundle exec rspec %"
 vim.bo.errorformat = "rspec %f:%l # %m"
 
+vim.keymap.set(
+  "n", "<C-]>",
+  function()
+    local ruby_lsp_active = #vim.lsp.get_clients({ name = "ruby-lsp" }) > 0
+    if ruby_lsp_active then
+      vim.lsp.buf.definition()
+    end
+  end,
+  { buffer = true }
+)
 
 local swap_app_and_spec = function()
 
