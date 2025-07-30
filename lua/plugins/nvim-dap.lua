@@ -19,29 +19,7 @@ return {
 
     local dap = require("dap")
 
-    local function select_dap_session()
-      local sessions = dap.sessions()
-      if #sessions == 0 then
-        print("No active debug sessions")
-        return
-      end
-
-      local items = {}
-      for _, session in ipairs(sessions) do
-        table.insert(items, session.config.name or "unnamed")
-      end
-
-      vim.ui.select(items, {
-        prompt = 'Select DAP session to activate',
-      }, function(choice, idx)
-        if choice then
-          local session = sessions[idx]
-          dap.set_session(session)
-        end
-      end)
-    end
-
-    vim.keymap.set("n", "<leader>df", select_dap_session)
+    vim.keymap.set("n", "<leader>df", dap.run_to_cursor)
 
     vim.keymap.set("n", "<leader>dj", dap.continue)
     vim.keymap.set("n", "<leader>dm", dap.step_over)
