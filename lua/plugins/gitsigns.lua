@@ -70,7 +70,8 @@ return {
 
     vim.keymap.set("n", "<leader>k", gitsigns.preview_hunk)
     vim.keymap.set("n", "<leader>u", gitsigns.reset_hunk)
-    vim.keymap.set("n", "<leader>x", gitsigns.diffthis)
+    vim.keymap.set("n", "<leader>xx", gitsigns.diffthis)
+    vim.keymap.set("n", "<leader>xc", function() gitsigns.diffthis("main") end)
     vim.keymap.set("n", "<leader>z", "<cmd>wincmd p | q<return>")
 
     vim.keymap.set("n", "<C-g>", gitsigns.stage_hunk)

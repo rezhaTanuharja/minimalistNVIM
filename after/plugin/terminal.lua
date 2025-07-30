@@ -44,6 +44,13 @@ local rg_args = {
   "--ignore-case",
 }
 
+local gitdiff_command = "git"
+local gitdiff_args = {
+  "diff",
+  "--name-only",
+  "main...HEAD",
+}
+
 local state = {
   buffer = -1,
   win = -1,
@@ -328,8 +335,56 @@ local live_current_grep = function()
 
 end
 
+for _, arg in pairs(gitdiff_args) do
+  gitdiff_command = gitdiff_command .. " " .. arg
+end
+
+local find_gitdiff = function()
+
+  local tmpfile = vim.fn.tempname()
+  local picker = create_floating_window()
+
+  vim.fn.jobstart(gitdiff_command .. " | " .. fzf_command .. " --header='Updated Files'" .. " > " .. tmpfile, {
+    term = true,
+    on_exit = function(_, exit_code)
+
+      if exit_code == 0 then
+
+        local file_names = vim.fn.readfile(tmpfile)
+
+        vim.api.nvim_win_close(picker.win, true)
+
+        local git_root = vim.fs.root(0, '.git')
+        for idx, file_name in ipairs(file_names) do
+          file_names[idx] = git_root .. "/" .. file_names[idx]
+        end
+
+        if #file_names == 1 then
+          vim.cmd("edit " .. file_names[1])
+        else
+          if vim.fn.argc() > 0 then
+            vim.cmd("argdelete *")
+          end
+
+          vim.cmd("argedit " .. table.concat(file_names, " "))
+        end
+
+      else
+        vim.api.nvim_win_close(picker.win, true)
+      end
+
+      vim.fn.delete(tmpfile)
+
+    end
+  })
+
+  vim.cmd("startinsert")
+
+end
+
 vim.keymap.set("n", "<leader>t", toggle_terminal, { desc = "toggle a floating terminal" })
 vim.keymap.set("n", "<leader>ff", _G.find_file, { desc = "fuzzy find file(s)" })
+vim.keymap.set("n", "<leader>fd", find_gitdiff, { desc = "fuzzy find updated file(s)" })
 vim.keymap.set("n", "<leader>ga", live_grep, { desc = "live grep with rg and fzf" })
 vim.keymap.set("n", "<leader>y", find_buffer, { desc = "fuzzy find open buffers and use drop instead of edit" })
 vim.keymap.set("t", "<C-u>", "<c-\\><c-n>", { desc = "faster exit insert mode in the terminal" })
