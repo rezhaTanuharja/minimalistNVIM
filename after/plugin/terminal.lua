@@ -55,7 +55,7 @@ local fzf_command = table.concat(
     "--layout=reverse",
     "--header-first",
     "--bind 'ctrl-a:toggle-all'",
-    "--bind=ctrl-/:toggle-preview",
+    "--bind=ctrl-t:toggle-preview",
     "--preview-window=hidden",
     "--preview=" .. vim.fn.shellescape(preview_cmd),
   },
