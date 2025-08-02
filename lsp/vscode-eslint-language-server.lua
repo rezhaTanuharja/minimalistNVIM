@@ -27,7 +27,21 @@ return {
   on_attach = function(client, bufnr)
     vim.api.nvim_create_autocmd("BufWritePost", {
       buffer = bufnr,
-      command = "silent !npx prettier % --write",
+      callback = function()
+        local filepath = vim.api.nvim_buf_get_name(bufnr)
+
+        vim.system(
+          { "npx", "prettier", filepath, "--write" },
+          { text = true },
+          function(_)
+            vim.schedule(function()
+              vim.api.nvim_buf_call(bufnr, function()
+                vim.cmd("checktime")
+              end)
+            end)
+          end
+        )
+      end,
     })
   end,
 
