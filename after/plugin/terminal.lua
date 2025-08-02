@@ -1,4 +1,5 @@
 ---
+-- 
 -- @file after/plugin/terminal.lua
 --
 -- @brief
@@ -9,47 +10,78 @@
 --
 
 
-local find_command = "fd"
-local find_args = { "--type f",
-  "--full-path",
-  "--no-require-git",
-  '--exclude "*.png"',
-  '--exclude "*.pdf"',
-  '--exclude "*.jp*g"',
-  '--exclude "*.aux"',
-  '--exclude "*.vtu"',
-  '--exclude "*.docx"',
-  '--exclude "*.xlsx"',
-  '--exclude "*.pptx"',
-  '--exclude "*.o"',
-  '--exclude "*.so"',
-  '--exclude "*.bin"',
-  '--exclude "*.ipynb"',
+local find_command = table.concat(
+  {
+    "fd",
 
-  '--exclude "**/*cache*/**"',
-  '--exclude "**/build/**"',
-}
+    "--type f",
+    "--full-path",
+    "--no-require-git",
+    '--exclude "*.png"',
+    '--exclude "*.pdf"',
+    '--exclude "*.jp*g"',
+    '--exclude "*.aux"',
+    '--exclude "*.vtu"',
+    '--exclude "*.docx"',
+    '--exclude "*.xlsx"',
+    '--exclude "*.pptx"',
+    '--exclude "*.o"',
+    '--exclude "*.so"',
+    '--exclude "*.bin"',
+    '--exclude "*.ipynb"',
 
-local fzf_command = "fzf"
-local fzf_args = {
-  "--multi",
-  "--layout=reverse",
-  "--header-first",
-  "--bind 'ctrl-a:toggle-all'",
-}
+    '--exclude "**/*cache*/**"',
+    '--exclude "**/build/**"',
+  },
+  " "
+)
 
-local rg_command = "rg"
-local rg_args = {
-  "--vimgrep",
-  "--ignore-case",
-}
+local preview_cmd = [[
+  sh -c 'if [ -z "{2}" ]; then
+    cat "{1}";
+  else
+    start=$(( {2} > 10 ? {2} - 10 : 1 ));
+    end=$(( {2} + 10 ));
+    sed -n "${start},${end}p" "{1}";
+  fi'
+]]
 
-local gitdiff_command = "git"
-local gitdiff_args = {
-  "diff",
-  "--name-only",
-  "main...HEAD",
-}
+local fzf_command = table.concat(
+  {
+    "fzf",
+
+    "--delimiter=:",
+    "--multi",
+    "--layout=reverse",
+    "--header-first",
+    "--bind 'ctrl-a:toggle-all'",
+    "--bind=ctrl-/:toggle-preview",
+    "--preview-window=hidden",
+    "--preview=" .. vim.fn.shellescape(preview_cmd),
+  },
+  " "
+)
+
+local rg_command = table.concat(
+  {
+    "rg",
+
+    "--vimgrep",
+    "--ignore-case",
+  },
+  " "
+)
+
+local gitdiff_command = table.concat(
+  {
+    "git",
+
+    "diff",
+    "--name-only",
+    "main...HEAD",
+  },
+  " "
+)
 
 local state = {
   buffer = -1,
@@ -106,14 +138,6 @@ local toggle_terminal = function()
 
 end
 
-
-for _, arg in pairs(find_args) do
-  find_command = find_command .. " " .. arg
-end
-
-for _, arg in pairs(fzf_args) do
-  fzf_command = fzf_command .. " " .. arg
-end
 
 _G.find_file = function(pattern)
 
@@ -195,10 +219,6 @@ local find_buffer = function()
 
   vim.cmd("startinsert")
 
-end
-
-for _, arg in pairs(rg_args) do
-  rg_command = rg_command .. " " .. arg
 end
 
 local live_grep = function()
@@ -333,10 +353,6 @@ local live_current_grep = function()
 
   vim.cmd("startinsert")
 
-end
-
-for _, arg in pairs(gitdiff_args) do
-  gitdiff_command = gitdiff_command .. " " .. arg
 end
 
 local find_gitdiff = function()
