@@ -57,9 +57,12 @@ vim.keymap.set("n", "gl", vim.diagnostic.open_float)
 vim.keymap.set("n", "gq", vim.diagnostic.setqflist)
 
 vim.keymap.set("n", "gK", function()
-  local new_config = not vim.diagnostic.config().virtual_lines
-  vim.diagnostic.config({ virtual_lines = new_config })
-end, { desc = "Toggle diagnostic virtual_lines" })
+  if not vim.diagnostic.config().virtual_lines then
+    vim.diagnostic.config({ virtual_lines = { current_line = true } })
+  else
+    vim.diagnostic.config({ virtual_lines = false })
+  end
+end, { desc = "Toggle diagnostic current line virtual_lines" })
 
 
 vim.keymap.set("n","gh", function()
