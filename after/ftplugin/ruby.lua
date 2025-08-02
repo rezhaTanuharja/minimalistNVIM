@@ -16,9 +16,28 @@
 --
 _G.ruby_env_set = _G.ruby_env_set or (function()
 
-  if vim.fn.executable("ruby-lsp") == 1 then
-    vim.lsp.enable("ruby-lsp")
-  end
+  local bundle_ruby_lsp = false
+
+  vim.fn.jobstart(
+    { "bundle", "exec", "ruby-lsp", "--version" },
+    {
+      on_exit = function(_, code, _)
+
+        if code == 0 then
+          vim.lsp.config["ruby-lsp"] = {
+            cmd = { "bundle", "exec", "ruby-lsp" },
+          }
+          bundle_ruby_lsp = true
+        end
+
+        if bundle_ruby_lsp or vim.fn.executable("ruby-lsp") == 1 then
+          vim.lsp.enable("ruby-lsp")
+          vim.lsp.start("ruby-lsp")
+        end
+
+      end
+    }
+  )
 
   if vim.fn.executable("rubocop") == 1 then
     vim.lsp.enable("rubocop")
