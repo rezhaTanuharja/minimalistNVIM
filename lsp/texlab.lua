@@ -8,48 +8,42 @@
 -- @date 2025-03-28
 --
 
-
 return {
 
-  filetypes = { "tex", "plaintex", "bib" },
+	filetypes = { "tex", "plaintex", "bib" },
 
-  cmd = { "texlab" },
+	cmd = { "texlab" },
 
-  root_markers = { ".git", "main.tex" },
+	root_markers = { ".git", "main.tex" },
 
-  on_attach = function(client, buffer)
+	on_attach = function(client, buffer)
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = buffer,
+			callback = function()
+				vim.lsp.buf.format({ buffer = buffer, id = client.id })
+			end,
+		})
+	end,
 
-    vim.api.nvim_create_autocmd("BufWritePre", {
-      buffer = buffer,
-      callback = function()
-        vim.lsp.buf.format({ buffer = buffer, id = client.id })
-      end,
-    })
+	settings = {
 
-  end,
+		texlab = {
 
-  settings = {
+			bibtexFormatter = "texlab",
 
-    texlab = {
+			build = {
+				onSave = false,
+				onType = false,
+			},
 
-      bibtexFormatter = "texlab",
+			diagnosticDelay = 100,
+			formatterLineLength = 80,
 
-      build = {
-        onSave = false,
-        onType = false,
-      },
+			forwardSearch = {
+				args = {},
+			},
+		},
+	},
 
-      diagnosticDelay = 100,
-      formatterLineLength = 80,
-
-      forwardSearch = {
-        args = {},
-      },
-
-    }
-
-  },
-
-  single_file_support = true,
-
+	single_file_support = true,
 }

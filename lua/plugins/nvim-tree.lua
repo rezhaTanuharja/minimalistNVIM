@@ -8,93 +8,87 @@
 -- @date 2024-08-31
 --
 
-
 return {
 
-  "kyazdani42/nvim-tree.lua",
+	"kyazdani42/nvim-tree.lua",
 
-  keys = {
-    { "<leader>ee", "<cmd>NvimTreeToggle<return>" },
-    { "<leader>eo", "<cmd>NvimTreeFindFile<return>" },
-  },
+	keys = {
+		{ "<leader>ee", "<cmd>NvimTreeToggle<return>" },
+		{ "<leader>eo", "<cmd>NvimTreeFindFile<return>" },
+	},
 
-  opts = {
-    update_focused_file = {
-      enable = false,
-      update_cwd = false,
-    },
+	opts = {
+		update_focused_file = {
+			enable = false,
+			update_cwd = false,
+		},
 
-    renderer = {
+		renderer = {
 
-      root_folder_modifier = ":t",
+			root_folder_modifier = ":t",
 
-      icons = {
+			icons = {
 
-        diagnostics_placement = "signcolumn",
-        git_placement = "after",
+				diagnostics_placement = "signcolumn",
+				git_placement = "after",
 
-        glyphs = {
+				glyphs = {
 
-          default = "x",
-          symlink = "s",
+					default = "x",
+					symlink = "s",
 
-          folder = {
-            arrow_open = "",
-            arrow_closed = "",
-            default = "[x]",
-            open = "]x[",
-            empty = "[ ]",
-            empty_open = "] [",
-            symlink = "[s]",
-            symlink_open = "]s[",
-          },
+					folder = {
+						arrow_open = "",
+						arrow_closed = "",
+						default = "[x]",
+						open = "]x[",
+						empty = "[ ]",
+						empty_open = "] [",
+						symlink = "[s]",
+						symlink_open = "]s[",
+					},
 
-          git = {
-            unstaged = "*",
-            staged = "+",
-            deleted = "-",
-            unmerged = "+",
-            renamed = "*",
-            untracked = "?",
-            ignored = "i",
-          },
+					git = {
+						unstaged = "*",
+						staged = "+",
+						deleted = "-",
+						unmerged = "+",
+						renamed = "*",
+						untracked = "?",
+						ignored = "i",
+					},
+				},
+			},
+		},
 
-        },
+		diagnostics = {
 
-      },
+			enable = true,
+			show_on_dirs = true,
+			show_on_open_dirs = false,
 
-    },
+			icons = {
+				hint = "?",
+				info = "*",
+				warning = "!",
+				error = "!",
+			},
+		},
 
-    diagnostics = {
+		git = {
+			enable = true,
+			show_on_dirs = true,
+			show_on_open_dirs = false,
+		},
 
-      enable = true,
-      show_on_dirs = true,
-      show_on_open_dirs = false,
+		view = {
+			width = 32,
+			side = "left",
+		},
 
-      icons = {
-        hint = "?",
-        info = "*",
-        warning = "!",
-        error = "!",
-      },
-
-    },
-
-    git = {
-      enable = true,
-      show_on_dirs = true,
-      show_on_open_dirs = false,
-    },
-
-    view = {
-      width = 32,
-      side = "left",
-    },
-
-    filters = {
-      dotfiles = true,
-      custom = { ".*cache.*" },
-    },
-  },
-
+		filters = {
+			dotfiles = true,
+			custom = { ".*cache.*" },
+		},
+	},
 }

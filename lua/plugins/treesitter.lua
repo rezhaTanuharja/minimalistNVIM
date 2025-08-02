@@ -9,102 +9,96 @@
 --
 
 local languages = {
-  "cpp",
-  "go",
-  "html",
-  "javascript",
-  "json",
-  "latex",
-  "lua",
-  "markdown_inline",
-  "markdown",
-  "python",
-  "ruby",
-  "tsx",
+	"cpp",
+	"go",
+	"html",
+	"javascript",
+	"json",
+	"latex",
+	"lua",
+	"markdown_inline",
+	"markdown",
+	"python",
+	"ruby",
+	"tsx",
 }
 
 return {
 
-  "nvim-treesitter/nvim-treesitter",
+	"nvim-treesitter/nvim-treesitter",
 
-  event = "UIEnter",
+	event = "UIEnter",
 
-  build = ":TSUpdate",
-  main = "nvim-treesitter.configs",
+	build = ":TSUpdate",
+	main = "nvim-treesitter.configs",
 
-  config = function()
+	config = function()
+		local parsers_ok, parsers = pcall(require, "nvim-treesitter.parsers")
 
-    local parsers_ok, parsers = pcall(require, "nvim-treesitter.parsers")
+		if parsers_ok then
+			local parser_config = parsers.get_parser_configs()
 
-    if parsers_ok then
+			parser_config.embedded_template = {
+				install_info = {
+					url = "https://github.com/tree-sitter/tree-sitter-embedded-template",
+					files = { "src/parser.c" },
+					requires_generate_from_grammar = true,
+				},
+			}
 
-      local parser_config = parsers.get_parser_configs()
+			if not parsers.filetype_to_parsername then
+				parsers.filetype_to_parsername = {}
+			end
 
-      parser_config.embedded_template = {
-        install_info = {
-          url = "https://github.com/tree-sitter/tree-sitter-embedded-template",
-          files = { "src/parser.c" },
-          requires_generate_from_grammar = true,
-        },
-      }
+			parsers.filetype_to_parsername.erb = "embedded_template"
+			parsers.filetype_to_parsername.ejs = "embedded_template"
 
-      if not parsers.filetype_to_parsername then
-        parsers.filetype_to_parsername = {}
-      end
+			table.insert(languages, "embedded_template")
+		end
 
-      parsers.filetype_to_parsername.erb = "embedded_template"
-      parsers.filetype_to_parsername.ejs = "embedded_template"
+		local success, treesitter = pcall(require, "nvim-treesitter.configs")
+		if not success then
+			vim.notify("Failed to load plugin: treesitter")
+			return
+		end
 
-      table.insert(languages, "embedded_template")
+		treesitter.setup({
 
-    end
+			ensure_installed = languages,
 
-    local success, treesitter = pcall(require, "nvim-treesitter.configs")
-    if not success then
-      vim.notify("Failed to load plugin: treesitter")
-      return
-    end
+			sync_install = true,
+			ignore_install = {},
 
-    treesitter.setup {
+			highlight = {
+				enable = true,
+				disable = function(_, bufnr)
+					return vim.api.nvim_buf_line_count(bufnr) > 2000
+				end,
+			},
 
-      ensure_installed = languages,
+			indent = {
+				enable = true,
+				disable = function(_, bufnr)
+					return vim.api.nvim_buf_line_count(bufnr) > 2000
+				end,
+			},
 
-      sync_install = true,
-      ignore_install = {},
-
-      highlight = {
-        enable = true,
-        disable = function(_, bufnr)
-          return vim.api.nvim_buf_line_count(bufnr) > 2000
-        end,
-      },
-
-      indent = {
-        enable = true,
-        disable = function(_, bufnr)
-          return vim.api.nvim_buf_line_count(bufnr) > 2000
-        end,
-      },
-
-      fold = {
-        enable = {
-          "html",
-          "html",
-          "javascript",
-          "javascriptreact",
-          "json",
-          "python",
-          "ruby",
-          "typescript",
-          "typescriptreact",
-        },
-        disable = function(_, bufnr)
-          return vim.api.nvim_buf_line_count(bufnr) > 2000
-        end,
-      },
-
-    }
-
-  end
-
+			fold = {
+				enable = {
+					"html",
+					"html",
+					"javascript",
+					"javascriptreact",
+					"json",
+					"python",
+					"ruby",
+					"typescript",
+					"typescriptreact",
+				},
+				disable = function(_, bufnr)
+					return vim.api.nvim_buf_line_count(bufnr) > 2000
+				end,
+			},
+		})
+	end,
 }
