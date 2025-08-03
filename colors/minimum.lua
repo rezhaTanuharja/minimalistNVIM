@@ -20,9 +20,9 @@ local group_styles = {
 
   ["Identifier"]    = { fg = "#DDDDDD", bold = true },
   ["Statement"]     = { fg = "#EEEEEE", bold = true },
-  ["Special"]       = { fg = "#999ECF", bold = false },
+  ["Special"]       = { fg = "#87AFD7", bold = false },
 
-  ["Function"]      = { fg = "#999ECF" },
+  ["Function"]      = { fg = "#87AFD7" },
   ["Constant"]      = { fg = "#CCCCCC" },
 
   ["DiffAdd"]       = { fg = "None", bg = "#000022", sp = "None" },
@@ -67,13 +67,13 @@ local group_styles = {
   ["LspSignatureActiveParameter"] = { bg = "None" },
   ["LspReferenceTarget"]          = { bg = "None" },
 
-  ["NvimTreeGitDeletedIcon"] = { fg = "#999ECF", bg = "None" },
-  ["NvimTreeGitDirtyIcon"]   = { fg = "#999ECF", bg = "None" },
-  ["NvimTreeGitIgnoredIcon"] = { fg = "#999ECF", bg = "None" },
-  ["NvimTreeGitMergeIcon"]   = { fg = "#999ECF", bg = "None" },
-  ["NvimTreeGitNewIcon"]     = { fg = "#999ECF", bg = "None" },
-  ["NvimTreeGitRenamedIcon"] = { fg = "#999ECF", bg = "None" },
-  ["NvimTreeGitStagedIcon"]  = { fg = "#999ECF", bg = "None" },
+  ["NvimTreeGitDeletedIcon"] = { fg = "#87AFD7", bg = "None" },
+  ["NvimTreeGitDirtyIcon"]   = { fg = "#87AFD7", bg = "None" },
+  ["NvimTreeGitIgnoredIcon"] = { fg = "#87AFD7", bg = "None" },
+  ["NvimTreeGitMergeIcon"]   = { fg = "#87AFD7", bg = "None" },
+  ["NvimTreeGitNewIcon"]     = { fg = "#87AFD7", bg = "None" },
+  ["NvimTreeGitRenamedIcon"] = { fg = "#87AFD7", bg = "None" },
+  ["NvimTreeGitStagedIcon"]  = { fg = "#87AFD7", bg = "None" },
 
 }
 
