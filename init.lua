@@ -8,6 +8,8 @@
 -- @date 2024-10-12
 --
 
+vim.cmd("colorscheme minimum")
+
 vim.g.mapleader = " "
 vim.g.maplocalleader = " "
 

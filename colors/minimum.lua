@@ -1,13 +1,12 @@
 ---
--- @file after/plugin/colors.lua
+-- @file colors/minimum.lua
 --
 -- @brief
--- Change some of the highlight groups
+-- A minimum colorscheme
 --
 -- @author Tanuharja, R.A.
 -- @date 2024-12-20
 --
-
 
 local group_styles = {
 
