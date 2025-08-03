@@ -73,7 +73,7 @@ local install = function(name)
   local spec = dofile(vim.fn.stdpath("config") .. "/lua/plugins/" .. name .. ".lua")
 
   vim.fn.jobstart(
-    { "git", "clone", "https://github.com/" .. spec[1], install_dir },
+    { "git", "clone", "--depth=1", "https://github.com/" .. spec[1], install_dir },
     {
       on_stdout = on_stdout,
       on_stderr = on_stdout,
