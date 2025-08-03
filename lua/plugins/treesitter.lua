@@ -27,11 +27,6 @@ return {
 
 	"nvim-treesitter/nvim-treesitter",
 
-	event = "UIEnter",
-
-	build = ":TSUpdate",
-	main = "nvim-treesitter.configs",
-
 	config = function()
 		local parsers_ok, parsers = pcall(require, "nvim-treesitter.parsers")
 

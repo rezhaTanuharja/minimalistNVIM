@@ -17,7 +17,7 @@ local dap_adapter = {
 	executable = {
 		command = "node",
 		args = {
-			vim.fn.stdpath("data") .. "/lazy/vscode-js-debug/dist/src/dapDebugServer.js",
+			vim.fn.stdpath("data") .. "/site/pack/plugins/opt/vscode-js-debug/dist/src/dapDebugServer.js",
 			"${port}",
 		},
 	},
