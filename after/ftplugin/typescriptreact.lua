@@ -25,13 +25,13 @@ _G.jsx_tsx_env_set = _G.jsx_tsx_env_set or (function()
     vim.lsp.enable("vscode-eslint-language-server")
   end
 
-  local success, jsdebug = pcall(require, "jsdebug")
+  local success, debug_js = pcall(require, "debug_js")
   if not success then
-    vim.notify("missing module: jsdebug")
+    vim.notify("missing module: debug_js")
     return true
   end
 
-  jsdebug.setup()
+  debug_js.setup()
 
   return true
 

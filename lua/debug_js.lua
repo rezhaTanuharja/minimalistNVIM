@@ -1,8 +1,8 @@
 ---
--- @file lua/jsdebug.lua
+-- @file lua/debug_js.lua
 --
 -- @brief
--- The module file for jsdebug
+-- The module file for debug_js
 --
 -- @author Tanuharja, R.A.
 -- @date 2025-07-28
