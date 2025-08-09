@@ -51,8 +51,8 @@ local group_styles = {
   ["MatchParen"]    = { fg = "#FFFFFF", bold = true },
   ["WinSeparator"]  = { fg = "#444444" },
 
-  ["Search"]        = { fg = "#000000", bg = "#777777" },
-  ["CurSearch"]     = { fg = "#000000", bg = "#AAAAAA" },
+  ["Search"]        = { fg = "NvimLightYellow", bg = "None" },
+  ["SnippetTabstop"]= { fg = "NvimLightYellow", bg = "None" },
 
   ["DiagnosticUnnecessary"] = { fg = "#888888" },
 

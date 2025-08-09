@@ -108,7 +108,7 @@ _G.python_env_set = _G.python_env_set or (function()
 
 end)()
 
-
+vim.bo.completefunc = "v:lua.CompleteSnippets"
 
 local success, textobj = pcall(require, "text_objects")
 if not success then

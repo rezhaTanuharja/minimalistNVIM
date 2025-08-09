@@ -25,3 +25,5 @@ _G.tex_env_set = _G.tex_env_set or (function()
 end)()
 
 vim.o.messagesopt = "wait:1000,history:100"
+
+vim.bo.completefunc = "v:lua.CompleteSnippets"

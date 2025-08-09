@@ -104,3 +104,5 @@ require("plugin_manager").setup({
     "vscode-js-debug",
   },
 })
+
+require("snippets")

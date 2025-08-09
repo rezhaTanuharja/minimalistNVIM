@@ -34,9 +34,10 @@ local load = function(name)
 		spec.init()
 	end
 
+  vim.cmd("packadd " .. name)
+
 	if spec.config and type(spec.config) == "function" then
 		vim.defer_fn(function()
-			vim.cmd("packadd " .. name)
 			spec.config()
 		end, 50)
 	end
