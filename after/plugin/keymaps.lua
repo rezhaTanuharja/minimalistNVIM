@@ -109,6 +109,13 @@ local mode_keymaps = {
       desc = "add a line into the current quickfix list"
     },
 
+    ["<leader>w"] = {
+      action = function()
+        vim.cmd("bufdo if &modifiable | write | endif")
+      end,
+      desc = "save all save-able buffers"
+    },
+
   },
 
   visual = {
