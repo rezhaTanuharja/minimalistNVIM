@@ -36,7 +36,7 @@ end
 
 vim.api.nvim_create_autocmd("CompleteDone", {
   callback = function()
-    if not vim.v.event.reason == "accept" then
+    if vim.v.event.reason ~= "accept" then
       return
     end
 
