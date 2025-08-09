@@ -1,8 +1,8 @@
 ---
--- @file lua/textobjects.lua
+-- @file lua/text_objects.lua
 --
 -- @brief
--- The module file for textobjects
+-- The module file for text_objects
 --
 -- @author Tanuharja, R.A.
 -- @date 2025-07-27

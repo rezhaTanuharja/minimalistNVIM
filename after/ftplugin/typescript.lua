@@ -38,9 +38,9 @@ _G.jsx_tsx_env_set = _G.jsx_tsx_env_set or (function()
 end)()
 
 
-local success, textobj = pcall(require, "textobjects")
+local success, textobj = pcall(require, "text_objects")
 if not success then
-  vim.notify("failed to load a plugin: textobjects")
+  vim.notify("failed to load a plugin: text_objects")
   return
 end
 

@@ -99,9 +99,9 @@ vim.keymap.set(
 )
 
 
-local textobj_success, textobj = pcall(require, "textobjects")
+local textobj_success, textobj = pcall(require, "text_objects")
 if not textobj_success then
-  vim.notify("failed to load a plugin: textobjects")
+  vim.notify("failed to load a plugin: text_objects")
   return
 end
 
