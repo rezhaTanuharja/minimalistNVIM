@@ -15,58 +15,46 @@
 -- + checks if the language server is installed before enabling.
 -- + set adapters and configurations for DAP.
 --
-_G.jsx_tsx_env_set = _G.jsx_tsx_env_set or (function()
+_G.jsx_tsx_env_set = _G.jsx_tsx_env_set
+	or (function()
+		if vim.fn.executable("typescript-language-server") == 1 then
+			vim.lsp.enable("typescript-language-server")
+		end
 
-  if vim.fn.executable("typescript-language-server") == 1 then
-    vim.lsp.enable("typescript-language-server")
-  end
+		if vim.fn.executable("vscode-eslint-language-server") == 1 then
+			vim.lsp.enable("vscode-eslint-language-server")
+		end
 
-  if vim.fn.executable("vscode-eslint-language-server") == 1 then
-    vim.lsp.enable("vscode-eslint-language-server")
-  end
+		local success, debug_js = pcall(require, "debug_js")
+		if not success then
+			vim.notify("missing module: debug_js")
+			return true
+		end
 
-  local success, debug_js = pcall(require, "debug_js")
-  if not success then
-    vim.notify("missing module: debug_js")
-    return true
-  end
+		debug_js.setup()
 
-  debug_js.setup()
-
-  return true
-
-end)()
-
+		return true
+	end)()
 
 local success, textobj = pcall(require, "text_objects")
 if not success then
-  vim.notify("failed to load a plugin: text_objects")
-  return
+	vim.notify("failed to load a plugin: text_objects")
+	return
 end
 
+vim.keymap.set("n", "die", function()
+	local jsx_element = textobj.get_node("jsx_element")
+	textobj.yank_node(jsx_element)
+	textobj.delete_node(jsx_element)
+end, {
+	desc = "delete a jsx element",
+	buffer = true,
+})
 
-vim.keymap.set(
-  "n", "die",
-  function()
-    local jsx_element = textobj.get_node("jsx_element")
-    textobj.yank_node(jsx_element)
-    textobj.delete_node(jsx_element)
-  end,
-  { 
-    desc = "delete a jsx element",
-    buffer = true
-  }
-)
-
-
-vim.keymap.set(
-  "n", "yie",
-  function()
-    local jsx_element = textobj.get_node("jsx_element")
-    textobj.yank_node(jsx_element)
-  end,
-  { 
-    desc = "yank a jsx element",
-    buffer = true
-  }
-)
+vim.keymap.set("n", "yie", function()
+	local jsx_element = textobj.get_node("jsx_element")
+	textobj.yank_node(jsx_element)
+end, {
+	desc = "yank a jsx element",
+	buffer = true,
+})

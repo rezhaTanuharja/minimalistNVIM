@@ -83,7 +83,7 @@ return {
 		enabledFeatures = {
 			formatting = false,
 		},
-    linters = {},
+		linters = {},
 	},
 
 	on_init = function(client)

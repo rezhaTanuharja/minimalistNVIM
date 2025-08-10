@@ -14,16 +14,15 @@
 -- + uses a global flag _G.tex_env_set to set only once per session.
 -- + checks if the language server is installed before enabling.
 --
-_G.tex_env_set = _G.tex_env_set or (function()
+_G.tex_env_set = _G.tex_env_set
+	or (function()
+		if vim.fn.executable("texlab") then
+			vim.lsp.enable("texlab")
+		end
 
-  if vim.fn.executable("texlab") then
-    vim.lsp.enable("texlab")
-  end
-  
-  return true
-
-end)()
+		return true
+	end)()
 
 vim.o.messagesopt = "wait:1000,history:100"
 
-vim.bo.completefunc = "v:lua.CompleteSnippets"
+require("snippets").enable_snippets()

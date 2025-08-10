@@ -9,97 +9,94 @@
 --
 
 local opts = {
-  update_focused_file = {
-    enable = false,
-    update_cwd = false,
-  },
+	update_focused_file = {
+		enable = false,
+		update_cwd = false,
+	},
 
-  renderer = {
+	renderer = {
 
-    root_folder_modifier = ":t",
+		root_folder_modifier = ":t",
 
-    icons = {
+		icons = {
 
-      diagnostics_placement = "signcolumn",
-      git_placement = "after",
+			diagnostics_placement = "signcolumn",
+			git_placement = "after",
 
-      glyphs = {
+			glyphs = {
 
-        default = "x",
-        symlink = "s",
+				default = "x",
+				symlink = "s",
 
-        folder = {
-          arrow_open = "",
-          arrow_closed = "",
-          default = "[x]",
-          open = "]x[",
-          empty = "[ ]",
-          empty_open = "] [",
-          symlink = "[s]",
-          symlink_open = "]s[",
-        },
+				folder = {
+					arrow_open = "",
+					arrow_closed = "",
+					default = "[x]",
+					open = "]x[",
+					empty = "[ ]",
+					empty_open = "] [",
+					symlink = "[s]",
+					symlink_open = "]s[",
+				},
 
-        git = {
-          unstaged = "*",
-          staged = "+",
-          deleted = "-",
-          unmerged = "+",
-          renamed = "*",
-          untracked = "?",
-          ignored = "i",
-        },
-      },
-    },
-  },
+				git = {
+					unstaged = "*",
+					staged = "+",
+					deleted = "-",
+					unmerged = "+",
+					renamed = "*",
+					untracked = "?",
+					ignored = "i",
+				},
+			},
+		},
+	},
 
-  diagnostics = {
+	diagnostics = {
 
-    enable = true,
-    show_on_dirs = true,
-    show_on_open_dirs = false,
+		enable = true,
+		show_on_dirs = true,
+		show_on_open_dirs = false,
 
-    icons = {
-      hint = "?",
-      info = "*",
-      warning = "!",
-      error = "!",
-    },
-  },
+		icons = {
+			hint = "?",
+			info = "*",
+			warning = "!",
+			error = "!",
+		},
+	},
 
-  git = {
-    enable = true,
-    show_on_dirs = true,
-    show_on_open_dirs = false,
-  },
+	git = {
+		enable = true,
+		show_on_dirs = true,
+		show_on_open_dirs = false,
+	},
 
-  view = {
-    width = 32,
-    side = "left",
-  },
+	view = {
+		width = 32,
+		side = "left",
+	},
 
-  filters = {
-    dotfiles = true,
-    custom = { ".*cache.*" },
-  },
+	filters = {
+		dotfiles = true,
+		custom = { ".*cache.*" },
+	},
 }
 
 return {
 
-  "kyazdani42/nvim-tree.lua",
+	"kyazdani42/nvim-tree.lua",
 
-  config = function()
+	config = function()
+		local success, nvim_tree = pcall(require, "nvim-tree")
+		if not success then
+			vim.notify("Failed to load a plugin: nvim-tree")
+			return
+		end
 
-    local success, nvim_tree = pcall(require, "nvim-tree")
-    if not success then
-      vim.notify("Failed to load a plugin: nvim-tree")
-      return
-    end
+		nvim_tree.setup(opts)
 
-    nvim_tree.setup(opts)
-
-    vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<return>")
-    vim.keymap.set("n", "<leader>eo", "<cmd>NvimTreeFindFile<return>")
-
-  end,
-
+		vim.keymap.set("n", "<leader>ee", "<cmd>NvimTreeToggle<return>")
+		vim.keymap.set("n", "<leader>eo", "<cmd>NvimTreeFindFile<return>")
+	end,
 }

@@ -94,15 +94,15 @@ for parameter, value in pairs(options) do
 end
 
 require("plugin_manager").setup({
-  plugins = {
-    "blankline",
-    "gitsigns",
-    "nvim-dap",
-    "nvim-tree",
-    "treesitter",
-    "vimtex",
-    "vscode-js-debug",
-  },
+	plugins = {
+		"blankline",
+		"gitsigns",
+		"nvim-dap",
+		"nvim-tree",
+		"treesitter",
+		"vimtex",
+		"vscode-js-debug",
+	},
 })
 
-require("snippets")
+-- require("snippets")
