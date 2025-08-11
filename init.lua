@@ -39,6 +39,7 @@ local options = {
 	showmode = false,
 	cmdheight = 0,
 	path = ".,,**",
+  grepprg = "rg --vimgrep",
 
 	-- tabs and indentations
 
