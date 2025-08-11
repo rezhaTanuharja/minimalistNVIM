@@ -8,26 +8,58 @@
         <a href="#looks">How It Looks</a>
     </p>
     <p align="left">
-        This is an attempt to create an IDE-like experience in Neovim.
-        The configuration structure is heavily inspired by <a href="https://github.com/LunarVim">LunarVim</a> and the excellent step-by-step tutorial <a href="https://www.youtu.be/ctH-a-1eUME?si=mAsw4Qno6kmIIuQy">Neovim IDE from Scratch</a> by <a href="https://www.chrisatmachine.com">chris@machine</a>.
+        This is a fun attempt at creating a Neovim config.
+        The project is heavily inspired by <a href="https://github.com/LunarVim">LunarVim</a> and the excellent step-by-step tutorial <a href="https://www.youtu.be/ctH-a-1eUME?si=mAsw4Qno6kmIIuQy">Neovim IDE from Scratch</a> by <a href="https://www.chrisatmachine.com">chris@machine</a>.
     </p>
     <img src="assets/images/preview.png" alt="Preview" width="600"/>
 </div>
 <br>
 <div align="left">
     <p>
-        The configuration uses as few plugins as possible to improves robustness against breaking changes and makes it easier to maintain.
-        Although the config uses only 12 plugins, it has all essential IDE features:
+        The configuration uses as few plugins as possible to make it easier to maintain.
+        That being said, it still has all essential development features:
+    </p>
+    <h3>Language Servers</h3>
+    <p>
+        The language server configs are set inside the <code>lsp</code> directory.
+        You can create a new file inside the directory to add a new language server.
+        See other files in the directory for examples.
+        Subsequently, call <code>vim.lsp.enable()</code> to enable the language server.
+        For examples, see the files inside the <code>after/ftplugin</code> directory.
+    </p>
+    <h3>Code Completion and Snippets</h3>
+    <p>
+        This config does not have / enable autocompletion.
+        There isn't any good reason for this, I just prefer to use the ins-completion.
     </p>
     <ul>
-        <li>Language servers and code diagnostics</li>
-        <li>Code completion and custom snippets</li>
-        <li>Debugging capability</li>
-        <li>Formatting and linting</li>
-        <li>Code testing</li>
+        <li>LSP completion is triggered using &lt;C-x&gt;&lt;C-o&gt;
+        <li>Snippet is triggered using &lt;C-x&gt;&lt;C-u&gt;
     </ul>
     <p>
-        That being said, if you are a Neovim user, I hope you see something interesting to adopt to your own config. If you are still considering Neovim, I hope you become a part of our community soon!
+        Only custom snippets are supported.
+        To use snippets, you need to define them and then enable snippets support for the language.
+        See files inside the <code>lua/snippets</code> directory for examples on how to define the snippets.
+        See <code>tex.lua</code> in the <code>after/ftplugin</code> to see how to enable snippets for a given language.
+    </p>
+    <h3>Debugging</h3>
+    <p>
+        The DAP adapters and configs can be defined in the <code>after/ftplugin</code> files, for example, for Python.
+        Some adapters and configs are quite complex to set, so they are separated into modules inside the <code>lua</code> directory.
+    </p>
+    <h3>Plugin Manager (sort of)</h3>
+    <p>
+        Calling it a plugin manager is a stretch but this config has a wrapper around git clone and git pull that will automatically download the plugins for you.
+        Put the plugin specs inside the <code>lua/plugins</code> directory.
+        To update your plugins, call
+    </p>
+    <pre><code class="language-vim"><!--
+    -->:lua require("plugin_manager").update()<!--
+    --></code></pre>
+    <p>
+        This just call git pull and execute the build command (if any) in all of your plugin directories.
+        To uninstall a plugin, remove its spec file and then
+        The directory is inside <code>site/pack/plugins/opt</code> in <code>vim.fn.stdpath("data")</code>.
     </p>
 </div>
 
@@ -35,83 +67,22 @@
     <h2>Dependencies</h2>
     <p>
         The config requires <a href="https://neovim.io">neovim</a> v.0.11.x or newer.
-        In addition, users are expected to install the required language servers, e.g., <a href="https://microsoft.github.io/pyright/#/">Pyright</a>, and debug adapter protocol implementations, e.g., <a href="https://pypi.org/project/debugpy/">debugpy</a>, themselves.
-        Unlike many Neovim configs, this project <b>does not</b> require <a href="https://www.nerdfonts.com">Nerd Fonts</a> because it does not use any icon.
+        Install the language servers and debuggers yourself.
+        This project <b>does not</b> require <a href="https://www.nerdfonts.com">Nerd Fonts</a> because it does not use any icon.
     </p>
 </div>
 
 <div id="instructions" align="left">
     <h2>How to Use</h2>
     <p>
-        During startup, nvim looks for a configuration file inside the nvim directory, which is typically '~/.config/nvim/'.
+        During startup, nvim looks for a configuration file inside the nvim directory, which is typically <code>~/.config/nvim/</code>.
         To use the project, you can simply clone the repository using <a href="https://git-scm.com">Git</a>:
     </p>
     <pre><code class="language-bash"><!--
     -->git clone https://github.com/rezhaTanuharja/minimalistNVIM.git ~/.config/nvim<!--
     --></code></pre>
     <p>
-        Subsequently, simply start Neovim and <a href="https://github.com/folke/lazy.nvim.git">Lazy</a> will automatically install all of the plugins.
+        Subsequently, simply start Neovim and it will automatically clone and build the required plugins.
         Keep in mind that if you have not installed the required language servers or debug adapter protocol implementations, you may encounter errors.
     </p>
-</div>
-<div id="looks" align="left">
-    <h2>How It Looks</h2>
-    <p>
-        The colors are mostly (not all!) grayscale.
-        A typical Lua code with lua-language-server's hover capability looks like the following image.
-        An autocmd sets cursorline only in the focused window so it is easier to keep track of where the cursor is in a multi-window layout.
-    </p>
-    <div align="center">
-        <img src="assets/images/lsp.png" alt="Preview" width="600"/>
-    </div>
-    <br>
-    <p>
-        The colors are deliberately chosen to look decent and non-distracting in both transparent and opague terminal windows.
-        The previous image shows Neovim in iTerm2 on MacOS.
-        The following image shows an identical layout in an opague Alacritty window on EndeavourOS:
-    </p>
-    <div align="center">
-        <img src="assets/images/lsp_linux.png" alt="Preview" width="600"/>
-    </div>
-    <br>
-    <p>
-        The following image shows how Neovim looks like with the <a href="https://github.com/nvim-tree/nvim-tree.lua.git">nvim-tree</a> window toggled open.
-        It also shows how a diagnostic error is displayed inside the buffer and in the tree view.
-        The TODO item is highlighted and the contextual location of the cursor is shown in the statusline thanks to <a href="https://github.com/nvim-treesitter/nvim-treesitter.git">nvim-treesitter</a>.
-    </p>
-    <div align="center">
-        <img src="assets/images/features.png" alt="Preview" width="600"/>
-    </div>
-    <br>
-    <p>
-        The following image shows another essential IDE feature: a debugging capability, thanks to <a href="https://github.com/mfussenegger/nvim-dap.git">nvim-dap</a>.
-        Slightly different from other configs, this project does not use nvim-dap-ui, nvim-dap-python, etc..
-        Instead, we rely completely on what nvim-dap offers.
-    </p>
-    <div align="center">
-        <img src="assets/images/debug.png" alt="Preview" width="600"/>
-    </div>
-    <br>
-    <p>
-        By default, only the normal buffer window is shown, with red dash(es) indicating breakpoint location(s) and a blue arrow indicating the current position in program execution.
-        All widgets such as the call stack (bottom left), the scopes (top right), and REPL (bottom right) only appear when the user toggles them.
-        This is deliberate, since not all widgets are used all the time and will simply be a distraction if they are always present.
-    </p>
-</div>
-<div id="others" align="left">
-    <h2>Others</h2>
-    <p>
-        While we do not think startup time matters, some people apparently do care.
-        Last time we check, our startup time is ~7-15 ms on a maxed-out Lenovo Legion Pro 7i 2024, as shown below by <a href="https://github.com/folke/lazy.nvim.git">Lazy</a>'s profile.
-    </p>
-    <div align="center">
-        <img src="assets/images/startup_legion.jpeg" alt="Preview" width="600"/>
-    </div>
-    <p>
-        The startup time is still very short in older hardwares.
-        On our 2015 MacBook Pro with Arch, it is around ~28-35ms as shown below
-    </p>
-    <div align="center">
-        <img src="assets/images/startup_mbp.png" alt="Preview" width="600"/>
-    </div>
 </div>
