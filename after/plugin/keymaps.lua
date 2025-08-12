@@ -109,13 +109,6 @@ local mode_keymaps = {
       desc = "add a line into the current quickfix list"
     },
 
-    ["<leader>w"] = {
-      action = function()
-        vim.cmd("bufdo if &modifiable | write | endif")
-      end,
-      desc = "save all save-able buffers"
-    },
-
   },
 
   visual = {
@@ -125,13 +118,6 @@ local mode_keymaps = {
 
     ["<leader>i"] = { action = ":s/\\(\\s*\\)/\\1", desc = "spawn multiple cursors at the start of highlighted lines" },
     ["<leader>a"] = { action = ":s/$/", desc = "spawn multiple cursors at the end of highlighted lines" },
-
-    ['"'] = { action = 'c""<esc>P', desc = "put highlighted text inside pairing chars" },
-    ["["] = { action = "c[]<esc>P", desc = "put highlighted text inside pairing chars" },
-    ["("] = { action = "c()<esc>P", desc = "put highlighted text inside pairing chars" },
-    ["{"] = { action = "c{}<esc>P", desc = "put highlighted text inside pairing chars" },
-    ["'"] = { action = "c''<esc>P", desc = "put highlighted text inside pairing chars" },
-    ["`"] = { action = "c``<esc>P", desc = "put highlighted text inside pairing chars" },
 
   },
 
