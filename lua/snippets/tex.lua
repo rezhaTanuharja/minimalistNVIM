@@ -27,6 +27,19 @@ local snippets = {
 		"\t$0",
 		"\\end{$1}",
 	},
+
+	equation = {
+		"\\begin{equation*}",
+		"\t$0",
+		"\\end{equation*}",
+	},
+
+	equation_with_label = {
+		"\\begin{equation}",
+    "\\label{eq:${1:label}}",
+		"\t$0",
+		"\\end{equation}",
+	},
 }
 
 for keyword, body in pairs(snippets) do

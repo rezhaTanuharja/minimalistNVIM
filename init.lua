@@ -22,6 +22,8 @@ vim.g.loaded_perl_provider = 1
 vim.g.loaded_python_provider = 1
 vim.g.loaded_ruby_provider = 1
 
+vim.g.tex_flavor = "latex"
+
 local options = {
 
 	-- user interface
@@ -103,9 +105,6 @@ require("plugin_manager").setup({
 		"nvim-dap",
 		"nvim-tree",
 		"treesitter",
-		"vimtex",
 		"vscode-js-debug",
 	},
 })
-
--- require("snippets")
