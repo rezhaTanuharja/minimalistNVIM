@@ -62,13 +62,18 @@ local rg_command = table.concat({
 	"--ignore-case",
 }, " ")
 
-local gitdiff_command = table.concat({
-	"git",
+local gitdiff_command = function()
 
-	"diff",
-	"--name-only",
-	"main...HEAD",
-}, " ")
+  local against = vim.fn.input("Compare against: ")
+
+  return table.concat({
+    "git",
+
+    "diff",
+    "--name-only",
+    against .. "...HEAD",
+  }, " ")
+end
 
 local state = {
 	buffer = -1,
@@ -313,7 +318,7 @@ local find_gitdiff = function()
 	local tmpfile = vim.fn.tempname()
 	local picker = create_floating_window()
 
-	vim.fn.jobstart(gitdiff_command .. " | " .. fzf_command .. " --header='Updated Files'" .. " > " .. tmpfile, {
+	vim.fn.jobstart(gitdiff_command() .. " | " .. fzf_command .. " --header='Updated Files'" .. " > " .. tmpfile, {
 		term = true,
 		on_exit = function(_, exit_code)
 			if exit_code == 0 then
