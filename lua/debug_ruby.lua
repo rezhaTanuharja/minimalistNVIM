@@ -3,12 +3,12 @@ local M = {}
 M.run = function(cmd, args)
 	local handle
 	local pid_or_err
-	local stdout = vim.loop.new_pipe(false)
+	local stdout = vim.uv.new_pipe(false)
 	args = args or {}
 
 	local opts = { args = args, stdio = { nil, stdout } }
 
-	handle, pid_or_err = vim.loop.spawn(cmd, opts, function(code)
+	handle, pid_or_err = vim.uv.spawn(cmd, opts, function(code)
 		if handle then
 			handle:close()
 		end
