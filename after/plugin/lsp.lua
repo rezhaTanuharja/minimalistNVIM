@@ -34,3 +34,14 @@ local function refresh()
 end
 
 vim.keymap.set("n", "gn", refresh)
+
+vim.keymap.set(
+  "n", "K",
+  function()
+    vim.lsp.buf.hover({
+      wrap = false,
+      max_height = 30,
+      max_width = 80,
+    })
+  end
+)
