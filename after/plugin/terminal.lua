@@ -130,6 +130,43 @@ local toggle_terminal = function()
 	end
 end
 
+local handle_results = function(file_names)
+  if #file_names == 1 then
+    vim.cmd("edit " .. file_names[1])
+  else
+    if vim.fn.argc() > 0 then
+      vim.cmd("argdelete *")
+    end
+
+    vim.cmd("argadd " .. table.concat(file_names, " "))
+  end
+end
+
+local handle_grep_results = function(output)
+  local qf_list = {}
+
+  for _, line in ipairs(output) do
+    local file, row, col, text = line:match("^(.-):(%d+):(%d+):(.*)$")
+
+    table.insert(qf_list, {
+      filename = file,
+      lnum = tonumber(row),
+      col = tonumber(col),
+      text = text,
+    })
+  end
+
+  vim.fn.setqflist({}, " ", { title = "Live Grep Results", items = qf_list })
+
+  if #qf_list == 1 then
+    local item = qf_list[1]
+    vim.cmd(string.format("edit %s", item.filename))
+    vim.api.nvim_win_set_cursor(0, { item.lnum, item.col - 1 })
+  else
+    vim.cmd("copen")
+  end
+end
+
 _G.find_file = function(pattern)
 	local find_file_with_pattern = find_command
 
@@ -143,23 +180,15 @@ _G.find_file = function(pattern)
 	vim.fn.jobstart(find_file_with_pattern .. " | " .. fzf_command .. " --header='Find a file'" .. " > " .. tmpfile, {
 		term = true,
 		on_exit = function(_, exit_code)
-			if exit_code == 0 then
-				local file_names = vim.fn.readfile(tmpfile)
+      vim.api.nvim_win_close(picker.win, true)
 
-				vim.api.nvim_win_close(picker.win, true)
+      if exit_code ~= 0 then
+        vim.fn.delete(tmpfile)
+        return
+      end
 
-				if #file_names == 1 then
-					vim.cmd("edit " .. file_names[1])
-				else
-					if vim.fn.argc() > 0 then
-						vim.cmd("argdelete *")
-					end
-
-					vim.cmd("argedit " .. table.concat(file_names, " "))
-				end
-			else
-				vim.api.nvim_win_close(picker.win, true)
-			end
+      local file_names = vim.fn.readfile(tmpfile)
+      handle_results(file_names)
 
 			vim.fn.delete(tmpfile)
 		end,
@@ -187,23 +216,19 @@ local find_buffer = function()
 			term = true,
 			on_exit = function(_, exit_code)
 				vim.fn.delete(buffer_list)
+        vim.api.nvim_win_close(picker.win, true)
 
-				if exit_code == 0 then
-					local file_name = vim.fn.readfile(tmpfile)[1]
-					local found_file = vim.fn.findfile(file_name, vim.o.path)
+        if exit_code ~= 0 then
+          vim.fn.delete(tmpfile)
+          return
+        end
 
-					vim.api.nvim_win_close(picker.win, true)
+        local file_names = vim.fn.readfile(tmpfile)
+        handle_results(file_names)
 
-					if found_file ~= "" then
-						vim.cmd("drop " .. vim.fn.fnameescape(found_file))
-					end
-				else
-					vim.api.nvim_win_close(picker.win, true)
-				end
-
-				vim.fn.delete(tmpfile)
-			end,
-		}
+        vim.fn.delete(tmpfile)
+      end,
+    }
 	)
 
 	vim.cmd("startinsert")
@@ -220,40 +245,17 @@ local live_grep = function()
 	vim.fn.jobstart(fzf_command .. " --header='Live grep' " .. fzf_bind .. " > " .. tmpfile, {
 		term = true,
 		on_exit = function(_, exit_code)
-			if exit_code == 0 then
-				local output = vim.fn.readfile(tmpfile)
+      vim.api.nvim_win_close(picker.win, true)
 
-				if #output > 0 then
-					local qf_list = {}
+      if exit_code ~= 0 then
+        vim.fn.delete(tmpfile)
+        return
+      end
 
-					for _, line in ipairs(output) do
-						local file, row, col, text = line:match("^(.-):(%d+):(%d+):(.*)$")
-
-						table.insert(qf_list, {
-							filename = file,
-							lnum = tonumber(row),
-							col = tonumber(col),
-							text = text,
-						})
-					end
-
-					vim.fn.setqflist({}, " ", { title = "Live Grep Results", items = qf_list })
-
-					vim.api.nvim_win_close(picker.win, true)
-
-					if #qf_list == 1 then
-						local item = qf_list[1]
-						vim.cmd(string.format("edit %s", item.filename))
-						vim.api.nvim_win_set_cursor(0, { item.lnum, item.col - 1 })
-					else
-						vim.cmd("copen")
-					end
-				end
-			else
-				vim.api.nvim_win_close(picker.win, true)
-			end
-
-			vim.fn.delete(tmpfile)
+      local output = vim.fn.readfile(tmpfile)
+      if #output > 0 then
+        handle_grep_results(output)
+      end
 		end,
 	})
 
@@ -274,40 +276,17 @@ local live_current_grep = function()
 	vim.fn.jobstart(fzf_command .. " --header='Live current grep' " .. fzf_bind .. " > " .. tmpfile, {
 		term = true,
 		on_exit = function(_, exit_code)
-			if exit_code == 0 then
-				local output = vim.fn.readfile(tmpfile)
+      vim.api.nvim_win_close(picker.win, true)
 
-				if #output > 0 then
-					local qf_list = {}
+      if exit_code ~= 0 then
+        vim.fn.delete(tmpfile)
+        return
+      end
 
-					for _, line in ipairs(output) do
-						local file, row, col, text = line:match("^(.-):(%d+):(%d+):(.*)$")
-
-						table.insert(qf_list, {
-							filename = file,
-							lnum = tonumber(row),
-							col = tonumber(col),
-							text = text,
-						})
-					end
-
-					vim.fn.setqflist({}, " ", { title = "Live Grep Results", items = qf_list })
-
-					vim.api.nvim_win_close(picker.win, true)
-
-					if #qf_list == 1 then
-						local item = qf_list[1]
-						vim.cmd(string.format("edit %s", item.filename))
-						vim.api.nvim_win_set_cursor(0, { item.lnum, item.col - 1 })
-					else
-						vim.cmd("copen")
-					end
-				end
-			else
-				vim.api.nvim_win_close(picker.win, true)
-			end
-
-			vim.fn.delete(tmpfile)
+      local output = vim.fn.readfile(tmpfile)
+      if #output > 0 then
+        handle_grep_results(output)
+      end
 		end,
 	})
 
@@ -321,28 +300,15 @@ local find_gitdiff = function()
 	vim.fn.jobstart(gitdiff_command() .. " | " .. fzf_command .. " --header='Updated Files'" .. " > " .. tmpfile, {
 		term = true,
 		on_exit = function(_, exit_code)
-			if exit_code == 0 then
-				local file_names = vim.fn.readfile(tmpfile)
+      vim.api.nvim_win_close(picker.win, true)
 
-				vim.api.nvim_win_close(picker.win, true)
+      if exit_code ~= 0 then
+        vim.fn.delete(tmpfile)
+        return
+      end
 
-				local git_root = vim.fs.root(0, ".git")
-				for idx, file_name in ipairs(file_names) do
-					file_names[idx] = git_root .. "/" .. file_names[idx]
-				end
-
-				if #file_names == 1 then
-					vim.cmd("edit " .. file_names[1])
-				else
-					if vim.fn.argc() > 0 then
-						vim.cmd("argdelete *")
-					end
-
-					vim.cmd("argedit " .. table.concat(file_names, " "))
-				end
-			else
-				vim.api.nvim_win_close(picker.win, true)
-			end
+      local file_names = vim.fn.readfile(tmpfile)
+      handle_results(file_names)
 
 			vim.fn.delete(tmpfile)
 		end,
@@ -351,15 +317,50 @@ local find_gitdiff = function()
 	vim.cmd("startinsert")
 end
 
+local refine_arglist = function()
+  local arglist = vim.fn.tempname()
+  local tmpfile = vim.fn.tempname()
+  local picker = create_floating_window()
+
+  vim.cmd("redir! > " .. arglist .. " | silent args | redir END")
+
+	vim.fn.jobstart(
+		[[sed 's/[][]//g' ]]
+			.. arglist
+      .. [[ | tr -s '[:space:]' '\n' ]]
+			.. [[ | grep -v -E "^$" | sort | ]]
+			.. fzf_command
+			.. " --header='Argument List' "
+			.. " > "
+			.. tmpfile,
+		{
+			term = true,
+			on_exit = function(_, exit_code)
+				vim.fn.delete(arglist)
+        vim.api.nvim_win_close(picker.win, true)
+
+        if exit_code ~= 0 then
+          vim.fn.delete(tmpfile)
+          return
+        end
+
+        local file_names = vim.fn.readfile(tmpfile)
+        handle_results(file_names)
+
+        vim.fn.delete(tmpfile)
+			end,
+		}
+	)
+
+	vim.cmd("startinsert")
+end
+
+
 vim.keymap.set("n", "<leader>t", toggle_terminal, { desc = "toggle a floating terminal" })
 vim.keymap.set("n", "<leader>ff", _G.find_file, { desc = "fuzzy find file(s)" })
 vim.keymap.set("n", "<leader>fd", find_gitdiff, { desc = "fuzzy find updated file(s)" })
+vim.keymap.set("n", "<leader>fa", refine_arglist, { desc = "refine existing arglist" })
 vim.keymap.set("n", "<leader>ga", live_grep, { desc = "live grep with rg and fzf" })
-vim.keymap.set("n", "<leader>y", find_buffer, { desc = "fuzzy find open buffers and use drop instead of edit" })
+vim.keymap.set("n", "<leader>y", find_buffer, { desc = "fuzzy find open buffers" })
 vim.keymap.set("t", "<C-u>", "<c-\\><c-n>", { desc = "faster exit insert mode in the terminal" })
-vim.keymap.set(
-	"n",
-	"<leader>gg",
-	live_current_grep,
-	{ desc = "live grep but only search files with the same extension as the current one" }
-)
+vim.keymap.set( "n", "<leader>gg", live_current_grep, { desc = "live grep but only search files with the same extension as the current one" })
