@@ -130,7 +130,13 @@ local toggle_terminal = function()
 	end
 end
 
-local handle_results = function(file_names)
+local handle_results = function(file_names, prefix)
+  if prefix then
+    for i, file_name in ipairs(file_names) do
+      file_names[i] = prefix .. file_name
+    end
+  end
+
   if #file_names == 1 then
     vim.cmd("edit " .. file_names[1])
   else
@@ -308,7 +314,9 @@ local find_gitdiff = function()
       end
 
       local file_names = vim.fn.readfile(tmpfile)
-      handle_results(file_names)
+      local path_prefix = vim.fs.dirname(vim.fs.find(".git", { upward = true })[1]) .. "/"
+
+      handle_results(file_names, path_prefix)
 
 			vim.fn.delete(tmpfile)
 		end,
