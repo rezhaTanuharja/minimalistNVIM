@@ -1,5 +1,11 @@
 local M = {}
 
+local function strip_ansi(chunk)
+  chunk = chunk:gsub("\27%[[0-9;]*m", "")
+  chunk = chunk:gsub("\r", "")
+  return chunk
+end
+
 M.run = function(cmd, args)
 	local handle
 	local pid_or_err
@@ -19,6 +25,7 @@ M.run = function(cmd, args)
 	stdout:read_start(function(err, chunk)
 		assert(not err, err)
 		if chunk then
+      chunk = strip_ansi(chunk)
 			vim.schedule(function()
 				require("dap.repl").append(chunk)
 			end)
