@@ -268,20 +268,28 @@ local live_grep = function()
 	vim.cmd("startinsert")
 end
 
-local live_current_grep = function()
-	local extension = vim.fn.expand("%:e")
+local live_args_grep = function()
+  -- Get current arglist
+  local args = vim.fn.argv()
+  
+  if #args == 0 then
+    print("No files in arglist")
+    return
+  end
+  
+  local tmpfile = vim.fn.tempname()
+  local picker = create_floating_window()
+  
+  -- Create the file list for rg
+  local file_list = table.concat(args, " ")
+  
+  local reload_command = string.format([[%s {q} %s -- || true]], rg_command, file_list)
+  
+  local fzf_bind = string.format([[ --bind 'change:reload(%s)' --ansi ]], reload_command)
 
-	local reload_command =
-		string.format([[%s --extension %s | xargs %s {q} -- || true]], find_command, extension, rg_command)
-
-	local fzf_bind = string.format([[ --bind 'change:reload(%s)' --ansi ]], reload_command)
-
-	local tmpfile = vim.fn.tempname()
-	local picker = create_floating_window()
-
-	vim.fn.jobstart(fzf_command .. " --header='Live current grep' " .. fzf_bind .. " > " .. tmpfile, {
-		term = true,
-		on_exit = function(_, exit_code)
+  vim.fn.jobstart(fzf_command .. " --header='Live args grep' " .. fzf_bind .. " > " .. tmpfile, {
+    term = true,
+    on_exit = function(_, exit_code)
       vim.api.nvim_win_close(picker.win, true)
 
       if exit_code ~= 0 then
@@ -293,10 +301,12 @@ local live_current_grep = function()
       if #output > 0 then
         handle_grep_results(output)
       end
-		end,
-	})
 
-	vim.cmd("startinsert")
+      vim.fn.delete(tmpfile)
+    end,
+  })
+
+  vim.cmd("startinsert")
 end
 
 local find_gitdiff = function()
@@ -326,25 +336,25 @@ local find_gitdiff = function()
 end
 
 local refine_arglist = function()
-  local arglist = vim.fn.tempname()
+  -- Get current arglist
+  local args = vim.fn.argv()
+  
+  if #args == 0 then
+    print("No files in arglist")
+    return
+  end
+
   local tmpfile = vim.fn.tempname()
   local picker = create_floating_window()
 
-  vim.cmd("redir! > " .. arglist .. " | silent args | redir END")
+  -- Create input for fzf from the arglist
+  local args_input = table.concat(args, "\n")
 
 	vim.fn.jobstart(
-		[[sed 's/[][]//g' ]]
-			.. arglist
-      .. [[ | tr -s '[:space:]' '\n' ]]
-			.. [[ | grep -v -E "^$" | sort | ]]
-			.. fzf_command
-			.. " --header='Argument List' "
-			.. " > "
-			.. tmpfile,
+		"echo " .. vim.fn.shellescape(args_input) .. " | " .. fzf_command .. " --header='Argument List' " .. " > " .. tmpfile,
 		{
 			term = true,
 			on_exit = function(_, exit_code)
-				vim.fn.delete(arglist)
         vim.api.nvim_win_close(picker.win, true)
 
         if exit_code ~= 0 then
@@ -368,7 +378,7 @@ vim.keymap.set("n", "<leader>t", toggle_terminal, { desc = "toggle a floating te
 vim.keymap.set("n", "<leader>ff", _G.find_file, { desc = "fuzzy find file(s)" })
 vim.keymap.set("n", "<leader>fd", find_gitdiff, { desc = "fuzzy find updated file(s)" })
 vim.keymap.set("n", "<leader>fa", refine_arglist, { desc = "refine existing arglist" })
-vim.keymap.set("n", "<leader>ga", live_grep, { desc = "live grep with rg and fzf" })
+vim.keymap.set("n", "<leader>ga", live_args_grep, { desc = "live grep files in arglist" })
 vim.keymap.set("n", "<leader>y", find_buffer, { desc = "fuzzy find open buffers" })
 vim.keymap.set("t", "<C-u>", "<c-\\><c-n>", { desc = "faster exit insert mode in the terminal" })
-vim.keymap.set( "n", "<leader>gg", live_current_grep, { desc = "live grep but only search files with the same extension as the current one" })
+vim.keymap.set( "n", "<leader>gg", live_grep, { desc = "project-wide live grep" })
