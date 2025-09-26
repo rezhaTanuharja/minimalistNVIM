@@ -22,12 +22,7 @@ local opts = {
 	linehl = false,
 	word_diff = false,
 
-	watch_gitdir = {
-		interval = 1000,
-		follow_files = true,
-	},
-
-	attach_to_untracked = true,
+	attach_to_untracked = false,
 	current_line_blame = false,
 
 	current_line_blame_opts = {
@@ -38,9 +33,9 @@ local opts = {
 	},
 
 	sign_priority = 6,
-	update_debounce = 100,
+	update_debounce = 200,
 	status_formatter = nil,
-	max_file_length = 10000,
+	max_file_length = 5000,
 
 	preview_config = {
 		border = "single",

@@ -22,7 +22,6 @@ return {
 		vim.keymap.set("n", "<leader>di", dap.step_into)
 		vim.keymap.set("n", "<leader>dk", dap.toggle_breakpoint)
 		vim.keymap.set("n", "<leader>dn", dap.clear_breakpoints)
-		vim.keymap.set("n", "<leader>dl", dap.list_breakpoints)
 		vim.keymap.set("n", "<leader>dt", dap.terminate)
 
 		vim.fn.sign_define("DapBreakpoint", {

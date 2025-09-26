@@ -93,9 +93,6 @@ return {
 					"typescript",
 					"typescriptreact",
 				},
-				disable = function(_, bufnr)
-					return vim.api.nvim_buf_line_count(bufnr) > 2000
-				end,
 			},
 		})
 	end,

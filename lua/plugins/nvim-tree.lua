@@ -73,7 +73,7 @@ local opts = {
 	},
 
 	view = {
-		width = 32,
+		width = 40,
 		side = "left",
 	},
 

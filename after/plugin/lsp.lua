@@ -45,3 +45,10 @@ vim.keymap.set(
     })
   end
 )
+
+vim.keymap.set(
+  "n", "gs",
+  function()
+    vim.lsp.stop_client(vim.lsp.get_clients())
+  end
+)

@@ -14,13 +14,7 @@ local opts = {
 		filetypes = { "tex", "plaintex", "bib" },
 	},
 
-	scope = {
-		enabled = true,
-		show_start = false,
-		show_end = false,
-		highlight = { "Special" },
-		priority = 500,
-	},
+	scope = { enabled = false },
 }
 
 return {
