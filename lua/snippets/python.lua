@@ -22,6 +22,15 @@ local snippets = {
 		"\tdef __init__(self, *args, **kwargs):",
 		"\t\tpass",
 	},
+
+  listen = {
+    "debugpy.listen((\"${1:0.0.0.0}\", ${2:1234}))",
+    "debugpy.wait_for_client()",
+  },
+
+  breakpoint = {
+    "debugpy.breakpoint()",
+  },
 }
 
 for keyword, body in pairs(snippets) do
