@@ -36,6 +36,8 @@ _G.jsx_tsx_env_set = _G.jsx_tsx_env_set
 		return true
 	end)()
 
+require("snippets").enable_snippets()
+
 local success, textobj = pcall(require, "text_objects")
 if not success then
 	vim.notify("failed to load a plugin: text_objects")
@@ -56,5 +58,33 @@ vim.keymap.set("n", "yie", function()
 	textobj.yank_node(jsx_element)
 end, {
 	desc = "yank a jsx element",
+	buffer = true,
+})
+
+vim.keymap.set("n", "gvn", function()
+	local variable_declaration = textobj.get_node("variable_declarator")
+	local name_fields = textobj.get_field(variable_declaration, "name")
+
+	if not name_fields or #name_fields < 1 then
+		return
+	end
+
+	textobj.goto_node(name_fields[1])
+end, {
+	desc = "jump to variable name",
+	buffer = true,
+})
+
+vim.keymap.set("n", "gto", function()
+	local jsx_element = textobj.get_node("jsx_element")
+	local opening_tag = textobj.get_field(jsx_element, "open_tag")
+
+	if not opening_tag or #opening_tag < 1 then
+		return
+	end
+
+	textobj.goto_node(opening_tag[1])
+end, {
+	desc = "jump to tag opening",
 	buffer = true,
 })
