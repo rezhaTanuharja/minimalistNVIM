@@ -273,7 +273,6 @@ local live_args_grep = function()
   local args = vim.fn.argv()
   
   if #args == 0 then
-    print("No files in arglist")
     return
   end
   
@@ -340,7 +339,6 @@ local refine_arglist = function()
   local args = vim.fn.argv()
   
   if #args == 0 then
-    print("No files in arglist")
     return
   end
 
@@ -373,12 +371,74 @@ local refine_arglist = function()
 	vim.cmd("startinsert")
 end
 
+local refine_quickfix = function()
+  -- Get current quickfix list
+  local qf_list = vim.fn.getqflist()
+  
+  if #qf_list == 0 then
+    return
+  end
+
+  -- Format quickfix entries for display in fzf
+  local qf_lines = {}
+  local entry_map = {}
+  
+  for i, entry in ipairs(qf_list) do
+    local filename = vim.fn.bufname(entry.bufnr)
+    local line_text = string.format("%s:%d:%d:%s", filename, entry.lnum, entry.col, entry.text)
+    table.insert(qf_lines, line_text)
+    entry_map[line_text] = i -- Map display line back to original entry index
+  end
+
+  local tmpfile = vim.fn.tempname()
+  local picker = create_floating_window()
+
+  -- Create input for fzf from the quickfix entries
+  local qf_input = table.concat(qf_lines, "\n")
+
+  vim.fn.jobstart(
+    "echo " .. vim.fn.shellescape(qf_input) .. " | " .. fzf_command .. " --header='Quickfix Entries' " .. " > " .. tmpfile,
+    {
+      term = true,
+      on_exit = function(_, exit_code)
+        vim.api.nvim_win_close(picker.win, true)
+
+        if exit_code ~= 0 then
+          vim.fn.delete(tmpfile)
+          return
+        end
+
+        local selected_lines = vim.fn.readfile(tmpfile)
+        if #selected_lines > 0 then
+          -- Build filtered quickfix list from selected entries
+          local filtered_qf = {}
+          for _, line in ipairs(selected_lines) do
+            local entry_idx = entry_map[line]
+            if entry_idx then
+              table.insert(filtered_qf, qf_list[entry_idx])
+            end
+          end
+
+          -- Update quickfix list with filtered entries
+          vim.fn.setqflist({}, " ", { title = "Refined Quickfix", items = filtered_qf })
+          vim.cmd("copen")
+        end
+
+        vim.fn.delete(tmpfile)
+      end,
+    }
+  )
+
+  vim.cmd("startinsert")
+end
+
 
 vim.keymap.set("n", "<leader>t", toggle_terminal, { desc = "toggle a floating terminal" })
 vim.keymap.set("n", "<leader>ff", _G.find_file, { desc = "fuzzy find file(s)" })
 vim.keymap.set("n", "<leader>fd", find_gitdiff, { desc = "fuzzy find updated file(s)" })
 vim.keymap.set("n", "<leader>fa", refine_arglist, { desc = "refine existing arglist" })
 vim.keymap.set("n", "<leader>ga", live_args_grep, { desc = "live grep files in arglist" })
+vim.keymap.set("n", "<leader>gq", refine_quickfix, { desc = "refine quickfix list" })
 vim.keymap.set("n", "<leader>y", find_buffer, { desc = "fuzzy find open buffers" })
 vim.keymap.set("t", "<C-u>", "<c-\\><c-n>", { desc = "faster exit insert mode in the terminal" })
 vim.keymap.set( "n", "<leader>gg", live_grep, { desc = "project-wide live grep" })
