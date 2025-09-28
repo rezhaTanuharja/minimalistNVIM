@@ -16,7 +16,6 @@
 local find_command = table.concat({
 	"fd",
 	"--type f",
-	"--full-path",
 	"--no-require-git",
 	'--exclude "*.png"',
 	'--exclude "*.pdf"',
@@ -162,6 +161,8 @@ local create_live_picker = function(header, reload_cmd, callback)
 
 	vim.cmd("startinsert")
 end
+
+
 
 local gitdiff_command = function()
 	local against = vim.fn.input("Compare against: ")
@@ -337,6 +338,71 @@ local live_args_grep = function()
 	create_live_picker("Live args grep", reload_command, handle_grep_results)
 end
 
+local handle_buffer_results = function(results)
+	local current_file = vim.fn.expand("%:p")
+	
+	if #results == 1 then
+		-- Single result: jump to line
+		local first_result = results[1]
+		local line_num = first_result:match("^%s*(%d+)")
+		if line_num then
+			vim.api.nvim_win_set_cursor(0, { tonumber(line_num), 0 })
+		end
+	else
+		-- Multiple results: create quickfix list
+		local qf_list = {}
+		for _, line in ipairs(results) do
+			local line_num, text = line:match("^%s*(%d+)%s*(.*)$")
+			if line_num then
+				table.insert(qf_list, {
+					filename = current_file,
+					lnum = tonumber(line_num),
+					col = 1,
+					text = text,
+				})
+			end
+		end
+		
+		vim.fn.setqflist({}, " ", { title = "Buffer Lines", items = qf_list })
+		vim.cmd("copen")
+	end
+end
+
+local live_buffer_grep = function()
+	local current_file = vim.fn.expand("%:p")
+
+	if current_file == "" then
+		return
+	end
+
+	local tmpfile = vim.fn.tempname()
+	local picker = create_floating_window()
+
+	-- Simple: cat with line numbers, feed to fzf (no sorting to preserve line order)
+	local command = "cat -n " .. vim.fn.shellescape(current_file) .. " | " .. fzf_command .. " --no-sort --header='Current Buffer Lines' > " .. tmpfile
+
+	vim.fn.jobstart(command, {
+		term = true,
+		on_exit = function(_, exit_code)
+			vim.api.nvim_win_close(picker.win, true)
+
+			if exit_code ~= 0 then
+				vim.fn.delete(tmpfile)
+				return
+			end
+
+			local results = vim.fn.readfile(tmpfile)
+			vim.fn.delete(tmpfile)
+
+			if #results > 0 then
+				handle_buffer_results(results)
+			end
+		end,
+	})
+
+	vim.cmd("startinsert")
+end
+
 -- ============================================================================
 -- REFINE FUNCTIONS
 -- ============================================================================
@@ -399,6 +465,7 @@ vim.keymap.set("n", "<leader>y", find_buffer, { desc = "fuzzy find open buffers"
 -- Grep functions
 vim.keymap.set("n", "<leader>gg", live_grep, { desc = "project-wide live grep" })
 vim.keymap.set("n", "<leader>ga", live_args_grep, { desc = "live grep files in arglist" })
+vim.keymap.set("n", "<leader>gb", live_buffer_grep, { desc = "live grep current buffer" })
 
 -- Refine functions
 vim.keymap.set("n", "<leader>fa", refine_arglist, { desc = "refine existing arglist" })
