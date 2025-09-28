@@ -88,3 +88,17 @@ end, {
 	desc = "jump to tag opening",
 	buffer = true,
 })
+
+vim.keymap.set("n", "gtc", function()
+	local jsx_element = textobj.get_node("jsx_element")
+	local closing_tag = textobj.get_field(jsx_element, "close_tag")
+
+	if not closing_tag or #closing_tag < 1 then
+		return
+	end
+
+	textobj.goto_node(closing_tag[1])
+end, {
+	desc = "jump to tag closing",
+	buffer = true,
+})
