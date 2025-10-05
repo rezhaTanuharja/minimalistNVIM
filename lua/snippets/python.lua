@@ -23,12 +23,14 @@ local snippets = {
 		"\t\tpass",
 	},
 
-  listen = {
-    "debugpy.listen((\"${1:0.0.0.0}\", ${2:1234}))",
-    "debugpy.wait_for_client()",
+  debug_entry_point = {
+    "if not debugpy.is_client_connected():",
+    "\tdebugpy.listen((\"${1:0.0.0.0}\", ${2:1234}))",
+    "\tdebugpy.wait_for_client()",
+    "\tdebugpy.breakpoint()",
   },
 
-  breakpoint = {
+  break_point = {
     "debugpy.breakpoint()",
   },
 }
