@@ -61,6 +61,34 @@ end, {
 	buffer = true,
 })
 
+vim.keymap.set("n", "gcn", function()
+	local class_declaration = textobj.get_node("class_declaration")
+	local name_fields = textobj.get_field(class_declaration, "name")
+
+	if not name_fields or #name_fields < 1 then
+		return
+	end
+
+	textobj.goto_node(name_fields[1])
+end, {
+	desc = "jump to class name",
+	buffer = true,
+})
+
+vim.keymap.set("n", "gmn", function()
+	local method_definition = textobj.get_node("method_definition")
+	local name_fields = textobj.get_field(method_definition, "name")
+
+	if not name_fields or #name_fields < 1 then
+		return
+	end
+
+	textobj.goto_node(name_fields[1])
+end, {
+	desc = "jump to method name",
+	buffer = true,
+})
+
 vim.keymap.set("n", "gvn", function()
 	local variable_declaration = textobj.get_node("variable_declarator")
 	local name_fields = textobj.get_field(variable_declaration, "name")
