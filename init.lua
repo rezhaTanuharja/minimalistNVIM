@@ -53,7 +53,7 @@ local options = {
 
 	-- number columns
 
-	relativenumber = true,
+	relativenumber = false,
 	number = true,
 	numberwidth = 3,
 

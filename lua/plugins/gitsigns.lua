@@ -35,7 +35,7 @@ local opts = {
 	sign_priority = 6,
 	update_debounce = 200,
 	status_formatter = nil,
-	max_file_length = 5000,
+	max_file_length = 8000,
 
 	preview_config = {
 		border = "single",
