@@ -317,6 +317,34 @@ local find_gitdiff = function()
 	vim.cmd("startinsert")
 end
 
+local find_git_working = function()
+	local tmpfile = vim.fn.tempname()
+	local picker = create_floating_window()
+
+	local command = "git diff --name-only HEAD | " .. fzf_command .. " --header='Staged & Unstaged Files' > " .. tmpfile
+
+	vim.fn.jobstart(command, {
+		term = true,
+		on_exit = function(_, exit_code)
+			vim.api.nvim_win_close(picker.win, true)
+
+			if exit_code ~= 0 then
+				vim.fn.delete(tmpfile)
+				return
+			end
+
+			local file_names = vim.fn.readfile(tmpfile)
+			local path_prefix = vim.fs.dirname(vim.fs.find(".git", { upward = true })[1]) .. "/"
+
+			handle_file_results(file_names, path_prefix)
+
+			vim.fn.delete(tmpfile)
+		end,
+	})
+
+	vim.cmd("startinsert")
+end
+
 -- ============================================================================
 -- GREP FUNCTIONS
 -- ============================================================================
@@ -460,6 +488,7 @@ vim.keymap.set("n", "<leader>t", toggle_terminal, { desc = "toggle a floating te
 -- Find functions
 vim.keymap.set("n", "<leader>ff", _G.find_file, { desc = "fuzzy find file(s)" })
 vim.keymap.set("n", "<leader>fd", find_gitdiff, { desc = "fuzzy find updated file(s)" })
+vim.keymap.set("n", "<leader>fw", find_git_working, { desc = "fuzzy find staged/unstaged file(s)" })
 vim.keymap.set("n", "<leader>y", find_buffer, { desc = "fuzzy find open buffers" })
 
 -- Grep functions
