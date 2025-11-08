@@ -25,7 +25,6 @@ vim.g.loaded_ruby_provider = 0
 vim.g.tex_flavor = "latex"
 
 local options = {
-
 	-- user interface
 
 	termguicolors = true,
@@ -43,7 +42,7 @@ local options = {
 	showmode = false,
 	cmdheight = 0,
 	path = ".,,**",
-  grepprg = "rg --vimgrep",
+	grepprg = "rg --vimgrep",
 
 	-- tabs and indentations
 
@@ -100,7 +99,7 @@ end
 
 require("plugin_manager").setup({
 	plugins = {
-		"blankline",
+		"blinkline",
 		"gitsigns",
 		"nvim-dap",
 		"nvim-tree",
