@@ -15,6 +15,6 @@ return {
 	build = {
 		"sh",
 		"-c",
-		"npm install --legacy-peer-deps --no-save && npx gulp dapDebugServer",
+		"npm install --legacy-peer-deps --no-save --ignore-scripts && npx gulp dapDebugServer",
 	},
 }
