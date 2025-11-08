@@ -16,7 +16,7 @@ local opts = {
     highlights = { "BlinkIndent" },
   },
   scope = {
-    enabled = true,
+    enabled = false,
     highlights = { "BlinkIndentScope" },
   },
 }
