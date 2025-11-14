@@ -23,15 +23,15 @@ local opts = {
 
 return {
 
-	"saghen/blink.indent",
+  "saghen/blink.indent",
 
-	config = function()
-		local success, blinkline = pcall(require, "blink.indent")
-		if not success then
-			vim.notify("Failed to load a plugin: blinkline")
-			return
-		end
+  config = function()
+    local success, blinkline = pcall(require, "blink.indent")
+    if not success then
+      vim.notify("Failed to load a plugin: blinkline")
+      return
+    end
 
-		blinkline.setup(opts)
-	end,
+    blinkline.setup(opts)
+  end,
 }

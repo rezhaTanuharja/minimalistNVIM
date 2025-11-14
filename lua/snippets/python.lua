@@ -10,18 +10,18 @@
 
 local snippets = {
 
-	class = {
-		"class ${1:class_name}:",
-		"\tdef __init__(self, *args, **kwargs):",
-		"\t\tpass",
-	},
+  class = {
+    "class ${1:class_name}:",
+    "\tdef __init__(self, *args, **kwargs):",
+    "\t\tpass",
+  },
 
-	class_abstract = {
-		"class ${1:class_name}(${2:parent_name}):",
-		"\t@abstractmethod",
-		"\tdef __init__(self, *args, **kwargs):",
-		"\t\tpass",
-	},
+  class_abstract = {
+    "class ${1:class_name}(${2:parent_name}):",
+    "\t@abstractmethod",
+    "\tdef __init__(self, *args, **kwargs):",
+    "\t\tpass",
+  },
 
   debug_entry_point = {
     "if not debugpy.is_client_connected():",
@@ -36,7 +36,7 @@ local snippets = {
 }
 
 for keyword, body in pairs(snippets) do
-	snippets[keyword] = table.concat(body, "\n")
+  snippets[keyword] = table.concat(body, "\n")
 end
 
 return snippets

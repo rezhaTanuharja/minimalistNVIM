@@ -10,24 +10,24 @@
 
 return {
 
-	filetypes = { "c", "cpp" },
+  filetypes = { "c", "cpp" },
 
-	cmd = { "clangd", "--background-index", "--clang-tidy", "--log=error" },
+  cmd = { "clangd", "--background-index", "--clang-tidy", "--log=error" },
 
-	root_markers = { ".git", "compile_commands.json" },
+  root_markers = { ".git", "compile_commands.json" },
 
-	init_options = {
-		fallbackFlags = { "-std=c++17" },
-	},
+  init_options = {
+    fallbackFlags = { "-std=c++17" },
+  },
 
-	on_attach = function(client, buffer)
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = buffer,
-			callback = function()
-				vim.lsp.buf.format({ buffer = buffer, id = client.id })
-			end,
-		})
-	end,
+  on_attach = function(client, buffer)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = buffer,
+      callback = function()
+        vim.lsp.buf.format({ buffer = buffer, id = client.id })
+      end,
+    })
+  end,
 
-	settings = {},
+  settings = {},
 }

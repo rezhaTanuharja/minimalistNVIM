@@ -15,140 +15,140 @@
 -- + checks if the language server is installed before enabling.
 --
 _G.ruby_env_set = _G.ruby_env_set
-	or (function()
-		local bundle_ruby_lsp = false
+  or (function()
+    local bundle_ruby_lsp = false
 
-		vim.fn.jobstart({ "bundle", "exec", "ruby-lsp", "--version" }, {
-			on_exit = function(_, code, _)
-				if code == 0 then
-					vim.lsp.config["ruby-lsp"] = {
-						cmd = { "bundle", "exec", "ruby-lsp" },
-					}
-					bundle_ruby_lsp = true
-				end
+    vim.fn.jobstart({ "bundle", "exec", "ruby-lsp", "--version" }, {
+      on_exit = function(_, code, _)
+        if code == 0 then
+          vim.lsp.config["ruby-lsp"] = {
+            cmd = { "bundle", "exec", "ruby-lsp" },
+          }
+          bundle_ruby_lsp = true
+        end
 
-				if bundle_ruby_lsp or vim.fn.executable("ruby-lsp") == 1 then
-					vim.lsp.enable("ruby-lsp")
-					vim.lsp.start("ruby-lsp")
-				end
-			end,
-		})
+        if bundle_ruby_lsp or vim.fn.executable("ruby-lsp") == 1 then
+          vim.lsp.enable("ruby-lsp")
+          vim.lsp.start("ruby-lsp")
+        end
+      end,
+    })
 
-		if vim.fn.executable("rubocop") == 1 then
-			vim.lsp.enable("rubocop")
-		end
+    if vim.fn.executable("rubocop") == 1 then
+      vim.lsp.enable("rubocop")
+    end
 
-		local success, debug_ruby = pcall(require, "debug_ruby")
-		if not success then
-			vim.notify("missing module: debug_ruby")
-			return true
-		end
+    local success, debug_ruby = pcall(require, "debug_ruby")
+    if not success then
+      vim.notify("missing module: debug_ruby")
+      return true
+    end
 
-		debug_ruby.setup()
+    debug_ruby.setup()
 
-		return true
-	end)()
+    return true
+  end)()
 
 vim.bo.makeprg = "bundle exec rspec %"
 vim.bo.errorformat = "rspec %f:%l # %m"
 
 vim.keymap.set("n", "<C-]>", function()
-	local ruby_lsp_active = #vim.lsp.get_clients({ name = "ruby-lsp" }) > 0
-	if ruby_lsp_active then
-		vim.lsp.buf.definition()
-	end
+  local ruby_lsp_active = #vim.lsp.get_clients({ name = "ruby-lsp" }) > 0
+  if ruby_lsp_active then
+    vim.lsp.buf.definition()
+  end
 end, { buffer = true })
 
 local swap_app_and_spec = function()
-	local file_name = vim.fn.expand("%")
+  local file_name = vim.fn.expand("%")
 
-	if file_name:find("app/") then
-		file_name = file_name:gsub("app/", "spec/")
-		file_name = file_name:gsub(".rb", "_spec.rb")
-	elseif file_name:find("spec/") then
-		file_name = file_name:gsub("_spec.rb", ".rb")
-		file_name = file_name:gsub("spec/", "app/")
-	end
+  if file_name:find("app/") then
+    file_name = file_name:gsub("app/", "spec/")
+    file_name = file_name:gsub(".rb", "_spec.rb")
+  elseif file_name:find("spec/") then
+    file_name = file_name:gsub("_spec.rb", ".rb")
+    file_name = file_name:gsub("spec/", "app/")
+  end
 
-	local _ = pcall(function()
-		vim.cmd("edit " .. file_name)
-	end)
+  local _ = pcall(function()
+    vim.cmd("edit " .. file_name)
+  end)
 end
 
 vim.keymap.set("n", "<leader>sf", swap_app_and_spec, {
-	desc = "swap between app and spec file",
+  desc = "swap between app and spec file",
 })
 
 local textobj_success, textobj = pcall(require, "text_objects")
 if not textobj_success then
-	vim.notify("failed to load a plugin: text_objects")
-	return
+  vim.notify("failed to load a plugin: text_objects")
+  return
 end
 
 vim.keymap.set("n", "dim", function()
-	local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
-	local body = textobj.get_field(method_definition, "body")[1]
+  local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
+  local body = textobj.get_field(method_definition, "body")[1]
 
-	textobj.yank_node(body)
-	textobj.delete_node(body)
+  textobj.yank_node(body)
+  textobj.delete_node(body)
 
-	textobj.goto_node(method_definition)
+  textobj.goto_node(method_definition)
 end, {
-	desc = "delete the body of a method definition",
-	buffer = true,
+  desc = "delete the body of a method definition",
+  buffer = true,
 })
 
 vim.keymap.set("n", "dam", function()
-	local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
+  local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
 
-	textobj.yank_node(method_definition)
-	textobj.delete_node(method_definition)
+  textobj.yank_node(method_definition)
+  textobj.delete_node(method_definition)
 end, {
-	desc = "delete a method definition",
-	buffer = true,
+  desc = "delete a method definition",
+  buffer = true,
 })
 
 vim.keymap.set("n", "yim", function()
-	local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
-	local body = textobj.get_field(method_definition, "body")[1]
+  local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
+  local body = textobj.get_field(method_definition, "body")[1]
 
-	textobj.yank_node(body)
+  textobj.yank_node(body)
 end, {
-	desc = "yank the body of a method definition",
-	buffer = true,
+  desc = "yank the body of a method definition",
+  buffer = true,
 })
 
 vim.keymap.set("n", "yam", function()
-	local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
+  local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
 
-	textobj.yank_node(method_definition)
+  textobj.yank_node(method_definition)
 end, {
-	desc = "yank a method definition",
-	buffer = true,
+  desc = "yank a method definition",
+  buffer = true,
 })
 
 vim.keymap.set("n", "gmn", function()
-	local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
-	local name_fields = textobj.get_field(method_definition, "name")
+  local method_definition = textobj.get_node("singleton_method") or textobj.get_node("method")
+  local name_fields = textobj.get_field(method_definition, "name")
 
-	if not name_fields or #name_fields < 1 then
-		return
-	end
+  if not name_fields or #name_fields < 1 then
+    return
+  end
 
-	textobj.goto_node(name_fields[1])
+  textobj.goto_node(name_fields[1])
 end, {
-	desc = "jump to method name",
-	buffer = true,
+  desc = "jump to method name",
+  buffer = true,
 })
 
 vim.keymap.set("n", "<leader>fm", function()
-	local pattern = vim.fn.expand("%:t:r")
+  local pattern = vim.fn.expand("%:t:r")
 
-	pattern = pattern:gsub("_controller", "")
-	pattern = pattern:gsub("_spec", "")
+  pattern = pattern:gsub("_controller", "")
+  pattern = pattern:gsub("_spec", "")
 
-	_G.find_file(pattern)
+  _G.find_file(pattern)
 end, {
-	desc = "Find a file matching the current file name",
-	buffer = true,
+  desc = "Find a file matching the current file name",
+  buffer = true,
 })

@@ -16,37 +16,37 @@
 -- + set adapters and configurations for DAP.
 --
 _G.cpp_env_set = _G.cpp_env_set
-	or (function()
-		if vim.fn.executable("clangd") == 1 then
-			vim.lsp.enable("clangd")
-		end
+  or (function()
+    if vim.fn.executable("clangd") == 1 then
+      vim.lsp.enable("clangd")
+    end
 
-		local success, dap = pcall(require, "dap")
-		if not success then
-			vim.notify("failed to load a plugin: dap")
-			return true
-		end
+    local success, dap = pcall(require, "dap")
+    if not success then
+      vim.notify("failed to load a plugin: dap")
+      return true
+    end
 
-		dap.adapters.cpp = {
-			type = "executable",
-			command = "lldb-dap",
-			name = "lldb",
-		}
+    dap.adapters.cpp = {
+      type = "executable",
+      command = "lldb-dap",
+      name = "lldb",
+    }
 
-		dap.configurations.cpp = {
-			{
-				name = "[CPP] Launch LLDB",
-				type = "cpp",
-				request = "launch",
-				program = function()
-					return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
-				end,
-				cwd = "${workspaceFolder}",
-				stopOnEntry = false,
-				args = {},
-				runInTerminal = false,
-			},
-		}
+    dap.configurations.cpp = {
+      {
+        name = "[CPP] Launch LLDB",
+        type = "cpp",
+        request = "launch",
+        program = function()
+          return vim.fn.input("Path to executable: ", vim.fn.getcwd() .. "/", "file")
+        end,
+        cwd = "${workspaceFolder}",
+        stopOnEntry = false,
+        args = {},
+        runInTerminal = false,
+      },
+    }
 
-		return true
-	end)()
+    return true
+  end)()

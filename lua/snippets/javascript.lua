@@ -10,9 +10,9 @@
 
 local snippets = {
 
-	func = {
+  func = {
     "(${1:}) => {$0}",
-	},
+  },
 
   tag = {
     "<${1:tag}$2>$0</$1>",
@@ -25,7 +25,7 @@ local snippets = {
 }
 
 for keyword, body in pairs(snippets) do
-	snippets[keyword] = table.concat(body, "\n")
+  snippets[keyword] = table.concat(body, "\n")
 end
 
 return snippets

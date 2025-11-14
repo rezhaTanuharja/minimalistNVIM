@@ -10,40 +10,40 @@
 
 return {
 
-	filetypes = { "tex", "plaintex", "bib" },
+  filetypes = { "tex", "plaintex", "bib" },
 
-	cmd = { "texlab" },
+  cmd = { "texlab" },
 
-	root_markers = { ".git", "main.tex" },
+  root_markers = { ".git", "main.tex" },
 
-	on_attach = function(client, buffer)
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			buffer = buffer,
-			callback = function()
-				vim.lsp.buf.format({ buffer = buffer, id = client.id })
-			end,
-		})
-	end,
+  on_attach = function(client, buffer)
+    vim.api.nvim_create_autocmd("BufWritePre", {
+      buffer = buffer,
+      callback = function()
+        vim.lsp.buf.format({ buffer = buffer, id = client.id })
+      end,
+    })
+  end,
 
-	settings = {
+  settings = {
 
-		texlab = {
+    texlab = {
 
-			bibtexFormatter = "texlab",
+      bibtexFormatter = "texlab",
 
-			build = {
-				onSave = false,
-				onType = false,
-			},
+      build = {
+        onSave = false,
+        onType = false,
+      },
 
-			diagnosticDelay = 100,
-			formatterLineLength = 80,
+      diagnosticDelay = 100,
+      formatterLineLength = 80,
 
-			forwardSearch = {
-				args = {},
-			},
-		},
-	},
+      forwardSearch = {
+        args = {},
+      },
+    },
+  },
 
-	single_file_support = true,
+  single_file_support = true,
 }

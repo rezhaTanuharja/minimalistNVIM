@@ -15,9 +15,9 @@
 -- + checks if the language server is installed before enabling.
 --
 _G.rust_env_set = _G.rust_env_set
-	or (function()
-		if vim.fn.executable("rust-analyzer") == 1 then
-			vim.lsp.enable("rust-analyzer")
-		end
-		return true
-	end)()
+  or (function()
+    if vim.fn.executable("rust-analyzer") == 1 then
+      vim.lsp.enable("rust-analyzer")
+    end
+    return true
+  end)()

@@ -25,85 +25,85 @@ vim.g.loaded_ruby_provider = 0
 vim.g.tex_flavor = "latex"
 
 local options = {
-	-- user interface
+  -- user interface
 
-	termguicolors = true,
-	mouse = "",
-	clipboard = "unnamedplus",
-	winborder = "single",
-	cursorline = true,
-	showtabline = 0,
-	inccommand = "split",
-	timeoutlen = 300,
-	updatetime = 200,
-	virtualedit = "block",
-	splitbelow = true,
-	splitright = true,
-	showmode = false,
-	cmdheight = 0,
-	path = ".,,**",
-	grepprg = "rg --vimgrep",
+  termguicolors = true,
+  mouse = "",
+  clipboard = "unnamedplus",
+  winborder = "single",
+  cursorline = true,
+  showtabline = 0,
+  inccommand = "split",
+  timeoutlen = 300,
+  updatetime = 200,
+  virtualedit = "block",
+  splitbelow = true,
+  splitright = true,
+  showmode = false,
+  cmdheight = 0,
+  path = ".,,**",
+  grepprg = "rg --vimgrep",
 
-	-- tabs and indentations
+  -- tabs and indentations
 
-	expandtab = true,
-	shiftwidth = 2,
-	tabstop = 2,
+  expandtab = true,
+  shiftwidth = 2,
+  tabstop = 2,
 
-	-- number columns
+  -- number columns
 
-	relativenumber = false,
-	number = true,
-	numberwidth = 3,
+  relativenumber = false,
+  number = true,
+  numberwidth = 3,
 
-	-- text display
+  -- text display
 
-	foldlevelstart = 99,
-	foldtext = "",
-	foldmethod = "expr",
+  foldlevelstart = 99,
+  foldtext = "",
+  foldmethod = "expr",
 
-	foldexpr = "v:lua.vim.treesitter.foldexpr()",
+  foldexpr = "v:lua.vim.treesitter.foldexpr()",
 
-	wrap = false,
-	smartindent = true,
-	scrolloff = 99,
-	sidescrolloff = 6,
+  wrap = false,
+  smartindent = true,
+  scrolloff = 99,
+  sidescrolloff = 6,
 
-	fillchars = {
-		eob = " ",
-		fold = "-",
-		stl = "-",
-	},
+  fillchars = {
+    eob = " ",
+    fold = "-",
+    stl = "-",
+  },
 
-	pumheight = 8,
-	pumwidth = 20,
-	pumblend = 15,
+  pumheight = 8,
+  pumwidth = 20,
+  pumblend = 15,
 
-	-- text search
+  -- text search
 
-	ignorecase = true,
-	smartcase = true,
-	hlsearch = false,
+  ignorecase = true,
+  smartcase = true,
+  hlsearch = false,
 
-	-- miscellaneous
+  -- miscellaneous
 
-	backup = false,
-	swapfile = false,
-	undofile = false,
-	fileencoding = "utf-8",
+  backup = false,
+  swapfile = false,
+  undofile = false,
+  fileencoding = "utf-8",
 }
 
 for parameter, value in pairs(options) do
-	vim.opt[parameter] = value
+  vim.opt[parameter] = value
 end
 
 require("plugin_manager").setup({
-	plugins = {
-		"blinkline",
-		"gitsigns",
-		"nvim-dap",
-		"nvim-tree",
-		"treesitter",
-		"vscode-js-debug",
-	},
+  plugins = {
+    "blinkline",
+    "gitsigns",
+    "nvim-dap",
+    "nvim-tree",
+    "treesitter",
+    "vscode-js-debug",
+  },
 })

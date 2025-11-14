@@ -10,32 +10,32 @@
 
 return {
 
-	filetypes = { "python" },
+  filetypes = { "python" },
 
-	cmd = { "pyright-langserver", "--stdio" },
+  cmd = { "pyright-langserver", "--stdio" },
 
-	root_markers = { ".git", "pyproject.toml" },
+  root_markers = { ".git", "pyproject.toml" },
 
-	on_init = function(client)
-		client.offset_encoding = "utf-8"
-	end,
+  on_init = function(client)
+    client.offset_encoding = "utf-8"
+  end,
 
-	settings = {
+  settings = {
 
-		pyright = {
-			disableOrganizeImports = true,
-		},
+    pyright = {
+      disableOrganizeImports = true,
+    },
 
-		python = {
-			analysis = {
-				autoImportCompletions = false,
-				autoSeachPaths = false,
-				diagnosticMode = "workspace",
-				typeCheckingMode = "standard",
-				diagnosticSeverityOverrides = {
-					reportPrivateImportUsage = "none",
-				},
-			},
-		},
-	},
+    python = {
+      analysis = {
+        autoImportCompletions = false,
+        autoSeachPaths = false,
+        diagnosticMode = "workspace",
+        typeCheckingMode = "standard",
+        diagnosticSeverityOverrides = {
+          reportPrivateImportUsage = "none",
+        },
+      },
+    },
+  },
 }
