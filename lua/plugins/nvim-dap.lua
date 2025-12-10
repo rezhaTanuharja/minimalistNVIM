@@ -24,7 +24,18 @@ return {
     vim.keymap.set("n", "<leader>dn", dap.clear_breakpoints)
     vim.keymap.set("n", "<leader>dt", dap.terminate)
 
+    vim.keymap.set("n", "<leader>dc", function()
+      local condition = vim.fn.input("Condition: ")
+      dap.set_breakpoint(condition)
+    end)
+
     vim.fn.sign_define("DapBreakpoint", {
+      text = "--",
+      texthl = "DiagnosticError",
+      numhl = "",
+    })
+
+    vim.fn.sign_define("DapBreakpointCondition", {
       text = "--",
       texthl = "DiagnosticError",
       numhl = "",
@@ -32,7 +43,7 @@ return {
 
     vim.fn.sign_define("DapBreakpointRejected", {
       text = "--",
-      texthl = "DiagnosticWarn",
+      texthl = "DiagnosticError",
       numhl = "",
     })
 
