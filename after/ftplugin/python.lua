@@ -101,6 +101,8 @@ _G.python_env_set = _G.python_env_set
     return true
   end)()
 
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
 require("snippets").enable_snippets()
 
 local success, textobj = pcall(require, "text_objects")

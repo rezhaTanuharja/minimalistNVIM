@@ -36,6 +36,8 @@ _G.jsx_tsx_env_set = _G.jsx_tsx_env_set
     return true
   end)()
 
+vim.bo.indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
 require("snippets").enable_snippets()
 
 -- Set errorformat for TypeScript compiler errors

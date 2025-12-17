@@ -76,14 +76,14 @@ local create_floating_window = function(buf)
   buf = buf or -1
 
   local width = function()
-    return math.floor(vim.o.columns * 0.8)
+    return math.floor(vim.o.columns * 0.9)
   end
   local height = function()
     return math.floor(vim.o.lines * 0.8)
   end
 
   local col = math.floor((vim.o.columns - width()) / 2)
-  local row = math.floor((vim.o.lines - height()) / 2)
+  local row = math.floor((vim.o.lines - height()) / 2.4)
 
   local buffer = nil
   if vim.api.nvim_buf_is_valid(buf) then
