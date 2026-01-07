@@ -40,15 +40,29 @@ local rg_command = table.concat({
   "--fixed-strings",
 }, " ")
 
-local preview_cmd = [[
-  sh -c 'if [ -z "{2}" ]; then
-    cat "{1}";
+local preview_cmd = [[sh -c '
+  file="$1"
+  line="$2"
+  query="$3"
+
+  [ ! -r "$file" ] && exit 0
+
+  hl_line=$(printf "\033[48;5;238m")
+  hl_term=$(printf "\033[1;91m")
+  reset=$(printf "\033[0m")
+  clr=$(printf "\033[K")
+
+  if [ -z "$line" ] || ! printf "%s" "$line" | grep -qE "^[0-9]+$"; then
+    cat -- "$file" 2>/dev/null
   else
-    start=$(( {2} > 10 ? {2} - 10 : 1 ));
-    end=$(( {2} + 10 ));
-    sed -n "${start},${end}p" "{1}";
-  fi'
-]]
+    start=$((line > 10 ? line - 10 : 1))
+    endline=$((line + 10))
+    n=$((line - start + 1))
+    sed -n "${start},${endline}p" -- "$file" 2>/dev/null | \
+      gawk -v n="$n" -v hl="$hl_line" -v rs="$reset" -v ht="$hl_term" -v cl="$clr" -v q="$query" \
+        "BEGIN{IGNORECASE=1} {c=\$0; if(NR==n){if(q!=\"\"&&index(c,q))gsub(q,ht q rs hl,c); print hl c cl rs}else{if(q!=\"\"&&index(c,q))gsub(q,ht q rs,c); print c}}"
+  fi
+' _ {1} {2} {q}]]
 
 local fzf_command = table.concat({
   "fzf",
